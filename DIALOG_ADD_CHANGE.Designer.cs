@@ -63,7 +63,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
-            tableLayoutPanel1.Size = new Size(800, 450);
+            tableLayoutPanel1.Size = new Size(979, 550);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutAction
@@ -73,13 +73,13 @@
             tableLayoutAction.Controls.Add(lblSelAct, 0, 0);
             tableLayoutAction.Controls.Add(cmbAction, 0, 1);
             tableLayoutAction.Dock = DockStyle.Fill;
-            tableLayoutAction.Location = new Point(402, 2);
+            tableLayoutAction.Location = new Point(491, 2);
             tableLayoutAction.Margin = new Padding(2);
             tableLayoutAction.Name = "tableLayoutAction";
             tableLayoutAction.RowCount = 2;
             tableLayoutAction.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
             tableLayoutAction.RowStyles.Add(new RowStyle(SizeType.Percent, 65F));
-            tableLayoutAction.Size = new Size(396, 61);
+            tableLayoutAction.Size = new Size(486, 61);
             tableLayoutAction.TabIndex = 46;
             // 
             // lblSelAct
@@ -101,7 +101,7 @@
             cmbAction.Location = new Point(4, 26);
             cmbAction.Margin = new Padding(4, 5, 4, 5);
             cmbAction.Name = "cmbAction";
-            cmbAction.Size = new Size(388, 33);
+            cmbAction.Size = new Size(478, 33);
             cmbAction.TabIndex = 40;
             cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
             // 
@@ -119,7 +119,7 @@
             tableLayoutCondition.RowStyles.Add(new RowStyle(SizeType.Percent, 35F));
             tableLayoutCondition.RowStyles.Add(new RowStyle(SizeType.Percent, 65F));
             tableLayoutCondition.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutCondition.Size = new Size(396, 61);
+            tableLayoutCondition.Size = new Size(485, 61);
             tableLayoutCondition.TabIndex = 45;
             // 
             // lblSelCond
@@ -141,17 +141,17 @@
             cmbCondition.Location = new Point(4, 26);
             cmbCondition.Margin = new Padding(4, 5, 4, 5);
             cmbCondition.Name = "cmbCondition";
-            cmbCondition.Size = new Size(388, 33);
+            cmbCondition.Size = new Size(477, 33);
             cmbCondition.TabIndex = 39;
             cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
             // 
             // panelAction
             // 
             panelAction.Dock = DockStyle.Fill;
-            panelAction.Location = new Point(402, 67);
+            panelAction.Location = new Point(491, 67);
             panelAction.Margin = new Padding(2);
             panelAction.Name = "panelAction";
-            panelAction.Size = new Size(396, 316);
+            panelAction.Size = new Size(486, 416);
             panelAction.TabIndex = 42;
             // 
             // panelCondition
@@ -160,7 +160,7 @@
             panelCondition.Location = new Point(2, 67);
             panelCondition.Margin = new Padding(2);
             panelCondition.Name = "panelCondition";
-            panelCondition.Size = new Size(396, 316);
+            panelCondition.Size = new Size(485, 416);
             panelCondition.TabIndex = 43;
             // 
             // flowLayoutButtons
@@ -168,9 +168,9 @@
             flowLayoutButtons.Controls.Add(btnAddOrEdit);
             flowLayoutButtons.Controls.Add(btnClose);
             flowLayoutButtons.Dock = DockStyle.Fill;
-            flowLayoutButtons.Location = new Point(403, 388);
+            flowLayoutButtons.Location = new Point(492, 488);
             flowLayoutButtons.Name = "flowLayoutButtons";
-            flowLayoutButtons.Size = new Size(394, 59);
+            flowLayoutButtons.Size = new Size(484, 59);
             flowLayoutButtons.TabIndex = 47;
             // 
             // btnAddOrEdit
@@ -197,7 +197,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(979, 550);
             Controls.Add(tableLayoutPanel1);
             Name = "DIALOG_ADD_CHANGE";
             StartPosition = FormStartPosition.CenterScreen;

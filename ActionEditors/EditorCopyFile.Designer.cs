@@ -31,39 +31,54 @@
             label1 = new Label();
             txtPath = new TextBox();
             btnBrowse = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(86, 20);
+            label1.Size = new Size(105, 25);
             label1.TabIndex = 0;
             label1.Text = "Folder Path:";
             // 
             // txtPath
             // 
+            txtPath.Location = new Point(114, 3);
             txtPath.Name = "txtPath";
-            txtPath.Size = new Size(295, 27);
+            txtPath.Size = new Size(295, 31);
             txtPath.TabIndex = 1;
             // 
             // btnBrowse
             // 
+            btnBrowse.Location = new Point(415, 3);
             btnBrowse.Name = "btnBrowse";
             btnBrowse.Size = new Size(94, 29);
             btnBrowse.TabIndex = 2;
             btnBrowse.Text = "Browse";
             btnBrowse.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(label1);
+            flowLayoutPanel1.Controls.Add(txtPath);
+            flowLayoutPanel1.Controls.Add(btnBrowse);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(627, 176);
+            flowLayoutPanel1.TabIndex = 3;
+            // 
             // EditorCopyFile
             // 
-            Controls.Add(btnBrowse);
-            Controls.Add(txtPath);
-            Controls.Add(label1);
+            Controls.Add(flowLayoutPanel1);
             Name = "EditorCopyFile";
-            Size = new Size(438, 113);
+            Size = new Size(627, 176);
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -71,5 +86,6 @@
         private Label label1;
         private TextBox txtPath;
         private Button btnBrowse;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }
