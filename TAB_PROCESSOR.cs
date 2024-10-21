@@ -11,11 +11,17 @@ namespace CS_Yaml_Parser.UserControls
         RealityFrameworks.Action mSelAction = null;
         RealityFrameworks.Condition mSelCond = null;
 
+        private DIALOG_ADD_CHANGE mDlgEditChange = new();
+
         public TAB_Processor()
         {
             InitializeComponent();
 
             lstProcessor.HorizontalScrollbar = true;
+
+            //  Setup Add Dialog
+            mDlgEditChange.Parent = this.Parent;
+            
 
             //  Load Available Conditions
             mConditionsAvailable.Add(new ConditionHasExtension(".pdf"));
@@ -27,13 +33,10 @@ namespace CS_Yaml_Parser.UserControls
             mActionsAvailable.Add(new ActionMergeFiles());
             mActionsAvailable.Add(new ActionRenameFile());
 
-            foreach (var condition in mConditionsAvailable)
-                cmbCondition.Items.Add(condition.Name);
-            cmbCondition.SelectedIndex = 0;
+            mDlgEditChange.LoadConditions(mConditionsAvailable);
+            mDlgEditChange.LoadActions(mActionsAvailable);
 
-            foreach (var action in mActionsAvailable)
-                cmbAction.Items.Add(action.Name);
-            cmbAction.SelectedIndex = 0;
+            
 
 
             /*****************************/
@@ -61,26 +64,20 @@ namespace CS_Yaml_Parser.UserControls
             Change ch = Processor.GetChangeAt(lstProcessor.SelectedIndex);
 
             UserControl editCond = EditorFactory.CreateConditionEditor(ch.Condition);
-            AddUserControl(panelCondition, editCond);
+            //AddUserControl(panelCondition, editCond);
 
-            try
-            {
-                UserControl editAction = EditorFactory.CreateActionEditor(ch.Action);
-                AddUserControl(panelAction, editAction);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            //try
+            //{
+            //    UserControl editAction = EditorFactory.CreateActionEditor(ch.Action);
+            //    AddUserControl(panelAction, editAction);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
-        private void AddUserControl(Panel panel, UserControl editor)
-        {
-            editor.Dock = DockStyle.Fill;
-            panel.Controls.Clear();
-            panel.Controls.Add(editor);
-            editor.BringToFront();
-        }
+
 
         private void ReloadChangeList()
         {
@@ -104,25 +101,22 @@ namespace CS_Yaml_Parser.UserControls
             //ToggleMassAddUI();
         }
 
-        private void cmbCondition_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mSelCond = mConditionsAvailable.ElementAt(cmbCondition.SelectedIndex);
-        }
 
-        private void cmbAction_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mSelAction = mActionsAvailable.ElementAt(cmbAction.SelectedIndex);
-        }
 
         public void ToggleUI()
         {
-            bool addPair = (cmbCondition.SelectedIndex != -1 && cmbAction.SelectedIndex != -1);
-            btnAddPair.Enabled = addPair;
+            //bool addPair = (cmbCondition.SelectedIndex != -1 && cmbAction.SelectedIndex != -1);
+            //btnAddPair.Enabled = addPair;
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
             //  process all files in the list
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            mDlgEditChange.Show();
         }
     }
 }

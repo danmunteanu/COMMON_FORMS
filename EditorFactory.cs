@@ -21,6 +21,21 @@ namespace CommonForms
                 { typeof(ActionCopyFile), () => new EditorCopyFile() }
             };
 
+        private static readonly Dictionary<string, EditorCreator> _factories2 =
+            new Dictionary<string, EditorCreator>
+            {
+                //  CONDITION Editors
+                { "HasExtension", () => new EditorHasExtension() },
+                { "IsFolder", () => new EditorIsFolder() },
+
+                //  ACTION Editors
+                //{ typeof(ActionAddYaml), () => new EditorAddYaml() },
+                { "RenameFile", () => new EditorRenameFile() },
+                //{ typeof(ActionUpdateYaml), () => new TAB_UpdateYaml() },
+                { "MergeFiles", () => new EditorMergeFiles() },
+                { "CopyFile", () => new EditorCopyFile() }
+            };
+
         public static UserControl CreateActionEditor(RealityFrameworks.Action action)
         {
             if (_factories.TryGetValue(action.GetType(), out var creator))
@@ -28,6 +43,16 @@ namespace CommonForms
                 return creator();  // Call the method to create the editor
             }
             string message = string.Format("There is no editor registered for {0}.", action.Name);
+            throw new InvalidOperationException(message);
+        }
+
+        public static UserControl CreateActionEditor(string actionName)
+        {
+            if (_factories2.TryGetValue(actionName, out var creator))
+            {
+                return creator();  // Call the method to create the editor
+            }
+            string message = string.Format("There is no editor registered for {0}.", actionName);
             throw new InvalidOperationException(message);
         }
 
@@ -39,6 +64,16 @@ namespace CommonForms
             }
 
             throw new InvalidOperationException("There is no editor registered for condition " + cond.Name);
+        }
+
+        public static UserControl CreateConditionEditor(string condName)
+        {
+            if (_factories2.TryGetValue(condName, out var creator))
+            {
+                return creator();  // Call the method to create the editor
+            }
+            string message = string.Format("There is no editor registered for {0}.", condName);
+            throw new InvalidOperationException(message);
         }
     }
 }
