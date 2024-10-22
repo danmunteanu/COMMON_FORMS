@@ -205,6 +205,7 @@
             ClientSize = new Size(979, 550);
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "DialogChangeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DIALOG_ADD_CHANGE";

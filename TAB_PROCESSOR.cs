@@ -21,7 +21,7 @@ namespace CS_Yaml_Parser.UserControls
 
             //  Setup Add Dialog
             mDlgEditChange.Parent = this.Parent;
-            
+
 
             //  Load Available Conditions
             mConditionsAvailable.Add(new ConditionHasExtension(".pdf"));
@@ -36,7 +36,7 @@ namespace CS_Yaml_Parser.UserControls
             mDlgEditChange.LoadConditions(mConditionsAvailable);
             mDlgEditChange.LoadActions(mActionsAvailable);
 
-            
+
 
 
             /*****************************/
@@ -116,6 +116,15 @@ namespace CS_Yaml_Parser.UserControls
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            mDlgEditChange.LoadState(DialogChangeForm.EditorState.Add);
+            mDlgEditChange.Show();
+        }
+
+        private void lstProcessor_DoubleClick(object sender, EventArgs e)
+        {
+            //  get current change
+            Change ch = mFilesProcessor.GetChangeAt(lstProcessor.SelectedIndex);
+            mDlgEditChange.LoadState(DialogChangeForm.EditorState.Edit, ch);
             mDlgEditChange.Show();
         }
     }

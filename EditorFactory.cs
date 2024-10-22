@@ -6,7 +6,7 @@ namespace CommonForms
     {
         public delegate UserControl EditorCreator();
 
-        private static readonly Dictionary<Type, EditorCreator> _factories =
+        private static readonly Dictionary<Type, EditorCreator> _factoryByType =
             new Dictionary<Type, EditorCreator>
             {
                 //  CONDITION Editors
@@ -21,7 +21,7 @@ namespace CommonForms
                 { typeof(ActionCopyFile), () => new EditorCopyFile() }
             };
 
-        private static readonly Dictionary<string, EditorCreator> _factories2 =
+        private static readonly Dictionary<string, EditorCreator> _factoryByName =
             new Dictionary<string, EditorCreator>
             {
                 //  CONDITION Editors
@@ -36,9 +36,14 @@ namespace CommonForms
                 { "CopyFile", () => new EditorCopyFile() }
             };
 
+        public static void RegisterEditor(string name, EditorCreator creator)
+        {
+            _factoryByName.Add(name, creator);
+        }
+
         public static UserControl CreateActionEditor(RealityFrameworks.Action action)
         {
-            if (_factories.TryGetValue(action.GetType(), out var creator))
+            if (_factoryByType.TryGetValue(action.GetType(), out var creator))
             {
                 return creator();  // Call the method to create the editor
             }
@@ -48,7 +53,7 @@ namespace CommonForms
 
         public static UserControl CreateActionEditor(string actionName)
         {
-            if (_factories2.TryGetValue(actionName, out var creator))
+            if (_factoryByName.TryGetValue(actionName, out var creator))
             {
                 return creator();  // Call the method to create the editor
             }
@@ -58,7 +63,7 @@ namespace CommonForms
 
         public static UserControl CreateConditionEditor(RealityFrameworks.Condition cond)
         {
-            if (_factories.TryGetValue(cond.GetType(), out var creator))
+            if (_factoryByType.TryGetValue(cond.GetType(), out var creator))
             {
                 return creator();  // Call the method to create the editor
             }
@@ -68,7 +73,7 @@ namespace CommonForms
 
         public static UserControl CreateConditionEditor(string condName)
         {
-            if (_factories2.TryGetValue(condName, out var creator))
+            if (_factoryByName.TryGetValue(condName, out var creator))
             {
                 return creator();  // Call the method to create the editor
             }

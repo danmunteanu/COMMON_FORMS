@@ -1,6 +1,6 @@
 ﻿namespace CommonForms
 {
-    partial class TAB_EXTRACT_PDF
+    partial class TAB_ExtractPDF
     {
         /// <summary> 
         /// Required designer variable.

@@ -4,8 +4,12 @@ namespace CommonForms
 {
     public partial class DialogChangeForm : Form
     {
+        public enum EditorState { Add, Edit };
+
         private UserControl mSelectedConditionEditor = null;
         private UserControl mSelectedActionEditor = null;
+
+        public EditorState State { get; set; }
 
         public DialogChangeForm()
         {
@@ -31,6 +35,37 @@ namespace CommonForms
             foreach (var action in actions)
                 cmbAction.Items.Add(action.Name);
             cmbAction.SelectedIndex = 0;
+        }
+
+        public void LoadState(EditorState state, Change ch = null)
+        {
+            if (state == EditorState.Add)
+            {
+
+            }
+            if (state == EditorState.Edit)
+            {
+                //  Condition editor
+                try
+                {
+                    mSelectedActionEditor = EditorFactory.CreateActionEditor(ch.Condition.Name);
+                    AddUserControl(panelCondition, mSelectedActionEditor);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                try
+                {
+                    mSelectedActionEditor = EditorFactory.CreateActionEditor(ch.Action.Name);
+                    AddUserControl(panelAction, mSelectedActionEditor);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -68,10 +103,6 @@ namespace CommonForms
                 MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        public enum EditorState { Add, Edit}
-
-        public EditorState State { get; set; } = DialogChangeForm.EditorState.Add;
 
         private void btnAddOrEdit_Click(object sender, EventArgs e)
         {

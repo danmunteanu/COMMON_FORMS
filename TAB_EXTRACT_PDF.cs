@@ -4,7 +4,7 @@ using System.Resources;
 
 namespace CommonForms
 {
-    public partial class TAB_EXTRACT_PDF : TAB_Base
+    public partial class TAB_ExtractPDF : TAB_Base
     {
         public ActionExtractPDFPages Action { get; set; }
 
@@ -12,7 +12,7 @@ namespace CommonForms
 
         public const string K_DATE_MASK = "yyyy-MM-dd hh:mm tt";
 
-        public TAB_EXTRACT_PDF()
+        public TAB_ExtractPDF()
         {
             InitializeComponent();
 

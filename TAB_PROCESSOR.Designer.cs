@@ -111,6 +111,7 @@
             lstProcessor.Size = new Size(1246, 240);
             lstProcessor.TabIndex = 35;
             lstProcessor.SelectedIndexChanged += lstProcessor_SelectedIndexChanged;
+            lstProcessor.DoubleClick += lstProcessor_DoubleClick;
             // 
             // tableLayoutMain
             // 
