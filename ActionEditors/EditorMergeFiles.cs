@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
-    public partial class EditorMergeFiles : UserControl
+    public partial class EditorMergeFiles : EditorBase
     {
         RealityFrameworks.ActionMergeFiles Action { get; set; }
+
         public EditorMergeFiles()
         {
             InitializeComponent();
+        }
+
+        public override void SaveState()
+        {
+            //base.SaveState();
+
+            //  UI -> Condition
         }
     }
 }

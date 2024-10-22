@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace CommonForms
 {
-    public partial class EditorRenameFile : UserControl
+    public partial class EditorRenameFile : EditorBase
     {
         ActionRenameFile _action = null;
 
@@ -43,7 +43,7 @@ namespace CommonForms
             txtCustom.Text = arf.NewFileName;
         }
 
-        private void SaveState()
+        public override void SaveState()
         {
             _action.Extension = txtExtension.Text;
             _action.Prefix = txtPrefix.Text;

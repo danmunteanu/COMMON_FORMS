@@ -11,7 +11,7 @@ namespace CS_Yaml_Parser.UserControls
         RealityFrameworks.Action mSelAction = null;
         RealityFrameworks.Condition mSelCond = null;
 
-        private DIALOG_ADD_CHANGE mDlgEditChange = new();
+        private DialogChangeForm mDlgEditChange = new();
 
         public TAB_Processor()
         {

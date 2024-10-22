@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorHasExtension : UserControl
+    public partial class EditorHasExtension : EditorBase
     {
         public EditorHasExtension()
         {
@@ -14,6 +14,13 @@ namespace CommonForms
             container.Add(this);
 
             InitializeComponent();
+        }
+
+        public override void SaveState()
+        {
+            //base.SaveState();
+
+            //  UI -> Condition
         }
     }
 }
