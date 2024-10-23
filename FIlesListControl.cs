@@ -11,9 +11,9 @@ namespace CommonForms
         public delegate void UpdateProgressDelegate(int progress);
         public delegate void SelectionChangedDelegate(string item);
 
-        public new ToggleUIDelegate ToggleUI { get; set; } = null;
-        public UpdateProgressDelegate UpdateProgress { get; set; } = null;
-        public SelectionChangedDelegate SelectionChanged { get; set; } = null;
+        public ToggleUIDelegate DelegateToggleUI { get; set; } = null;
+        public UpdateProgressDelegate DelegateUpdateProgress { get; set; } = null;
+        public SelectionChangedDelegate DelegateSelectionChanged { get; set; } = null;
 
         /// <summary>
         /// Should enable or disable usage of the progress bar - later.
@@ -68,8 +68,8 @@ namespace CommonForms
 
         private void CallToggleUI()
         {
-            if (ToggleUI != null)
-                ToggleUI();
+            if (DelegateToggleUI != null)
+                DelegateToggleUI();
         }
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace CommonForms
         /// <param name="item"></param>
         private void CallOnSelectionChanged(string item)
         {
-            if (SelectionChanged != null)
-                SelectionChanged(item);
+            if (DelegateSelectionChanged != null)
+                DelegateSelectionChanged(item);
         }
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace CommonForms
         /// <param name="percent"></param>
         private void CallUpdateProgress(int percent)
         {
-            if (UpdateProgress != null)
-                UpdateProgress(percent);
+            if (DelegateUpdateProgress != null)
+                DelegateUpdateProgress(percent);
         }
 
         /// <summary>
