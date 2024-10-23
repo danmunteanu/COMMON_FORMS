@@ -3,10 +3,11 @@ using System.Resources;
 
 namespace CommonForms
 {
-    public partial class TAB_Base : UserControl
+    public partial class ControlBase : UserControl
     {
-        public delegate void DelegateUpdateStatus(string message);
-        
+        public delegate void UpdateStatusDelegate(string message);
+        public UpdateStatusDelegate UpdateStatus { get; set; } = null;
+
         protected string DefaultOutputFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
 
         protected ResourceManager mResourceManager = null;
@@ -33,9 +34,7 @@ namespace CommonForms
             }
         }
 
-        public DelegateUpdateStatus UpdateStatus { get; set; } = null;
-
-        public TAB_Base()
+        public ControlBase()
         {
         }
 

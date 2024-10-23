@@ -1,6 +1,6 @@
 ﻿namespace CommonForms
 {
-    partial class TAB_Base
+    partial class ControlBase
     {
         /// <summary> 
         /// Required designer variable.

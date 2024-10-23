@@ -5,38 +5,14 @@ using System.Text;
 
 namespace CommonForms
 {   
-    public partial class FilesListControl : UserControl
+    public partial class FilesListControl : ControlBase
     {
-        public delegate void UpdateStatusDelegate(string message);
         public delegate void ToggleUIDelegate();
         public delegate void UpdateProgressDelegate(int progress);
 
-        public UpdateStatusDelegate UpdateStatus { get; set; } = null;
-        public ToggleUIDelegate ToggleUI { get; set; } = null;
         public UpdateProgressDelegate UpdateProgress { get; set; } = null;
 
         public bool UseProgressBar { get; set; } = true;
-
-        private void CallUpdateStatus(string message)
-        {
-            if (UpdateStatus != null) 
-                UpdateStatus(message);
-        }
-
-        private void CallToggleUI()
-        {
-            if (ToggleUI != null)
-                ToggleUI();
-        }
-
-        private void CallUpdateProgress(int percent)
-        {
-            if (UpdateProgress != null)
-                UpdateProgress(percent);
-        }
-
-        public FilesProcessor Processor { get; set; } = null;
-        public ResourceManager Resource { get; set; } = null;
 
         private string[] mFileFilters = [".md", ".txt"];
 
@@ -55,14 +31,44 @@ namespace CommonForms
             lstFiles.HorizontalScrollbar = true;
             lstFiles.SelectionMode = SelectionMode.None;
 
+            //  provide a default local status updater
             UpdateStatus = this.UpdateStatusLocal;
 
             CallUpdateStatus(string.Empty);
         }
 
+        private void CallUpdateStatus(string message)
+        {
+            if (UpdateStatus != null)
+                UpdateStatus(message);
+        }
+
+        private void CallToggleUI()
+        {
+            if (ToggleUI != null)
+                ToggleUI();
+        }
+
+        private void CallUpdateProgress(int percent)
+        {
+            if (UpdateProgress != null)
+                UpdateProgress(percent);
+        }
+
         private void UpdateStatusLocal(string message)
         {
             lblStatus.Text = message;
+        }
+
+        protected override void OnResourceSet()
+        {
+            //  Load file list localisations
+            if (Resource != null)
+            {
+                btnAdd.Text = Resource.GetString("FILE_LIST_BUTTON_ADD");
+                btnRem.Text = Resource.GetString("FILE_LIST_BUTTON_REM");
+                btnClear.Text = Resource.GetString("FILE_LIST_BUTTON_CLEAR");
+            }
         }
 
         private void AddFilesFromFolder(string folder)
@@ -117,8 +123,9 @@ namespace CommonForms
             else
             {
                 if (Resource != null)
-                    CallUpdateStatus(string.Format(Resource?.GetString("STATUS_FOLDER_NOT_ADDED")));
+                    CallUpdateStatus(string.Format(Resource.GetString("STATUS_FOLDER_NOT_ADDED")));
             }
+
             //  Reset progress bar
             CallUpdateProgress(0);
         }
@@ -128,7 +135,9 @@ namespace CommonForms
             //  clear inner list and list ui
             Processor.ClearFileNames();
             lstFiles.Items.Clear();
-            CallUpdateStatus(Resource?.GetString("STATUS_LIST_CLEARED"));
+
+            if (Resource != null)
+                CallUpdateStatus(Resource.GetString("STATUS_LIST_CLEARED"));
 
             CallToggleUI();
         }
@@ -147,7 +156,8 @@ namespace CommonForms
             //clear inner list and list ui
             Processor.ClearFileNames();
             lstFiles.Items.Clear();
-            CallUpdateStatus(Resource?.GetString("STATUS_LIST_CLEARED"));
+            if (Resource != null)
+                CallUpdateStatus(Resource.GetString("STATUS_LIST_CLEARED"));
 
             CallToggleUI();
         }

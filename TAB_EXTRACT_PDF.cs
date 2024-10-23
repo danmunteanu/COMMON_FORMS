@@ -4,7 +4,7 @@ using System.Resources;
 
 namespace CommonForms
 {
-    public partial class TAB_ExtractPDF : TAB_Base
+    public partial class TAB_ExtractPDF : ControlBase
     {
         public ActionExtractPDFPages Action { get; set; }
 

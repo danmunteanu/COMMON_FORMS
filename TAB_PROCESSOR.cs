@@ -3,7 +3,7 @@ using CommonForms;
 
 namespace CS_Yaml_Parser.UserControls
 {
-    public partial class TAB_Processor : TAB_Base
+    public partial class TAB_Processor : ControlBase
     {
         List<RealityFrameworks.Condition> mConditionsAvailable = new List<RealityFrameworks.Condition>();
         List<RealityFrameworks.Action> mActionsAvailable = new List<RealityFrameworks.Action>();
