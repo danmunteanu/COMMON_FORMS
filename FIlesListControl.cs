@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CommonForms
 {   
-    public partial class FIlesListControl : UserControl
+    public partial class FilesListControl : UserControl
     {
         public delegate void UpdateStatusDelegate(string message);
         public delegate void ToggleUIDelegate();
@@ -13,8 +13,9 @@ namespace CommonForms
 
         public UpdateStatusDelegate UpdateStatus { get; set; } = null;
         public ToggleUIDelegate ToggleUI { get; set; } = null;
-
         public UpdateProgressDelegate UpdateProgress { get; set; } = null;
+
+        public bool UseProgressBar { get; set; } = true;
 
         private void CallUpdateStatus(string message)
         {
@@ -34,7 +35,7 @@ namespace CommonForms
                 UpdateProgress(percent);
         }
 
-        public FilesProcessor FilesProcessor { get; set; } = null;
+        public FilesProcessor Processor { get; set; } = null;
         public ResourceManager Resource { get; set; } = null;
 
         private string[] mFileFilters = [".md", ".txt"];
@@ -47,16 +48,28 @@ namespace CommonForms
             set { mFileFilters = value; }
         }
 
-        public FIlesListControl()
+        public FilesListControl()
         {
             InitializeComponent();
+
+            lstFiles.HorizontalScrollbar = true;
+            lstFiles.SelectionMode = SelectionMode.None;
+
+            UpdateStatus = this.UpdateStatusLocal;
+
+            CallUpdateStatus(string.Empty);
+        }
+
+        private void UpdateStatusLocal(string message)
+        {
+            lblStatus.Text = message;
         }
 
         private void AddFilesFromFolder(string folder)
         {
             //  clear the list 
             lstFiles.Items.Clear();
-            FilesProcessor.ClearFileNames();
+            Processor.ClearFileNames();
 
             if (folder == null || folder == "")
                 return;
@@ -70,7 +83,7 @@ namespace CommonForms
             IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters);
             foreach (FileInfo fi in files)
             {
-                FilesProcessor.AddFileName(fi.FullName);
+                Processor.AddFileName(fi.FullName);
             }
 
             //  reload mFilesToProcess into the list
@@ -78,16 +91,15 @@ namespace CommonForms
 
             //  enable mass update button
             //btnMassAddYaml.Enabled = true;
-            CallUpdateStatus(string.Empty);
 
             CallToggleUI();
         }
         private void ReloadFilesList()
         {
             lstFiles.Items.Clear();
-            for (int idx = 0; idx < FilesProcessor.CountFileNames(); idx++)
+            for (int idx = 0; idx < Processor.CountFileNames(); idx++)
             {
-                var item = FilesProcessor.GetFileNameAt(idx);
+                var item = Processor.GetFileNameAt(idx);
                 lstFiles.Items.Add(item);
             }
         }
@@ -114,7 +126,7 @@ namespace CommonForms
         private void btnClearFiles_Click(object sender, EventArgs e)
         {
             //  clear inner list and list ui
-            FilesProcessor.ClearFileNames();
+            Processor.ClearFileNames();
             lstFiles.Items.Clear();
             CallUpdateStatus(Resource?.GetString("STATUS_LIST_CLEARED"));
 
@@ -123,18 +135,29 @@ namespace CommonForms
 
         private void btnReloadFolder_Click(object sender, EventArgs e)
         {
-            //  Reload the folder
-            //  Or the files?
+            AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
+            if (Resource != null)
+                CallUpdateStatus(Resource.GetString("STATUS_FOLDER_RELOADED"));
+
+            CallToggleUI();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             //clear inner list and list ui
-            FilesProcessor.ClearFileNames();
+            Processor.ClearFileNames();
             lstFiles.Items.Clear();
             CallUpdateStatus(Resource?.GetString("STATUS_LIST_CLEARED"));
 
             CallToggleUI();
+        }
+
+        private void lstFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstFiles.SelectedItem == null)
+                return;
+
+            //mTabUpdateYaml.SelectedFile = lstFiles.SelectedItem.ToString();
         }
     }
 }
