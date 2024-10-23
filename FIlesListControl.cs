@@ -2,6 +2,7 @@
 using System.Data;
 using System.Resources;
 using System.Text;
+using System.Windows.Forms;
 
 namespace CommonForms
 {   
@@ -19,6 +20,28 @@ namespace CommonForms
         /// Should enable or disable usage of the progress bar - later.
         /// </summary>
         public bool UseProgressBar { get; set; } = true;
+
+        /// <summary>
+        /// Sets the status string
+        /// </summary>
+        public string Status {
+            set { lblStatus.Text = value; }
+        }
+
+        /// <summary>
+        /// Sets the progress bar value
+        /// </summary>
+        public int Progress { 
+            get { return progressBar.Value; } 
+            set {
+                progressBar.Value = value;
+
+                //progressBar.Invoke((MethodInvoker)delegate {
+                //    // Running on the UI thread
+                //    progressBar.Value = value;
+                //});
+            } 
+        }
 
         /// <summary>
         /// The file filters used to add files to the list.
@@ -139,7 +162,7 @@ namespace CommonForms
         /// <summary>
         /// Clears the list and reloads the list of file names from the Processor
         /// </summary>
-        private void ReloadFilesList()
+        public void ReloadFilesList()
         {
             lstFiles.Items.Clear();
             for (int idx = 0; idx < Processor.CountFileNames(); idx++)

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             tableLayoutFiles = new TableLayoutPanel();
-            progressBarAdd = new ProgressBar();
+            progressBar = new ProgressBar();
             lblAddFiles = new Label();
             lstFiles = new ListBox();
             tableLayoutRowButtons = new TableLayoutPanel();
@@ -47,7 +47,7 @@
             // 
             tableLayoutFiles.ColumnCount = 1;
             tableLayoutFiles.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutFiles.Controls.Add(progressBarAdd, 0, 3);
+            tableLayoutFiles.Controls.Add(progressBar, 0, 3);
             tableLayoutFiles.Controls.Add(lblAddFiles, 0, 0);
             tableLayoutFiles.Controls.Add(lstFiles, 0, 1);
             tableLayoutFiles.Controls.Add(tableLayoutRowButtons, 0, 4);
@@ -66,12 +66,12 @@
             // 
             // progressBarAdd
             // 
-            progressBarAdd.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            progressBarAdd.Location = new Point(3, 480);
-            progressBarAdd.Margin = new Padding(3, 4, 3, 4);
-            progressBarAdd.Name = "progressBarAdd";
-            progressBarAdd.Size = new Size(449, 32);
-            progressBarAdd.TabIndex = 35;
+            progressBar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            progressBar.Location = new Point(3, 480);
+            progressBar.Margin = new Padding(3, 4, 3, 4);
+            progressBar.Name = "progressBarAdd";
+            progressBar.Size = new Size(449, 32);
+            progressBar.TabIndex = 35;
             // 
             // lblAddFiles
             // 
@@ -202,7 +202,7 @@
         private Button btnAdd;
         private Button btnReload;
         private FolderBrowserDialog mFolderBrowserDialog;
-        private ProgressBar progressBarAdd;
+        private ProgressBar progressBar;
         private Label lblStatus;
     }
 }
