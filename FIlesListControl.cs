@@ -99,11 +99,14 @@ namespace CommonForms
             if (res == DialogResult.OK && !string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
             {
                 AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
-                CallUpdateStatus(string.Format(Resource?.GetString("STATUS_FOLDER_ADDED")));
+                if (Resource != null)
+                    CallUpdateStatus(string.Format(Resource.GetString("STATUS_FOLDER_ADDED")));
             }
             else
-                CallUpdateStatus(string.Format(Resource?.GetString("STATUS_FOLDER_NOT_ADDED")));
-            
+            {
+                if (Resource != null)
+                    CallUpdateStatus(string.Format(Resource?.GetString("STATUS_FOLDER_NOT_ADDED")));
+            }
             //  Reset progress bar
             CallUpdateProgress(0);
         }

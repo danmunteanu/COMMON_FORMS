@@ -32,10 +32,10 @@
             lblAddFiles = new Label();
             lstFiles = new ListBox();
             tableLayoutPanel1 = new TableLayoutPanel();
-            btnClear = new Button();
-            btnRem = new Button();
-            btnAdd = new Button();
             btnReload = new Button();
+            btnAdd = new Button();
+            btnRem = new Button();
+            btnClear = new Button();
             mFolderBrowserDialog = new FolderBrowserDialog();
             tableLayoutFiles.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -103,27 +103,15 @@
             tableLayoutPanel1.Size = new Size(563, 59);
             tableLayoutPanel1.TabIndex = 34;
             // 
-            // btnClear
+            // btnReload
             // 
-            btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnClear.Location = new Point(446, 5);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(114, 48);
-            btnClear.TabIndex = 30;
-            btnClear.Text = "CLEAR";
-            btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btnClearFiles_Click;
-            // 
-            // btnRem
-            // 
-            btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnRem.Location = new Point(178, 5);
-            btnRem.Name = "btnRem";
-            btnRem.Size = new Size(49, 48);
-            btnRem.TabIndex = 35;
-            btnRem.Text = "-";
-            btnRem.UseVisualStyleBackColor = true;
-            btnRem.Click += btnClearFiles_Click;
+            btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnReload.Location = new Point(123, 5);
+            btnReload.Name = "btnReload";
+            btnReload.Size = new Size(49, 48);
+            btnReload.TabIndex = 36;
+            btnReload.Text = "R";
+            btnReload.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
@@ -136,15 +124,27 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
-            // btnReload
+            // btnRem
             // 
-            btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnReload.Location = new Point(123, 5);
-            btnReload.Name = "btnReload";
-            btnReload.Size = new Size(49, 48);
-            btnReload.TabIndex = 36;
-            btnReload.Text = "R";
-            btnReload.UseVisualStyleBackColor = true;
+            btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnRem.Location = new Point(178, 5);
+            btnRem.Name = "btnRem";
+            btnRem.Size = new Size(49, 48);
+            btnRem.TabIndex = 35;
+            btnRem.Text = "-";
+            btnRem.UseVisualStyleBackColor = true;
+            btnRem.Click += btnClearFiles_Click;
+            // 
+            // btnClear
+            // 
+            btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnClear.Location = new Point(446, 5);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(114, 48);
+            btnClear.TabIndex = 30;
+            btnClear.Text = "CLEAR";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClearFiles_Click;
             // 
             // FIlesListControl
             // 
