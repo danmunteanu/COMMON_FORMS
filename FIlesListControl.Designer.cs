@@ -94,6 +94,8 @@
             lstFiles.Size = new Size(451, 403);
             lstFiles.TabIndex = 18;
             lstFiles.SelectedIndexChanged += lstFiles_SelectedIndexChanged;
+            lstFiles.DragDrop += listFiles_DragDrop;
+            lstFiles.DragEnter += listFiles_DragEnter;
             // 
             // tableLayoutRowButtons
             // 
@@ -151,7 +153,7 @@
             btnRem.TabIndex = 35;
             btnRem.Text = "-";
             btnRem.UseVisualStyleBackColor = true;
-            btnRem.Click += btnClearFiles_Click;
+            btnRem.Click += btnClear_Click;
             // 
             // btnClear
             // 
@@ -163,7 +165,7 @@
             btnClear.TabIndex = 30;
             btnClear.Text = "CLEAR";
             btnClear.UseVisualStyleBackColor = true;
-            btnClear.Click += btnClearFiles_Click;
+            btnClear.Click += btnClear_Click;
             // 
             // lblStatus
             // 

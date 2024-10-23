@@ -9,21 +9,30 @@ namespace CommonForms
     {
         public delegate void ToggleUIDelegate();
         public delegate void UpdateProgressDelegate(int progress);
+        public delegate void SelectionChangedDelegate(string item);
 
+        public new ToggleUIDelegate ToggleUI { get; set; } = null;
         public UpdateProgressDelegate UpdateProgress { get; set; } = null;
+        public SelectionChangedDelegate SelectionChanged { get; set; } = null;
 
+        /// <summary>
+        /// Should enable or disable usage of the progress bar - later.
+        /// </summary>
         public bool UseProgressBar { get; set; } = true;
 
-        private string[] mFileFilters = [".md", ".txt"];
-
+        /// <summary>
+        /// The file filters used to add files to the list.
+        /// </summary>
+        private string[] mFileFilters = [];
         public string[] FileFilters
         {
             get { return mFileFilters; }
-
-            //  is this the right way? shouldn't we be copying the array instead?
             set { mFileFilters = value; }
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public FilesListControl()
         {
             InitializeComponent();
@@ -34,9 +43,23 @@ namespace CommonForms
             //  provide a default local status updater
             UpdateStatus = this.UpdateStatusLocal;
 
+            //  empty the status
             CallUpdateStatus(string.Empty);
         }
 
+        /// <summary>
+        /// A default status updater, updates the local status label with the message.
+        /// </summary>
+        /// <param name="message">The message will be set as the status</param>
+        private void UpdateStatusLocal(string message)
+        {
+            lblStatus.Text = message;
+        }
+
+        /// <summary>
+        /// Wraps the call to <c>UpdateStatus</c> performs a null value check
+        /// </summary>
+        /// <param name="message">The message passed to the call</param>
         private void CallUpdateStatus(string message)
         {
             if (UpdateStatus != null)
@@ -49,17 +72,31 @@ namespace CommonForms
                 ToggleUI();
         }
 
+        /// <summary>
+        /// This is called when the list's selection changes to pass the 
+        /// selected item's value as string to the assigned delegate.
+        /// </summary>
+        /// <param name="item"></param>
+        private void CallOnSelectionChanged(string item)
+        {
+            if (SelectionChanged != null)
+                SelectionChanged(item);
+        }
+
+        /// <summary>
+        /// A wrapper to the UpdateProgress call, checking for null before the call.
+        /// </summary>
+        /// <param name="percent"></param>
         private void CallUpdateProgress(int percent)
         {
             if (UpdateProgress != null)
                 UpdateProgress(percent);
         }
 
-        private void UpdateStatusLocal(string message)
-        {
-            lblStatus.Text = message;
-        }
-
+        /// <summary>
+        /// Overrides <c>OnResourceSet</c> from the base class <c>ControlBase</c>
+        /// Loads this list's localization strings.
+        /// </summary>
         protected override void OnResourceSet()
         {
             //  Load file list localisations
@@ -95,11 +132,13 @@ namespace CommonForms
             //  reload mFilesToProcess into the list
             ReloadFilesList();
 
-            //  enable mass update button
-            //btnMassAddYaml.Enabled = true;
-
+            //  Forces all listeners to update their UI
             CallToggleUI();
         }
+
+        /// <summary>
+        /// Clears the list and reloads the list of file names from the Processor
+        /// </summary>
         private void ReloadFilesList()
         {
             lstFiles.Items.Clear();
@@ -110,6 +149,11 @@ namespace CommonForms
             }
         }
 
+        /// <summary>
+        /// Handler for the Add button.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //  show dialog to select folder
@@ -130,18 +174,11 @@ namespace CommonForms
             CallUpdateProgress(0);
         }
 
-        private void btnClearFiles_Click(object sender, EventArgs e)
-        {
-            //  clear inner list and list ui
-            Processor.ClearFileNames();
-            lstFiles.Items.Clear();
-
-            if (Resource != null)
-                CallUpdateStatus(Resource.GetString("STATUS_LIST_CLEARED"));
-
-            CallToggleUI();
-        }
-
+        /// <summary>
+        /// Handler for button Reload.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReloadFolder_Click(object sender, EventArgs e)
         {
             AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
@@ -151,6 +188,11 @@ namespace CommonForms
             CallToggleUI();
         }
 
+        /// <summary>
+        /// Handler for button Clear.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             //clear inner list and list ui
@@ -162,12 +204,88 @@ namespace CommonForms
             CallToggleUI();
         }
 
+        /// <summary>
+        /// Handler for changing list selection.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lstFiles_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstFiles.SelectedItem == null)
                 return;
 
-            //mTabUpdateYaml.SelectedFile = lstFiles.SelectedItem.ToString();
+            CallOnSelectionChanged(lstFiles?.SelectedItem.ToString());
+        }
+
+        private void listFiles_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.All;
+
+            string[] dropItems = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (dropItems.Length == 1)
+            {
+                //  Just 1 File
+
+                //  Get Extension
+                string ext = Path.GetExtension(dropItems[0]);
+
+                //  check if extension is allowed
+                if (!mFileFilters.Contains(ext.ToLower()))
+                {
+                    e.Effect = DragDropEffects.None;
+                }
+            }
+        }
+
+        private void listFiles_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] dropItems = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            bool added = false;
+            foreach (string item in dropItems)
+            {
+                //  is the file a folder?
+                if (Directory.Exists(item))
+                {
+                    //  Get allowed files from this directory
+                    DirectoryInfo di = new(item);
+                    IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters);
+                    foreach (FileInfo fi in files)
+                    {
+                        if (!mFilesProcessor.Contains(fi.FullName))
+                        {
+                            mFilesProcessor.AddFileName(fi.FullName);
+                            added = true;
+                        }
+                    }
+                }
+                else
+                {
+                    //  Get Extension
+                    string ext = Path.GetExtension(item);
+
+                    //  check if extension is allowed
+                    if (mFileFilters.Contains(ext.ToLower()))
+                    {
+                        if (!mFilesProcessor.Contains(item))
+                        {
+                            mFilesProcessor.AddFileName(item);
+                            added = true;
+                        }
+                    }
+                }
+            }
+
+            if (added)
+            {
+                ReloadFilesList();
+            }
+
+        }
+
+        public void UpdateList(SelectionMode selMode, bool enableList)
+        {
+            lstFiles.SelectionMode = selMode;
+            lstFiles.Enabled = enableList;
         }
     }
 }
