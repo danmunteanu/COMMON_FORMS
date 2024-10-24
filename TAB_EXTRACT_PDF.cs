@@ -14,7 +14,7 @@ namespace CommonForms
         {
             InitializeComponent();
 
-            ToggleUI();
+            UpdateUI();
             UpdateStatus("");
         }
 
@@ -74,7 +74,7 @@ namespace CommonForms
             }
         }
 
-        private void ToggleUI()
+        public override void UpdateUI()
         {
             bool pdfSelected = !string.IsNullOrEmpty(txtSource.Text);
             bool pagesEntered = !string.IsNullOrEmpty(txtPages.Text);
@@ -146,7 +146,7 @@ namespace CommonForms
 
                     UpdateStatus("Selected pages extracted.");
 
-                    ToggleUI();
+                    UpdateUI();
                 }
             }
         }
@@ -171,7 +171,7 @@ namespace CommonForms
 
                     UpdateStatus("Source document selected.");
 
-                    ToggleUI();
+                    UpdateUI();
                 }
             }
         }
