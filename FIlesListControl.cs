@@ -132,7 +132,7 @@
             if (Resource != null)
             {
                 //  load topmost string
-                lblAddFiles.Text = Resource.GetString("FILE_LIST_TOP_LABEL");
+                lblAddFiles.Text = Resource.GetString("FILE_LIST_LABEL_ADD");
                 btnAdd.Text = Resource.GetString("FILE_LIST_BUTTON_ADD");
                 btnRem.Text = Resource.GetString("FILE_LIST_BUTTON_REM");
                 btnClear.Text = Resource.GetString("FILE_LIST_BUTTON_CLEAR");
