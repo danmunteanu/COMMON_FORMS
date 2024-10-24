@@ -75,10 +75,8 @@
         private void ToggleUI()
         {
             bool pdfSelected = !string.IsNullOrEmpty(txtSource.Text);
-            bool outputSelected = !string.IsNullOrEmpty(txtDest.Text);
             bool pagesEntered = !string.IsNullOrEmpty(txtPages.Text);
 
-            btnSelectOutput.Enabled = pdfSelected;
             txtPages.Enabled = pdfSelected;
             btnClearPages.Enabled = pdfSelected;
 
@@ -94,34 +92,54 @@
             }
 
 
-            btnExtract.Enabled = pdfSelected && outputSelected /* && pagesEntered */;
+            btnExtract.Enabled = pdfSelected /* && pagesEntered */;
         }
 
         private void btnExtract_Click(object sender, EventArgs e)
         {
-            // Step 1: Trim trailing commas and spaces
-            string input = txtPages.Text.TrimEnd(',', ' ');
-
-            // Step 2: Split the input by commas
-            string[] parts = input.Split(',');
-
-            // Step 3: Parse the parts into a list of integers, ignoring empty or invalid parts
-            List<int> numbers = new List<int>();
-            foreach (var part in parts)
+            //  Select Destination
+            using (SaveFileDialog dlgSave = new SaveFileDialog())
             {
-                string trimmedPart = part.Trim(); // Trim any spaces around the number
-                if (int.TryParse(trimmedPart, out int number))
+                //  PREPARE the Save As dialog
+                dlgSave.Filter = "PDF files (*.pdf)|*.pdf";// mResourceManager.GetString("SAVE_DIALOG_FILTER");
+                dlgSave.DefaultExt = "PDF";// mResourceManager.GetString("SAVE_DIALOG_EXT");
+                dlgSave.AddExtension = true;
+                dlgSave.Title = "Select Source PDF";// mResourceManager.GetString("SAVE_DIALOG_TITLE");
+                dlgSave.FileName = GenerateDestinationFileName(txtSource.Text);
+                dlgSave.InitialDirectory = DESKTOP_PATH;
+
+                //  OK pressed
+                if (dlgSave.ShowDialog() == DialogResult.OK)
                 {
-                    numbers.Add(number); // Add the valid number to the list
+                    // Step 1: Trim trailing commas and spaces
+                    string input = txtPages.Text.TrimEnd(',', ' ');
+
+                    // Step 2: Split the input by commas
+                    string[] parts = input.Split(',');
+
+                    // Step 3: Parse the parts into a list of integers, ignoring empty or invalid parts
+                    List<int> numbers = new List<int>();
+                    foreach (var part in parts)
+                    {
+                        string trimmedPart = part.Trim(); // Trim any spaces around the number
+                        if (int.TryParse(trimmedPart, out int number))
+                        {
+                            numbers.Add(number); // Add the valid number to the list
+                        }
+                    }
+
+                    //pass required fields to action
+                    Action.Pages = numbers.ToArray();
+                    Action.Destination = dlgSave.FileName;
+                    Action.Execute(txtSource.Text);
+
+                    btnExtract.Enabled = false;
+
+                    UpdateStatus("Selected pages extracted.");
+
+                    ToggleUI();
                 }
             }
-
-            Action.Pages = numbers.ToArray();
-            Action.Destination = txtDest.Text;
-            Action.Execute(txtSource.Text);
-
-            UpdateStatus("Selected pages extracted.");
-            btnExtract.Enabled = false;
         }
 
         private void btnSource_Click(object sender, EventArgs e)
@@ -141,7 +159,6 @@
 
                     //  clear the fields
                     txtPages.Clear();
-                    txtDest.Clear();
 
                     UpdateStatus("Source document selected.");
 
@@ -175,26 +192,6 @@
 
         private void btnDest_Click(object sender, EventArgs e)
         {
-            //  Select Destination
-            //  Select Source
-            using (SaveFileDialog dlgSave = new SaveFileDialog())
-            {
-                dlgSave.Filter = "PDF files (*.pdf)|*.pdf";// mResourceManager.GetString("SAVE_DIALOG_FILTER");
-                dlgSave.DefaultExt = "PDF";// mResourceManager.GetString("SAVE_DIALOG_EXT");
-                dlgSave.AddExtension = true;
-                dlgSave.Title = "Select Source PDF";// mResourceManager.GetString("SAVE_DIALOG_TITLE");
-                dlgSave.FileName = GenerateDestinationFileName(txtSource.Text);
-                dlgSave.InitialDirectory = DESKTOP_PATH;
-
-                if (dlgSave.ShowDialog() == DialogResult.OK)
-                {
-                    txtDest.Text = dlgSave.FileName;
-
-                    UpdateStatus("Destination file selected.");
-
-                    ToggleUI();
-                }
-            }
         }
 
         private void btnClearPages_Click(object sender, EventArgs e)
