@@ -1,4 +1,6 @@
-﻿namespace CommonForms
+﻿using SharpCompress;
+
+namespace CommonForms
 {
     public partial class TAB_ExtractPDF : ControlBase
     {
@@ -97,6 +99,15 @@
 
         private void btnExtract_Click(object sender, EventArgs e)
         {
+            // Step 1: Trim trailing commas and spaces
+            string input = txtPages.Text.TrimEnd(',', ' ');
+
+            if (input.Length <= 0)
+            {
+                UpdateStatus("Please enter one or more page numbers.");
+                return;
+            }
+
             //  Select Destination
             using (SaveFileDialog dlgSave = new SaveFileDialog())
             {
@@ -111,9 +122,7 @@
                 //  OK pressed
                 if (dlgSave.ShowDialog() == DialogResult.OK)
                 {
-                    // Step 1: Trim trailing commas and spaces
-                    string input = txtPages.Text.TrimEnd(',', ' ');
-
+                    
                     // Step 2: Split the input by commas
                     string[] parts = input.Split(',');
 
