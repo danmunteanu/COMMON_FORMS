@@ -1,12 +1,12 @@
-﻿using RealityFrameworks;
-using CommonForms;
+﻿using CommonForms;
+using RealityFrameworks;
 
 namespace CS_Yaml_Parser.UserControls
 {
     public partial class TAB_Processor : ControlBase
     {
-        List<RealityFrameworks.Condition> mConditionsAvailable = new List<RealityFrameworks.Condition>();
-        List<RealityFrameworks.Action> mActionsAvailable = new List<RealityFrameworks.Action>();
+        List<RealityFrameworks.Condition> mConditionsAvailable = new();
+        List<RealityFrameworks.Action> mActionsAvailable = new();
 
         RealityFrameworks.Action mSelAction = null;
         RealityFrameworks.Condition mSelCond = null;
@@ -112,6 +112,7 @@ namespace CS_Yaml_Parser.UserControls
         private void btnProcess_Click(object sender, EventArgs e)
         {
             //  process all files in the list
+            //Processor.Process();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -120,12 +121,22 @@ namespace CS_Yaml_Parser.UserControls
             mDlgEditChange.Show();
         }
 
-        private void lstProcessor_DoubleClick(object sender, EventArgs e)
+        private void OnEditSelection()
         {
             //  get current change
             Change ch = mFilesProcessor.GetChangeAt(lstProcessor.SelectedIndex);
             mDlgEditChange.LoadState(DialogChangeForm.EditorState.Edit, ch);
             mDlgEditChange.Show();
+        }
+
+        private void lstProcessor_DoubleClick(object sender, EventArgs e)
+        {
+            OnEditSelection();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            OnEditSelection();
         }
     }
 }

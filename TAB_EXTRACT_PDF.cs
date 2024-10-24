@@ -1,8 +1,4 @@
-﻿using RealityFrameworks;
-using SharpCompress;
-using System.Resources;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
     public partial class TAB_ExtractPDF : ControlBase
     {

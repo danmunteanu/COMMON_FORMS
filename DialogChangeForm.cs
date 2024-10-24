@@ -137,7 +137,7 @@ namespace CommonForms
             else if (State == DialogChangeForm.EditorState.Edit)
             {
                 //  Edit Stuff
-                
+
                 //  editor already has a Condition set
                 //  get editorCondition -> editorCond
                 //  editorCond.Condition = condition

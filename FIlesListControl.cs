@@ -1,19 +1,22 @@
-﻿using RealityFrameworks;
-using System.Data;
-using System.Resources;
-using System.Text;
-using System.Windows.Forms;
-
-namespace CommonForms
-{   
+﻿namespace CommonForms
+{
     public partial class FilesListControl : ControlBase
     {
+        //  TYPES
         public delegate void ToggleUIDelegate();
         public delegate void UpdateProgressDelegate(int progress);
         public delegate void SelectionChangedDelegate(string item);
 
-        public ToggleUIDelegate DelegateToggleUI { get; set; } = null;
+        //  DELEGATES
+        //  this will be called when pages have to update their UI
+        public ToggleUIDelegate DelegateUpdateUI { get; set; } = null;
+
+        //  this is called when the progress bar needs to be updated
+        //  the list component updates the local progress bar first 
+        //  but if you need to update progress somewhere else, be my guest
         public UpdateProgressDelegate DelegateUpdateProgress { get; set; } = null;
+
+        //  this is called everytime the list selection is changed
         public SelectionChangedDelegate DelegateSelectionChanged { get; set; } = null;
 
         /// <summary>
@@ -24,23 +27,26 @@ namespace CommonForms
         /// <summary>
         /// Sets the status string
         /// </summary>
-        public string Status {
+        public string Status
+        {
             set { lblStatus.Text = value; }
         }
 
         /// <summary>
         /// Sets the progress bar value
         /// </summary>
-        public int Progress { 
-            get { return progressBar.Value; } 
-            set {
+        public int Progress
+        {
+            get { return progressBar.Value; }
+            set
+            {
                 progressBar.Value = value;
 
                 //progressBar.Invoke((MethodInvoker)delegate {
                 //    // Running on the UI thread
                 //    progressBar.Value = value;
                 //});
-            } 
+            }
         }
 
         /// <summary>
@@ -91,8 +97,8 @@ namespace CommonForms
 
         private void CallToggleUI()
         {
-            if (DelegateToggleUI != null)
-                DelegateToggleUI();
+            if (DelegateUpdateUI != null)
+                DelegateUpdateUI();
         }
 
         /// <summary>
@@ -125,6 +131,8 @@ namespace CommonForms
             //  Load file list localisations
             if (Resource != null)
             {
+                //  load topmost string
+                lblAddFiles.Text = Resource.GetString("FILE_LIST_TOP_LABEL");
                 btnAdd.Text = Resource.GetString("FILE_LIST_BUTTON_ADD");
                 btnRem.Text = Resource.GetString("FILE_LIST_BUTTON_REM");
                 btnClear.Text = Resource.GetString("FILE_LIST_BUTTON_CLEAR");

@@ -1,6 +1,4 @@
 ﻿using iText.Kernel.Pdf;
-using iText.Kernel.Utils;
-using System.IO;
 
 namespace CommonForms
 {
@@ -85,13 +83,13 @@ namespace CommonForms
             //  Ensure sourcePDF is a PDF file
             if (!IsValidPdf(sourcePDF))
             {
-                throw new Exception("Not a valid PDF - Extract the Exception for more info");                
+                throw new Exception("Not a valid PDF - Extract the Exception for more info");
             }
 
             if (
                 //  Have a Destination File
                 Destination != null && Destination != string.Empty &&
-                
+
                 //  At least one page
                 Pages != null && Pages.Length > 0)
             {

@@ -27,7 +27,8 @@ namespace CommonForms
         public FilesProcessor Processor
         {
             get { return mFilesProcessor; }
-            set { 
+            set
+            {
                 mFilesProcessor = value;
 
                 OnProcessorSet();
