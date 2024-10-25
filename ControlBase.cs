@@ -49,7 +49,7 @@ namespace CommonForms
 
         }
 
-        public virtual void ToggleUI()
+        public virtual void UpdateUI()
         {
 
         }

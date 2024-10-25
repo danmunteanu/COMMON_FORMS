@@ -1,7 +1,6 @@
-﻿using CommonForms;
-using RealityFrameworks;
+﻿using RealityFrameworks;
 
-namespace CS_Yaml_Parser.UserControls
+namespace CommonForms
 {
     public partial class TAB_Processor : ControlBase
     {
@@ -53,6 +52,11 @@ namespace CS_Yaml_Parser.UserControls
             ReloadChangeList();
         }
 
+        protected override void OnResourceSet()
+        {
+            //  Update Localizations
+        }
+
         private void lstProcessor_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstProcessor.SelectedIndex == -1)
@@ -99,9 +103,7 @@ namespace CS_Yaml_Parser.UserControls
             //ToggleMassAddUI();
         }
 
-
-
-        public void ToggleUI()
+        public override void UpdateUI()
         {
             //bool addPair = (cmbCondition.SelectedIndex != -1 && cmbAction.SelectedIndex != -1);
             //btnAddPair.Enabled = addPair;

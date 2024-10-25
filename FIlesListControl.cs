@@ -3,13 +3,13 @@
     public partial class FilesListControl : ControlBase
     {
         //  TYPES
-        public delegate void ToggleUIDelegate();
+        public delegate void UpdateUIDelegate();
         public delegate void UpdateProgressDelegate(int progress);
         public delegate void SelectionChangedDelegate(string item);
 
         //  DELEGATES
         //  this will be called when pages have to update their UI
-        public ToggleUIDelegate DelegateUpdateUI { get; set; } = null;
+        public UpdateUIDelegate DelegateUpdateUI { get; set; } = null;
 
         //  this is called when the progress bar needs to be updated
         //  the list component updates the local progress bar first 
@@ -95,7 +95,7 @@
                 UpdateStatus(message);
         }
 
-        private void CallToggleUI()
+        private void CallUpdateUI()
         {
             if (DelegateUpdateUI != null)
                 DelegateUpdateUI();
@@ -164,7 +164,7 @@
             ReloadFilesList();
 
             //  Forces all listeners to update their UI
-            CallToggleUI();
+            CallUpdateUI();
         }
 
         /// <summary>
@@ -216,7 +216,7 @@
             if (Resource != null)
                 CallUpdateStatus(Resource.GetString("STATUS_FOLDER_RELOADED"));
 
-            CallToggleUI();
+            CallUpdateUI();
         }
 
         /// <summary>
@@ -232,7 +232,7 @@
             if (Resource != null)
                 CallUpdateStatus(Resource.GetString("STATUS_LIST_CLEARED"));
 
-            CallToggleUI();
+            CallUpdateUI();
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿namespace CS_Yaml_Parser.UserControls
+﻿namespace CommonForms
 {
     partial class TAB_Processor
     {
