@@ -77,8 +77,6 @@ namespace CS_Yaml_Parser.UserControls
             //}
         }
 
-
-
         private void ReloadChangeList()
         {
             lstProcessor.Items.Clear();
