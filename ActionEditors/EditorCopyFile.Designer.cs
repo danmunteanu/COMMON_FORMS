@@ -28,64 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            lblPath = new Label();
             txtPath = new TextBox();
             btnBrowse = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            flowLayoutPanel1.SuspendLayout();
+            tableLayout = new TableLayoutPanel();
+            mFolderBrowserDialog = new FolderBrowserDialog();
+            tableLayout.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // lblPath
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(105, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Folder Path:";
+            lblPath.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblPath.AutoSize = true;
+            lblPath.Location = new Point(3, 40);
+            lblPath.Name = "lblPath";
+            lblPath.Size = new Size(132, 25);
+            lblPath.TabIndex = 0;
+            lblPath.Text = "Copy to folder:";
             // 
             // txtPath
             // 
-            txtPath.Location = new Point(114, 3);
+            txtPath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtPath.Location = new Point(3, 72);
             txtPath.Name = "txtPath";
-            txtPath.Size = new Size(295, 31);
+            txtPath.ReadOnly = true;
+            txtPath.Size = new Size(501, 31);
             txtPath.TabIndex = 1;
             // 
             // btnBrowse
             // 
-            btnBrowse.Location = new Point(415, 3);
+            btnBrowse.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnBrowse.Location = new Point(510, 68);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(94, 29);
+            btnBrowse.Size = new Size(114, 39);
             btnBrowse.TabIndex = 2;
             btnBrowse.Text = "Browse";
             btnBrowse.UseVisualStyleBackColor = true;
+            btnBrowse.Click += btnBrowse_Click;
             // 
-            // flowLayoutPanel1
+            // tableLayout
             // 
-            flowLayoutPanel1.Controls.Add(label1);
-            flowLayoutPanel1.Controls.Add(txtPath);
-            flowLayoutPanel1.Controls.Add(btnBrowse);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(627, 176);
-            flowLayoutPanel1.TabIndex = 3;
+            tableLayout.ColumnCount = 2;
+            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
+            tableLayout.Controls.Add(btnBrowse, 1, 1);
+            tableLayout.Controls.Add(txtPath, 0, 1);
+            tableLayout.Controls.Add(lblPath, 0, 0);
+            tableLayout.Dock = DockStyle.Fill;
+            tableLayout.Location = new Point(0, 0);
+            tableLayout.Name = "tableLayout";
+            tableLayout.RowCount = 3;
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayout.Size = new Size(627, 176);
+            tableLayout.TabIndex = 3;
             // 
             // EditorCopyFile
             // 
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(tableLayout);
             Name = "EditorCopyFile";
             Size = new Size(627, 176);
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
+            tableLayout.ResumeLayout(false);
+            tableLayout.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Label label1;
+        private Label lblPath;
         private TextBox txtPath;
         private Button btnBrowse;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private TableLayoutPanel tableLayout;
+        private FolderBrowserDialog mFolderBrowserDialog;
     }
 }

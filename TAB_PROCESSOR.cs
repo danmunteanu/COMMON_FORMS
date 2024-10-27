@@ -118,15 +118,17 @@ namespace CommonForms
         private void btnAdd_Click(object sender, EventArgs e)
         {
             mDlgEditChange.LoadState(DialogChangeForm.EditorState.Add);
-            mDlgEditChange.Show();
+            mDlgEditChange.ShowDialog(this);
         }
 
         private void OnEditSelection()
         {
+            if (lstProcessor.SelectedIndex < 0) return;
+
             //  get current change
             Change ch = mFilesProcessor.GetChangeAt(lstProcessor.SelectedIndex);
             mDlgEditChange.LoadState(DialogChangeForm.EditorState.Edit, ch);
-            mDlgEditChange.Show();
+            mDlgEditChange.ShowDialog(this);
         }
 
         private void lstProcessor_DoubleClick(object sender, EventArgs e)

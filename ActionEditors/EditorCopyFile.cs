@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace CommonForms
 {
@@ -21,6 +22,20 @@ namespace CommonForms
             //base.SaveState();
 
             //  UI -> Condition
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            //  show dialog to select folder
+            DialogResult res = mFolderBrowserDialog.ShowDialog();
+            if (res == DialogResult.OK && !string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
+            {
+                txtPath.Text = mFolderBrowserDialog.SelectedPath;
+            }
+            else
+            {
+                txtPath.Text = string.Empty;
+            }
         }
     }
 }
