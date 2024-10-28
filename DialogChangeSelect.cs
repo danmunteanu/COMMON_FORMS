@@ -6,8 +6,8 @@ namespace CommonForms
     {
         public enum EditorState { Add, Edit };
 
-        private UserControl mSelectedConditionEditor = null;
-        private UserControl mSelectedActionEditor = null;
+        private EditorBase mSelectedConditionEditor = null;
+        private EditorBase mSelectedActionEditor = null;
 
         public EditorState State { get; set; }
 
@@ -41,10 +41,12 @@ namespace CommonForms
         {
             if (state == EditorState.Add)
             {
-
+                btnSubmit.Text = "ADD";
             }
             if (state == EditorState.Edit)
             {
+                btnSubmit.Text = "UPDATE";
+
                 //  Condition editor
                 try
                 {
@@ -79,8 +81,8 @@ namespace CommonForms
 
             try
             {
-                mSelectedActionEditor = EditorFactory.CreateActionEditor(conditionName);
-                AddUserControl(panelCondition, mSelectedActionEditor);
+                mSelectedConditionEditor = EditorFactory.CreateActionEditor(conditionName);
+                AddUserControl(panelCondition, mSelectedConditionEditor);
             }
             catch (Exception ex)
             {
@@ -95,8 +97,8 @@ namespace CommonForms
 
             try
             {
-                mSelectedConditionEditor = EditorFactory.CreateActionEditor(actionName);
-                AddUserControl(panelAction, mSelectedConditionEditor);
+                mSelectedActionEditor = EditorFactory.CreateActionEditor(actionName);
+                AddUserControl(panelAction, mSelectedActionEditor);
             }
             catch (Exception ex)
             {
@@ -104,35 +106,60 @@ namespace CommonForms
             }
         }
 
-        private void btnAddOrEdit_Click(object sender, EventArgs e)
+        private void btnSubmit_Click(object sender, EventArgs e)
         {
-            RealityFrameworks.Condition cond = null;    //  create condition
-            RealityFrameworks.Action action = null;   //  create action
+            RealityFrameworks.Condition? cond = null;    //  create condition
+            RealityFrameworks.Action? action = null;   //  create action
 
             if (State == DialogChangeForm.EditorState.Add)
             {
-                //  Add stuff
-                //cmbCondition.SelectedItem;
+                bool conditionIsValid = mSelectedConditionEditor.ValidateState();
+                if (conditionIsValid)
+                {
+                    //  Create New Condition by Name
+                    //  try {
+                    //  FactoryCondition.Create(cmbCondition.SelectedItem);
+                    //  } catch (Exception ex) {}
+                    //  get editorCond
+                    //  editorCond.Condition = cond;
+                    //  condEditor.SaveState(); //  ui to condition
+                } else
+                {
+                    //  FOR some reason, stack is empty; TO FIX later
+                    //MessageBox.Show(mSelectedActionEditor.PopError());
 
+                    //  Update Status on Condition Editor
+                    //while (mSelectedConditionEditor.HasErrors())
+                    //{
+                    //    MessageBox.Show(mSelectedActionEditor.PopError());
+                    //}
+                }
 
-                //  Create New Condition by Name
-                //  try {
-                //  FactoryCondition.Create(cmbCondition.SelectedItem);
-                //  } catch (Exception ex) {}
-                //  get editorCond
-                //  editorCond.Condition = cond;
-                //  condEditor.SaveState(); //  ui to condition
+                bool actionIsValid = false;
+                if (conditionIsValid)
+                {
+                    actionIsValid = mSelectedActionEditor.Validate();
+                    if (actionIsValid)
+                    {
+                        //  Create New action by name
+                        //  try {
+                        //  FactoryAction.Create(cmbAction.SelectedItem);
+                        //  } catch (Exception ex) {}
+                        //  get editorAction
+                        //  actionEditor.Action = action
+                        //  actionEditor.SaveState ();  //  ui to action
+                    }
+                    else
+                    {
+                        //  Update status on Action editor
+                    }
+                }
 
-                //  Create New action by name
-                //  try {
-                //  FactoryAction.Create(cmbAction.SelectedItem);
-                //  } catch (Exception ex) {}
-                //  get editorAction
-                //  actionEditor.Action = action
-                //  actionEditor.SaveState ();  //  ui to action
-
-                //  Change ch = new Change (cond, action);
-                //  FilesProcessor.add (ch);
+                if (conditionIsValid && actionIsValid)
+                {
+                    //  Change ch = new Change (cond, action);
+                    //  FilesProcessor.add (ch);
+                }
             }
             else if (State == DialogChangeForm.EditorState.Edit)
             {

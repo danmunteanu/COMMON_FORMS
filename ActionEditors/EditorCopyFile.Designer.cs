@@ -40,7 +40,7 @@
             // 
             lblPath.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblPath.AutoSize = true;
-            lblPath.Location = new Point(3, 40);
+            lblPath.Location = new Point(18, 20);
             lblPath.Name = "lblPath";
             lblPath.Size = new Size(132, 25);
             lblPath.TabIndex = 0;
@@ -49,16 +49,16 @@
             // txtPath
             // 
             txtPath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPath.Location = new Point(3, 72);
+            txtPath.Location = new Point(18, 52);
             txtPath.Name = "txtPath";
             txtPath.ReadOnly = true;
-            txtPath.Size = new Size(501, 31);
+            txtPath.Size = new Size(471, 31);
             txtPath.TabIndex = 1;
             // 
             // btnBrowse
             // 
             btnBrowse.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnBrowse.Location = new Point(510, 68);
+            btnBrowse.Location = new Point(495, 48);
             btnBrowse.Name = "btnBrowse";
             btnBrowse.Size = new Size(114, 39);
             btnBrowse.TabIndex = 2;
@@ -68,19 +68,21 @@
             // 
             // tableLayout
             // 
-            tableLayout.ColumnCount = 2;
+            tableLayout.ColumnCount = 4;
+            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 15F));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
-            tableLayout.Controls.Add(btnBrowse, 1, 1);
-            tableLayout.Controls.Add(txtPath, 0, 1);
-            tableLayout.Controls.Add(lblPath, 0, 0);
+            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 15F));
+            tableLayout.Controls.Add(btnBrowse, 2, 1);
+            tableLayout.Controls.Add(txtPath, 1, 1);
+            tableLayout.Controls.Add(lblPath, 1, 0);
             tableLayout.Dock = DockStyle.Fill;
             tableLayout.Location = new Point(0, 0);
             tableLayout.Name = "tableLayout";
             tableLayout.RowCount = 3;
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayout.Size = new Size(627, 176);
             tableLayout.TabIndex = 3;
             // 

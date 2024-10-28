@@ -38,7 +38,7 @@
             panelAction = new Panel();
             panelCondition = new Panel();
             flowLayoutButtons = new FlowLayoutPanel();
-            btnAddOrEdit = new Button();
+            btnSubmit = new Button();
             btnClose = new Button();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutAction.SuspendLayout();
@@ -166,7 +166,7 @@
             // 
             // flowLayoutButtons
             // 
-            flowLayoutButtons.Controls.Add(btnAddOrEdit);
+            flowLayoutButtons.Controls.Add(btnSubmit);
             flowLayoutButtons.Controls.Add(btnClose);
             flowLayoutButtons.Dock = DockStyle.Fill;
             flowLayoutButtons.Location = new Point(491, 487);
@@ -175,16 +175,16 @@
             flowLayoutButtons.Size = new Size(486, 61);
             flowLayoutButtons.TabIndex = 47;
             // 
-            // btnAddOrEdit
+            // btnSubmit
             // 
-            btnAddOrEdit.Location = new Point(2, 2);
-            btnAddOrEdit.Margin = new Padding(2);
-            btnAddOrEdit.Name = "btnAddOrEdit";
-            btnAddOrEdit.Size = new Size(188, 34);
-            btnAddOrEdit.TabIndex = 47;
-            btnAddOrEdit.Text = "ADD / EDIT";
-            btnAddOrEdit.UseVisualStyleBackColor = true;
-            btnAddOrEdit.Click += btnAddOrEdit_Click;
+            btnSubmit.Location = new Point(2, 2);
+            btnSubmit.Margin = new Padding(2);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(188, 50);
+            btnSubmit.TabIndex = 47;
+            btnSubmit.Text = "ADD / EDIT";
+            btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // btnClose
             // 
@@ -192,7 +192,7 @@
             btnClose.Location = new Point(194, 2);
             btnClose.Margin = new Padding(2);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(182, 34);
+            btnClose.Size = new Size(182, 50);
             btnClose.TabIndex = 48;
             btnClose.Text = "CLOSE";
             btnClose.UseVisualStyleBackColor = true;
@@ -229,7 +229,7 @@
         private TableLayoutPanel tableLayoutAction;
         private Label lblSelAct;
         private ComboBox cmbAction;
-        private Button btnAddOrEdit;
+        private Button btnSubmit;
         private Button btnClose;
         private FlowLayoutPanel flowLayoutButtons;
     }

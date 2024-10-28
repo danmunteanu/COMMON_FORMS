@@ -4,7 +4,7 @@ namespace CommonForms
 {
     public static class EditorFactory
     {
-        public delegate UserControl EditorCreator();
+        public delegate EditorBase EditorCreator();
 
         private static readonly Dictionary<Type, EditorCreator> _factoryByType =
             new Dictionary<Type, EditorCreator>
@@ -41,7 +41,7 @@ namespace CommonForms
             _factoryByName.Add(name, creator);
         }
 
-        public static UserControl CreateActionEditor(RealityFrameworks.Action action)
+        public static EditorBase CreateActionEditor(RealityFrameworks.Action action)
         {
             if (_factoryByType.TryGetValue(action.GetType(), out var creator))
             {
@@ -51,7 +51,7 @@ namespace CommonForms
             throw new InvalidOperationException(message);
         }
 
-        public static UserControl CreateActionEditor(string actionName)
+        public static EditorBase CreateActionEditor(string actionName)
         {
             if (_factoryByName.TryGetValue(actionName, out var creator))
             {
