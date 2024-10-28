@@ -68,6 +68,8 @@ namespace CommonForms
                     MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+
+            mSelectedConditionEditor?.Select();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

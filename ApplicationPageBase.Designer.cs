@@ -1,6 +1,6 @@
 ﻿namespace CommonForms
 {
-    partial class ControlBase
+    partial class ApplicationPageBase
     {
         /// <summary> 
         /// Required designer variable.

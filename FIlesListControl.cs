@@ -1,6 +1,6 @@
 ﻿namespace CommonForms
 {
-    public partial class FilesListControl : ControlBase
+    public partial class FilesListControl : ApplicationPageBase
     {
         //  TYPES
         public delegate void UpdateUIDelegate();

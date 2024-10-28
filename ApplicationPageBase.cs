@@ -3,7 +3,7 @@ using System.Resources;
 
 namespace CommonForms
 {
-    public partial class ControlBase : UserControl
+    public partial class ApplicationPageBase : UserControl
     {
         public delegate void UpdateStatusDelegate(string message);
         public UpdateStatusDelegate UpdateStatus { get; set; } = null;
@@ -35,7 +35,7 @@ namespace CommonForms
             }
         }
 
-        public ControlBase()
+        public ApplicationPageBase()
         {
         }
 

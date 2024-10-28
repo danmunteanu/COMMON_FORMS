@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class TAB_ExtractPDF : ControlBase
+    public partial class TAB_ExtractPDF : ApplicationPageBase
     {
         public ActionExtractPDFPages Action { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class TAB_Processor : ControlBase
+    public partial class TAB_Processor : ApplicationPageBase
     {
         List<RealityFrameworks.Condition> mConditionsAvailable = new();
         List<RealityFrameworks.Action> mActionsAvailable = new();
