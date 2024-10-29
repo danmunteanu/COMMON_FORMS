@@ -29,68 +29,70 @@ namespace CommonForms
         {
             char keyChar = e.KeyChar;
 
+            // Replace selected text if there is a selection
+            if (txtPages.SelectionLength > 0 && !char.IsControl(keyChar))
+            {
+                int selectionStart = txtPages.SelectionStart;
+                int selectionLength = txtPages.SelectionLength;
+
+                // Remove the selected text and insert the new character
+                txtPages.Text = txtPages.Text.Remove(selectionStart, selectionLength)
+                                              .Insert(selectionStart, keyChar.ToString());
+
+                // Move cursor to the position after the inserted character
+                txtPages.SelectionStart = selectionStart + 1;
+                e.Handled = true; // Mark event as handled to prevent further processing
+                return;
+            }
+
             // Allow control characters (backspace, delete, etc.)
             if (char.IsControl(keyChar))
             {
-                //ReloadUI();
                 return;
             }
 
-            // Allow digits
+            // Allow digits and validate range
             if (char.IsDigit(keyChar))
             {
-                // Validate the current number after the digit is entered
                 string currentText = txtPages.Text + keyChar;
-
                 if (!IsValidPageRange(currentText))
                 {
-                    e.Handled = true; // Block input if out of range
+                    e.Handled = true;
                 }
-                //ReloadUI();
                 return;
             }
 
-            // Allow comma, but ensure it's not the first character or after another comma
+            // Allow comma with specific rules
             if (keyChar == ',')
             {
                 if (txtPages.Text.Length == 0 || txtPages.Text.EndsWith(",") || txtPages.Text.EndsWith(", "))
                 {
-                    e.Handled = true; // Block the input
+                    e.Handled = true;
                 }
-                //ReloadUI();
                 return;
             }
 
-            // Allow hyphen for page ranges, but only between numbers
+            // Allow hyphen for page ranges with specific rules
             if (keyChar == '-')
             {
                 if (txtPages.Text.Length == 0 || !char.IsDigit(txtPages.Text[^1]) || txtPages.Text.EndsWith("-") || txtPages.Text.EndsWith(","))
                 {
-                    e.Handled = true; // Block invalid hyphen placements
+                    e.Handled = true;
                 }
-                //ReloadUI();
                 return;
             }
 
-            // Allow space, but only if it's immediately after a comma
-            if (char.IsWhiteSpace(keyChar))
+            // Allow space only if it's immediately after a comma
+            if (char.IsWhiteSpace(keyChar) && !txtPages.Text.EndsWith(","))
             {
-                if (txtPages.Text.EndsWith(","))
-                {
-                    //ReloadUI();
-                    return;
-                }
-                else
-                {
-                    e.Handled = true; // Block spaces that are not after a comma
-                }
+                e.Handled = true;
             }
             else
             {
-                // Block any other non-digit, non-comma, non-space, non-hyphen characters
                 e.Handled = true;
             }
         }
+
 
         // Helper method to check if each page/range is within the allowed limits
         private bool IsValidPageRange(string input)
@@ -106,10 +108,10 @@ namespace CommonForms
                         int.TryParse(range[0], out int start) &&
                         int.TryParse(range[1], out int end))
                     {
-                        // Check if the range is within the allowed limits
-                        if (start < 1 || end > mPageCount || start > end)
+                        // Ensure both start and end are within page limits
+                        if (start < 1 || start > mPageCount || end < 1 || end > mPageCount)
                         {
-                            return false;
+                            return false; // Page numbers must be within valid range
                         }
                     }
                     else
@@ -159,7 +161,6 @@ namespace CommonForms
 
         private void btnExtract_Click(object sender, EventArgs e)
         {
-            // Step 1: Trim trailing commas and spaces
             string input = txtPages.Text.TrimEnd(',', ' ');
 
             if (input.Length <= 0)
@@ -168,7 +169,6 @@ namespace CommonForms
                 return;
             }
 
-            // Select Destination
             using (SaveFileDialog dlgSave = new SaveFileDialog())
             {
                 dlgSave.Filter = "PDF files (*.pdf)|*.pdf";
@@ -178,54 +178,44 @@ namespace CommonForms
                 dlgSave.FileName = GenerateDestinationFileName(txtSource.Text);
                 dlgSave.InitialDirectory = DESKTOP_PATH;
 
-                // If OK pressed
                 if (dlgSave.ShowDialog() == DialogResult.OK)
                 {
-                    // Step 2: Split the input by commas
                     string[] parts = input.Split(',');
 
-                    // Step 3: Parse parts into a list of integers, handling individual numbers and ranges
-                    List<int> pagesToExtract = new List<int>();
+                    List<int> numbers = new List<int>();
                     foreach (var part in parts)
                     {
-                        string trimmedPart = part.Trim(); // Trim spaces around the input
+                        string trimmedPart = part.Trim();
 
                         if (trimmedPart.Contains("-"))
                         {
-                            // Handle ranges (e.g., "1-5")
+                            // Handle page range
                             var range = trimmedPart.Split('-');
-                            if (range.Length == 2 &&
-                                int.TryParse(range[0], out int start) &&
-                                int.TryParse(range[1], out int end))
+                            if (int.TryParse(range[0], out int start) && int.TryParse(range[1], out int end))
                             {
-                                if (start <= end) // Ensure range is valid
+                                if (start <= end)
                                 {
+                                    // Ascending range, e.g., 1-5
                                     for (int i = start; i <= end; i++)
-                                    {
-                                        if (i > 0 && i <= mPageCount) // Ensure each page is within the allowed range
-                                        {
-                                            pagesToExtract.Add(i);
-                                        }
-                                    }
+                                        numbers.Add(i);
+                                }
+                                else
+                                {
+                                    // Descending range, e.g., 200-193
+                                    for (int i = start; i >= end; i--)
+                                        numbers.Add(i);
                                 }
                             }
                         }
-                        else if (int.TryParse(trimmedPart, out int singlePage))
+                        else if (int.TryParse(trimmedPart, out int page))
                         {
-                            // Handle single page numbers
-                            if (singlePage > 0 && singlePage <= mPageCount) // Ensure page is within allowed range
-                            {
-                                pagesToExtract.Add(singlePage);
-                            }
+                            // Single page entry
+                            numbers.Add(page);
                         }
                     }
 
                     // Pass required fields to action
-                    if (chkAllowDuplicates.Checked)
-                        Action.Pages = pagesToExtract.ToArray();
-                    else
-                        Action.Pages = pagesToExtract.Distinct().OrderBy(p => p).ToArray(); // Remove duplicates and sort
-                    
+                    Action.Pages = numbers.ToArray();
                     Action.Destination = dlgSave.FileName;
                     Action.Execute(txtSource.Text);
 
@@ -236,6 +226,7 @@ namespace CommonForms
                 }
             }
         }
+
 
 
         private void btnSource_Click(object sender, EventArgs e)
