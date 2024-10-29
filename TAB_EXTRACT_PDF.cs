@@ -259,6 +259,8 @@ namespace CommonForms
                     UpdateStatus("Source document selected.");
 
                     UpdateUI();
+
+                    txtPages.Select();
                 }
             }
         }
@@ -293,6 +295,7 @@ namespace CommonForms
         private void btnClearPages_Click(object sender, EventArgs e)
         {
             txtPages.Clear();
+            txtPages.Select();
         }
     }
 }

@@ -33,12 +33,14 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(42, 70);
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.Location = new Point(25, 143);
             label1.Name = "label1";
-            label1.Size = new Size(65, 20);
+            label1.Size = new Size(244, 20);
             label1.TabIndex = 0;
-            label1.Text = "Is Folder";
+            label1.Text = "Checks if the selected path is a folder";
             // 
             // EditorIsFolder
             // 
@@ -46,6 +48,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(label1);
             Name = "EditorIsFolder";
+            Size = new Size(298, 186);
             ResumeLayout(false);
             PerformLayout();
         }
