@@ -193,12 +193,15 @@
             {
                 AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
                 if (Resource != null)
-                    CallUpdateStatus(string.Format(Resource.GetString("STATUS_FOLDER_ADDED")));
+                {
+                    //string msg = Resource.GetString("STATUS_FOLDER_ADDED");
+                    //CallUpdateStatus(string.Format(msg));
+                }
             }
             else
             {
-                if (Resource != null)
-                    CallUpdateStatus(string.Format(Resource.GetString("STATUS_FOLDER_NOT_ADDED")));
+                //if (Resource != null)
+                //    CallUpdateStatus(string.Format(Resource.GetString("STATUS_FOLDER_NOT_ADDED")));
             }
 
             //  Reset progress bar
