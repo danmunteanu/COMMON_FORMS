@@ -47,7 +47,7 @@
             // 
             lblExtractFromDoc.Anchor = AnchorStyles.Right;
             lblExtractFromDoc.AutoSize = true;
-            lblExtractFromDoc.Location = new Point(31, 62);
+            lblExtractFromDoc.Location = new Point(61, 62);
             lblExtractFromDoc.Margin = new Padding(4, 0, 4, 0);
             lblExtractFromDoc.Name = "lblExtractFromDoc";
             lblExtractFromDoc.Size = new Size(175, 25);
@@ -57,17 +57,17 @@
             // txtSource
             // 
             txtSource.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtSource.Location = new Point(214, 59);
+            txtSource.Location = new Point(244, 59);
             txtSource.Margin = new Padding(4, 2, 4, 2);
             txtSource.Name = "txtSource";
             txtSource.ReadOnly = true;
-            txtSource.Size = new Size(718, 31);
+            txtSource.Size = new Size(658, 31);
             txtSource.TabIndex = 1;
             // 
             // btnSelectDoc
             // 
             btnSelectDoc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnSelectDoc.Location = new Point(940, 55);
+            btnSelectDoc.Location = new Point(910, 55);
             btnSelectDoc.Margin = new Padding(4, 2, 4, 2);
             btnSelectDoc.MinimumSize = new Size(0, 40);
             btnSelectDoc.Name = "btnSelectDoc";
@@ -81,7 +81,7 @@
             // 
             lblPages.Anchor = AnchorStyles.Right;
             lblPages.AutoSize = true;
-            lblPages.Location = new Point(64, 162);
+            lblPages.Location = new Point(94, 162);
             lblPages.Margin = new Padding(4, 0, 4, 0);
             lblPages.Name = "lblPages";
             lblPages.Size = new Size(142, 25);
@@ -91,10 +91,10 @@
             // txtPages
             // 
             txtPages.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPages.Location = new Point(214, 159);
+            txtPages.Location = new Point(244, 159);
             txtPages.Margin = new Padding(4, 2, 4, 2);
             txtPages.Name = "txtPages";
-            txtPages.Size = new Size(718, 31);
+            txtPages.Size = new Size(658, 31);
             txtPages.TabIndex = 6;
             txtPages.KeyPress += txtPages_KeyPress;
             // 
@@ -102,7 +102,7 @@
             // 
             btnClearPages.Anchor = AnchorStyles.Left;
             btnClearPages.Font = new Font("Segoe UI", 7F);
-            btnClearPages.Location = new Point(940, 159);
+            btnClearPages.Location = new Point(910, 159);
             btnClearPages.Margin = new Padding(4, 2, 4, 2);
             btnClearPages.Name = "btnClearPages";
             btnClearPages.Size = new Size(31, 31);
@@ -115,7 +115,7 @@
             // 
             lblDocInfo.Anchor = AnchorStyles.Right;
             lblDocInfo.AutoSize = true;
-            lblDocInfo.Location = new Point(70, 112);
+            lblDocInfo.Location = new Point(100, 112);
             lblDocInfo.Margin = new Padding(4, 0, 4, 0);
             lblDocInfo.Name = "lblDocInfo";
             lblDocInfo.Size = new Size(136, 25);
@@ -127,7 +127,7 @@
             lblPageCount.Anchor = AnchorStyles.Left;
             lblPageCount.AutoSize = true;
             lblPageCount.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblPageCount.Location = new Point(214, 112);
+            lblPageCount.Location = new Point(244, 112);
             lblPageCount.Margin = new Padding(4, 0, 4, 0);
             lblPageCount.Name = "lblPageCount";
             lblPageCount.Size = new Size(73, 25);
@@ -137,10 +137,10 @@
             // btnExtract
             // 
             btnExtract.Dock = DockStyle.Fill;
-            btnExtract.Location = new Point(214, 302);
+            btnExtract.Location = new Point(244, 302);
             btnExtract.Margin = new Padding(4, 2, 4, 2);
             btnExtract.Name = "btnExtract";
-            btnExtract.Size = new Size(718, 66);
+            btnExtract.Size = new Size(658, 66);
             btnExtract.TabIndex = 3;
             btnExtract.Text = "EXTRACT PAGES";
             btnExtract.UseVisualStyleBackColor = true;
@@ -149,11 +149,11 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 5;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.Controls.Add(chkAllowDuplicates, 2, 4);
             tableLayoutPanel1.Controls.Add(lblExtractFromDoc, 1, 1);
             tableLayoutPanel1.Controls.Add(txtSource, 2, 1);
@@ -188,7 +188,7 @@
             chkAllowDuplicates.AutoSize = true;
             chkAllowDuplicates.Checked = true;
             chkAllowDuplicates.CheckState = CheckState.Checked;
-            chkAllowDuplicates.Location = new Point(212, 210);
+            chkAllowDuplicates.Location = new Point(242, 210);
             chkAllowDuplicates.Margin = new Padding(2);
             chkAllowDuplicates.Name = "chkAllowDuplicates";
             chkAllowDuplicates.Size = new Size(212, 29);
@@ -202,7 +202,7 @@
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblStatus.ForeColor = Color.Red;
-            lblStatus.Location = new Point(214, 262);
+            lblStatus.Location = new Point(244, 262);
             lblStatus.Margin = new Padding(4, 0, 4, 0);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(60, 25);
