@@ -51,7 +51,12 @@ namespace CommonForms
 
         public virtual void UpdateUI()
         {
+        }
 
+        protected void CallUpdateStatus(string message)
+        {
+            if (UpdateStatus != null)
+                UpdateStatus(message);
         }
     }
 }
