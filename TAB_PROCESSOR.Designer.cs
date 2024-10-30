@@ -28,43 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutButtons = new TableLayoutPanel();
             btnAdd = new Button();
             btnEdit = new Button();
             btnClear = new Button();
             btnProcess = new Button();
             lstProcessor = new ListBox();
             tableLayoutMain = new TableLayoutPanel();
-            tableLayoutPanel1.SuspendLayout();
+            tableLayoutButtons.SuspendLayout();
             tableLayoutMain.SuspendLayout();
             SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tableLayoutButtons
             // 
-            tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 104F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 104F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 104F));
-            tableLayoutPanel1.Controls.Add(btnAdd, 0, 0);
-            tableLayoutPanel1.Controls.Add(btnEdit, 1, 0);
-            tableLayoutPanel1.Controls.Add(btnClear, 3, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(2, 202);
-            tableLayoutPanel1.Margin = new Padding(2, 2, 2, 2);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(999, 40);
-            tableLayoutPanel1.TabIndex = 48;
+            tableLayoutButtons.ColumnCount = 4;
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
+            tableLayoutButtons.Controls.Add(btnAdd, 0, 0);
+            tableLayoutButtons.Controls.Add(btnEdit, 1, 0);
+            tableLayoutButtons.Controls.Add(btnClear, 3, 0);
+            tableLayoutButtons.Dock = DockStyle.Fill;
+            tableLayoutButtons.Location = new Point(2, 202);
+            tableLayoutButtons.Margin = new Padding(2);
+            tableLayoutButtons.Name = "tableLayoutButtons";
+            tableLayoutButtons.RowCount = 1;
+            tableLayoutButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutButtons.Size = new Size(999, 36);
+            tableLayoutButtons.TabIndex = 48;
             // 
             // btnAdd
             // 
             btnAdd.Dock = DockStyle.Fill;
+            btnAdd.Font = new Font("Segoe UI", 7F);
             btnAdd.Location = new Point(2, 2);
-            btnAdd.Margin = new Padding(2, 2, 2, 2);
+            btnAdd.Margin = new Padding(2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(100, 36);
+            btnAdd.Size = new Size(61, 32);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "ADD";
             btnAdd.UseVisualStyleBackColor = true;
@@ -73,10 +74,11 @@
             // btnEdit
             // 
             btnEdit.Dock = DockStyle.Fill;
-            btnEdit.Location = new Point(106, 2);
-            btnEdit.Margin = new Padding(2, 2, 2, 2);
+            btnEdit.Font = new Font("Segoe UI", 7F);
+            btnEdit.Location = new Point(67, 2);
+            btnEdit.Margin = new Padding(2);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(100, 36);
+            btnEdit.Size = new Size(61, 32);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "EDIT";
             btnEdit.UseVisualStyleBackColor = true;
@@ -85,10 +87,11 @@
             // btnClear
             // 
             btnClear.Dock = DockStyle.Fill;
-            btnClear.Location = new Point(897, 2);
-            btnClear.Margin = new Padding(2, 2, 2, 2);
+            btnClear.Font = new Font("Segoe UI", 7F);
+            btnClear.Location = new Point(926, 2);
+            btnClear.Margin = new Padding(2);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(100, 36);
+            btnClear.Size = new Size(71, 32);
             btnClear.TabIndex = 2;
             btnClear.Text = "CLEAR";
             btnClear.UseVisualStyleBackColor = true;
@@ -123,17 +126,16 @@
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutMain.Controls.Add(lstProcessor, 0, 0);
             tableLayoutMain.Controls.Add(btnProcess, 0, 3);
-            tableLayoutMain.Controls.Add(tableLayoutPanel1, 0, 1);
+            tableLayoutMain.Controls.Add(tableLayoutButtons, 0, 1);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Margin = new Padding(2);
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 4;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
             tableLayoutMain.Size = new Size(1003, 536);
             tableLayoutMain.TabIndex = 43;
             // 
@@ -144,14 +146,14 @@
             Controls.Add(tableLayoutMain);
             Name = "TAB_Processor";
             Size = new Size(1003, 536);
-            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutButtons.ResumeLayout(false);
             tableLayoutMain.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TableLayoutPanel tableLayoutPanel1;
+        private TableLayoutPanel tableLayoutButtons;
         private Button btnAdd;
         private Button btnEdit;
         private Button btnClear;

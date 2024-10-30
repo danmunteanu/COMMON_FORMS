@@ -10,17 +10,13 @@ namespace CommonForms
         RealityFrameworks.Action mSelAction = null;
         RealityFrameworks.Condition mSelCond = null;
 
-        private DialogChangeForm mDlgEditChange = new();
+        private DialogSelectChange mDlgEditChange = new();
 
         public TAB_Processor()
         {
             InitializeComponent();
 
             lstProcessor.HorizontalScrollbar = true;
-
-            //  Setup Add Dialog
-            mDlgEditChange.Parent = this.Parent;
-
 
             //  Load Available Conditions
             mConditionsAvailable.Add(new ConditionHasExtension(".pdf"));
@@ -35,9 +31,6 @@ namespace CommonForms
             mDlgEditChange.LoadConditions(mConditionsAvailable);
             mDlgEditChange.LoadActions(mActionsAvailable);
 
-
-
-
             /*****************************/
             /*** PROCESSOR STATE Stuff ***/
             /*****************************/
@@ -50,6 +43,8 @@ namespace CommonForms
         protected override void OnProcessorSet()
         {
             ReloadChangeList();
+
+            UpdateUI();
         }
 
         protected override void OnResourceSet()
@@ -65,9 +60,9 @@ namespace CommonForms
             if (Processor == null)
                 return;
 
-            Change ch = Processor.GetChangeAt(lstProcessor.SelectedIndex);
+            Change change = Processor.GetChangeAt(lstProcessor.SelectedIndex);
 
-            UserControl editCond = EditorFactory.CreateConditionEditor(ch.Condition);
+            EditorBase editCond = EditorFactory.CreateConditionEditor(change.Condition);
             //AddUserControl(panelCondition, editCond);
 
             //try
@@ -105,8 +100,9 @@ namespace CommonForms
 
         public override void UpdateUI()
         {
-            //bool addPair = (cmbCondition.SelectedIndex != -1 && cmbAction.SelectedIndex != -1);
-            //btnAddPair.Enabled = addPair;
+            bool hasFiles = Processor.CountFileNames() > 0;
+
+            btnProcess.Enabled = hasFiles;
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
@@ -117,7 +113,7 @@ namespace CommonForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            mDlgEditChange.LoadState(DialogChangeForm.EditorState.Add);
+            mDlgEditChange.LoadState(DialogSelectChange.EditorState.Add);
             mDlgEditChange.ShowDialog(this);
         }
 
@@ -126,8 +122,8 @@ namespace CommonForms
             if (lstProcessor.SelectedIndex < 0) return;
 
             //  get current change
-            Change ch = mFilesProcessor.GetChangeAt(lstProcessor.SelectedIndex);
-            mDlgEditChange.LoadState(DialogChangeForm.EditorState.Edit, ch);
+            Change change = mFilesProcessor.GetChangeAt(lstProcessor.SelectedIndex);
+            mDlgEditChange.LoadState(DialogSelectChange.EditorState.Edit, change);
             mDlgEditChange.ShowDialog(this);
         }
 

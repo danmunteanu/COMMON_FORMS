@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class DialogChangeForm : Form
+    public partial class DialogSelectChange : Form
     {
         public enum EditorState { Add, Edit };
 
@@ -11,7 +11,7 @@ namespace CommonForms
 
         public EditorState State { get; set; }
 
-        public DialogChangeForm()
+        public DialogSelectChange()
         {
             InitializeComponent();
         }
@@ -114,7 +114,7 @@ namespace CommonForms
             RealityFrameworks.Condition? cond = null;    //  create condition
             RealityFrameworks.Action? action = null;   //  create action
 
-            if (State == DialogChangeForm.EditorState.Add)
+            if (State == DialogSelectChange.EditorState.Add)
             {
                 bool conditionIsValid = mSelectedConditionEditor.ValidateState();
                 if (conditionIsValid)
@@ -164,7 +164,7 @@ namespace CommonForms
                     //  FilesProcessor.add (ch);
                 }
             }
-            else if (State == DialogChangeForm.EditorState.Edit)
+            else if (State == DialogSelectChange.EditorState.Edit)
             {
                 //  Edit Stuff
 

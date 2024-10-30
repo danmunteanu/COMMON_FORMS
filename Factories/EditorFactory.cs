@@ -29,17 +29,21 @@ namespace CommonForms
                 { "IsFolder", () => new EditorIsFolder() },
 
                 //  ACTION Editors
-                //{ typeof(ActionAddYaml), () => new EditorAddYaml() },
                 { "RenameFile", () => new EditorRenameFile() },
-                //{ typeof(ActionUpdateYaml), () => new TAB_UpdateYaml() },
                 { "MergeFiles", () => new EditorMergeFiles() },
                 { "CopyFile", () => new EditorCopyFile() }
             };
 
-        public static void RegisterEditor(string name, EditorCreator creator)
+        public static void RegisterEditorByName(string name, EditorCreator creator)
         {
             _factoryByName.Add(name, creator);
         }
+
+        public static void RegisterEditorByType(Type type, EditorCreator creator)
+        {
+            _factoryByType.Add(type, creator);
+        }
+
 
         public static EditorBase CreateActionEditor(RealityFrameworks.Action action)
         {
@@ -61,7 +65,7 @@ namespace CommonForms
             throw new InvalidOperationException(message);
         }
 
-        public static UserControl CreateConditionEditor(RealityFrameworks.Condition cond)
+        public static EditorBase CreateConditionEditor(RealityFrameworks.Condition cond)
         {
             if (_factoryByType.TryGetValue(cond.GetType(), out var creator))
             {
@@ -71,7 +75,7 @@ namespace CommonForms
             throw new InvalidOperationException("There is no editor registered for condition " + cond.Name);
         }
 
-        public static UserControl CreateConditionEditor(string condName)
+        public static EditorBase CreateConditionEditor(string condName)
         {
             if (_factoryByName.TryGetValue(condName, out var creator))
             {

@@ -1,6 +1,6 @@
 ﻿namespace CommonForms
 {
-    partial class DialogChangeForm
+    partial class DialogSelectChange
     {
         /// <summary>
         /// Required designer variable.
@@ -216,7 +216,7 @@
             label1.TabIndex = 49;
             label1.Text = "Checks if a file's extension appears in the list below";
             // 
-            // DialogChangeForm
+            // DialogSelectChange
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -224,7 +224,7 @@
             Controls.Add(tableLayoutPanel);
             Margin = new Padding(2);
             MaximizeBox = false;
-            Name = "DialogChangeForm";
+            Name = "DialogSelectChange";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DIALOG_ADD_CHANGE";
             tableLayoutPanel.ResumeLayout(false);
