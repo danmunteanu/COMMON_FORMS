@@ -22,7 +22,7 @@
         /// <summary>
         /// Should enable or disable usage of the progress bar - later.
         /// </summary>
-        public bool UseProgressBar { get; set; } = true;
+        /// 
 
         /// <summary>
         /// Sets the status string
