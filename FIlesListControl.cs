@@ -23,6 +23,8 @@
         /// Should enable or disable usage of the progress bar - later.
         /// </summary>
         /// 
+        private bool _useProgressBar = true;
+        public bool UseProgressBar { get { return _useProgressBar; } set { _useProgressBar = value; OnUseProgressBarSet(); } }
 
         /// <summary>
         /// Sets the status string
@@ -139,14 +141,60 @@
             }
         }
 
+        private void OnUseProgressBarSet()
+        {
+            if (!UseProgressBar)
+            {
+                //  remove the progress bar;
+                RemoveRow(tableLayoutFiles, 3);
+            }
+        }
+
+        public void RemoveRow(TableLayoutPanel tableLayoutPanel, int rowIndex)
+        {
+            // Remove controls from the specified row
+            for (int column = 0; column < tableLayoutPanel.ColumnCount; column++)
+            {
+                var control = tableLayoutPanel.GetControlFromPosition(column, rowIndex);
+                if (control != null)
+                {
+                    tableLayoutPanel.Controls.Remove(control);
+                    control.Dispose();
+                }
+            }
+
+            // Shift all rows after the removed row up by one
+            for (int row = rowIndex + 1; row < tableLayoutPanel.RowCount; row++)
+            {
+                for (int column = 0; column < tableLayoutPanel.ColumnCount; column++)
+                {
+                    var control = tableLayoutPanel.GetControlFromPosition(column, row);
+                    if (control != null)
+                    {
+                        tableLayoutPanel.SetRow(control, row - 1);
+                    }
+                }
+            }
+
+            // Remove the last row style
+            if (rowIndex < tableLayoutPanel.RowStyles.Count)
+            {
+                tableLayoutPanel.RowStyles.RemoveAt(tableLayoutPanel.RowStyles.Count - 1);
+            }
+
+            // Decrement the row count
+            tableLayoutPanel.RowCount--;
+        }
+
+
         private void AddFilesFromFolder(string folder)
         {
+            if (folder == null || folder == "")
+                return;
+
             //  clear the list 
             lstFiles.Items.Clear();
             Processor.ClearFileNames();
-
-            if (folder == null || folder == "")
-                return;
 
             //  folder must exist
             if (!Directory.Exists(folder))

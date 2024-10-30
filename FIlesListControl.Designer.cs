@@ -54,7 +54,7 @@
             tableLayoutFiles.Controls.Add(lblStatus, 0, 2);
             tableLayoutFiles.Dock = DockStyle.Fill;
             tableLayoutFiles.Location = new Point(0, 0);
-            tableLayoutFiles.Margin = new Padding(4, 4, 4, 4);
+            tableLayoutFiles.Margin = new Padding(4);
             tableLayoutFiles.Name = "tableLayoutFiles";
             tableLayoutFiles.RowCount = 5;
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
