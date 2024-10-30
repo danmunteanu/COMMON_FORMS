@@ -83,6 +83,7 @@ namespace CommonForms
 
             try
             {
+                //  EditorFactory.FindOrCreateActionEditor
                 mSelectedConditionEditor = EditorFactory.CreateActionEditor(conditionName);
                 AddUserControl(panelCondition, mSelectedConditionEditor);
             }

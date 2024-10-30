@@ -40,27 +40,28 @@
             // 
             lblPath.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblPath.AutoSize = true;
-            lblPath.Location = new Point(18, 20);
+            lblPath.Location = new Point(18, 25);
             lblPath.Name = "lblPath";
-            lblPath.Size = new Size(132, 25);
+            lblPath.Size = new Size(108, 20);
             lblPath.TabIndex = 0;
             lblPath.Text = "Copy to folder:";
             // 
             // txtPath
             // 
             txtPath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPath.Location = new Point(18, 52);
+            txtPath.Location = new Point(18, 54);
             txtPath.Name = "txtPath";
             txtPath.ReadOnly = true;
-            txtPath.Size = new Size(471, 31);
+            txtPath.Size = new Size(506, 27);
             txtPath.TabIndex = 1;
             // 
             // btnBrowse
             // 
             btnBrowse.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnBrowse.Location = new Point(495, 48);
+            btnBrowse.Font = new Font("Segoe UI", 7F);
+            btnBrowse.Location = new Point(530, 52);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(114, 39);
+            btnBrowse.Size = new Size(79, 30);
             btnBrowse.TabIndex = 2;
             btnBrowse.Text = "Browse";
             btnBrowse.UseVisualStyleBackColor = true;
@@ -71,11 +72,11 @@
             tableLayout.ColumnCount = 4;
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 15F));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
+            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 85F));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 15F));
-            tableLayout.Controls.Add(btnBrowse, 2, 1);
             tableLayout.Controls.Add(txtPath, 1, 1);
             tableLayout.Controls.Add(lblPath, 1, 0);
+            tableLayout.Controls.Add(btnBrowse, 2, 1);
             tableLayout.Dock = DockStyle.Fill;
             tableLayout.Location = new Point(0, 0);
             tableLayout.Name = "tableLayout";

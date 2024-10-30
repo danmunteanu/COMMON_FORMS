@@ -28,66 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label2 = new Label();
+            lblMergeFileName = new Label();
             txtMergeName = new TextBox();
             btnSelectName = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            flowLayoutPanel1.SuspendLayout();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
-            // label2
+            // lblMergeFileName
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(150, 25);
-            label2.TabIndex = 1;
-            label2.Text = "Merge File Name:";
+            lblMergeFileName.Anchor = AnchorStyles.Right;
+            lblMergeFileName.AutoSize = true;
+            lblMergeFileName.Location = new Point(2, 17);
+            lblMergeFileName.Margin = new Padding(2, 0, 2, 0);
+            lblMergeFileName.Name = "lblMergeFileName";
+            lblMergeFileName.Size = new Size(126, 20);
+            lblMergeFileName.TabIndex = 1;
+            lblMergeFileName.Text = "Merge File Name:";
             // 
             // txtMergeName
             // 
-            txtMergeName.Location = new Point(159, 3);
+            txtMergeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtMergeName.Location = new Point(132, 14);
+            txtMergeName.Margin = new Padding(2, 2, 2, 2);
             txtMergeName.Name = "txtMergeName";
-            txtMergeName.Size = new Size(331, 31);
+            txtMergeName.Size = new Size(339, 27);
             txtMergeName.TabIndex = 2;
             // 
             // btnSelectName
             // 
-            btnSelectName.Location = new Point(496, 3);
+            btnSelectName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSelectName.Font = new Font("Segoe UI", 7F);
+            btnSelectName.Location = new Point(475, 14);
+            btnSelectName.Margin = new Padding(2, 2, 2, 2);
             btnSelectName.Name = "btnSelectName";
-            btnSelectName.Size = new Size(112, 34);
+            btnSelectName.Size = new Size(71, 27);
             btnSelectName.TabIndex = 3;
-            btnSelectName.Text = "Select Name";
+            btnSelectName.Text = "SELECT";
             btnSelectName.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // tableLayoutPanel1
             // 
-            flowLayoutPanel1.Controls.Add(label2);
-            flowLayoutPanel1.Controls.Add(txtMergeName);
-            flowLayoutPanel1.Controls.Add(btnSelectName);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(685, 309);
-            flowLayoutPanel1.TabIndex = 4;
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
+            tableLayoutPanel1.Controls.Add(btnSelectName, 2, 0);
+            tableLayoutPanel1.Controls.Add(txtMergeName, 1, 0);
+            tableLayoutPanel1.Controls.Add(lblMergeFileName, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(548, 247);
+            tableLayoutPanel1.TabIndex = 4;
             // 
             // EditorMergeFiles
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(flowLayoutPanel1);
-            Margin = new Padding(4);
+            Controls.Add(tableLayoutPanel1);
             Name = "EditorMergeFiles";
-            Size = new Size(685, 309);
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
+            Size = new Size(548, 247);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private Label label2;
+        private Label lblMergeFileName;
         private TextBox txtMergeName;
         private Button btnSelectName;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }
