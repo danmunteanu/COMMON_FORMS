@@ -42,10 +42,12 @@ namespace CommonForms
             if (state == EditorState.Add)
             {
                 btnSubmit.Text = "ADD";
+                Text = "Add Change";
             }
             if (state == EditorState.Edit)
             {
                 btnSubmit.Text = "UPDATE";
+                Text = "Edit Change";
 
                 //  Condition editor
                 try
