@@ -1,8 +1,15 @@
-﻿namespace CommonForms
+﻿using RealityFrameworks;
+
+namespace CommonForms
 {
     public partial class EditorMergeFiles : EditorBase
     {
-        RealityFrameworks.ActionMergeFiles Action { get; set; }
+        private ActionMergeFiles _action = null;
+
+        public RealityFrameworks.ActionMergeFiles Action { 
+            get { return _action; }
+            set { _action = value; LoadState(_action); }
+        }
 
         public EditorMergeFiles()
         {
@@ -14,6 +21,11 @@
             //base.SaveState();
 
             //  UI -> Condition
+        }
+
+        private void LoadState(ActionMergeFiles amf)
+        {
+            //  Load Stuff from amf
         }
     }
 }

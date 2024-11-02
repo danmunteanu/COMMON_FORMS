@@ -65,6 +65,7 @@ namespace CommonForms
                 try
                 {
                     mSelActionEditor = EditorFactory.CreateActionEditor(ch.Action.Name);
+                    ActionSetter.TryLoadState(ch.Action, mSelActionEditor);
                     //EditorActionSetter.SetConcreteAction(ch.Action, mSelActionEditor);
                     //EditorLoader.Load(mSelActionEditor);
                     AddUserControl(panelAction, mSelActionEditor);
