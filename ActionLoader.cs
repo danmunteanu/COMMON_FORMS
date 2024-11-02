@@ -3,8 +3,15 @@ using static CommonForms.EditorFactory;
 
 namespace CommonForms
 {
-    public class ActionSetter
+    public class ActionLoader
     {
+        void Method<TAction, TEditor>(TAction action, TEditor editor)
+             where TEditor : IEditorWithAction<TAction>
+        {
+            editor.Action = action;
+        }
+
+
         public delegate bool ActionSetterDelegate(RealityFrameworks.Action action, EditorBase editor);
 
         private static bool Tester<TAction, TEditor> (RealityFrameworks.Action action, EditorBase editor)
