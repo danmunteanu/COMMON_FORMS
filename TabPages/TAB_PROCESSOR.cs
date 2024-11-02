@@ -19,6 +19,8 @@ namespace CommonForms
             lstProcessor.HorizontalScrollbar = true;
 
             //  Load Available Conditions
+            //typeof(ConditionHasExtension).Name
+            //  DON'T LOAD class instances, but their names
             mConditionsAvailable.Add(new ConditionHasExtension(".pdf"));
             //mConditionsAvailable.Add(new ConditionHasExtension(".txt"));
             mConditionsAvailable.Add(new ConditionIsFolder());
@@ -61,6 +63,9 @@ namespace CommonForms
                 return;
 
             Change change = Processor.GetChangeAt(lstProcessor.SelectedIndex);
+
+            //  Try to FIND Condition Editor
+            //  If it's not found, Create it and Store it in a Dictionary
 
             EditorBase editCond = EditorFactory.CreateConditionEditor(change.Condition);
             //AddUserControl(panelCondition, editCond);

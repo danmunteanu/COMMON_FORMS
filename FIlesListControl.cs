@@ -26,6 +26,9 @@
         private bool _useProgressBar = true;
         public bool UseProgressBar { get { return _useProgressBar; } set { _useProgressBar = value; OnUseProgressBarSet(); } }
 
+        private bool _useStatus = true;
+        public bool UseStatus { get { return _useStatus; } set { _useStatus = value; OnUseStatusSet(); } }
+
         /// <summary>
         /// Sets the status string
         /// </summary>
@@ -147,6 +150,14 @@
             {
                 //  remove the progress bar;
                 RemoveRow(tableLayoutFiles, 3);
+            }
+        }
+
+        private void OnUseStatusSet()
+        {
+            if (!UseStatus)
+            {
+                RemoveRow(tableLayoutFiles, 2);
             }
         }
 
