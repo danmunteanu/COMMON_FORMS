@@ -5,7 +5,7 @@ namespace CommonForms
 {
     public partial class EditorRenameFile : EditorBase
     {
-        ActionRenameFile _action = null;
+        private ActionRenameFile _action = null;
 
         //  Every Editor should contain:
         //  - concrete action (member)
@@ -14,7 +14,7 @@ namespace CommonForms
         //  - save to action (concrete)
         //  - save()
 
-        ActionRenameFile Action
+        public ActionRenameFile Action
         {
             get { return _action; }
             set
@@ -26,13 +26,6 @@ namespace CommonForms
 
         public EditorRenameFile()
         {
-            InitializeComponent();
-        }
-
-        public EditorRenameFile(IContainer container)
-        {
-            container.Add(this);
-
             InitializeComponent();
         }
 

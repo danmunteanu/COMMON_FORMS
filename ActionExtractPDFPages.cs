@@ -77,7 +77,6 @@ namespace CommonForms
             return false;
         }
 
-
         public override void Execute(string sourcePDF)
         {
             //  Ensure sourcePDF is a PDF file

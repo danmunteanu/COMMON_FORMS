@@ -7,7 +7,7 @@ namespace CommonForms
         public enum EditorState { Add, Edit };
 
         private EditorBase mSelectedConditionEditor = null;
-        private EditorBase mSelectedActionEditor = null;
+        private EditorBase mSelActionEditor = null;
 
         public EditorState State { get; set; }
 
@@ -53,7 +53,7 @@ namespace CommonForms
                 try
                 {
                     mSelectedConditionEditor = EditorFactory.CreateConditionEditor(ch.Condition.Name);
-                    mSelectedConditionEditor.LoadState(ch.Condition);
+                    //mSelectedConditionEditor.LoadState(ch.Condition);
                     AddUserControl(panelCondition, mSelectedConditionEditor);
                 }
                 catch (Exception ex)
@@ -64,9 +64,10 @@ namespace CommonForms
                 //  ACTION Editor
                 try
                 {
-                    mSelectedActionEditor = EditorFactory.CreateActionEditor(ch.Action.Name);
-                    mSelectedActionEditor.LoadState(ch.Action);
-                    AddUserControl(panelAction, mSelectedActionEditor);
+                    mSelActionEditor = EditorFactory.CreateActionEditor(ch.Action.Name);
+                    //EditorActionSetter.SetConcreteAction(ch.Action, mSelActionEditor);
+                    //EditorLoader.Load(mSelActionEditor);
+                    AddUserControl(panelAction, mSelActionEditor);
                 }
                 catch (Exception ex)
                 {
@@ -105,8 +106,8 @@ namespace CommonForms
 
             try
             {
-                mSelectedActionEditor = EditorFactory.CreateActionEditor(actionName);
-                AddUserControl(panelAction, mSelectedActionEditor);
+                mSelActionEditor = EditorFactory.CreateActionEditor(actionName);
+                AddUserControl(panelAction, mSelActionEditor);
             }
             catch (Exception ex)
             {
@@ -146,7 +147,7 @@ namespace CommonForms
                 bool actionIsValid = false;
                 if (conditionIsValid)
                 {
-                    actionIsValid = mSelectedActionEditor.Validate();
+                    actionIsValid = mSelActionEditor.Validate();
                     if (actionIsValid)
                     {
                         //  Create New action by name

@@ -1,20 +1,26 @@
-﻿using System.ComponentModel;
+﻿using RealityFrameworks;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace CommonForms
 {
     public partial class EditorCopyFile : EditorBase
     {
+        ActionCopyFile _action = null;
+
+        public ActionCopyFile Action
+        {
+            get { return _action; } set { _action = value; LoadState(_action); }
+        }
+
         public EditorCopyFile()
         {
             InitializeComponent();
         }
 
-        public EditorCopyFile(IContainer container)
+        private void LoadState(ActionCopyFile action)
         {
-            container.Add(this);
 
-            InitializeComponent();
         }
 
         public override void SaveState()
