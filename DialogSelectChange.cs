@@ -49,20 +49,23 @@ namespace CommonForms
                 btnSubmit.Text = "UPDATE";
                 Text = "Edit Change";
 
-                //  Condition editor
+                //  CONDITION editor
                 try
                 {
-                    mSelectedActionEditor = EditorFactory.CreateActionEditor(ch.Condition.Name);
-                    AddUserControl(panelCondition, mSelectedActionEditor);
+                    mSelectedConditionEditor = EditorFactory.CreateConditionEditor(ch.Condition.Name);
+                    mSelectedConditionEditor.LoadState(ch.Condition);
+                    AddUserControl(panelCondition, mSelectedConditionEditor);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
+                //  ACTION Editor
                 try
                 {
                     mSelectedActionEditor = EditorFactory.CreateActionEditor(ch.Action.Name);
+                    mSelectedActionEditor.LoadState(ch.Action);
                     AddUserControl(panelAction, mSelectedActionEditor);
                 }
                 catch (Exception ex)

@@ -13,6 +13,16 @@
             return true;
         }
 
+        public virtual void LoadState(RealityFrameworks.Condition cond)
+        {
+
+        }
+
+        public virtual void LoadState(RealityFrameworks.Action action)
+        {
+
+        }
+
         protected Stack<string> mErrors = new();
 
         public string PopError()
