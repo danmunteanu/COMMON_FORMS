@@ -134,10 +134,10 @@
             if (Resource != null)
             {
                 //  load topmost string
-                lblAddFiles.Text = Resource.GetString("FILE_LIST_LABEL_ADD");
-                btnAdd.Text = Resource.GetString("FILE_LIST_BUTTON_ADD");
-                btnRem.Text = Resource.GetString("FILE_LIST_BUTTON_REM");
-                btnClear.Text = Resource.GetString("FILE_LIST_BUTTON_CLEAR");
+                lblAddFiles.Text = Locale.FILE_LIST_LABEL_ADD;
+                btnAdd.Text = Locale.FILE_LIST_BUTTON_ADD;
+                btnRem.Text = Locale.FILE_LIST_BUTTON_REM;
+                btnClear.Text = Locale.FILE_LIST_BUTTON_CLEAR;
             }
         }
 
@@ -240,16 +240,11 @@
             if (res == DialogResult.OK && !string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
             {
                 AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
-                if (Resource != null)
-                {
-                    //string msg = Resource.GetString("STATUS_FOLDER_ADDED");
-                    //CallUpdateStatus(string.Format(msg));
-                }
+                CallUpdateStatus(Locale.STATUS_FOLDER_ADDED);
             }
             else
             {
-                //if (Resource != null)
-                //    CallUpdateStatus(string.Format(Resource.GetString("STATUS_FOLDER_NOT_ADDED")));
+                CallUpdateStatus(Locale.STATUS_FOLDER_NOT_ADDED);
             }
 
             //  Reset progress bar
@@ -264,8 +259,7 @@
         private void btnReloadFolder_Click(object sender, EventArgs e)
         {
             AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
-            if (Resource != null)
-                CallUpdateStatus(Resource.GetString("STATUS_FOLDER_RELOADED"));
+            CallUpdateStatus(Locale.STATUS_FOLDER_RELOADED);
 
             CallUpdateUI();
         }
@@ -280,8 +274,7 @@
             //clear inner list and list ui
             Processor.ClearFileNames();
             lstFiles.Items.Clear();
-            if (Resource != null)
-                CallUpdateStatus(Resource.GetString("STATUS_LIST_CLEARED"));
+            CallUpdateStatus(Locale.STATUS_LIST_CLEARED);
 
             CallUpdateUI();
         }
