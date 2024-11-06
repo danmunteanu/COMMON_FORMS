@@ -161,7 +161,7 @@
             }
         }
 
-        public void RemoveRow(TableLayoutPanel tableLayoutPanel, int rowIndex)
+        private void RemoveRow(TableLayoutPanel tableLayoutPanel, int rowIndex)
         {
             // Remove controls from the specified row
             for (int column = 0; column < tableLayoutPanel.ColumnCount; column++)
@@ -372,6 +372,17 @@
         {
             lstFiles.SelectionMode = selMode;
             lstFiles.Enabled = enableList;
+        }
+
+        public void UpdateSelectedItem(string item)
+        {
+            if (lstFiles.SelectedIndex == -1)
+                return;
+
+            //  disable update handler
+            lstFiles.Click -= lstFiles_SelectedIndexChanged;
+            lstFiles.Items[lstFiles.SelectedIndex] = item;
+            lstFiles.Click += lstFiles_SelectedIndexChanged;
         }
     }
 }
