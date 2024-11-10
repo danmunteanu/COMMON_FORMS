@@ -7,6 +7,8 @@ namespace CommonForms
         List<RealityFrameworks.Condition> mConditionsAvailable = new();
         List<RealityFrameworks.Action> mActionsAvailable = new();
 
+        List<string> mConditions = new();
+
         RealityFrameworks.Action mSelAction = null;
         RealityFrameworks.Condition mSelCond = null;
 
@@ -17,6 +19,8 @@ namespace CommonForms
             InitializeComponent();
 
             lstProcessor.HorizontalScrollbar = true;
+
+            mConditions.Add(ConditionHasExtension.ID);
 
             //  Load Available Conditions
             //typeof(ConditionHasExtension).Name
