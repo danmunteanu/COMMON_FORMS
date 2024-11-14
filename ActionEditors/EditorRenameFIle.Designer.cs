@@ -40,21 +40,21 @@
             // 
             txtPrefix.Location = new Point(35, 47);
             txtPrefix.Name = "txtPrefix";
-            txtPrefix.Size = new Size(125, 27);
+            txtPrefix.Size = new Size(125, 31);
             txtPrefix.TabIndex = 1;
             // 
             // txtExtension
             // 
             txtExtension.Location = new Point(226, 47);
             txtExtension.Name = "txtExtension";
-            txtExtension.Size = new Size(151, 27);
+            txtExtension.Size = new Size(151, 31);
             txtExtension.TabIndex = 3;
             // 
             // txtCustom
             // 
-            txtCustom.Location = new Point(35, 117);
+            txtCustom.Location = new Point(35, 168);
             txtCustom.Name = "txtCustom";
-            txtCustom.Size = new Size(342, 27);
+            txtCustom.Size = new Size(342, 31);
             txtCustom.TabIndex = 4;
             // 
             // chkAddPrefix
@@ -62,7 +62,7 @@
             chkAddPrefix.AutoSize = true;
             chkAddPrefix.Location = new Point(35, 17);
             chkAddPrefix.Name = "chkAddPrefix";
-            chkAddPrefix.Size = new Size(103, 24);
+            chkAddPrefix.Size = new Size(124, 29);
             chkAddPrefix.TabIndex = 6;
             chkAddPrefix.Text = "Add Prefix:";
             chkAddPrefix.UseVisualStyleBackColor = true;
@@ -73,7 +73,7 @@
             chkExtension.AutoSize = true;
             chkExtension.Location = new Point(226, 17);
             chkExtension.Name = "chkExtension";
-            chkExtension.Size = new Size(151, 24);
+            chkExtension.Size = new Size(182, 29);
             chkExtension.TabIndex = 7;
             chkExtension.Text = "Change Extension:";
             chkExtension.UseVisualStyleBackColor = true;
@@ -82,9 +82,9 @@
             // chkCustom
             // 
             chkCustom.AutoSize = true;
-            chkCustom.Location = new Point(35, 87);
+            chkCustom.Location = new Point(35, 138);
             chkCustom.Name = "chkCustom";
-            chkCustom.Size = new Size(128, 24);
+            chkCustom.Size = new Size(156, 29);
             chkCustom.TabIndex = 8;
             chkCustom.Text = "Custom Name:";
             chkCustom.UseVisualStyleBackColor = true;
@@ -99,7 +99,7 @@
             Controls.Add(txtExtension);
             Controls.Add(txtPrefix);
             Name = "EditorRenameFile";
-            Size = new Size(431, 175);
+            Size = new Size(483, 268);
             ResumeLayout(false);
             PerformLayout();
         }

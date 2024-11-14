@@ -40,28 +40,28 @@
             // 
             lblPath.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblPath.AutoSize = true;
-            lblPath.Location = new Point(18, 25);
+            lblPath.Location = new Point(18, 20);
             lblPath.Name = "lblPath";
-            lblPath.Size = new Size(108, 20);
+            lblPath.Size = new Size(132, 25);
             lblPath.TabIndex = 0;
             lblPath.Text = "Copy to folder:";
             // 
             // txtPath
             // 
             txtPath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPath.Location = new Point(18, 54);
+            txtPath.Location = new Point(18, 52);
             txtPath.Name = "txtPath";
             txtPath.ReadOnly = true;
-            txtPath.Size = new Size(506, 27);
+            txtPath.Size = new Size(506, 31);
             txtPath.TabIndex = 1;
             // 
             // btnBrowse
             // 
             btnBrowse.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnBrowse.Font = new Font("Segoe UI", 7F);
-            btnBrowse.Location = new Point(530, 52);
+            btnBrowse.Location = new Point(530, 48);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(79, 30);
+            btnBrowse.Size = new Size(79, 39);
             btnBrowse.TabIndex = 2;
             btnBrowse.Text = "Browse";
             btnBrowse.UseVisualStyleBackColor = true;
