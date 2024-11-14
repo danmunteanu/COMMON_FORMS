@@ -219,10 +219,10 @@ namespace CommonForms
                     Action.Destination = dlgSave.FileName;
                     Action.Execute(txtSource.Text);
 
-                    btnExtract.Enabled = false;
-
                     UpdateStatus("Selected pages extracted.");
                     UpdateUI();
+
+                    btnExtract.Enabled = false;
                 }
             }
         }
