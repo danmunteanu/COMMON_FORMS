@@ -227,8 +227,6 @@ namespace CommonForms
             }
         }
 
-
-
         private void btnSource_Click(object sender, EventArgs e)
         {
             //  Select Source
