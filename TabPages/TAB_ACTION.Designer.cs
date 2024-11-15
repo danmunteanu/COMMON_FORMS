@@ -31,7 +31,7 @@
             cmbActions = new ComboBox();
             label1 = new Label();
             panelEditor = new Panel();
-            btnActivate = new Button();
+            btnApply = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutActionRow = new TableLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
@@ -40,12 +40,13 @@
             // 
             // cmbActions
             // 
-            cmbActions.Dock = DockStyle.Fill;
+            cmbActions.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbActions.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbActions.FormattingEnabled = true;
-            cmbActions.Location = new Point(88, 3);
+            cmbActions.Location = new Point(110, 7);
+            cmbActions.Margin = new Padding(4);
             cmbActions.Name = "cmbActions";
-            cmbActions.Size = new Size(188, 28);
+            cmbActions.Size = new Size(172, 33);
             cmbActions.TabIndex = 0;
             cmbActions.SelectedIndexChanged += cmbActions_SelectedIndexChanged;
             // 
@@ -53,74 +54,80 @@
             // 
             label1.Anchor = AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(27, 9);
+            label1.Location = new Point(35, 11);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(55, 20);
+            label1.Size = new Size(67, 25);
             label1.TabIndex = 1;
             label1.Text = "Action:";
             // 
             // panelEditor
             // 
             panelEditor.Dock = DockStyle.Fill;
-            panelEditor.Location = new Point(23, 73);
+            panelEditor.Location = new Point(29, 91);
+            panelEditor.Margin = new Padding(4);
             panelEditor.Name = "panelEditor";
-            panelEditor.Size = new Size(568, 167);
+            panelEditor.Size = new Size(710, 209);
             panelEditor.TabIndex = 2;
             // 
-            // btnActivate
+            // btnApply
             // 
-            btnActivate.Dock = DockStyle.Fill;
-            btnActivate.Location = new Point(23, 246);
-            btnActivate.Name = "btnActivate";
-            btnActivate.Size = new Size(568, 39);
-            btnActivate.TabIndex = 3;
-            btnActivate.Text = "ACTIVATE";
-            btnActivate.UseVisualStyleBackColor = true;
+            btnApply.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnApply.Location = new Point(29, 308);
+            btnApply.Margin = new Padding(4);
+            btnApply.Name = "btnApply";
+            btnApply.Size = new Size(710, 48);
+            btnApply.TabIndex = 3;
+            btnApply.Text = "APPLY";
+            btnApply.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 25F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 25F));
             tableLayoutPanel1.Controls.Add(tableLayoutActionRow, 1, 1);
             tableLayoutPanel1.Controls.Add(panelEditor, 1, 2);
-            tableLayoutPanel1.Controls.Add(btnActivate, 1, 3);
+            tableLayoutPanel1.Controls.Add(btnApply, 1, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            tableLayoutPanel1.Size = new Size(614, 313);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
+            tableLayoutPanel1.Size = new Size(768, 391);
             tableLayoutPanel1.TabIndex = 4;
             // 
             // tableLayoutActionRow
             // 
             tableLayoutActionRow.ColumnCount = 3;
-            tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 85F));
+            tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 106F));
+            tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
             tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 289F));
             tableLayoutActionRow.Controls.Add(label1, 0, 0);
             tableLayoutActionRow.Controls.Add(cmbActions, 1, 0);
             tableLayoutActionRow.Dock = DockStyle.Fill;
-            tableLayoutActionRow.Location = new Point(23, 28);
+            tableLayoutActionRow.Location = new Point(29, 35);
+            tableLayoutActionRow.Margin = new Padding(4);
             tableLayoutActionRow.Name = "tableLayoutActionRow";
             tableLayoutActionRow.RowCount = 1;
             tableLayoutActionRow.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutActionRow.Size = new Size(568, 39);
+            tableLayoutActionRow.Size = new Size(710, 48);
             tableLayoutActionRow.TabIndex = 5;
             // 
             // TAB_Action
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(4);
             Name = "TAB_Action";
-            Size = new Size(614, 313);
+            Size = new Size(768, 391);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutActionRow.ResumeLayout(false);
             tableLayoutActionRow.PerformLayout();
@@ -132,7 +139,7 @@
         private ComboBox cmbActions;
         private Label label1;
         private Panel panelEditor;
-        private Button btnActivate;
+        private Button btnApply;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutActionRow;
     }

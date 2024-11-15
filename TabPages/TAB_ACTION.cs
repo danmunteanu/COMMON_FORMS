@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using RealityFrameworks;
 
 namespace CommonForms.TabPages
 {
@@ -19,6 +11,9 @@ namespace CommonForms.TabPages
 
         public void AddAction(string actionName)
         {
+            //  NAME - Name for the Action
+            //  ACTION_CREATOR - Action Factory
+            //  EDITOR_CREATOR - Editor Factory
             cmbActions.Items.Add(actionName);
         }
 
@@ -26,6 +21,8 @@ namespace CommonForms.TabPages
         {
             if (cmbActions.SelectedIndex == -1)
                 return;
+
+            //string actionName = (new ActionCopyFile as object).GetType().Name.ToString();
 
             var editor = EditorFactory.CreateActionEditor(cmbActions.SelectedItem.ToString());
 
