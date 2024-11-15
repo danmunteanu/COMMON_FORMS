@@ -52,7 +52,7 @@ namespace CommonForms
                 //  CONDITION editor
                 try
                 {
-                    mSelectedConditionEditor = EditorFactory.CreateConditionEditor(ch.Condition.Name);
+                    mSelectedConditionEditor = ComponentFactory<EditorBase>.CreateConditionEditor(ch.Condition.Name);
                     //mSelectedConditionEditor.LoadState(ch.Condition);
                     AddUserControl(panelCondition, mSelectedConditionEditor);
                 }
@@ -65,7 +65,7 @@ namespace CommonForms
                 try
                 {
                     ActionLoader loader = new ();
-                    mSelActionEditor = EditorFactory.CreateActionEditor(ch.Action.Name);    //  should be ID as name can be changed or even null
+                    mSelActionEditor = ComponentFactory<EditorBase>.CreateActionEditor(ch.Action.Name);    //  should be ID as name can be changed or even null
                     mSelActionEditor.LoadState(ch.Action);
                     AddUserControl(panelAction, mSelActionEditor);
                 }
@@ -90,7 +90,7 @@ namespace CommonForms
             try
             {
                 //  EditorFactory.FindOrCreateActionEditor
-                mSelectedConditionEditor = EditorFactory.CreateActionEditor(conditionName);
+                mSelectedConditionEditor = ComponentFactory<EditorBase>.CreateActionEditor(conditionName);
                 AddUserControl(panelCondition, mSelectedConditionEditor);
             }
             catch (Exception ex)
@@ -106,7 +106,7 @@ namespace CommonForms
 
             try
             {
-                mSelActionEditor = EditorFactory.CreateActionEditor(actionName);
+                mSelActionEditor = ComponentFactory<EditorBase>.CreateActionEditor(actionName);
                 AddUserControl(panelAction, mSelActionEditor);
             }
             catch (Exception ex)

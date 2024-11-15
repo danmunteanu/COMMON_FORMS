@@ -71,7 +71,7 @@ namespace CommonForms
             //  Try to FIND Condition Editor
             //  If it's not found, Create it and Store it in a Dictionary
 
-            EditorBase editCond = EditorFactory.CreateConditionEditor(change.Condition);
+            EditorBase editCond = ComponentFactory<EditorBase>.CreateConditionEditor(change.Condition);
             //AddUserControl(panelCondition, editCond);
 
             //try
