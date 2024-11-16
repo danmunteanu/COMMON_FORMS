@@ -24,7 +24,7 @@ namespace CommonForms.TabPages
 
             //string actionName = (new ActionCopyFile as object).GetType().Name.ToString();
 
-            var editor = ComponentFactory<EditorBase>.CreateActionEditor(cmbActions.SelectedItem.ToString());
+            var editor = GenericFactory<EditorBase>.CreateActionEditor(cmbActions.SelectedItem.ToString());
 
             if (panelEditor.Controls.Contains(editor))
                 return;

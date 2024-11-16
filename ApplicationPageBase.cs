@@ -43,16 +43,17 @@ namespace CommonForms
 
         protected virtual void OnResourceSet()
         {
-
+            //  implement in derived class
         }
 
         protected virtual void OnProcessorSet()
         {
-
+            //  implement in derived class
         }
 
         public virtual void UpdateUI()
         {
+            //  implement in derived class
         }
 
         protected void CallUpdateStatus(string message)

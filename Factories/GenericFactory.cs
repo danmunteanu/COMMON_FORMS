@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public static class ComponentFactory<BaseClass>
+    public static class GenericFactory<BaseClass>
     {
         public delegate BaseClass Creator();
 

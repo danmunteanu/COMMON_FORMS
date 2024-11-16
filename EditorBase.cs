@@ -23,21 +23,21 @@
 
         }
 
-        protected Stack<string> mErrors = new();
+        protected Stack<string> mErrorStack = new();
 
         public string PopError()
         {
-            return mErrors.Pop();
+            return mErrorStack.Pop();
         }
 
         public bool HasErrors()
         {
-            return mErrors.Count > 0;
+            return mErrorStack.Count > 0;
         }
 
         public void ClearErrors()
         {
-            mErrors.Clear();
+            mErrorStack.Clear();
         }
     }
 }

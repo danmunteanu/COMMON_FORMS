@@ -6,9 +6,13 @@ namespace CommonForms
     {
         public enum EditorState { Add, Edit };
 
-        private EditorBase mSelectedConditionEditor = null;
+		//	The active Condition editor
+        private EditorBase mSelCondEditor = null;
+		
+		//	The active Action editor
         private EditorBase mSelActionEditor = null;
 
+		//	Editor's state
         public EditorState State { get; set; }
 
         public DialogSelectChange()
@@ -16,28 +20,24 @@ namespace CommonForms
             InitializeComponent();
         }
 
-        private void AddUserControl(Panel panel, UserControl editor)
+		//	Load Condition Names
+        public void LoadConditionNames(List<string> conditionNames)
         {
-            editor.Dock = DockStyle.Fill;
-            panel.Controls.Clear();
-            panel.Controls.Add(editor);
-            editor.BringToFront();
-        }
-
-        public void LoadConditions(List<RealityFrameworks.Condition> conditions)
-        {
-            foreach (var condition in conditions)
-                cmbCondition.Items.Add(condition.Name);
+            foreach (var condition in conditionNames)
+                cmbCondition.Items.Add(condition);
             cmbCondition.SelectedIndex = 0;
         }
-        public void LoadActions(List<RealityFrameworks.Action> actions)
+		
+		//	Load Action Names
+        public void LoadActionNames(List<string> actionNames)
         {
-            foreach (var action in actions)
-                cmbAction.Items.Add(action.Name);
+            foreach (var action in actionNames)
+                cmbAction.Items.Add(action);
             cmbAction.SelectedIndex = 0;
         }
 
-        public void LoadState(EditorState state, Change ch = null)
+
+        public void LoadState(EditorState state, Change change = null)
         {
             if (state == EditorState.Add)
             {
@@ -52,9 +52,13 @@ namespace CommonForms
                 //  CONDITION editor
                 try
                 {
-                    mSelectedConditionEditor = ComponentFactory<EditorBase>.CreateConditionEditor(ch.Condition.Name);
+                    //  Try to FIND Condition Editor
+                    //  If it's not found, Create it and Store it in a Dictionary
+
+                    mSelCondEditor = GenericFactory<EditorBase>.CreateConditionEditor(change.Condition.GetType().Name);
+                    mSelCondEditor.LoadState(change.Condition);
                     //mSelectedConditionEditor.LoadState(ch.Condition);
-                    AddUserControl(panelCondition, mSelectedConditionEditor);
+                    Utils.AddUserControl(panelCondition, mSelCondEditor);
                 }
                 catch (Exception ex)
                 {
@@ -64,10 +68,9 @@ namespace CommonForms
                 //  ACTION Editor
                 try
                 {
-                    ActionLoader loader = new ();
-                    mSelActionEditor = ComponentFactory<EditorBase>.CreateActionEditor(ch.Action.Name);    //  should be ID as name can be changed or even null
-                    mSelActionEditor.LoadState(ch.Action);
-                    AddUserControl(panelAction, mSelActionEditor);
+                    mSelActionEditor = GenericFactory<EditorBase>.CreateActionEditor(change.Action.GetType().Name);
+                    mSelActionEditor.LoadState(change.Action);
+                    Utils.AddUserControl(panelAction, mSelActionEditor);
                 }
                 catch (Exception ex)
                 {
@@ -75,7 +78,7 @@ namespace CommonForms
                 }
             }
 
-            mSelectedConditionEditor?.Select();
+            mSelCondEditor?.Select();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -85,13 +88,16 @@ namespace CommonForms
 
         private void cmbCondition_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string conditionName = cmbCondition.SelectedItem.ToString();
+            if (cmbCondition.SelectedIndex == -1)
+                return;
+
+            string condName = cmbCondition.SelectedItem.ToString();
 
             try
             {
                 //  EditorFactory.FindOrCreateActionEditor
-                mSelectedConditionEditor = ComponentFactory<EditorBase>.CreateActionEditor(conditionName);
-                AddUserControl(panelCondition, mSelectedConditionEditor);
+                mSelCondEditor = GenericFactory<EditorBase>.CreateActionEditor(condName);
+                Utils.AddUserControl(panelCondition, mSelCondEditor);
             }
             catch (Exception ex)
             {
@@ -106,8 +112,8 @@ namespace CommonForms
 
             try
             {
-                mSelActionEditor = ComponentFactory<EditorBase>.CreateActionEditor(actionName);
-                AddUserControl(panelAction, mSelActionEditor);
+                mSelActionEditor = GenericFactory<EditorBase>.CreateActionEditor(actionName);
+                Utils.AddUserControl(panelAction, mSelActionEditor);
             }
             catch (Exception ex)
             {
@@ -122,7 +128,7 @@ namespace CommonForms
 
             if (State == DialogSelectChange.EditorState.Add)
             {
-                bool conditionIsValid = mSelectedConditionEditor.ValidateState();
+                bool conditionIsValid = mSelCondEditor.ValidateState();
                 if (conditionIsValid)
                 {
                     //  Create New Condition by Name

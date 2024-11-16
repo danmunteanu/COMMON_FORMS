@@ -4,8 +4,8 @@ namespace CommonForms
 {
     public partial class TAB_Processor : ApplicationPageBase
     {
-        List<RealityFrameworks.Condition> mConditionsAvailable = new();
-        List<RealityFrameworks.Action> mActionsAvailable = new();
+        List<string> mConditionNames = new();
+        List<string> mActionNames = new();
 
         List<string> mConditions = new();
 
@@ -20,22 +20,19 @@ namespace CommonForms
 
             lstProcessor.HorizontalScrollbar = true;
 
-            mConditions.Add(ConditionHasExtension.ID);
+            //  THESE SHOULD BE LOADED OUTSIDE OF TAB_PROCESSOR
 
             //  Load Available Conditions
-            //typeof(ConditionHasExtension).Name
-            //  DON'T LOAD class instances, but their names
-            mConditionsAvailable.Add(new ConditionHasExtension(".pdf"));
-            //mConditionsAvailable.Add(new ConditionHasExtension(".txt"));
-            mConditionsAvailable.Add(new ConditionIsFolder());
+            mConditionNames.Add(typeof(ConditionHasExtension).Name);
+            mConditionNames.Add(typeof(ConditionIsFolder).Name);
 
             //  Load Available Actions
-            mActionsAvailable.Add(new ActionCopyFile(@"TEMP"));
-            mActionsAvailable.Add(new ActionMergeFiles());
-            mActionsAvailable.Add(new ActionRenameFile());
+            mActionNames.Add(typeof(ActionCopyFile).Name);
+            mActionNames.Add(typeof(ActionMergeFiles).Name);
+            mActionNames.Add(typeof(ActionRenameFile).Name);
 
-            mDlgEditChange.LoadConditions(mConditionsAvailable);
-            mDlgEditChange.LoadActions(mActionsAvailable);
+            mDlgEditChange.LoadConditionNames(mConditionNames);
+            mDlgEditChange.LoadActionNames(mActionNames);
 
             /*****************************/
             /*** PROCESSOR STATE Stuff ***/
@@ -48,7 +45,7 @@ namespace CommonForms
 
         protected override void OnProcessorSet()
         {
-            ReloadChangeList();
+            ReloadListOfChanges();
 
             UpdateUI();
         }
@@ -65,27 +62,9 @@ namespace CommonForms
 
             if (Processor == null)
                 return;
-
-            Change change = Processor.GetChangeAt(lstProcessor.SelectedIndex);
-
-            //  Try to FIND Condition Editor
-            //  If it's not found, Create it and Store it in a Dictionary
-
-            EditorBase editCond = ComponentFactory<EditorBase>.CreateConditionEditor(change.Condition);
-            //AddUserControl(panelCondition, editCond);
-
-            //try
-            //{
-            //    UserControl editAction = EditorFactory.CreateActionEditor(ch.Action);
-            //    AddUserControl(panelAction, editAction);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
         }
 
-        private void ReloadChangeList()
+        private void ReloadListOfChanges()
         {
             lstProcessor.Items.Clear();
             for (int idx = 0; idx < mFilesProcessor.CountChanges(); idx++)
@@ -102,7 +81,7 @@ namespace CommonForms
 
             mFilesProcessor.AddChange(mSelCond, mSelAction);
 
-            ReloadChangeList();
+            ReloadListOfChanges();
 
             //ToggleMassAddUI();
         }

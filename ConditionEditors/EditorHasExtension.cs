@@ -16,7 +16,7 @@ namespace CommonForms
             if (lstExtensions.Items.Count <= 0)
             {
                 const string errmsg = "Must add at least one extension.";
-                mErrors.Push(errmsg);
+                mErrorStack.Push(errmsg);
                 return false;
             }
 
