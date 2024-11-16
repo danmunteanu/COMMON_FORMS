@@ -4,15 +4,29 @@ namespace CommonForms
 {
     public partial class TAB_Processor : ApplicationPageBase
     {
-        List<string> mConditionNames = new();
-        List<string> mActionNames = new();
-
-        List<string> mConditions = new();
-
-        RealityFrameworks.Action mSelAction = null;
-        RealityFrameworks.Condition mSelCond = null;
-
         private DialogSelectChange mDlgEditChange = new();
+
+        List<string> _conditionNames = new();
+        List<string> _actionNames = new();
+
+        public List<string> ConditionNames
+        {
+            get { return _conditionNames; }
+            set
+            {
+                _conditionNames = value;
+                mDlgEditChange.LoadConditionNames(value);
+            }
+        }
+
+        public List<string> ActionNames
+        {
+            get { return _actionNames; }
+            set { 
+                _actionNames = value;
+                mDlgEditChange.LoadActionNames(value);
+            }
+        }
 
         public TAB_Processor()
         {
@@ -20,27 +34,12 @@ namespace CommonForms
 
             lstProcessor.HorizontalScrollbar = true;
 
-            //  THESE SHOULD BE LOADED OUTSIDE OF TAB_PROCESSOR
-
-            //  Load Available Conditions
-            mConditionNames.Add(typeof(ConditionHasExtension).Name);
-            mConditionNames.Add(typeof(ConditionIsFolder).Name);
-
-            //  Load Available Actions
-            mActionNames.Add(typeof(ActionCopyFile).Name);
-            mActionNames.Add(typeof(ActionMergeFiles).Name);
-            mActionNames.Add(typeof(ActionRenameFile).Name);
-
-            mDlgEditChange.LoadConditionNames(mConditionNames);
-            mDlgEditChange.LoadActionNames(mActionNames);
-
             /*****************************/
             /*** PROCESSOR STATE Stuff ***/
             /*****************************/
 
             //mFilesProcessor.AddFolder(@"E:\EXILE_3.25", true);
             //mFilesProcessor.AddFolder(@"e:\Path of Building\Data\", true);
-
         }
 
         protected override void OnProcessorSet()
@@ -72,18 +71,6 @@ namespace CommonForms
                 var item = mFilesProcessor.GetChangeAt(idx);
                 lstProcessor.Items.Add(item.Description);
             }
-        }
-
-        private void btnAddPair_Click(object sender, EventArgs e)
-        {
-            if (!(mSelCond != null && mSelAction != null))
-                return;
-
-            mFilesProcessor.AddChange(mSelCond, mSelAction);
-
-            ReloadListOfChanges();
-
-            //ToggleMassAddUI();
         }
 
         public override void UpdateUI()
