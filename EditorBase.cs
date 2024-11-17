@@ -15,12 +15,23 @@
 
         public virtual void LoadState(RealityFrameworks.Condition cond)
         {
+            throw new NotImplementedException();
+        }
 
+        public virtual void SaveState(RealityFrameworks.Condition cond)
+        {
+            //  Saves the editor's state into the condition
+            throw new NotImplementedException();
         }
 
         public virtual void LoadState(RealityFrameworks.Action action)
         {
+            throw new NotImplementedException();
+        }
 
+        public virtual void SaveState(RealityFrameworks.Action action)
+        {
+            throw new NotImplementedException();
         }
 
         protected Stack<string> mErrorStack = new();

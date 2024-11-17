@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using RealityFrameworks;
+using System.ComponentModel;
 
 namespace CommonForms
 {
@@ -23,11 +24,15 @@ namespace CommonForms
             return true;
         }
 
-        public override void SaveState()
+        public override void SaveState(RealityFrameworks.Condition cond)
         {
-            //base.SaveState();
-
-            //  UI -> Condition
+            if (cond is ConditionHasExtension condHasExt)
+            {
+                foreach (string ext in lstExtensions.Items)
+                {
+                    condHasExt.AddExtension(ext);
+                }
+            }
         }
 
         private void btnAddExt_Click(object sender, EventArgs e)

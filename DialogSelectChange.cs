@@ -55,9 +55,8 @@ namespace CommonForms
                     //  Try to FIND Condition Editor
                     //  If it's not found, Create it and Store it in a Dictionary
 
-                    mSelCondEditor = GenericFactory<EditorBase>.CreateConditionEditor(change.Condition.GetType().Name);
+                    mSelCondEditor = GenericFactory<EditorBase>.CreateByName(change.Condition.GetType().Name);
                     mSelCondEditor.LoadState(change.Condition);
-                    //mSelectedConditionEditor.LoadState(ch.Condition);
                     Utils.AddUserControl(panelCondition, mSelCondEditor);
                 }
                 catch (Exception ex)
@@ -68,7 +67,7 @@ namespace CommonForms
                 //  ACTION Editor
                 try
                 {
-                    mSelActionEditor = GenericFactory<EditorBase>.CreateActionEditor(change.Action.GetType().Name);
+                    mSelActionEditor = GenericFactory<EditorBase>.CreateByName(change.Action.GetType().Name);
                     mSelActionEditor.LoadState(change.Action);
                     Utils.AddUserControl(panelAction, mSelActionEditor);
                 }
@@ -96,7 +95,7 @@ namespace CommonForms
             try
             {
                 //  EditorFactory.FindOrCreateActionEditor
-                mSelCondEditor = GenericFactory<EditorBase>.CreateActionEditor(condName);
+                mSelCondEditor = GenericFactory<EditorBase>.CreateByName(condName);
                 Utils.AddUserControl(panelCondition, mSelCondEditor);
             }
             catch (Exception ex)
@@ -112,7 +111,7 @@ namespace CommonForms
 
             try
             {
-                mSelActionEditor = GenericFactory<EditorBase>.CreateActionEditor(actionName);
+                mSelActionEditor = GenericFactory<EditorBase>.CreateByName(actionName);
                 Utils.AddUserControl(panelAction, mSelActionEditor);
             }
             catch (Exception ex)
@@ -132,12 +131,9 @@ namespace CommonForms
                 if (conditionIsValid)
                 {
                     //  Create New Condition by Name
-                    //  try {
-                    //  FactoryCondition.Create(cmbCondition.SelectedItem);
-                    //  } catch (Exception ex) {}
-                    //  get editorCond
-                    //  editorCond.Condition = cond;
-                    //  condEditor.SaveState(); //  ui to condition
+                    cond = GenericFactory<Condition>.CreateByName(cmbCondition.SelectedItem.ToString());
+                    mSelCondEditor.SaveState(cond);
+
                 } else
                 {
                     //  FOR some reason, stack is empty; TO FIX later
@@ -156,13 +152,8 @@ namespace CommonForms
                     actionIsValid = mSelActionEditor.Validate();
                     if (actionIsValid)
                     {
-                        //  Create New action by name
-                        //  try {
-                        //  FactoryAction.Create(cmbAction.SelectedItem);
-                        //  } catch (Exception ex) {}
-                        //  get editorAction
-                        //  actionEditor.Action = action
-                        //  actionEditor.SaveState ();  //  ui to action
+                        action = GenericFactory<RealityFrameworks.Action>.CreateByName(cmbAction.SelectedItem.ToString());
+                        mSelActionEditor.SaveState(action);
                     }
                     else
                     {
@@ -170,10 +161,13 @@ namespace CommonForms
                     }
                 }
 
-                if (conditionIsValid && actionIsValid)
+                if (conditionIsValid && actionIsValid && 
+                    cond != null && action != null)
                 {
-                    //  Change ch = new Change (cond, action);
-                    //  FilesProcessor.add (ch);
+                    Change ch = new Change (cond, action);
+
+                    //  Add To Files Processor
+                    //FilesProcessor.
                 }
             }
             else if (State == DialogSelectChange.EditorState.Edit)

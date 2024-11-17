@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lblPath = new Label();
-            txtPath = new TextBox();
+            txtFolder = new TextBox();
             btnBrowse = new Button();
             tableLayout = new TableLayoutPanel();
             mFolderBrowserDialog = new FolderBrowserDialog();
@@ -48,12 +48,12 @@
             // 
             // txtPath
             // 
-            txtPath.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPath.Location = new Point(18, 52);
-            txtPath.Name = "txtPath";
-            txtPath.ReadOnly = true;
-            txtPath.Size = new Size(506, 31);
-            txtPath.TabIndex = 1;
+            txtFolder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtFolder.Location = new Point(18, 52);
+            txtFolder.Name = "txtPath";
+            txtFolder.ReadOnly = true;
+            txtFolder.Size = new Size(506, 31);
+            txtFolder.TabIndex = 1;
             // 
             // btnBrowse
             // 
@@ -74,7 +74,7 @@
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 85F));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 15F));
-            tableLayout.Controls.Add(txtPath, 1, 1);
+            tableLayout.Controls.Add(txtFolder, 1, 1);
             tableLayout.Controls.Add(lblPath, 1, 0);
             tableLayout.Controls.Add(btnBrowse, 2, 1);
             tableLayout.Dock = DockStyle.Fill;
@@ -100,7 +100,7 @@
         #endregion
 
         private Label lblPath;
-        private TextBox txtPath;
+        private TextBox txtFolder;
         private Button btnBrowse;
         private TableLayoutPanel tableLayout;
         private FolderBrowserDialog mFolderBrowserDialog;

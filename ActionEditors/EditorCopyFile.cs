@@ -23,11 +23,12 @@ namespace CommonForms
 
         }
 
-        public override void SaveState()
+        public override void SaveState(RealityFrameworks.Action action)
         {
-            //base.SaveState();
-
-            //  UI -> Condition
+            if (action is ActionCopyFile actionCopyFile)
+            {
+                actionCopyFile.Folder = txtFolder.Text;
+            }    
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -36,11 +37,11 @@ namespace CommonForms
             DialogResult res = mFolderBrowserDialog.ShowDialog();
             if (res == DialogResult.OK && !string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
             {
-                txtPath.Text = mFolderBrowserDialog.SelectedPath;
+                txtFolder.Text = mFolderBrowserDialog.SelectedPath;
             }
             else
             {
-                txtPath.Text = string.Empty;
+                txtFolder.Text = string.Empty;
             }
         }
     }
