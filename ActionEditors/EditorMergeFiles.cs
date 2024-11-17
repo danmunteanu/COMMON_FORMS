@@ -16,11 +16,12 @@ namespace CommonForms
             InitializeComponent();
         }
 
-        public override void SaveState()
+        public override void SaveState(RealityFrameworks.Action action)
         {
-            //base.SaveState();
-
-            //  UI -> Condition
+            if (action is ActionMergeFiles amf)
+            {
+                amf.OutputFile = txtMergeName.Text;
+            }
         }
 
         private void LoadState(ActionMergeFiles amf)

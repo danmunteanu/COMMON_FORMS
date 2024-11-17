@@ -1,4 +1,6 @@
-﻿namespace CommonForms
+﻿using RealityFrameworks;
+
+namespace CommonForms
 {
     public partial class EditorIsFolder : EditorBase
     {
@@ -7,11 +9,9 @@
             InitializeComponent();
         }
 
-        public override void SaveState()
+        public override void SaveState(Condition cond)
         {
-            //base.SaveState();
-
-            //  UI -> Condition
+            
         }
     }
 }

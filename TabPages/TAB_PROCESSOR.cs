@@ -4,7 +4,7 @@ namespace CommonForms
 {
     public partial class TAB_Processor : ApplicationPageBase
     {
-        private DialogSelectChange mDlgEditChange = new();
+        private DialogSelectChange? mDlgEditChange = new();
 
         List<string> _conditionNames = new();
         List<string> _actionNames = new();
@@ -15,7 +15,7 @@ namespace CommonForms
             set
             {
                 _conditionNames = value;
-                mDlgEditChange.LoadConditionNames(value);
+                mDlgEditChange?.LoadConditionNames(value);
             }
         }
 
@@ -24,7 +24,7 @@ namespace CommonForms
             get { return _actionNames; }
             set { 
                 _actionNames = value;
-                mDlgEditChange.LoadActionNames(value);
+                mDlgEditChange?.LoadActionNames(value);
             }
         }
 
@@ -33,6 +33,8 @@ namespace CommonForms
             InitializeComponent();
 
             lstProcessor.HorizontalScrollbar = true;
+
+            mDlgEditChange.UpdateUI = this.UpdateUI;
 
             /*****************************/
             /*** PROCESSOR STATE Stuff ***/
@@ -44,6 +46,8 @@ namespace CommonForms
 
         protected override void OnProcessorSet()
         {
+            mDlgEditChange.Processor = this.Processor;
+
             ReloadListOfChanges();
 
             UpdateUI();
@@ -75,6 +79,8 @@ namespace CommonForms
 
         public override void UpdateUI()
         {
+            ReloadListOfChanges();
+
             bool hasFiles = Processor.CountFileNames() > 0;
 
             btnProcess.Enabled = hasFiles;

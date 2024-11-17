@@ -12,8 +12,14 @@ namespace CommonForms
 		//	The active Action editor
         private EditorBase mSelActionEditor = null;
 
+        public FilesProcessor Processor {  get; set; }
+
 		//	Editor's state
         public EditorState State { get; set; }
+
+        public delegate void UpdateCallback();
+
+        public UpdateCallback UpdateUI { get; set; }
 
         public DialogSelectChange()
         {
@@ -23,6 +29,7 @@ namespace CommonForms
 		//	Load Condition Names
         public void LoadConditionNames(List<string> conditionNames)
         {
+            cmbCondition.Items.Clear();
             foreach (var condition in conditionNames)
                 cmbCondition.Items.Add(condition);
             cmbCondition.SelectedIndex = 0;
@@ -31,11 +38,11 @@ namespace CommonForms
 		//	Load Action Names
         public void LoadActionNames(List<string> actionNames)
         {
+            cmbAction.Items.Clear();
             foreach (var action in actionNames)
                 cmbAction.Items.Add(action);
             cmbAction.SelectedIndex = 0;
         }
-
 
         public void LoadState(EditorState state, Change change = null)
         {
@@ -164,10 +171,12 @@ namespace CommonForms
                 if (conditionIsValid && actionIsValid && 
                     cond != null && action != null)
                 {
-                    Change ch = new Change (cond, action);
+                    Processor.AddChange(cond, action);
 
-                    //  Add To Files Processor
-                    //FilesProcessor.
+                    //  Reload list of changes
+                    CallUpdateCallback();
+
+                    this.Close();
                 }
             }
             else if (State == DialogSelectChange.EditorState.Edit)
@@ -187,6 +196,14 @@ namespace CommonForms
                 //  Done! no need to save the change
 
                 //  maybe update description of the change?
+            }
+        }
+
+        private void CallUpdateCallback()
+        {
+            if (UpdateUI != null)
+            {
+                UpdateUI();
             }
         }
     }

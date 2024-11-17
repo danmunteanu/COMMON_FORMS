@@ -36,11 +36,14 @@ namespace CommonForms
             txtCustom.Text = arf.NewFileName;
         }
 
-        public override void SaveState()
+        public override void SaveState(RealityFrameworks.Action action)
         {
-            _action.Extension = txtExtension.Text;
-            _action.Prefix = txtPrefix.Text;
-            _action.NewFileName = txtCustom.Text;
+            if (action is ActionRenameFile arf)
+            {
+                arf.Extension = txtExtension.Text;
+                arf.Prefix = txtPrefix.Text;
+                arf.NewFileName = txtCustom.Text;
+            }
         }
 
         private void chkAddPrefix_CheckedChanged(object sender, EventArgs e)
