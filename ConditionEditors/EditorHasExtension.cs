@@ -24,13 +24,25 @@ namespace CommonForms
             return true;
         }
 
+        public override void LoadState(RealityFrameworks.Condition cond)
+        {
+            if (cond is ConditionHasExtension hasExt)
+            {
+                lstExtensions.Items.Clear();
+                for (int idx = 0; idx < hasExt.CountExtensions(); ++idx)
+                {
+                    lstExtensions.Items.Add(hasExt.GetExtensionAt(idx));
+                }
+            }
+        }
+
         public override void SaveState(RealityFrameworks.Condition cond)
         {
-            if (cond is ConditionHasExtension condHasExt)
+            if (cond is ConditionHasExtension hasExt)
             {
                 foreach (string ext in lstExtensions.Items)
                 {
-                    condHasExt.AddExtension(ext);
+                    hasExt.AddExtension(ext);
                 }
             }
         }

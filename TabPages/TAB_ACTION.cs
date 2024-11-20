@@ -29,10 +29,7 @@ namespace CommonForms.TabPages
             if (panelEditor.Controls.Contains(editor))
                 return;
 
-            editor.Dock = DockStyle.Fill;
-            panelEditor.Controls.Clear();
-            panelEditor.Controls.Add(editor);
-            editor.BringToFront();
+            Utils.AddUserControl(panelEditor, editor);
         }
     }
 }

@@ -59,11 +59,20 @@ namespace CommonForms
                 //  CONDITION editor
                 try
                 {
-                    //  Try to FIND Condition Editor
+                    //  Try to FIND Condition Editor INSTEAD of Creating it
                     //  If it's not found, Create it and Store it in a Dictionary
-
-                    mSelCondEditor = GenericFactory<EditorBase>.CreateByName(change.Condition.GetType().Name);
+                    string condName = change.Condition.GetType().Name;
+                    mSelCondEditor = GenericFactory<EditorBase>.CreateByName(condName);
                     mSelCondEditor.LoadState(change.Condition);
+
+                    int condIndex = cmbCondition.Items.IndexOf(condName);
+                    if (condIndex != -1)
+                    {
+                        cmbCondition.SelectedIndexChanged -= cmbCondition_SelectedIndexChanged;
+                        cmbCondition.SelectedIndex = condIndex;
+                        cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
+                    }
+
                     Utils.AddUserControl(panelCondition, mSelCondEditor);
                 }
                 catch (Exception ex)
@@ -74,8 +83,18 @@ namespace CommonForms
                 //  ACTION Editor
                 try
                 {
-                    mSelActionEditor = GenericFactory<EditorBase>.CreateByName(change.Action.GetType().Name);
+                    string actName = change.Action.GetType().Name;
+                    mSelActionEditor = GenericFactory<EditorBase>.CreateByName(actName);
                     mSelActionEditor.LoadState(change.Action);
+
+                    int actIndex = cmbAction.Items.IndexOf(actName);
+                    if (actIndex != -1)
+                    {
+                        cmbAction.SelectedIndexChanged -= cmbAction_SelectedIndexChanged;
+                        cmbAction.SelectedIndex = actIndex;
+                        cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
+                    }
+
                     Utils.AddUserControl(panelAction, mSelActionEditor);
                 }
                 catch (Exception ex)
@@ -114,6 +133,9 @@ namespace CommonForms
 
         private void cmbAction_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbAction.SelectedIndex == -1)
+                return;
+            
             string actionName = cmbAction.SelectedItem.ToString();
 
             try
