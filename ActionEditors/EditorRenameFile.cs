@@ -5,35 +5,27 @@ namespace CommonForms
 {
     public partial class EditorRenameFile : EditorBase
     {
-        private ActionRenameFile _action = null;
-
-        //  Every Editor should contain:
-        //  - concrete action (member)
-        //  - setter / getter 
-        //  - load from action (concrete)
-        //  - save to action (concrete)
-        //  - save()
-
-        public ActionRenameFile Action
-        {
-            get { return _action; }
-            set
-            {
-                _action = value;
-                LoadState(_action);
-            }
-        }
-
         public EditorRenameFile()
         {
             InitializeComponent();
+
+            chkAddPrefix.Checked = false;
+            txtPrefix.Enabled = false;
+
+            chkExtension.Checked = false;
+            txtExtension.Enabled = false;
+
+            chkCustom.Checked = false;
+            txtCustom.Enabled = false;
         }
 
-        private void LoadState(ActionRenameFile arf)
+        public override void LoadState(RealityFrameworks.Action action)
         {
-            txtExtension.Text = arf.Extension;
-            txtPrefix.Text = arf.Prefix;
-            txtCustom.Text = arf.NewFileName;
+            if (action is ActionRenameFile arf) {
+                txtExtension.Text = arf.Extension;
+                txtPrefix.Text = arf.Prefix;
+                txtCustom.Text = arf.NewFileName;
+            }
         }
 
         public override void SaveState(RealityFrameworks.Action action)
@@ -49,19 +41,28 @@ namespace CommonForms
         private void chkAddPrefix_CheckedChanged(object sender, EventArgs e)
         {
             txtPrefix.Enabled = chkAddPrefix.Checked;
-            chkCustom.Checked = !chkAddPrefix.Checked;
+
+            if (chkAddPrefix.Checked)
+                chkCustom.Checked = false;
         }
 
         private void chkNewExt_CheckedChanged(object sender, EventArgs e)
         {
             txtExtension.Enabled = chkExtension.Checked;
-            chkCustom.Checked = !chkExtension.Checked;
+
+            if (chkExtension.Checked)
+                chkCustom.Checked = false;
         }
 
         private void chkCustom_CheckedChanged(object sender, EventArgs e)
         {
-            chkAddPrefix.Checked = !chkCustom.Checked;
-            chkExtension.Checked = !chkCustom.Checked;
+            txtCustom.Enabled = chkCustom.Checked;
+
+            if (chkCustom.Checked)
+            {
+                chkAddPrefix.Checked = false;
+                chkExtension.Checked = false;
+            }
         }
     }
 }

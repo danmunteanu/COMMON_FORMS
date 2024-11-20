@@ -46,7 +46,7 @@
             cmbActions.Location = new Point(110, 7);
             cmbActions.Margin = new Padding(4);
             cmbActions.Name = "cmbActions";
-            cmbActions.Size = new Size(172, 33);
+            cmbActions.Size = new Size(223, 33);
             cmbActions.TabIndex = 0;
             cmbActions.SelectedIndexChanged += cmbActions_SelectedIndexChanged;
             // 
@@ -107,7 +107,7 @@
             // 
             tableLayoutActionRow.ColumnCount = 3;
             tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 106F));
-            tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+            tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 231F));
             tableLayoutActionRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutActionRow.Controls.Add(label1, 0, 0);
             tableLayoutActionRow.Controls.Add(cmbActions, 1, 0);

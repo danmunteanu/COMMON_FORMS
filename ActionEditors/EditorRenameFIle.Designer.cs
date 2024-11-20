@@ -34,33 +34,41 @@
             chkAddPrefix = new CheckBox();
             chkExtension = new CheckBox();
             chkCustom = new CheckBox();
+            tableLayoutMain = new TableLayoutPanel();
+            tableLayoutPanelPrefixExt = new TableLayoutPanel();
+            tableLayoutMain.SuspendLayout();
+            tableLayoutPanelPrefixExt.SuspendLayout();
             SuspendLayout();
             // 
             // txtPrefix
             // 
-            txtPrefix.Location = new Point(35, 47);
+            txtPrefix.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtPrefix.Location = new Point(3, 40);
             txtPrefix.Name = "txtPrefix";
-            txtPrefix.Size = new Size(125, 31);
+            txtPrefix.Size = new Size(174, 31);
             txtPrefix.TabIndex = 1;
             // 
             // txtExtension
             // 
-            txtExtension.Location = new Point(226, 47);
+            txtExtension.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtExtension.Location = new Point(183, 40);
             txtExtension.Name = "txtExtension";
-            txtExtension.Size = new Size(151, 31);
+            txtExtension.Size = new Size(194, 31);
             txtExtension.TabIndex = 3;
             // 
             // txtCustom
             // 
-            txtCustom.Location = new Point(35, 168);
+            txtCustom.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtCustom.Location = new Point(58, 147);
             txtCustom.Name = "txtCustom";
-            txtCustom.Size = new Size(342, 31);
+            txtCustom.Size = new Size(486, 31);
             txtCustom.TabIndex = 4;
             // 
             // chkAddPrefix
             // 
+            chkAddPrefix.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkAddPrefix.AutoSize = true;
-            chkAddPrefix.Location = new Point(35, 17);
+            chkAddPrefix.Location = new Point(3, 5);
             chkAddPrefix.Name = "chkAddPrefix";
             chkAddPrefix.Size = new Size(124, 29);
             chkAddPrefix.TabIndex = 6;
@@ -70,8 +78,9 @@
             // 
             // chkExtension
             // 
+            chkExtension.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkExtension.AutoSize = true;
-            chkExtension.Location = new Point(226, 17);
+            chkExtension.Location = new Point(183, 5);
             chkExtension.Name = "chkExtension";
             chkExtension.Size = new Size(182, 29);
             chkExtension.TabIndex = 7;
@@ -81,8 +90,9 @@
             // 
             // chkCustom
             // 
+            chkCustom.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkCustom.AutoSize = true;
-            chkCustom.Location = new Point(35, 138);
+            chkCustom.Location = new Point(58, 108);
             chkCustom.Name = "chkCustom";
             chkCustom.Size = new Size(156, 29);
             chkCustom.TabIndex = 8;
@@ -90,18 +100,56 @@
             chkCustom.UseVisualStyleBackColor = true;
             chkCustom.CheckedChanged += chkCustom_CheckedChanged;
             // 
+            // tableLayoutMain
+            // 
+            tableLayoutMain.ColumnCount = 3;
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
+            tableLayoutMain.Controls.Add(tableLayoutPanelPrefixExt, 1, 1);
+            tableLayoutMain.Controls.Add(chkCustom, 1, 2);
+            tableLayoutMain.Controls.Add(txtCustom, 1, 3);
+            tableLayoutMain.Dock = DockStyle.Fill;
+            tableLayoutMain.Location = new Point(0, 0);
+            tableLayoutMain.Name = "tableLayoutMain";
+            tableLayoutMain.RowCount = 5;
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutMain.Size = new Size(602, 260);
+            tableLayoutMain.TabIndex = 9;
+            // 
+            // tableLayoutPanelPrefixExt
+            // 
+            tableLayoutPanelPrefixExt.ColumnCount = 3;
+            tableLayoutPanelPrefixExt.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+            tableLayoutPanelPrefixExt.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutPanelPrefixExt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelPrefixExt.Controls.Add(chkAddPrefix, 0, 0);
+            tableLayoutPanelPrefixExt.Controls.Add(txtPrefix, 0, 1);
+            tableLayoutPanelPrefixExt.Controls.Add(chkExtension, 1, 0);
+            tableLayoutPanelPrefixExt.Controls.Add(txtExtension, 1, 1);
+            tableLayoutPanelPrefixExt.Dock = DockStyle.Fill;
+            tableLayoutPanelPrefixExt.Location = new Point(58, 23);
+            tableLayoutPanelPrefixExt.Name = "tableLayoutPanelPrefixExt";
+            tableLayoutPanelPrefixExt.RowCount = 2;
+            tableLayoutPanelPrefixExt.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelPrefixExt.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelPrefixExt.Size = new Size(486, 74);
+            tableLayoutPanelPrefixExt.TabIndex = 10;
+            // 
             // EditorRenameFile
             // 
-            Controls.Add(chkCustom);
-            Controls.Add(chkExtension);
-            Controls.Add(chkAddPrefix);
-            Controls.Add(txtCustom);
-            Controls.Add(txtExtension);
-            Controls.Add(txtPrefix);
+            Controls.Add(tableLayoutMain);
             Name = "EditorRenameFile";
-            Size = new Size(483, 268);
+            Size = new Size(602, 260);
+            tableLayoutMain.ResumeLayout(false);
+            tableLayoutMain.PerformLayout();
+            tableLayoutPanelPrefixExt.ResumeLayout(false);
+            tableLayoutPanelPrefixExt.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -111,5 +159,7 @@
         private CheckBox chkAddPrefix;
         private CheckBox chkExtension;
         private CheckBox chkCustom;
+        private TableLayoutPanel tableLayoutMain;
+        private TableLayoutPanel tableLayoutPanelPrefixExt;
     }
 }
