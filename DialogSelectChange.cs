@@ -165,6 +165,7 @@ namespace CommonForms
 
                 } else
                 {
+                    MessageBox.Show("Condition Editor State is not valid.");
                     //  FOR some reason, stack is empty; TO FIX later
                     //MessageBox.Show(mSelectedActionEditor.PopError());
 
@@ -186,6 +187,7 @@ namespace CommonForms
                     }
                     else
                     {
+                        MessageBox.Show("Action Editor State is not valid");
                         //  Update status on Action editor
                     }
                 }

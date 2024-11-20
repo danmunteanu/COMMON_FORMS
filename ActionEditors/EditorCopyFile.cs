@@ -1,26 +1,20 @@
 ﻿using RealityFrameworks;
-using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace CommonForms
 {
     public partial class EditorCopyFile : EditorBase
     {
-        ActionCopyFile _action = null;
-
-        public ActionCopyFile Action
-        {
-            get { return _action; } set { _action = value; LoadState(_action); }
-        }
-
         public EditorCopyFile()
         {
             InitializeComponent();
         }
 
-        private void LoadState(ActionCopyFile action)
+        public override void LoadState(RealityFrameworks.Action action)
         {
-
+            if (action is ActionCopyFile actionCopyFile)
+            {
+                txtFolder.Text = actionCopyFile.Folder;
+            }
         }
 
         public override void SaveState(RealityFrameworks.Action action)

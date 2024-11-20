@@ -22,7 +22,8 @@ namespace CommonForms
         public List<string> ActionNames
         {
             get { return _actionNames; }
-            set { 
+            set
+            {
                 _actionNames = value;
                 mDlgEditChange?.LoadActionNames(value);
             }
@@ -116,6 +117,12 @@ namespace CommonForms
         private void btnEdit_Click(object sender, EventArgs e)
         {
             OnEditSelection();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Processor.ClearChanges();
+            UpdateUI();
         }
     }
 }

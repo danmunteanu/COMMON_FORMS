@@ -95,6 +95,7 @@
             btnClear.TabIndex = 2;
             btnClear.Text = "CLEAR";
             btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // btnProcess
             // 
