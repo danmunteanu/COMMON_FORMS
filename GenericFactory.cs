@@ -6,18 +6,7 @@ namespace CommonForms
     {
         public delegate BaseClass Creator();
 
-        private static readonly Dictionary<string, Creator> _factoryByName =
-            new Dictionary<string, Creator>
-            {
-                //  CONDITION Editors
-                //{ "HasExtension", () => new EditorHasExtension() },
-                //{ "IsFolder", () => new EditorIsFolder() },
-
-                //  ACTION Editors
-                //{ "RenameFile", () => new EditorRenameFile() },
-                //{ "MergeFiles", () => new EditorMergeFiles() },
-                //{ "CopyFile", () => new EditorCopyFile() }
-            };
+        private static readonly Dictionary<string, Creator> _factoryByName = new();
 
         public static void RegisterCreatorByName(string id, Creator creator)
         {

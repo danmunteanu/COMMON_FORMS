@@ -30,6 +30,11 @@
 
         protected Stack<string> mErrorStack = new();
 
+        public void PushError(string error)
+        {
+            mErrorStack.Push(error);
+        }
+
         public string PopError()
         {
             return mErrorStack.Pop();

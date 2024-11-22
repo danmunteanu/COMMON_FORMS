@@ -9,6 +9,24 @@ namespace CommonForms
             InitializeComponent();
         }
 
+        public override bool ValidateState()
+        {
+            //  must be set
+            if (string.IsNullOrWhiteSpace(txtFolder.Text))
+            {
+                PushError("Select the folder where to copy files");
+                return false;
+            }
+
+            if (!Path.Exists(txtFolder.Text))
+            {
+                PushError("Folder must exist.");
+                return false;
+            }
+
+            return true;
+        }
+
         public override void LoadState(RealityFrameworks.Action action)
         {
             if (action is ActionCopyFile actionCopyFile)

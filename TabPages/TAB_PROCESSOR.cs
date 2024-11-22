@@ -35,11 +35,7 @@ namespace CommonForms
 
             lstProcessor.HorizontalScrollbar = true;
 
-            mDlgEditChange.UpdateUI = this.UpdateUI;
-
-            /*****************************/
-            /*** PROCESSOR STATE Stuff ***/
-            /*****************************/
+            mDlgEditChange.Reload = () => { ReloadProcessor(); UpdateUI(); };
 
             //mFilesProcessor.AddFolder(@"E:\EXILE_3.25", true);
             //mFilesProcessor.AddFolder(@"e:\Path of Building\Data\", true);
@@ -49,7 +45,7 @@ namespace CommonForms
         {
             mDlgEditChange.Processor = this.Processor;
 
-            ReloadListOfChanges();
+            ReloadProcessor();
 
             UpdateUI();
         }
@@ -66,9 +62,11 @@ namespace CommonForms
 
             if (Processor == null)
                 return;
+
+            btnEdit.Enabled = lstProcessor.SelectedIndex != -1;
         }
 
-        private void ReloadListOfChanges()
+        private void ReloadProcessor()
         {
             lstProcessor.Items.Clear();
             for (int idx = 0; idx < mFilesProcessor.CountChanges(); idx++)
@@ -80,11 +78,15 @@ namespace CommonForms
 
         public override void UpdateUI()
         {
-            ReloadListOfChanges();
-
             bool hasFiles = Processor.CountFileNames() > 0;
+            bool hasChanges = Processor.CountChanges() > 0;
+            bool hasChangeSelected = lstProcessor.SelectedIndex != -1;
 
             btnProcess.Enabled = hasFiles;
+
+            btnAdd.Enabled = true;
+            btnEdit.Enabled = hasChangeSelected;
+            btnClear.Enabled = hasChanges;
         }
 
         private void btnProcess_Click(object sender, EventArgs e)
@@ -121,8 +123,15 @@ namespace CommonForms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            Processor.ClearChanges();
-            UpdateUI();
+            string title = "Heads up!";
+            string msg = string.Format("You are about to remove {0} change(s) from the processor.\n\nAre you sure you want to continue?", Processor.CountChanges());
+            DialogResult res = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (res == DialogResult.Yes)
+            {
+                Processor.ClearChanges();
+                ReloadProcessor();
+                UpdateUI();
+            }
         }
     }
 }

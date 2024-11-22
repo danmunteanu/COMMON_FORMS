@@ -1,4 +1,5 @@
 ﻿using RealityFrameworks;
+using System.Windows.Forms;
 
 namespace CommonForms
 {
@@ -7,19 +8,19 @@ namespace CommonForms
         public enum EditorState { Add, Edit };
 
 		//	The active Condition editor
-        private EditorBase mSelCondEditor = null;
-		
-		//	The active Action editor
-        private EditorBase mSelActionEditor = null;
+        private EditorBase? mSelCondEditor = null;
 
-        public FilesProcessor Processor {  get; set; }
+        //	The active Action editor
+        private EditorBase? mSelActionEditor = null;
+
+        public FilesProcessor? Processor {  get; set; }
 
 		//	Editor's state
         public EditorState State { get; set; }
 
-        public delegate void UpdateCallback();
+        public delegate void ReloadCallback();
 
-        public UpdateCallback UpdateUI { get; set; }
+        public ReloadCallback? Reload { get; set; }
 
         public DialogSelectChange()
         {
@@ -44,64 +45,87 @@ namespace CommonForms
             cmbAction.SelectedIndex = 0;
         }
 
+        private void LoadAddState()
+        {
+            btnSubmit.Text = "ADD";
+            Text = "Add Change";
+
+            //  Clear Editor Condition
+            panelCondition.Controls.Clear();
+
+            //  Clear Editor Action
+            panelAction.Controls.Clear();
+
+            //  Select first Condition
+            if (cmbCondition.Items.Count > 0)
+                cmbCondition.SelectedIndex = -1;
+
+            //  Select first Action
+            if (cmbAction.Items.Count > 0)
+                cmbAction.SelectedIndex = -1;
+        }
+
+        private void LoadEditState(Change ch)
+        {
+            btnSubmit.Text = "UPDATE";
+            Text = "Edit Change";
+
+            if (ch == null)
+                return;
+
+            //  CONDITION editor
+            try
+            {
+                //  Try to FIND Condition Editor INSTEAD of Creating it
+                //  If it's not found, Create it and Store it in a Dictionary
+                string condName = ch.Condition.GetType().Name;
+                mSelCondEditor = GenericFactory<EditorBase>.CreateByName(condName);
+                mSelCondEditor.LoadState(ch.Condition);
+
+                int condIndex = cmbCondition.Items.IndexOf(condName);
+                if (condIndex != -1)
+                {
+                    cmbCondition.SelectedIndexChanged -= cmbCondition_SelectedIndexChanged;
+                    cmbCondition.SelectedIndex = condIndex;
+                    cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
+                }
+
+                Utils.AddUserControl(panelCondition, mSelCondEditor);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            //  ACTION Editor
+            try
+            {
+                string actName = ch.Action.GetType().Name;
+                mSelActionEditor = GenericFactory<EditorBase>.CreateByName(actName);
+                mSelActionEditor.LoadState(ch.Action);
+
+                int actIndex = cmbAction.Items.IndexOf(actName);
+                if (actIndex != -1)
+                {
+                    cmbAction.SelectedIndexChanged -= cmbAction_SelectedIndexChanged;
+                    cmbAction.SelectedIndex = actIndex;
+                    cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
+                }
+
+                Utils.AddUserControl(panelAction, mSelActionEditor);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         public void LoadState(EditorState state, Change change = null)
         {
             if (state == EditorState.Add)
-            {
-                btnSubmit.Text = "ADD";
-                Text = "Add Change";
-            }
-            if (state == EditorState.Edit)
-            {
-                btnSubmit.Text = "UPDATE";
-                Text = "Edit Change";
-
-                //  CONDITION editor
-                try
-                {
-                    //  Try to FIND Condition Editor INSTEAD of Creating it
-                    //  If it's not found, Create it and Store it in a Dictionary
-                    string condName = change.Condition.GetType().Name;
-                    mSelCondEditor = GenericFactory<EditorBase>.CreateByName(condName);
-                    mSelCondEditor.LoadState(change.Condition);
-
-                    int condIndex = cmbCondition.Items.IndexOf(condName);
-                    if (condIndex != -1)
-                    {
-                        cmbCondition.SelectedIndexChanged -= cmbCondition_SelectedIndexChanged;
-                        cmbCondition.SelectedIndex = condIndex;
-                        cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
-                    }
-
-                    Utils.AddUserControl(panelCondition, mSelCondEditor);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-                //  ACTION Editor
-                try
-                {
-                    string actName = change.Action.GetType().Name;
-                    mSelActionEditor = GenericFactory<EditorBase>.CreateByName(actName);
-                    mSelActionEditor.LoadState(change.Action);
-
-                    int actIndex = cmbAction.Items.IndexOf(actName);
-                    if (actIndex != -1)
-                    {
-                        cmbAction.SelectedIndexChanged -= cmbAction_SelectedIndexChanged;
-                        cmbAction.SelectedIndex = actIndex;
-                        cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
-                    }
-
-                    Utils.AddUserControl(panelAction, mSelActionEditor);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
+                LoadAddState();
+            else if (state == EditorState.Edit)
+                LoadEditState(change);
 
             mSelCondEditor?.Select();
         }
@@ -113,8 +137,11 @@ namespace CommonForms
 
         private void cmbCondition_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbCondition.SelectedIndex == -1)
+            if (cmbCondition.SelectedIndex == -1 || cmbCondition.SelectedItem == null)
+            {
+                mSelCondEditor = null;
                 return;
+            }
 
             string condName = cmbCondition.SelectedItem.ToString();
 
@@ -126,6 +153,7 @@ namespace CommonForms
             }
             catch (Exception ex)
             {
+                panelCondition.Controls.Clear();
                 MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
@@ -133,8 +161,11 @@ namespace CommonForms
 
         private void cmbAction_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbAction.SelectedIndex == -1)
+            if (cmbAction.SelectedIndex == -1 || cmbAction.SelectedItem == null)
+            {
+                mSelActionEditor = null;
                 return;
+            }
             
             string actionName = cmbAction.SelectedItem.ToString();
 
@@ -145,90 +176,124 @@ namespace CommonForms
             }
             catch (Exception ex)
             {
+                panelAction.Controls.Clear();
                 MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private void HandleAdd()
         {
-            RealityFrameworks.Condition? cond = null;    //  create condition
-            RealityFrameworks.Action? action = null;   //  create action
+            //  Condition to be created
+            RealityFrameworks.Condition? cond = null;
 
-            if (State == DialogSelectChange.EditorState.Add)
+            //  Action to be created
+            RealityFrameworks.Action? action = null;
+
+            string errTitle = string.Empty;
+            string errMsg = string.Empty;
+
+            if (mSelCondEditor == null)
             {
-                bool conditionIsValid = mSelCondEditor.ValidateState();
-                if (conditionIsValid)
-                {
-                    //  Create New Condition by Name
-                    cond = GenericFactory<Condition>.CreateByName(cmbCondition.SelectedItem.ToString());
-                    mSelCondEditor.SaveState(cond);
+                errTitle = "Heads up!";
+                errMsg = "Please select a condition first!";
+                MessageBox.Show(errMsg, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                } else
-                {
-                    MessageBox.Show("Condition Editor State is not valid.");
-                    //  FOR some reason, stack is empty; TO FIX later
-                    //MessageBox.Show(mSelectedActionEditor.PopError());
+            if (mSelActionEditor == null)
+            {
+                errTitle = "Heads up!";
+                errMsg = "Please select an action first!";
+                MessageBox.Show(errMsg, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                    //  Update Status on Condition Editor
-                    //while (mSelectedConditionEditor.HasErrors())
-                    //{
-                    //    MessageBox.Show(mSelectedActionEditor.PopError());
-                    //}
+            bool conditionIsValid = mSelCondEditor.ValidateState();
+            if (conditionIsValid && cmbCondition.SelectedItem != null)
+            {
+                //  Create New Condition by Name
+                cond = GenericFactory<Condition>.CreateByName(cmbCondition.SelectedItem.ToString());
+                mSelCondEditor.SaveState(cond);
+
+            }
+            else
+            {
+                errTitle = "Condition not valid";
+                errMsg = string.Empty;
+                while (mSelCondEditor.HasErrors())
+                {
+                    if (!string.IsNullOrEmpty(errMsg))
+                        errMsg += "\n\n";
+                    errMsg += mSelCondEditor.PopError();
                 }
+                MessageBox.Show(errMsg, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-                bool actionIsValid = false;
-                if (conditionIsValid)
+            bool actionIsValid = false;
+            if (conditionIsValid)
+            {
+                actionIsValid = mSelActionEditor.ValidateState();
+                if (actionIsValid && cmbAction.SelectedItem != null)
                 {
-                    actionIsValid = mSelActionEditor.Validate();
-                    if (actionIsValid)
-                    {
-                        action = GenericFactory<RealityFrameworks.Action>.CreateByName(cmbAction.SelectedItem.ToString());
-                        mSelActionEditor.SaveState(action);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Action Editor State is not valid");
-                        //  Update status on Action editor
-                    }
+                    action = GenericFactory<RealityFrameworks.Action>.CreateByName(cmbAction.SelectedItem.ToString());
+                    mSelActionEditor.SaveState(action);
                 }
-
-                if (conditionIsValid && actionIsValid && 
-                    cond != null && action != null)
+                else
                 {
-                    Processor.AddChange(cond, action);
-
-                    //  Reload list of changes
-                    CallUpdateCallback();
-
-                    this.Close();
+                    errTitle = "Action not valid";
+                    errMsg = string.Empty;
+                    while (mSelActionEditor.HasErrors())
+                    {
+                        if (!string.IsNullOrEmpty(errMsg))
+                            errMsg += "\n\n";
+                        errMsg += mSelActionEditor.PopError();
+                    }
+                    MessageBox.Show(errMsg, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else if (State == DialogSelectChange.EditorState.Edit)
+
+            if (conditionIsValid && actionIsValid && cond != null && action != null)
             {
-                //  Edit Stuff
+                Processor?.AddChange(cond, action);
 
-                //  editor already has a Condition set
-                //  get editorCondition -> editorCond
-                //  editorCond.Condition = condition
-                //  editorCond.SaveState(); //  UI fields to condition
+                //  Notify tab to reload and update ui
+                CallReloadCallback();
 
-                //  editor already has an action set
-                //  get editorAction -> editorAct
-                //  editorAct.Action = action
-                //  editorAct.SaveState(); //   UI fields to action
-
-                //  Done! no need to save the change
-
-                //  maybe update description of the change?
+                this.Close();
             }
         }
 
-        private void CallUpdateCallback()
+        private void HandleEdit()
         {
-            if (UpdateUI != null)
-            {
-                UpdateUI();
-            }
+            //  Edit Stuff
+
+            //  editor already has a Condition set
+            //  get editorCondition -> editorCond
+            //  editorCond.Condition = condition
+            //  editorCond.SaveState(); //  UI fields to condition
+
+            //  editor already has an action set
+            //  get editorAction -> editorAct
+            //  editorAct.Action = action
+            //  editorAct.SaveState(); //   UI fields to action
+
+            //  Done! no need to save the change
+
+            //  maybe update description of the change?
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (State == DialogSelectChange.EditorState.Add)
+                HandleAdd();
+            else if (State == DialogSelectChange.EditorState.Edit)
+                HandleEdit();            
+        }
+
+        private void CallReloadCallback()
+        {
+            if (Reload != null)
+                Reload();
         }
     }
 }
