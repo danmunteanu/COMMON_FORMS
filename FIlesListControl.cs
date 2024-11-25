@@ -90,16 +90,6 @@
             lblStatus.Text = message;
         }
 
-        /// <summary>
-        /// Wraps the call to <c>UpdateStatus</c> performs a null value check
-        /// </summary>
-        /// <param name="message">The message passed to the call</param>
-        private void CallUpdateStatus(string message)
-        {
-            if (UpdateStatus != null)
-                UpdateStatus(message);
-        }
-
         private void CallUpdateUI()
         {
             if (DelegateUpdateUI != null)
@@ -364,6 +354,7 @@
             if (added)
             {
                 ReloadFilesList();
+                CallUpdateUI();
             }
 
         }
