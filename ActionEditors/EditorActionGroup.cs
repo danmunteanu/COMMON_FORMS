@@ -35,7 +35,7 @@ namespace CommonForms.ActionEditors
 
             btnPrev.Enabled = _actionIndex > 0;
             btnNext.Enabled = _actionIndex < count - 1;
-            btnDel.Enabled = _actionIndex >= 0 && _actionIndex < count;
+            btnDel.Enabled = _actionIndex >= 0 && _actionIndex < count && count > 1;
 
             if (count > 0)
             {
@@ -84,13 +84,15 @@ namespace CommonForms.ActionEditors
             if (_actionGroup == null)
                 return;
 
-            DialogResult answer = MessageBox.Show("Delete?", "Are you sure?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            string msg = string.Format("Delete {0}?", _actionGroup.GetActionAt(_actionIndex).GetType().Name);
+            string title = "Confirmation";
+            DialogResult answer = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (answer == DialogResult.Yes)
             {
                 int count = _actionGroup.CountActions();
                 if (count == 1)
                 {
-                    MessageBox.Show("Must have at least one action in group");
+                    MessageBox.Show("Must leave at least one action in group.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
