@@ -184,11 +184,11 @@
             // 
             // btnClose
             // 
-            btnClose.Anchor = AnchorStyles.Right;
-            btnClose.Location = new Point(268, 3);
+            btnClose.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnClose.Location = new Point(267, 3);
             btnClose.Margin = new Padding(1);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(117, 40);
+            btnClose.Size = new Size(118, 40);
             btnClose.TabIndex = 48;
             btnClose.Text = "CLOSE";
             btnClose.UseVisualStyleBackColor = true;
@@ -196,10 +196,11 @@
             // 
             // btnSubmit
             // 
-            btnSubmit.Location = new Point(147, 1);
+            btnSubmit.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSubmit.Location = new Point(147, 3);
             btnSubmit.Margin = new Padding(1);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(117, 40);
+            btnSubmit.Size = new Size(118, 40);
             btnSubmit.TabIndex = 47;
             btnSubmit.Text = "ADD / EDIT";
             btnSubmit.UseVisualStyleBackColor = true;

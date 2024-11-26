@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
     public class Utils
     {
@@ -20,19 +13,6 @@ namespace CommonForms
             panel.Controls.Add(control);
             control.BringToFront();
         }
-
-        //  load action names' list
-        public static List<string> GetConditionIDs()
-        {
-            List<string> ids = new();
-
-            
-
-            return ids;
-        }
-
-
-        //  load condition names' list
 
         /*
          *  Does a string start with a date prefix?

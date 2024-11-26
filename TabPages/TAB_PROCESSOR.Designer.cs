@@ -35,22 +35,25 @@
             btnProcess = new Button();
             lstProcessor = new ListBox();
             tableLayoutMain = new TableLayoutPanel();
+            btnReload = new Button();
             tableLayoutButtons.SuspendLayout();
             tableLayoutMain.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutButtons
             // 
-            tableLayoutButtons.ColumnCount = 4;
+            tableLayoutButtons.ColumnCount = 5;
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
             tableLayoutButtons.Controls.Add(btnAdd, 0, 0);
             tableLayoutButtons.Controls.Add(btnEdit, 1, 0);
-            tableLayoutButtons.Controls.Add(btnClear, 3, 0);
+            tableLayoutButtons.Controls.Add(btnClear, 4, 0);
+            tableLayoutButtons.Controls.Add(btnReload, 2, 0);
             tableLayoutButtons.Dock = DockStyle.Fill;
-            tableLayoutButtons.Location = new Point(2, 202);
+            tableLayoutButtons.Location = new Point(2, 232);
             tableLayoutButtons.Margin = new Padding(2);
             tableLayoutButtons.Name = "tableLayoutButtons";
             tableLayoutButtons.RowCount = 1;
@@ -100,7 +103,7 @@
             // btnProcess
             // 
             btnProcess.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnProcess.Location = new Point(2, 490);
+            btnProcess.Location = new Point(2, 487);
             btnProcess.Margin = new Padding(2);
             btnProcess.Name = "btnProcess";
             btnProcess.Size = new Size(999, 43);
@@ -113,7 +116,7 @@
             // 
             lstProcessor.Dock = DockStyle.Fill;
             lstProcessor.FormattingEnabled = true;
-            lstProcessor.Location = new Point(3, 4);
+            lstProcessor.Location = new Point(3, 34);
             lstProcessor.Margin = new Padding(3, 4, 3, 4);
             lstProcessor.Name = "lstProcessor";
             lstProcessor.Size = new Size(997, 192);
@@ -125,20 +128,32 @@
             // 
             tableLayoutMain.ColumnCount = 1;
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutMain.Controls.Add(lstProcessor, 0, 0);
-            tableLayoutMain.Controls.Add(btnProcess, 0, 3);
-            tableLayoutMain.Controls.Add(tableLayoutButtons, 0, 1);
+            tableLayoutMain.Controls.Add(lstProcessor, 0, 1);
+            tableLayoutMain.Controls.Add(btnProcess, 0, 4);
+            tableLayoutMain.Controls.Add(tableLayoutButtons, 0, 2);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Margin = new Padding(2);
             tableLayoutMain.Name = "tableLayoutMain";
-            tableLayoutMain.RowCount = 4;
+            tableLayoutMain.RowCount = 6;
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 3F));
             tableLayoutMain.Size = new Size(1003, 536);
             tableLayoutMain.TabIndex = 43;
+            // 
+            // btnReload
+            // 
+            btnReload.Location = new Point(133, 3);
+            btnReload.Name = "btnReload";
+            btnReload.Size = new Size(34, 30);
+            btnReload.TabIndex = 3;
+            btnReload.Text = "↻";
+            btnReload.UseVisualStyleBackColor = true;
+            btnReload.Click += btnReload_Click;
             // 
             // TAB_Processor
             // 
@@ -161,5 +176,6 @@
         private Button btnProcess;
         private ListBox lstProcessor;
         private TableLayoutPanel tableLayoutMain;
+        private Button btnReload;
     }
 }

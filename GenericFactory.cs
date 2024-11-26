@@ -23,5 +23,15 @@ namespace CommonForms
             string message = string.Format("There is no creator registered for {0}.", id);
             throw new InvalidOperationException(message);
         }
+
+        public static int CountNames()
+        {
+            return _factoryByName.Count;
+        }
+
+        public static string GetNameAt(int idx)
+        {
+            return _factoryByName.ElementAt(idx).Key;
+        }
     }
 }
