@@ -5,7 +5,6 @@ namespace CommonForms
 {
     public partial class DialogSelectChange : Form
     {
-        public enum EditorState { Add, Edit };
 
 		//	The active Condition editor
         private EditorBase? mSelCondEditor = null;
@@ -15,12 +14,15 @@ namespace CommonForms
 
         public FilesProcessor? Processor {  get; set; }
 
+        //  States the Editor can be in (Add or Edit)
+        public enum EditorState { Add, Edit };
+
 		//	Editor's state
         public EditorState State { get; set; }
 
-        public delegate void ReloadCallback();
-
-        public ReloadCallback? Reload { get; set; }
+        //  The callback for when something has been modified
+        public delegate void OnModifiedCallback();
+        public OnModifiedCallback? OnModified { get; set; }
 
         public DialogSelectChange()
         {
@@ -47,6 +49,7 @@ namespace CommonForms
 
         private void LoadAddState()
         {
+            //  get these strings from localization
             btnSubmit.Text = "ADD";
             Text = "Add Change";
 
@@ -257,7 +260,7 @@ namespace CommonForms
                 Processor?.AddChange(cond, action);
 
                 //  Notify tab to reload and update ui
-                CallReloadCallback();
+                CallModifiedCallback();
 
                 this.Close();
             }
@@ -290,10 +293,10 @@ namespace CommonForms
                 HandleEdit();            
         }
 
-        private void CallReloadCallback()
+        private void CallModifiedCallback()
         {
-            if (Reload != null)
-                Reload();
+            if (OnModified != null)
+                OnModified();
         }
     }
 }
