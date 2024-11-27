@@ -9,31 +9,38 @@
 
         //  DELEGATES
         //  this will be called when pages have to update their UI
-        public UpdateUIDelegate DelegateUpdateUI { get; set; } = null;
+        public UpdateUIDelegate? UpdateUICallback { get; set; } = null;
 
         //  this is called when the progress bar needs to be updated
         //  the list component updates the local progress bar first 
         //  but if you need to update progress somewhere else, be my guest
-        public UpdateProgressDelegate DelegateUpdateProgress { get; set; } = null;
+        public UpdateProgressDelegate? UpdateProgressCallback { get; set; } = null;
 
         //  this is called everytime the list selection is changed
-        public SelectionChangedDelegate DelegateSelectionChanged { get; set; } = null;
+        public SelectionChangedDelegate? SelectionChangedCallback { get; set; } = null;
 
         /// <summary>
         /// Should enable or disable usage of the progress bar - later.
         /// </summary>
         /// 
         private bool _useProgressBar = true;
-        public bool UseProgressBar { get { return _useProgressBar; } set { _useProgressBar = value; OnUseProgressBarSet(); } }
+        public bool UseProgressBar { 
+            get { return _useProgressBar; } 
+            set { _useProgressBar = value; OnUseProgressBarSet(); } 
+        }
 
         private bool _useStatus = true;
-        public bool UseStatus { get { return _useStatus; } set { _useStatus = value; OnUseStatusSet(); } }
+        public bool UseStatus { 
+            get { return _useStatus; } 
+            set { _useStatus = value; OnUseStatusSet(); } 
+        }
 
         /// <summary>
         /// Sets the status string
         /// </summary>
         public string Status
         {
+            get { return lblStatus.Text; } 
             set { lblStatus.Text = value; }
         }
 
@@ -57,8 +64,8 @@
         /// <summary>
         /// The file filters used to add files to the list.
         /// </summary>
-        private string[] mFileFilters = [];
-        public string[] FileFilters
+        private List<string> mFileFilters = new();
+        public List<string> FileFilters
         {
             get { return mFileFilters; }
             set { mFileFilters = value; }
@@ -75,7 +82,7 @@
             lstFiles.SelectionMode = SelectionMode.None;
 
             //  provide a default local status updater
-            UpdateStatus = this.UpdateStatusLocal;
+            UpdateStatusCallback = this.UpdateStatusLocal;
 
             //  empty the status
             CallUpdateStatus(string.Empty);
@@ -92,8 +99,8 @@
 
         private void CallUpdateUI()
         {
-            if (DelegateUpdateUI != null)
-                DelegateUpdateUI();
+            if (UpdateUICallback != null)
+                UpdateUICallback();
         }
 
         /// <summary>
@@ -103,8 +110,8 @@
         /// <param name="item"></param>
         private void CallOnSelectionChanged(string item)
         {
-            if (DelegateSelectionChanged != null)
-                DelegateSelectionChanged(item);
+            if (SelectionChangedCallback != null)
+                SelectionChangedCallback(item);
         }
 
         /// <summary>
@@ -113,8 +120,8 @@
         /// <param name="percent"></param>
         private void CallUpdateProgress(int percent)
         {
-            if (DelegateUpdateProgress != null)
-                DelegateUpdateProgress(percent);
+            if (UpdateProgressCallback != null)
+                UpdateProgressCallback(percent);
         }
 
         /// <summary>
@@ -203,7 +210,7 @@
 
             //  Add file names to mFilesToProcess
             DirectoryInfo di = new(folder);
-            IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters);
+            IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters.ToArray());
             foreach (FileInfo fi in files)
             {
                 Processor.AddFileName(fi.FullName);
@@ -324,7 +331,7 @@
                 {
                     //  Get allowed files from this directory
                     DirectoryInfo di = new(item);
-                    IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters);
+                    IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters.ToArray());
                     foreach (FileInfo fi in files)
                     {
                         if (!mFilesProcessor.Contains(fi.FullName))

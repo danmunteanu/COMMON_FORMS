@@ -6,7 +6,7 @@ namespace CommonForms
     public partial class ApplicationPageBase : UserControl
     {
         public delegate void UpdateStatusDelegate(string message);
-        public UpdateStatusDelegate UpdateStatus { get; set; } = null;
+        public UpdateStatusDelegate UpdateStatusCallback { get; set; } = null;
 
         protected string DefaultOutputFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
 
@@ -58,8 +58,8 @@ namespace CommonForms
 
         protected void CallUpdateStatus(string message)
         {
-            if (UpdateStatus != null)
-                UpdateStatus(message);
+            if (UpdateStatusCallback != null)
+                UpdateStatusCallback(message);
         }
     }
 }
