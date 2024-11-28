@@ -40,7 +40,9 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             btnClose = new Button();
             btnSubmit = new Button();
-            label1 = new Label();
+            chkEnabled = new CheckBox();
+            lblConditionDesc = new Label();
+            lblActionDesc = new Label();
             tableLayoutPanel.SuspendLayout();
             tableLayoutAction.SuspendLayout();
             tableLayoutCondition.SuspendLayout();
@@ -57,7 +59,8 @@
             tableLayoutPanel.Controls.Add(panelAction, 1, 3);
             tableLayoutPanel.Controls.Add(panelCondition, 0, 3);
             tableLayoutPanel.Controls.Add(tableLayoutPanel2, 1, 4);
-            tableLayoutPanel.Controls.Add(label1, 0, 2);
+            tableLayoutPanel.Controls.Add(lblConditionDesc, 0, 2);
+            tableLayoutPanel.Controls.Add(lblActionDesc, 1, 2);
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.Location = new Point(0, 0);
             tableLayoutPanel.Margin = new Padding(1);
@@ -74,10 +77,12 @@
             // 
             // tableLayoutAction
             // 
-            tableLayoutAction.ColumnCount = 1;
+            tableLayoutAction.ColumnCount = 3;
+            tableLayoutAction.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
             tableLayoutAction.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutAction.Controls.Add(lblSelAct, 0, 0);
-            tableLayoutAction.Controls.Add(cmbAction, 0, 1);
+            tableLayoutAction.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+            tableLayoutAction.Controls.Add(lblSelAct, 1, 0);
+            tableLayoutAction.Controls.Add(cmbAction, 1, 1);
             tableLayoutAction.Dock = DockStyle.Fill;
             tableLayoutAction.Location = new Point(490, 20);
             tableLayoutAction.Margin = new Padding(1);
@@ -92,7 +97,7 @@
             // 
             lblSelAct.Anchor = AnchorStyles.Left;
             lblSelAct.AutoSize = true;
-            lblSelAct.Location = new Point(4, 3);
+            lblSelAct.Location = new Point(69, 3);
             lblSelAct.Margin = new Padding(4, 0, 4, 0);
             lblSelAct.Name = "lblSelAct";
             lblSelAct.Size = new Size(75, 25);
@@ -104,19 +109,21 @@
             cmbAction.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             cmbAction.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAction.FormattingEnabled = true;
-            cmbAction.Location = new Point(4, 36);
+            cmbAction.Location = new Point(69, 36);
             cmbAction.Margin = new Padding(4, 5, 4, 5);
             cmbAction.Name = "cmbAction";
-            cmbAction.Size = new Size(480, 33);
+            cmbAction.Size = new Size(235, 33);
             cmbAction.TabIndex = 40;
             cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
             // 
             // tableLayoutCondition
             // 
-            tableLayoutCondition.ColumnCount = 1;
+            tableLayoutCondition.ColumnCount = 3;
+            tableLayoutCondition.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
             tableLayoutCondition.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutCondition.Controls.Add(lblSelCond, 0, 0);
-            tableLayoutCondition.Controls.Add(cmbCondition, 0, 1);
+            tableLayoutCondition.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+            tableLayoutCondition.Controls.Add(lblSelCond, 1, 0);
+            tableLayoutCondition.Controls.Add(cmbCondition, 1, 1);
             tableLayoutCondition.Dock = DockStyle.Fill;
             tableLayoutCondition.Location = new Point(1, 20);
             tableLayoutCondition.Margin = new Padding(1);
@@ -131,7 +138,7 @@
             // 
             lblSelCond.Anchor = AnchorStyles.Left;
             lblSelCond.AutoSize = true;
-            lblSelCond.Location = new Point(4, 3);
+            lblSelCond.Location = new Point(69, 3);
             lblSelCond.Margin = new Padding(4, 0, 4, 0);
             lblSelCond.Name = "lblSelCond";
             lblSelCond.Size = new Size(40, 25);
@@ -143,10 +150,10 @@
             cmbCondition.Dock = DockStyle.Fill;
             cmbCondition.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCondition.FormattingEnabled = true;
-            cmbCondition.Location = new Point(4, 36);
+            cmbCondition.Location = new Point(69, 36);
             cmbCondition.Margin = new Padding(4, 5, 4, 5);
             cmbCondition.Name = "cmbCondition";
-            cmbCondition.Size = new Size(479, 33);
+            cmbCondition.Size = new Size(234, 33);
             cmbCondition.TabIndex = 39;
             cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
             // 
@@ -176,6 +183,7 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
             tableLayoutPanel2.Controls.Add(btnClose, 2, 0);
             tableLayoutPanel2.Controls.Add(btnSubmit, 1, 0);
+            tableLayoutPanel2.Controls.Add(chkEnabled, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(493, 483);
             tableLayoutPanel2.Margin = new Padding(4);
@@ -205,21 +213,42 @@
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(148, 50);
             btnSubmit.TabIndex = 47;
-            btnSubmit.Text = "ADD / EDIT";
+            btnSubmit.Text = "UPDATE";
             btnSubmit.UseVisualStyleBackColor = true;
             btnSubmit.Click += btnSubmit_Click;
             // 
-            // label1
+            // chkEnabled
             // 
-            label1.Anchor = AnchorStyles.Left;
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(4, 109);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(413, 25);
-            label1.TabIndex = 49;
-            label1.Text = "Checks if a file's extension appears in the list below";
+            chkEnabled.Anchor = AnchorStyles.Left;
+            chkEnabled.AutoSize = true;
+            chkEnabled.Location = new Point(3, 14);
+            chkEnabled.Name = "chkEnabled";
+            chkEnabled.Size = new Size(101, 29);
+            chkEnabled.TabIndex = 50;
+            chkEnabled.Text = "Enabled";
+            chkEnabled.UseVisualStyleBackColor = true;
+            // 
+            // lblConditionDesc
+            // 
+            lblConditionDesc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblConditionDesc.AutoSize = true;
+            lblConditionDesc.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblConditionDesc.Location = new Point(4, 109);
+            lblConditionDesc.Margin = new Padding(4, 0, 4, 0);
+            lblConditionDesc.Name = "lblConditionDesc";
+            lblConditionDesc.Size = new Size(481, 25);
+            lblConditionDesc.TabIndex = 49;
+            lblConditionDesc.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // lblActionDesc
+            // 
+            lblActionDesc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblActionDesc.AutoSize = true;
+            lblActionDesc.Location = new Point(492, 109);
+            lblActionDesc.Name = "lblActionDesc";
+            lblActionDesc.Size = new Size(484, 25);
+            lblActionDesc.TabIndex = 50;
+            lblActionDesc.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // DialogSelectChange
             // 
@@ -239,6 +268,7 @@
             tableLayoutCondition.ResumeLayout(false);
             tableLayoutCondition.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -256,6 +286,8 @@
         private TableLayoutPanel tableLayoutCondition;
         private Label lblSelCond;
         private ComboBox cmbCondition;
-        private Label label1;
+        private Label lblConditionDesc;
+        private CheckBox chkEnabled;
+        private Label lblActionDesc;
     }
 }

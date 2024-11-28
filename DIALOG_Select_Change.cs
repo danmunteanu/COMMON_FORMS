@@ -130,6 +130,12 @@ namespace CommonForms
             else if (state == EditorState.Edit)
                 LoadEditState(change);
 
+            lblConditionDesc.Text = change.Condition.Name;
+            lblActionDesc.Text = change.Action.Description;
+            chkEnabled.Enabled = change.Enabled;
+
+            //Checks if a file's extension appears in the list below
+
             mSelCondEditor?.Select();
         }
 
