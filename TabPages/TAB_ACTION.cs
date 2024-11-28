@@ -4,6 +4,8 @@ namespace CommonForms.TabPages
 {
     public partial class TAB_Action : ApplicationPageBase
     {
+        private EditorBase? mSelectedEditor = null;
+
         public TAB_Action()
         {
             InitializeComponent();
@@ -24,12 +26,28 @@ namespace CommonForms.TabPages
 
             //string actionName = (new ActionCopyFile as object).GetType().Name.ToString();
 
-            var editor = GenericFactory<EditorBase>.CreateByName(cmbActions.SelectedItem.ToString());
+            mSelectedEditor = GenericFactory<EditorBase>.CreateByName(cmbActions.SelectedItem.ToString());
 
-            if (panelEditor.Controls.Contains(editor))
+            if (panelEditor.Controls.Contains(mSelectedEditor))
                 return;
 
-            Utils.AddUserControl(panelEditor, editor);
+            Utils.AddUserControl(panelEditor, mSelectedEditor);
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            if (cmbActions.SelectedItem == null) 
+                return;
+
+            if (mSelectedEditor == null)
+                return;
+
+            RealityFrameworks.Action action;
+            action = GenericFactory<RealityFrameworks.Action>.CreateByName(cmbActions.SelectedItem.ToString());
+
+            mSelectedEditor.SaveState(action);
+
+            //  foreach file in list, action.Execute();
         }
     }
 }
