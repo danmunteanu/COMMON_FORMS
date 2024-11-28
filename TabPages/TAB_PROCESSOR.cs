@@ -4,7 +4,7 @@ namespace CommonForms
 {
     public partial class TAB_Processor : ApplicationPageBase
     {
-        private DialogSelectChange? mDlgEditChange = new();
+        private DialogSelectChange mDlgEditChange = new();
 
         List<string> _conditionNames = new();
         List<string> _actionNames = new();
@@ -15,7 +15,7 @@ namespace CommonForms
             set
             {
                 _conditionNames = value;
-                mDlgEditChange?.LoadConditionNames(value);
+                mDlgEditChange.LoadConditionNames(value);
             }
         }
 
@@ -25,7 +25,7 @@ namespace CommonForms
             set
             {
                 _actionNames = value;
-                mDlgEditChange?.LoadActionNames(value);
+                mDlgEditChange.LoadActionNames(value);
             }
         }
 
@@ -35,7 +35,7 @@ namespace CommonForms
 
             lstProcessor.HorizontalScrollbar = true;
 
-            mDlgEditChange.Reload = () => { ReloadProcessor(); UpdateUI(); };
+            mDlgEditChange.OnModified = () => { ReloadProcessor(); UpdateUI(); };
 
             //mFilesProcessor.AddFolder(@"E:\EXILE_3.25", true);
             //mFilesProcessor.AddFolder(@"e:\Path of Building\Data\", true);
@@ -125,8 +125,8 @@ namespace CommonForms
         {
             string title = "Heads up!";
             string msg = string.Format("You are about to remove {0} change(s) from the processor.\n\nAre you sure you want to continue?", Processor.CountChanges());
-            DialogResult res = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (res == DialogResult.Yes)
+            DialogResult answer = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (answer == DialogResult.Yes)
             {
                 Processor.ClearChanges();
                 ReloadProcessor();

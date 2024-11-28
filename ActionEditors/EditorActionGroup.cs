@@ -19,8 +19,8 @@ namespace CommonForms.ActionEditors
             if (action is ActionGroup ag)
             {
                 _actionGroup = ag;
-
                 _actionIndex = 0;
+                
                 LoadActiveAction();
             }
         }
@@ -49,6 +49,7 @@ namespace CommonForms.ActionEditors
 
                 //  create the editor
                 CommonForms.EditorBase editor = GenericFactory<CommonForms.EditorBase>.CreateByName(actionTypeName);
+                //editor.LoadState(currentAction); NOT WORKING
 
                 //  add editor
                 Utils.AddUserControl(panelActiveAction, editor);
