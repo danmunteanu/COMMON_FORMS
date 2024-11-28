@@ -132,7 +132,8 @@ namespace CommonForms
 
             lblConditionDesc.Text = change.Condition.Name;
             lblActionDesc.Text = change.Action.Description;
-            chkEnabled.Enabled = change.Enabled;
+            chkEnabled.Checked = change.Enabled;
+            txtDesc.Text = change.Description;
 
             //Checks if a file's extension appears in the list below
 
