@@ -63,7 +63,10 @@ namespace CommonForms
             if (Processor == null)
                 return;
 
-            btnEdit.Enabled = lstProcessor.SelectedIndex != -1;
+            bool haveSelection = lstProcessor.SelectedIndex != -1;
+
+            btnEdit.Enabled = haveSelection;
+            btnDel.Enabled = haveSelection;
         }
 
         private void ReloadProcessor()
@@ -80,12 +83,13 @@ namespace CommonForms
         {
             bool hasFiles = Processor.CountFileNames() > 0;
             bool hasChanges = Processor.CountChanges() > 0;
-            bool hasChangeSelected = lstProcessor.SelectedIndex != -1;
+            bool hasSelection = lstProcessor.SelectedIndex != -1;
 
             btnProcess.Enabled = hasFiles;
 
             btnAdd.Enabled = true;
-            btnEdit.Enabled = hasChangeSelected;
+            btnEdit.Enabled = hasSelection;
+            btnDel.Enabled = hasSelection;
             btnClear.Enabled = hasChanges;
         }
 
@@ -138,6 +142,11 @@ namespace CommonForms
         {
             ReloadProcessor();
             UpdateUI();
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            //  OnDelSelection();
         }
     }
 }

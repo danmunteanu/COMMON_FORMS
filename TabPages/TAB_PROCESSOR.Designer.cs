@@ -32,33 +32,36 @@
             btnAdd = new Button();
             btnEdit = new Button();
             btnClear = new Button();
+            btnReload = new Button();
             btnProcess = new Button();
             lstProcessor = new ListBox();
             tableLayoutMain = new TableLayoutPanel();
-            btnReload = new Button();
+            btnDel = new Button();
             tableLayoutButtons.SuspendLayout();
             tableLayoutMain.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutButtons
             // 
-            tableLayoutButtons.ColumnCount = 5;
+            tableLayoutButtons.ColumnCount = 6;
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
-            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 94F));
+            tableLayoutButtons.Controls.Add(btnDel, 2, 0);
             tableLayoutButtons.Controls.Add(btnAdd, 0, 0);
             tableLayoutButtons.Controls.Add(btnEdit, 1, 0);
-            tableLayoutButtons.Controls.Add(btnClear, 4, 0);
-            tableLayoutButtons.Controls.Add(btnReload, 2, 0);
+            tableLayoutButtons.Controls.Add(btnClear, 5, 0);
+            tableLayoutButtons.Controls.Add(btnReload, 3, 0);
             tableLayoutButtons.Dock = DockStyle.Fill;
-            tableLayoutButtons.Location = new Point(2, 232);
+            tableLayoutButtons.Location = new Point(2, 290);
             tableLayoutButtons.Margin = new Padding(2);
             tableLayoutButtons.Name = "tableLayoutButtons";
             tableLayoutButtons.RowCount = 1;
             tableLayoutButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutButtons.Size = new Size(999, 36);
+            tableLayoutButtons.Size = new Size(1250, 46);
             tableLayoutButtons.TabIndex = 48;
             // 
             // btnAdd
@@ -68,7 +71,7 @@
             btnAdd.Location = new Point(2, 2);
             btnAdd.Margin = new Padding(2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(61, 32);
+            btnAdd.Size = new Size(61, 42);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "ADD";
             btnAdd.UseVisualStyleBackColor = true;
@@ -81,7 +84,7 @@
             btnEdit.Location = new Point(67, 2);
             btnEdit.Margin = new Padding(2);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(61, 32);
+            btnEdit.Size = new Size(61, 42);
             btnEdit.TabIndex = 1;
             btnEdit.Text = "EDIT";
             btnEdit.UseVisualStyleBackColor = true;
@@ -91,22 +94,33 @@
             // 
             btnClear.Dock = DockStyle.Fill;
             btnClear.Font = new Font("Segoe UI", 7F);
-            btnClear.Location = new Point(926, 2);
+            btnClear.Location = new Point(1158, 2);
             btnClear.Margin = new Padding(2);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(71, 32);
+            btnClear.Size = new Size(90, 42);
             btnClear.TabIndex = 2;
             btnClear.Text = "CLEAR";
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
             // 
+            // btnReload
+            // 
+            btnReload.Location = new Point(199, 4);
+            btnReload.Margin = new Padding(4, 4, 4, 4);
+            btnReload.Name = "btnReload";
+            btnReload.Size = new Size(42, 38);
+            btnReload.TabIndex = 3;
+            btnReload.Text = "↻";
+            btnReload.UseVisualStyleBackColor = true;
+            btnReload.Click += btnReload_Click;
+            // 
             // btnProcess
             // 
             btnProcess.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnProcess.Location = new Point(2, 487);
+            btnProcess.Location = new Point(2, 609);
             btnProcess.Margin = new Padding(2);
             btnProcess.Name = "btnProcess";
-            btnProcess.Size = new Size(999, 43);
+            btnProcess.Size = new Size(1250, 54);
             btnProcess.TabIndex = 47;
             btnProcess.Text = "RUN PROCESSOR";
             btnProcess.UseVisualStyleBackColor = true;
@@ -116,10 +130,11 @@
             // 
             lstProcessor.Dock = DockStyle.Fill;
             lstProcessor.FormattingEnabled = true;
-            lstProcessor.Location = new Point(3, 34);
-            lstProcessor.Margin = new Padding(3, 4, 3, 4);
+            lstProcessor.ItemHeight = 25;
+            lstProcessor.Location = new Point(4, 43);
+            lstProcessor.Margin = new Padding(4, 5, 4, 5);
             lstProcessor.Name = "lstProcessor";
-            lstProcessor.Size = new Size(997, 192);
+            lstProcessor.Size = new Size(1246, 240);
             lstProcessor.TabIndex = 35;
             lstProcessor.SelectedIndexChanged += lstProcessor_SelectedIndexChanged;
             lstProcessor.DoubleClick += lstProcessor_DoubleClick;
@@ -136,32 +151,36 @@
             tableLayoutMain.Margin = new Padding(2);
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 6;
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 250F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 3F));
-            tableLayoutMain.Size = new Size(1003, 536);
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 4F));
+            tableLayoutMain.Size = new Size(1254, 670);
             tableLayoutMain.TabIndex = 43;
             // 
-            // btnReload
+            // btnDel
             // 
-            btnReload.Location = new Point(133, 3);
-            btnReload.Name = "btnReload";
-            btnReload.Size = new Size(34, 30);
-            btnReload.TabIndex = 3;
-            btnReload.Text = "↻";
-            btnReload.UseVisualStyleBackColor = true;
-            btnReload.Click += btnReload_Click;
+            btnDel.Dock = DockStyle.Fill;
+            btnDel.Font = new Font("Segoe UI", 7F);
+            btnDel.Location = new Point(132, 2);
+            btnDel.Margin = new Padding(2);
+            btnDel.Name = "btnDel";
+            btnDel.Size = new Size(61, 42);
+            btnDel.TabIndex = 4;
+            btnDel.Text = "DEL";
+            btnDel.UseVisualStyleBackColor = true;
+            btnDel.Click += btnDel_Click;
             // 
             // TAB_Processor
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutMain);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "TAB_Processor";
-            Size = new Size(1003, 536);
+            Size = new Size(1254, 670);
             tableLayoutButtons.ResumeLayout(false);
             tableLayoutMain.ResumeLayout(false);
             ResumeLayout(false);
@@ -177,5 +196,6 @@
         private ListBox lstProcessor;
         private TableLayoutPanel tableLayoutMain;
         private Button btnReload;
+        private Button btnDel;
     }
 }
