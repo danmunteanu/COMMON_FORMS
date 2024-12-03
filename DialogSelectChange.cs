@@ -121,6 +121,12 @@ namespace CommonForms
             {
                 MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+            //  Fill-in remaining change fields
+            lblConditionDesc.Text = ch.Condition.Name;
+            lblActionDesc.Text = ch.Action.Description;
+            chkEnabled.Checked = ch.Enabled;
+            txtDesc.Text = ch.Description;
         }
 
         public void LoadState(EditorState state, Change change = null)
@@ -129,11 +135,6 @@ namespace CommonForms
                 LoadAddState();
             else if (state == EditorState.Edit)
                 LoadEditState(change);
-
-            lblConditionDesc.Text = change.Condition.Name;
-            lblActionDesc.Text = change.Action.Description;
-            chkEnabled.Checked = change.Enabled;
-            txtDesc.Text = change.Description;
 
             //Checks if a file's extension appears in the list below
 
