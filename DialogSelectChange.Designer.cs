@@ -137,13 +137,15 @@
             // 
             // tableLayoutButtons
             // 
-            tableLayoutButtons.ColumnCount = 3;
+            tableLayoutButtons.ColumnCount = 5;
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 115F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
-            tableLayoutButtons.Controls.Add(btnClose, 2, 0);
-            tableLayoutButtons.Controls.Add(btnSubmit, 1, 0);
-            tableLayoutButtons.Controls.Add(chkEnabled, 0, 0);
+            tableLayoutButtons.Controls.Add(btnClose, 4, 0);
+            tableLayoutButtons.Controls.Add(btnSubmit, 3, 0);
+            tableLayoutButtons.Controls.Add(chkEnabled, 1, 0);
             tableLayoutButtons.Dock = DockStyle.Fill;
             tableLayoutButtons.Location = new Point(4, 690);
             tableLayoutButtons.Margin = new Padding(4);
@@ -179,11 +181,11 @@
             // 
             // chkEnabled
             // 
-            chkEnabled.Anchor = AnchorStyles.Left;
+            chkEnabled.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             chkEnabled.AutoSize = true;
-            chkEnabled.Location = new Point(3, 9);
+            chkEnabled.Location = new Point(53, 9);
             chkEnabled.Name = "chkEnabled";
-            chkEnabled.Size = new Size(101, 29);
+            chkEnabled.Size = new Size(109, 29);
             chkEnabled.TabIndex = 50;
             chkEnabled.Text = "Enabled";
             chkEnabled.UseVisualStyleBackColor = true;

@@ -40,6 +40,7 @@ namespace CommonForms
         {
             if (cond is ConditionHasExtension hasExt)
             {
+                hasExt.ClearExtensions();
                 foreach (string ext in lstExtensions.Items)
                 {
                     hasExt.AddExtension(ext);

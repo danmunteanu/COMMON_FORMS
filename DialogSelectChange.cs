@@ -20,6 +20,8 @@ namespace CommonForms
 		//	Editor's state
         public EditorState State { get; set; }
 
+        private Change Change { get; set; }
+
         //  The callback for when something has been modified
         public delegate void OnModifiedCallback();
         public OnModifiedCallback? OnModified { get; set; }
@@ -131,12 +133,13 @@ namespace CommonForms
 
         public void LoadState(EditorState state, Change change = null)
         {
-            if (state == EditorState.Add)
-                LoadAddState();
-            else if (state == EditorState.Edit)
-                LoadEditState(change);
+            State = state;
+            Change = change;
 
-            //Checks if a file's extension appears in the list below
+            if (State == EditorState.Add)
+                LoadAddState();
+            else if (State == EditorState.Edit)
+                LoadEditState(Change);
 
             mSelCondEditor?.Select();
         }
@@ -278,19 +281,23 @@ namespace CommonForms
         {
             //  Edit Stuff
 
-            //  editor already has a Condition set
-            //  get editorCondition -> editorCond
-            //  editorCond.Condition = condition
-            //  editorCond.SaveState(); //  UI fields to condition
+            if (Change == null || Change.Condition == null || Change.Action == null)
+            {
+                MessageBox.Show("Something has gone wrong with the Change! - it's not valid");
+                return;
+            }
 
-            //  editor already has an action set
-            //  get editorAction -> editorAct
-            //  editorAct.Action = action
-            //  editorAct.SaveState(); //   UI fields to action
+            if (mSelCondEditor != null && mSelCondEditor.ValidateState())
+                mSelCondEditor?.SaveState(Change.Condition);
+            else
+                MessageBox.Show("Invalid Condition Editor State or no Condition Editor selected");
 
-            //  Done! no need to save the change
+            if (mSelActionEditor != null && mSelActionEditor.ValidateState())            
+                mSelActionEditor?.SaveState(Change.Action);
+            else
+                MessageBox.Show("Invalid Action Editor State or no Action editor selected");
 
-            //  maybe update description of the change?
+            this.Close();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
