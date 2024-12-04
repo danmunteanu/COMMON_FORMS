@@ -1,4 +1,4 @@
-﻿namespace CommonForms.TabPages
+﻿namespace CommonForms
 {
     partial class TAB_Action
     {

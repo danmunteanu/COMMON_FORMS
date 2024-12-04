@@ -51,7 +51,6 @@
             // txtMergeName
             // 
             txtMergeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtMergeName.Enabled = false;
             txtMergeName.Location = new Point(2, 59);
             txtMergeName.Margin = new Padding(2);
             txtMergeName.Name = "txtMergeName";

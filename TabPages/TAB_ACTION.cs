@@ -1,6 +1,6 @@
 ﻿using RealityFrameworks;
 
-namespace CommonForms.TabPages
+namespace CommonForms
 {
     public partial class TAB_Action : ApplicationPageBase
     {
