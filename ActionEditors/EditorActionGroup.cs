@@ -1,7 +1,7 @@
 ﻿
 using RealityFrameworks;
 
-namespace CommonForms.ActionEditors
+namespace CommonForms
 {
     public partial class EditorActionGroup : EditorBase
     {
@@ -49,7 +49,7 @@ namespace CommonForms.ActionEditors
 
                 //  create the editor
                 CommonForms.EditorBase editor = GenericFactory<CommonForms.EditorBase>.CreateByName(actionTypeName);
-                //editor.LoadState(currentAction); NOT WORKING
+                editor.LoadState(currentAction);
 
                 //  add editor
                 Utils.AddUserControl(panelActiveAction, editor);

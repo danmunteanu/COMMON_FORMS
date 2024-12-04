@@ -1,4 +1,4 @@
-﻿namespace CommonForms.ActionEditors
+﻿namespace CommonForms
 {
     partial class EditorActionGroup
     {
