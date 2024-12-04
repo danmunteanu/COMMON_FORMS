@@ -274,6 +274,7 @@
             chkDesc.TabIndex = 51;
             chkDesc.Text = "Description:";
             chkDesc.UseVisualStyleBackColor = true;
+            chkDesc.CheckedChanged += chkDesc_CheckedChanged;
             // 
             // tableLayoutEditors
             // 

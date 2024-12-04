@@ -6,18 +6,18 @@ namespace CommonForms
     public partial class DialogSelectChange : Form
     {
 
-		//	The active Condition editor
+        //	The active Condition editor
         private EditorBase? mSelCondEditor = null;
 
         //	The active Action editor
         private EditorBase? mSelActionEditor = null;
 
-        public FilesProcessor? Processor {  get; set; }
+        public FilesProcessor? Processor { get; set; }
 
         //  States the Editor can be in (Add or Edit)
         public enum EditorState { Add, Edit };
 
-		//	Editor's state
+        //	Editor's state
         public EditorState State { get; set; }
 
         private Change Change { get; set; }
@@ -31,7 +31,7 @@ namespace CommonForms
             InitializeComponent();
         }
 
-		//	Load Condition Names
+        //	Load Condition Names
         public void LoadConditionNames(List<string> conditionNames)
         {
             cmbCondition.Items.Clear();
@@ -39,8 +39,8 @@ namespace CommonForms
                 cmbCondition.Items.Add(condition);
             cmbCondition.SelectedIndex = 0;
         }
-		
-		//	Load Action Names
+
+        //	Load Action Names
         public void LoadActionNames(List<string> actionNames)
         {
             cmbAction.Items.Clear();
@@ -186,7 +186,7 @@ namespace CommonForms
                 mSelActionEditor = null;
                 return;
             }
-            
+
             string actionName = cmbAction.SelectedItem.ToString();
 
             try
@@ -298,7 +298,7 @@ namespace CommonForms
             else
                 MessageBox.Show("Invalid Condition Editor State or no Condition Editor selected");
 
-            if (mSelActionEditor != null && mSelActionEditor.ValidateState())            
+            if (mSelActionEditor != null && mSelActionEditor.ValidateState())
                 mSelActionEditor?.SaveState(Change.Action);
             else
                 MessageBox.Show("Invalid Action Editor State or no Action editor selected");
@@ -311,13 +311,20 @@ namespace CommonForms
             if (State == DialogSelectChange.EditorState.Add)
                 HandleAdd();
             else if (State == DialogSelectChange.EditorState.Edit)
-                HandleEdit();            
+                HandleEdit();
         }
 
         private void CallModifiedCallback()
         {
             if (OnModified != null)
                 OnModified();
+        }
+
+        private void chkDesc_CheckedChanged(object sender, EventArgs e)
+        {
+            txtDesc.Enabled = chkDesc.Checked;
+            if (chkDesc.Checked)
+                txtDesc.Select();
         }
     }
 }
