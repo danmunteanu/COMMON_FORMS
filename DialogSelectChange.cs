@@ -63,11 +63,17 @@ namespace CommonForms
 
             //  Select first Condition
             if (cmbCondition.Items.Count > 0)
+            {
                 cmbCondition.SelectedIndex = -1;
+                cmbCondition.SelectedIndex = 0;
+            }
 
             //  Select first Action
             if (cmbAction.Items.Count > 0)
+            {
                 cmbAction.SelectedIndex = -1;
+                cmbAction.SelectedIndex = 0;
+            }
         }
 
         private void LoadEditState(Change ch)
