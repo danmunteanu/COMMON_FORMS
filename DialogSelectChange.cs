@@ -133,6 +133,9 @@ namespace CommonForms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                panelAction.Controls.Clear();
+
+                //  TODO: Deselect Action Editor or something.
             }
 
             //  Fill-in remaining change fields
