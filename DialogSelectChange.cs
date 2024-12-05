@@ -74,6 +74,11 @@ namespace CommonForms
                 cmbAction.SelectedIndex = -1;
                 cmbAction.SelectedIndex = 0;
             }
+
+            txtDesc.Clear();
+            chkDesc.Checked = true;
+
+            chkEnabled.Checked = true;
         }
 
         private void LoadEditState(Change ch)
@@ -133,7 +138,10 @@ namespace CommonForms
             //  Fill-in remaining change fields
             lblConditionDesc.Text = ch.Condition.Name;
             lblActionDesc.Text = ch.Action.Description;
+            
             chkEnabled.Checked = ch.Enabled;
+            
+            chkDesc.Checked = false;
             txtDesc.Text = ch.Description;
         }
 

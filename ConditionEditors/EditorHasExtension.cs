@@ -69,5 +69,26 @@ namespace CommonForms
             //  Clear Extensions
             lstExtensions.Items.Clear();
         }
+
+        private void btnTxt_Click(object sender, EventArgs e)
+        {
+            string ext = "txt";
+            if (!lstExtensions.Items.Contains(ext))
+                lstExtensions.Items.Add(ext);
+        }
+
+        private void btnMd_Click(object sender, EventArgs e)
+        {
+            string ext = "md";
+            if (!lstExtensions.Items.Contains(ext))
+                lstExtensions.Items.Add(ext);
+        }
+
+        private void btnPdf_Click(object sender, EventArgs e)
+        {
+            string ext = "pdf";
+            if (!lstExtensions.Items.Contains(ext))
+                lstExtensions.Items.Add(ext);
+        }
     }
 }
