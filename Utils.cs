@@ -39,5 +39,10 @@
             }
             return false;
         }
+
+        public static string b2s(bool b)
+        {
+            return b ? "yes" : "no";
+        }
     }
 }
