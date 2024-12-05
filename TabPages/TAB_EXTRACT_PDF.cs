@@ -2,9 +2,21 @@
 
 namespace CommonForms
 {
+    public abstract class ActionSetter<TAction>
+    {
+        private TAction? _action;
+
+        public abstract void OnActionSet();
+       
+        TAction? Action {  
+            get { return _action; } 
+            set { _action = value; OnActionSet(); }
+        }
+    }
+
     public partial class TAB_ExtractPDF : ApplicationPageBase
     {
-        public ActionExtractPDFPages Action { get; set; }
+        public ActionExtractPDFPages? Action { get; set; } = null;
 
         private string DESKTOP_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\";
 
@@ -20,7 +32,7 @@ namespace CommonForms
             UpdateStatus("");
         }
 
-        private new void UpdateStatus(string message)
+        private void UpdateStatus(string message)
         {
             lblStatus.Text = message;
         }
