@@ -57,11 +57,11 @@
             // 
             txtDesc.Dock = DockStyle.Fill;
             txtDesc.Enabled = false;
-            txtDesc.Location = new Point(126, 10);
+            txtDesc.Location = new Point(161, 10);
             txtDesc.Margin = new Padding(2);
             txtDesc.Multiline = true;
             txtDesc.Name = "txtDesc";
-            txtDesc.Size = new Size(543, 66);
+            txtDesc.Size = new Size(605, 66);
             txtDesc.TabIndex = 51;
             // 
             // lblSelAct
@@ -128,14 +128,14 @@
             // 
             // tableLayoutButtons
             // 
-            tableLayoutButtons.ColumnCount = 3;
+            tableLayoutButtons.ColumnCount = 4;
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 156F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
-            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 16F));
-            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 16F));
-            tableLayoutButtons.Controls.Add(btnClose, 2, 0);
-            tableLayoutButtons.Controls.Add(btnSubmit, 1, 0);
+            tableLayoutButtons.Controls.Add(btnClose, 3, 0);
+            tableLayoutButtons.Controls.Add(btnSubmit, 2, 0);
+            tableLayoutButtons.Controls.Add(chkEnabled, 0, 0);
             tableLayoutButtons.Dock = DockStyle.Fill;
             tableLayoutButtons.Location = new Point(3, 552);
             tableLayoutButtons.Name = "tableLayoutButtons";
@@ -170,8 +170,9 @@
             // 
             // chkEnabled
             // 
+            chkEnabled.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             chkEnabled.AutoSize = true;
-            chkEnabled.Location = new Point(673, 10);
+            chkEnabled.Location = new Point(69, 2);
             chkEnabled.Margin = new Padding(2);
             chkEnabled.Name = "chkEnabled";
             chkEnabled.Size = new Size(85, 24);
@@ -249,12 +250,11 @@
             // tableLayoutChangeDesc
             // 
             tableLayoutChangeDesc.ColumnCount = 3;
-            tableLayoutChangeDesc.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 124F));
+            tableLayoutChangeDesc.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 159F));
             tableLayoutChangeDesc.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutChangeDesc.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 102F));
+            tableLayoutChangeDesc.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
             tableLayoutChangeDesc.Controls.Add(txtDesc, 1, 1);
             tableLayoutChangeDesc.Controls.Add(chkDesc, 0, 1);
-            tableLayoutChangeDesc.Controls.Add(chkEnabled, 2, 1);
             tableLayoutChangeDesc.Dock = DockStyle.Fill;
             tableLayoutChangeDesc.Location = new Point(2, 461);
             tableLayoutChangeDesc.Margin = new Padding(2);
@@ -270,11 +270,11 @@
             // 
             chkDesc.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             chkDesc.AutoSize = true;
-            chkDesc.Location = new Point(11, 11);
+            chkDesc.Location = new Point(14, 11);
             chkDesc.Name = "chkDesc";
-            chkDesc.Size = new Size(110, 24);
+            chkDesc.Size = new Size(142, 24);
             chkDesc.TabIndex = 51;
-            chkDesc.Text = "Description:";
+            chkDesc.Text = "Add Description:";
             chkDesc.UseVisualStyleBackColor = true;
             chkDesc.CheckedChanged += chkDesc_CheckedChanged;
             // 
@@ -307,6 +307,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SELECT CHANGE";
             tableLayoutButtons.ResumeLayout(false);
+            tableLayoutButtons.PerformLayout();
             tableLayoutMain.ResumeLayout(false);
             tableLayoutCondAct.ResumeLayout(false);
             tableLayoutCondAct.PerformLayout();

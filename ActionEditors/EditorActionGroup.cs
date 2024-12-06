@@ -9,6 +9,8 @@ namespace CommonForms
 
         private ActionGroup? _actionGroup = null;
 
+        private List<CommonForms.EditorBase> mEditors = new();
+
         public EditorActionGroup()
         {            
             InitializeComponent();
@@ -22,6 +24,15 @@ namespace CommonForms
                 _actionIndex = 0;
                 
                 LoadActiveAction();
+            }
+        }
+
+        public override void SaveState(RealityFrameworks.Action action)
+        {
+            if (action is ActionGroup ag)
+            {
+                //  for each editor, call editor's SaveState
+                MessageBox.Show("Must implement SaveState() in EditorActionGroup", "Method Not Implemented!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -47,9 +58,23 @@ namespace CommonForms
                 string actionTypeName = currentAction.GetType().Name;
                 lblActionName.Text = string.Format("({0})", actionTypeName);
 
-                //  create the editor
-                CommonForms.EditorBase editor = GenericFactory<CommonForms.EditorBase>.CreateByName(actionTypeName);
-                editor.LoadState(currentAction);
+                CommonForms.EditorBase? editor = null;
+                if (_actionIndex >= 0 && _actionIndex < mEditors.Count) 
+                {
+                    //  get the editor from the list, do not load the action state
+                    editor = mEditors[_actionIndex];
+                } 
+                else
+                {
+                    //  Create the Editor
+                    editor = GenericFactory<CommonForms.EditorBase>.CreateByName(actionTypeName);
+                    
+                    //  Save it to the list
+                    mEditors.Insert(_actionIndex, editor);
+
+                    //  Load the action state, but only when creating editor
+                    editor.LoadState(currentAction);
+                }                
 
                 //  add editor
                 Utils.AddUserControl(panelActiveAction, editor);
