@@ -5,11 +5,14 @@ namespace CommonForms
 {
     public partial class EditorActionGroup : EditorBase
     {
-        private int _actionIndex = -1;
-
+        //  The ActionGroup instance we're editing
         private ActionGroup? _actionGroup = null;
 
-        private List<CommonForms.EditorBase> mEditors = new();
+        //  Index of the current action in _actionGroup
+        private int _actionIndex = -1;
+
+        //  List of editors we've already created
+        private List<CommonForms.EditorBase> mListEditors = new();
 
         public EditorActionGroup()
         {            
@@ -32,7 +35,7 @@ namespace CommonForms
             if (action is ActionGroup ag)
             {
                 //  for each editor, call editor's SaveState
-                MessageBox.Show("Must implement SaveState() in EditorActionGroup", "Method Not Implemented!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please implement SaveState() in EditorActionGroup", "Method Not Implemented!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -59,18 +62,18 @@ namespace CommonForms
                 lblActionName.Text = string.Format("({0})", actionTypeName);
 
                 CommonForms.EditorBase? editor = null;
-                if (_actionIndex >= 0 && _actionIndex < mEditors.Count) 
+                if (_actionIndex >= 0 && _actionIndex < mListEditors.Count) 
                 {
-                    //  get the editor from the list, do not load the action state
-                    editor = mEditors[_actionIndex];
+                    //  get the editor from the list, but do not load the action's state
+                    editor = mListEditors[_actionIndex];
                 } 
                 else
                 {
                     //  Create the Editor
                     editor = GenericFactory<CommonForms.EditorBase>.CreateByName(actionTypeName);
                     
-                    //  Save it to the list
-                    mEditors.Insert(_actionIndex, editor);
+                    //  Save editor to the list
+                    mListEditors.Insert(_actionIndex, editor);
 
                     //  Load the action state, but only when creating editor
                     editor.LoadState(currentAction);
@@ -125,14 +128,8 @@ namespace CommonForms
                 _actionGroup.RemoveActionAt(_actionIndex);
                 
                 //  have next?
-                if (_actionIndex < _actionGroup.CountActions())
-                {
-                    //  keep unchanged
-                } 
-                else
-                {
+                if (_actionIndex >= _actionGroup.CountActions())
                     _actionIndex--;
-                }
 
                 LoadActiveAction();
 
