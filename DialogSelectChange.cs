@@ -21,7 +21,7 @@ namespace CommonForms
         //	Editor's state
         public EditorState State { get; set; }
 
-        private Change Change { get; set; }
+        private Change? Change { get; set; } = null;
 
         //  The callback for when something has been modified
         public delegate void OnModifiedCallback();
@@ -50,7 +50,7 @@ namespace CommonForms
             cmbAction.SelectedIndex = 0;
         }
 
-        private void LoadAddState()
+        private void LoadStateAdd()
         {
             //  get these strings from localization
             btnSubmit.Text = "ADD";
@@ -82,7 +82,7 @@ namespace CommonForms
             chkEnabled.Checked = true;
         }
 
-        private void LoadEditState(Change ch)
+        private void LoadStateEdit(Change ch)
         {
             btnSubmit.Text = "UPDATE";
             Text = "Edit Change";
@@ -139,14 +139,15 @@ namespace CommonForms
                 //  TODO: Deselect Action Editor or something.
             }
 
+            chkDesc.Checked = ch.DescriptionOverridden;
+            txtDesc.Enabled = ch.DescriptionOverridden;
+            txtDesc.Text = ch.Description;
+
             //  Fill-in remaining change fields
             lblConditionDesc.Text = ch.Condition.Name;
             lblActionDesc.Text = ch.Action.Description;
-            
+
             chkEnabled.Checked = ch.Enabled;
-            
-            chkDesc.Checked = false;
-            txtDesc.Text = ch.Description;
         }
 
         public void LoadState(EditorState state, Change change = null)
@@ -155,9 +156,9 @@ namespace CommonForms
             Change = change;
 
             if (State == EditorState.Add)
-                LoadAddState();
+                LoadStateAdd();
             else if (State == EditorState.Edit)
-                LoadEditState(Change);
+                LoadStateEdit(Change);
 
             mSelCondEditor?.Select();
         }
@@ -295,9 +296,9 @@ namespace CommonForms
             }
         }
 
-        private void HandleEdit()
+        private void HandleUpdate()
         {
-            //  Edit Stuff
+            //  UPDATE
 
             if (Change == null || Change.Condition == null || Change.Action == null)
             {
@@ -315,6 +316,11 @@ namespace CommonForms
             else
                 MessageBox.Show("Invalid Action Editor State or no Action editor selected");
 
+            if (chkDesc.Checked)
+                Change.Description = txtDesc.Text;
+
+            Change.Enabled = chkEnabled.Checked;
+
             this.Close();
         }
 
@@ -323,7 +329,7 @@ namespace CommonForms
             if (State == DialogSelectChange.EditorState.Add)
                 HandleAdd();
             else if (State == DialogSelectChange.EditorState.Edit)
-                HandleEdit();
+                HandleUpdate();
         }
 
         private void CallModifiedCallback()
@@ -337,6 +343,14 @@ namespace CommonForms
             txtDesc.Enabled = chkDesc.Checked;
             if (chkDesc.Checked)
                 txtDesc.Select();
+        }
+
+        private void btnResetDesc_Click(object sender, EventArgs e)
+        {
+            if (Change != null)
+            {
+                Change.ResetDescription();
+            }
         }
     }
 }
