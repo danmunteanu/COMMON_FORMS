@@ -1,5 +1,4 @@
-﻿
-using RealityFrameworks;
+﻿using RealityFrameworks.Actions;
 
 namespace CommonForms
 {
@@ -19,7 +18,7 @@ namespace CommonForms
             InitializeComponent();
         }
 
-        public override void LoadState(RealityFrameworks.Action action)
+        public override void LoadState(RealityFrameworks.Actions.Action action)
         {
             if (action is ActionGroup ag)
             {
@@ -30,7 +29,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(RealityFrameworks.Action action)
+        public override void SaveState(RealityFrameworks.Actions.Action action)
         {
             if (action is ActionGroup ag)
             {
@@ -56,7 +55,7 @@ namespace CommonForms
                 lblCountActions.Text = string.Format("{0}/{1}", _actionIndex + 1, count);
 
                 //  get current action
-                RealityFrameworks.Action currentAction = _actionGroup.GetActionAt(_actionIndex);
+                RealityFrameworks.Actions.Action currentAction = _actionGroup.GetActionAt(_actionIndex);
 
                 string actionTypeName = currentAction.GetType().Name;
                 lblActionName.Text = string.Format("({0})", actionTypeName);

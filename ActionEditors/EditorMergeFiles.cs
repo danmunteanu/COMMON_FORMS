@@ -1,4 +1,4 @@
-﻿using RealityFrameworks;
+﻿using RealityFrameworks.Actions;
 
 namespace CommonForms
 {
@@ -6,7 +6,7 @@ namespace CommonForms
     {
         private ActionMergeFiles _action = null;
 
-        public RealityFrameworks.ActionMergeFiles Action
+        public ActionMergeFiles Action
         {
             get { return _action; }
             set { _action = value; LoadState(_action); }
@@ -17,7 +17,7 @@ namespace CommonForms
             InitializeComponent();
         }
 
-        public override void SaveState(RealityFrameworks.Action action)
+        public override void SaveState(RealityFrameworks.Actions.Action action)
         {
             if (action is ActionMergeFiles amf)
             {
@@ -25,7 +25,7 @@ namespace CommonForms
             }
         }
 
-        public override void LoadState(RealityFrameworks.Action action)
+        public override void LoadState(RealityFrameworks.Actions.Action action)
         {
             if (action is ActionMergeFiles amf)
             {

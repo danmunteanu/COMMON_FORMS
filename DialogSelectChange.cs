@@ -1,4 +1,5 @@
 ﻿using RealityFrameworks;
+using RealityFrameworks.Conditions;
 using System.Windows.Forms;
 
 namespace CommonForms
@@ -215,10 +216,10 @@ namespace CommonForms
         private void HandleAdd()
         {
             //  Condition to be created
-            RealityFrameworks.Condition? cond = null;
+            Condition? cond = null;
 
             //  Action to be created
-            RealityFrameworks.Action? action = null;
+            RealityFrameworks.Actions.Action? action = null;
 
             string errTitle = string.Empty;
             string errMsg = string.Empty;
@@ -266,7 +267,7 @@ namespace CommonForms
                 actionIsValid = mSelActionEditor.ValidateState();
                 if (actionIsValid && cmbAction.SelectedItem != null)
                 {
-                    action = GenericFactory<RealityFrameworks.Action>.CreateByName(cmbAction.SelectedItem.ToString());
+                    action = GenericFactory<RealityFrameworks.Actions.Action>.CreateByName(cmbAction.SelectedItem.ToString());
                     mSelActionEditor.SaveState(action);
                 }
                 else

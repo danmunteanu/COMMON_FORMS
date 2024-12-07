@@ -1,4 +1,4 @@
-﻿using RealityFrameworks;
+﻿using RealityFrameworks.Actions;
 using System.ComponentModel;
 
 namespace CommonForms
@@ -19,7 +19,7 @@ namespace CommonForms
             txtCustom.Enabled = false;
         }
 
-        public override void LoadState(RealityFrameworks.Action action)
+        public override void LoadState(RealityFrameworks.Actions.Action action)
         {
             if (action is ActionRenameFile arf) {
                 txtExtension.Text = arf.Extension;
@@ -28,7 +28,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(RealityFrameworks.Action action)
+        public override void SaveState(RealityFrameworks.Actions.Action action)
         {
             if (action is ActionRenameFile arf)
             {

@@ -1,4 +1,6 @@
-﻿namespace CommonForms
+﻿using RealityFrameworks.Conditions;
+
+namespace CommonForms
 {
     public class EditorBase : UserControl
     {
@@ -7,23 +9,23 @@
             return true;
         }
 
-        public virtual void LoadState(RealityFrameworks.Condition cond)
+        public virtual void LoadState(Condition cond)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void SaveState(RealityFrameworks.Condition cond)
+        public virtual void SaveState(Condition cond)
         {
             //  Saves the editor's state into the condition
             throw new NotImplementedException();
         }
 
-        public virtual void LoadState(RealityFrameworks.Action action)
+        public virtual void LoadState(RealityFrameworks.Actions.Action action)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void SaveState(RealityFrameworks.Action action)
+        public virtual void SaveState(RealityFrameworks.Actions.Action action)
         {
             throw new NotImplementedException();
         }

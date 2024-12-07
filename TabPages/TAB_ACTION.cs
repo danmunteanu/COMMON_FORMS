@@ -1,6 +1,4 @@
-﻿using RealityFrameworks;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
     public partial class TAB_Action : ApplicationPageBase
     {
@@ -42,8 +40,8 @@ namespace CommonForms
             if (mSelectedEditor == null)
                 return;
 
-            RealityFrameworks.Action action;
-            action = GenericFactory<RealityFrameworks.Action>.CreateByName(cmbActions.SelectedItem.ToString());
+            RealityFrameworks.Actions.Action action;
+            action = GenericFactory<RealityFrameworks.Actions.Action>.CreateByName(cmbActions.SelectedItem.ToString());
 
             mSelectedEditor.SaveState(action);
 

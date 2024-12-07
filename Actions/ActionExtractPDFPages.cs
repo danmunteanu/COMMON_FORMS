@@ -1,9 +1,8 @@
 ﻿using iText.Kernel.Pdf;
-using RealityFrameworks;
 
 namespace CommonForms
 {
-    public class ActionExtractPDFPages : RealityFrameworks.Action
+    public class ActionExtractPDFPages : RealityFrameworks.Actions.Action
     {
         public static int CountPages(string sourcePDF)
         {

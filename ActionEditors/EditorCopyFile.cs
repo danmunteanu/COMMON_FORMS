@@ -1,4 +1,4 @@
-﻿using RealityFrameworks;
+﻿using RealityFrameworks.Actions;
 
 namespace CommonForms
 {
@@ -27,7 +27,7 @@ namespace CommonForms
             return true;
         }
 
-        public override void LoadState(RealityFrameworks.Action action)
+        public override void LoadState(RealityFrameworks.Actions.Action action)
         {
             if (action is ActionCopyFile actionCopyFile)
             {
@@ -35,7 +35,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(RealityFrameworks.Action action)
+        public override void SaveState(RealityFrameworks.Actions.Action action)
         {
             if (action is ActionCopyFile actionCopyFile)
             {

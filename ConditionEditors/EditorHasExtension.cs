@@ -1,4 +1,4 @@
-﻿using RealityFrameworks;
+﻿using RealityFrameworks.Conditions;
 using System.ComponentModel;
 
 namespace CommonForms
@@ -24,7 +24,7 @@ namespace CommonForms
             return true;
         }
 
-        public override void LoadState(RealityFrameworks.Condition cond)
+        public override void LoadState(Condition cond)
         {
             if (cond is ConditionHasExtension hasExt)
             {
@@ -36,7 +36,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(RealityFrameworks.Condition cond)
+        public override void SaveState(Condition cond)
         {
             if (cond is ConditionHasExtension hasExt)
             {
