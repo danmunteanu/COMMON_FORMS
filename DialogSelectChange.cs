@@ -78,6 +78,7 @@ namespace CommonForms
 
             txtDesc.Clear();
             chkDesc.Checked = true;
+            btnResetDesc.Enabled = false;
 
             chkEnabled.Checked = true;
         }
@@ -139,9 +140,10 @@ namespace CommonForms
                 //  TODO: Deselect Action Editor or something.
             }
 
-            chkDesc.Checked = ch.DescriptionOverridden;
-            txtDesc.Enabled = ch.DescriptionOverridden;
+            chkDesc.Checked = ch.HasCustomDescription;
+            txtDesc.Enabled = ch.HasCustomDescription;
             txtDesc.Text = ch.Description;
+            btnResetDesc.Enabled = ch.HasCustomDescription;
 
             //  Fill-in remaining change fields
             lblConditionDesc.Text = ch.Condition.Name;
@@ -302,24 +304,40 @@ namespace CommonForms
 
             if (Change == null || Change.Condition == null || Change.Action == null)
             {
-                MessageBox.Show("Something has gone wrong with the Change! - it's not valid");
+                MessageBox.Show("Something is wrong with the Change, it is not valid");
                 return;
             }
 
             if (mSelCondEditor != null && mSelCondEditor.ValidateState())
                 mSelCondEditor?.SaveState(Change.Condition);
             else
+            {
                 MessageBox.Show("Invalid Condition Editor State or no Condition Editor selected");
+                return;
+            }
 
             if (mSelActionEditor != null && mSelActionEditor.ValidateState())
                 mSelActionEditor?.SaveState(Change.Action);
             else
+            {
                 MessageBox.Show("Invalid Action Editor State or no Action editor selected");
+                return;
+            }
 
             if (chkDesc.Checked)
+            {
+                if (string.IsNullOrEmpty(txtDesc.Text))
+                {
+                    MessageBox.Show("Either disable custom description or enter some text", "Custom description empty!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 Change.Description = txtDesc.Text;
+            }
 
             Change.Enabled = chkEnabled.Checked;
+
+            CallModifiedCallback();
 
             this.Close();
         }
@@ -343,6 +361,7 @@ namespace CommonForms
             txtDesc.Enabled = chkDesc.Checked;
             if (chkDesc.Checked)
                 txtDesc.Select();
+            btnResetDesc.Enabled = chkDesc.Checked;
         }
 
         private void btnResetDesc_Click(object sender, EventArgs e)
@@ -350,6 +369,7 @@ namespace CommonForms
             if (Change != null)
             {
                 Change.ResetDescription();
+                CallModifiedCallback();
             }
         }
     }

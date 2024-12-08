@@ -117,7 +117,7 @@
             panelAction.Location = new Point(387, 1);
             panelAction.Margin = new Padding(1);
             panelAction.Name = "panelAction";
-            panelAction.Size = new Size(385, 294);
+            panelAction.Size = new Size(385, 289);
             panelAction.TabIndex = 42;
             // 
             // panelCondition
@@ -126,7 +126,7 @@
             panelCondition.Location = new Point(1, 1);
             panelCondition.Margin = new Padding(1);
             panelCondition.Name = "panelCondition";
-            panelCondition.Size = new Size(384, 294);
+            panelCondition.Size = new Size(384, 289);
             panelCondition.TabIndex = 43;
             // 
             // tableLayoutButtons
@@ -219,7 +219,7 @@
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 7;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 135F));
@@ -246,8 +246,8 @@
             tableLayoutCondAct.Name = "tableLayoutCondAct";
             tableLayoutCondAct.RowCount = 2;
             tableLayoutCondAct.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutCondAct.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutCondAct.Size = new Size(773, 61);
+            tableLayoutCondAct.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutCondAct.Size = new Size(773, 66);
             tableLayoutCondAct.TabIndex = 47;
             // 
             // tableLayoutChangeDesc
@@ -317,13 +317,13 @@
             tableLayoutEditors.Controls.Add(panelCondition, 0, 0);
             tableLayoutEditors.Controls.Add(panelAction, 1, 0);
             tableLayoutEditors.Dock = DockStyle.Fill;
-            tableLayoutEditors.Location = new Point(2, 115);
+            tableLayoutEditors.Location = new Point(2, 120);
             tableLayoutEditors.Margin = new Padding(2);
             tableLayoutEditors.Name = "tableLayoutEditors";
             tableLayoutEditors.RowCount = 1;
             tableLayoutEditors.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutEditors.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
-            tableLayoutEditors.Size = new Size(773, 296);
+            tableLayoutEditors.Size = new Size(773, 291);
             tableLayoutEditors.TabIndex = 0;
             // 
             // DialogSelectChange
