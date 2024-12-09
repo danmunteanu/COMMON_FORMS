@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             tableLayoutFiles = new TableLayoutPanel();
-            progressBar = new ProgressBar();
+            tableLayoutPanel1 = new TableLayoutPanel();
             lblAddFiles = new Label();
+            btnSelectDesel = new Button();
+            progressBar = new ProgressBar();
             lstFiles = new ListBox();
             tableLayoutRowButtons = new TableLayoutPanel();
             btnReload = new Button();
@@ -40,6 +42,7 @@
             lblStatus = new Label();
             mFolderBrowserDialog = new FolderBrowserDialog();
             tableLayoutFiles.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             tableLayoutRowButtons.SuspendLayout();
             SuspendLayout();
             // 
@@ -47,8 +50,8 @@
             // 
             tableLayoutFiles.ColumnCount = 1;
             tableLayoutFiles.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutFiles.Controls.Add(tableLayoutPanel1, 0, 0);
             tableLayoutFiles.Controls.Add(progressBar, 0, 3);
-            tableLayoutFiles.Controls.Add(lblAddFiles, 0, 0);
             tableLayoutFiles.Controls.Add(lstFiles, 0, 1);
             tableLayoutFiles.Controls.Add(tableLayoutRowButtons, 0, 4);
             tableLayoutFiles.Controls.Add(lblStatus, 0, 2);
@@ -62,28 +65,57 @@
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
-            tableLayoutFiles.Size = new Size(569, 710);
+            tableLayoutFiles.Size = new Size(556, 721);
             tableLayoutFiles.TabIndex = 33;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 233F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 127F));
+            tableLayoutPanel1.Controls.Add(lblAddFiles, 0, 0);
+            tableLayoutPanel1.Controls.Add(btnSelectDesel, 2, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(550, 34);
+            tableLayoutPanel1.TabIndex = 34;
+            // 
+            // lblAddFiles
+            // 
+            lblAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lblAddFiles.AutoSize = true;
+            lblAddFiles.Location = new Point(4, 4);
+            lblAddFiles.Margin = new Padding(4, 0, 4, 0);
+            lblAddFiles.Name = "lblAddFiles";
+            lblAddFiles.Size = new Size(225, 25);
+            lblAddFiles.TabIndex = 26;
+            lblAddFiles.Text = "↓↓ Add Files To Merge ↓↓";
+            // 
+            // btnSelectDesel
+            // 
+            btnSelectDesel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnSelectDesel.Font = new Font("Segoe UI", 7F);
+            btnSelectDesel.Location = new Point(426, 3);
+            btnSelectDesel.Name = "btnSelectDesel";
+            btnSelectDesel.Size = new Size(121, 28);
+            btnSelectDesel.TabIndex = 27;
+            btnSelectDesel.Text = "SELECT ALL";
+            btnSelectDesel.UseVisualStyleBackColor = true;
+            btnSelectDesel.Click += btnSelectDesel_Click;
             // 
             // progressBar
             // 
             progressBar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            progressBar.Location = new Point(4, 600);
+            progressBar.Location = new Point(4, 611);
             progressBar.Margin = new Padding(4, 5, 4, 5);
             progressBar.Name = "progressBar";
-            progressBar.Size = new Size(561, 40);
+            progressBar.Size = new Size(548, 40);
             progressBar.TabIndex = 35;
-            // 
-            // lblAddFiles
-            // 
-            lblAddFiles.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            lblAddFiles.AutoSize = true;
-            lblAddFiles.Location = new Point(4, 15);
-            lblAddFiles.Margin = new Padding(4, 0, 4, 0);
-            lblAddFiles.Name = "lblAddFiles";
-            lblAddFiles.Size = new Size(210, 25);
-            lblAddFiles.TabIndex = 26;
-            lblAddFiles.Text = "↓↓ Add Files To Merge ↓↓";
             // 
             // lstFiles
             // 
@@ -94,7 +126,7 @@
             lstFiles.Location = new Point(2, 44);
             lstFiles.Margin = new Padding(2, 4, 2, 4);
             lstFiles.Name = "lstFiles";
-            lstFiles.Size = new Size(565, 503);
+            lstFiles.Size = new Size(552, 514);
             lstFiles.TabIndex = 18;
             lstFiles.SelectedIndexChanged += lstFiles_SelectedIndexChanged;
             lstFiles.DragDrop += listFiles_DragDrop;
@@ -113,12 +145,12 @@
             tableLayoutRowButtons.Controls.Add(btnRem, 2, 0);
             tableLayoutRowButtons.Controls.Add(btnClear, 4, 0);
             tableLayoutRowButtons.Dock = DockStyle.Fill;
-            tableLayoutRowButtons.Location = new Point(2, 647);
+            tableLayoutRowButtons.Location = new Point(2, 658);
             tableLayoutRowButtons.Margin = new Padding(2);
             tableLayoutRowButtons.Name = "tableLayoutRowButtons";
             tableLayoutRowButtons.RowCount = 1;
             tableLayoutRowButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutRowButtons.Size = new Size(565, 61);
+            tableLayoutRowButtons.Size = new Size(552, 61);
             tableLayoutRowButtons.TabIndex = 34;
             // 
             // btnReload
@@ -161,7 +193,7 @@
             // btnClear
             // 
             btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnClear.Location = new Point(447, 6);
+            btnClear.Location = new Point(434, 6);
             btnClear.Margin = new Padding(2);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(116, 48);
@@ -174,7 +206,7 @@
             // 
             lblStatus.Anchor = AnchorStyles.Left;
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(4, 560);
+            lblStatus.Location = new Point(4, 571);
             lblStatus.Margin = new Padding(4, 0, 4, 0);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(64, 25);
@@ -188,9 +220,11 @@
             Controls.Add(tableLayoutFiles);
             Margin = new Padding(2);
             Name = "FilesListControl";
-            Size = new Size(569, 710);
+            Size = new Size(556, 721);
             tableLayoutFiles.ResumeLayout(false);
             tableLayoutFiles.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             tableLayoutRowButtons.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -208,5 +242,7 @@
         private FolderBrowserDialog mFolderBrowserDialog;
         private ProgressBar progressBar;
         private Label lblStatus;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Button btnSelectDesel;
     }
 }

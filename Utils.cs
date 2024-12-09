@@ -40,7 +40,7 @@
             return false;
         }
 
-        public static string b2s(bool b)
+        public static string Bool2StringYesNo(bool b)
         {
             return b ? "yes" : "no";
         }

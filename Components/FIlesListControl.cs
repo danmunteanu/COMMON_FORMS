@@ -1,4 +1,6 @@
-﻿namespace CommonForms
+﻿using System.Windows.Forms;
+
+namespace CommonForms
 {
     public partial class FilesListControl : ApplicationPageBase
     {
@@ -24,15 +26,17 @@
         /// </summary>
         /// 
         private bool _useProgressBar = true;
-        public bool UseProgressBar { 
-            get { return _useProgressBar; } 
-            set { _useProgressBar = value; OnUseProgressBarSet(); } 
+        public bool UseProgressBar
+        {
+            get { return _useProgressBar; }
+            set { _useProgressBar = value; OnUseProgressBarSet(); }
         }
 
         private bool _useStatus = true;
-        public bool UseStatus { 
-            get { return _useStatus; } 
-            set { _useStatus = value; OnUseStatusSet(); } 
+        public bool UseStatus
+        {
+            get { return _useStatus; }
+            set { _useStatus = value; OnUseStatusSet(); }
         }
 
         /// <summary>
@@ -40,7 +44,7 @@
         /// </summary>
         public string Status
         {
-            get { return lblStatus.Text; } 
+            get { return lblStatus.Text; }
             set { lblStatus.Text = value; }
         }
 
@@ -86,6 +90,8 @@
 
             //  empty the status
             CallUpdateStatus(string.Empty);
+
+            UpdateUILocal();
         }
 
         /// <summary>
@@ -95,6 +101,16 @@
         private void UpdateStatusLocal(string message)
         {
             lblStatus.Text = message;
+        }
+
+        public void UpdateUILocal()
+        {
+            bool selectAllVisible = (
+                lstFiles.SelectionMode == SelectionMode.MultiSimple ||
+                lstFiles.SelectionMode == SelectionMode.MultiExtended
+            );
+            btnSelectDesel.Visible = selectAllVisible;
+            btnSelectDesel.Enabled = selectAllVisible && lstFiles.Items.Count > 0;
         }
 
         private void CallUpdateUI()
@@ -220,6 +236,7 @@
             ReloadFilesList();
 
             //  Forces all listeners to update their UI
+            UpdateUILocal();
             CallUpdateUI();
         }
 
@@ -257,6 +274,8 @@
 
             //  Reset progress bar
             CallUpdateProgress(0);
+
+            UpdateUILocal();
         }
 
         /// <summary>
@@ -381,6 +400,23 @@
             lstFiles.Click -= lstFiles_SelectedIndexChanged;
             lstFiles.Items[lstFiles.SelectedIndex] = item;
             lstFiles.Click += lstFiles_SelectedIndexChanged;
+        }
+
+        private bool _selectAll = true;     //  true = select all, false = deselect all
+
+        private void btnSelectDesel_Click(object sender, EventArgs e)
+        {
+            if (lstFiles.SelectionMode == SelectionMode.MultiSimple ||
+                lstFiles.SelectionMode == SelectionMode.MultiExtended)
+            {
+                for (int idx = 0; idx < lstFiles.Items.Count; idx++)
+                {
+                    lstFiles.SetSelected(idx, _selectAll);
+                }
+
+                btnSelectDesel.Text = _selectAll ? "DESELECT ALL" : "SELECT ALL";
+                _selectAll = !_selectAll;                
+            }
         }
     }
 }
