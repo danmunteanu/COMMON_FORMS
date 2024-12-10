@@ -40,10 +40,14 @@
             btnRem = new Button();
             btnClear = new Button();
             lblStatus = new Label();
+            tableLayoutAddOptions = new TableLayoutPanel();
+            chkAddFolders = new CheckBox();
+            chkParseSubfolders = new CheckBox();
             mFolderBrowserDialog = new FolderBrowserDialog();
             tableLayoutFiles.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutRowButtons.SuspendLayout();
+            tableLayoutAddOptions.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutFiles
@@ -51,18 +55,20 @@
             tableLayoutFiles.ColumnCount = 1;
             tableLayoutFiles.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutFiles.Controls.Add(tableLayoutPanel1, 0, 0);
-            tableLayoutFiles.Controls.Add(progressBar, 0, 3);
+            tableLayoutFiles.Controls.Add(progressBar, 0, 4);
             tableLayoutFiles.Controls.Add(lstFiles, 0, 1);
-            tableLayoutFiles.Controls.Add(tableLayoutRowButtons, 0, 4);
-            tableLayoutFiles.Controls.Add(lblStatus, 0, 2);
+            tableLayoutFiles.Controls.Add(tableLayoutRowButtons, 0, 5);
+            tableLayoutFiles.Controls.Add(lblStatus, 0, 3);
+            tableLayoutFiles.Controls.Add(tableLayoutAddOptions, 0, 2);
             tableLayoutFiles.Dock = DockStyle.Fill;
             tableLayoutFiles.Location = new Point(0, 0);
             tableLayoutFiles.Margin = new Padding(4);
             tableLayoutFiles.Name = "tableLayoutFiles";
-            tableLayoutFiles.RowCount = 5;
+            tableLayoutFiles.RowCount = 6;
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 44F));
+            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
             tableLayoutFiles.Size = new Size(556, 721);
@@ -126,7 +132,7 @@
             lstFiles.Location = new Point(2, 44);
             lstFiles.Margin = new Padding(2, 4, 2, 4);
             lstFiles.Name = "lstFiles";
-            lstFiles.Size = new Size(552, 514);
+            lstFiles.Size = new Size(552, 468);
             lstFiles.TabIndex = 18;
             lstFiles.SelectedIndexChanged += lstFiles_SelectedIndexChanged;
             lstFiles.DragDrop += listFiles_DragDrop;
@@ -135,7 +141,7 @@
             // tableLayoutRowButtons
             // 
             tableLayoutRowButtons.ColumnCount = 5;
-            tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+            tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 125F));
             tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
             tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
             tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
@@ -156,7 +162,7 @@
             // btnReload
             // 
             btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnReload.Location = new Point(152, 6);
+            btnReload.Location = new Point(127, 6);
             btnReload.Margin = new Padding(2);
             btnReload.Name = "btnReload";
             btnReload.Size = new Size(51, 48);
@@ -171,7 +177,7 @@
             btnAdd.Location = new Point(2, 6);
             btnAdd.Margin = new Padding(2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(146, 48);
+            btnAdd.Size = new Size(121, 48);
             btnAdd.TabIndex = 35;
             btnAdd.Text = "ADD";
             btnAdd.UseVisualStyleBackColor = true;
@@ -181,7 +187,7 @@
             // 
             btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnRem.Enabled = false;
-            btnRem.Location = new Point(207, 6);
+            btnRem.Location = new Point(182, 6);
             btnRem.Margin = new Padding(2);
             btnRem.Name = "btnRem";
             btnRem.Size = new Size(51, 48);
@@ -213,6 +219,46 @@
             lblStatus.TabIndex = 36;
             lblStatus.Text = "Status:";
             // 
+            // tableLayoutAddOptions
+            // 
+            tableLayoutAddOptions.ColumnCount = 3;
+            tableLayoutAddOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 223F));
+            tableLayoutAddOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutAddOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutAddOptions.Controls.Add(chkAddFolders, 0, 0);
+            tableLayoutAddOptions.Controls.Add(chkParseSubfolders, 1, 0);
+            tableLayoutAddOptions.Dock = DockStyle.Fill;
+            tableLayoutAddOptions.Location = new Point(3, 519);
+            tableLayoutAddOptions.Name = "tableLayoutAddOptions";
+            tableLayoutAddOptions.RowCount = 1;
+            tableLayoutAddOptions.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutAddOptions.Size = new Size(550, 39);
+            tableLayoutAddOptions.TabIndex = 37;
+            // 
+            // chkAddFolders
+            // 
+            chkAddFolders.Anchor = AnchorStyles.Left;
+            chkAddFolders.AutoSize = true;
+            chkAddFolders.Location = new Point(3, 5);
+            chkAddFolders.Name = "chkAddFolders";
+            chkAddFolders.Size = new Size(209, 29);
+            chkAddFolders.TabIndex = 0;
+            chkAddFolders.Text = "Allow Adding Folders";
+            chkAddFolders.UseVisualStyleBackColor = true;
+            chkAddFolders.CheckedChanged += chkAddFolders_CheckedChanged;
+            // 
+            // chkParseSubfolders
+            // 
+            chkParseSubfolders.Anchor = AnchorStyles.Left;
+            chkParseSubfolders.AutoSize = true;
+            chkParseSubfolders.Location = new Point(226, 5);
+            chkParseSubfolders.Name = "chkParseSubfolders";
+            chkParseSubfolders.Size = new Size(170, 29);
+            chkParseSubfolders.TabIndex = 1;
+            chkParseSubfolders.Text = "Parse Subfolders";
+            chkParseSubfolders.UseVisualStyleBackColor = true;
+            chkParseSubfolders.CheckedChanged += chkParseSubfolders_CheckedChanged;
+            // 
             // FilesListControl
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -226,6 +272,8 @@
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutRowButtons.ResumeLayout(false);
+            tableLayoutAddOptions.ResumeLayout(false);
+            tableLayoutAddOptions.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -244,5 +292,8 @@
         private Label lblStatus;
         private TableLayoutPanel tableLayoutPanel1;
         private Button btnSelectDesel;
+        private TableLayoutPanel tableLayoutAddOptions;
+        private CheckBox chkAddFolders;
+        private CheckBox chkParseSubfolders;
     }
 }

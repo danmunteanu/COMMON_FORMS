@@ -63,9 +63,7 @@ namespace CommonForms
             }
         }
 
-        /// <summary>
-        /// The file filters used to add files to the list.
-        /// </summary>
+        //  The file filters used to add files to the list.
         private List<string> mFileFilters = new();
         public List<string> FileFilters
         {
@@ -73,11 +71,13 @@ namespace CommonForms
             set { mFileFilters = value; }
         }
 
-        public bool AddFoldersRecursively { get; set; } = false;
+        //  Allows adding of subfolders
+        public bool AddFolders { get; set; } = true;
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
+        //  Allow parsing subfolders when adding folders
+        public bool ParseSubfolders { get; set; } = false;
+
+        // Constructor
         public FilesListControl()
         {
             InitializeComponent();
@@ -111,6 +111,10 @@ namespace CommonForms
             );
             btnSelectDesel.Visible = selectAllVisible;
             btnSelectDesel.Enabled = selectAllVisible && lstFiles.Items.Count > 0;
+
+            chkAddFolders.Checked = AddFolders;
+            chkParseSubfolders.Enabled = chkAddFolders.Checked;
+            chkParseSubfolders.Checked = ParseSubfolders;
         }
 
         private void CallUpdateUI()
@@ -162,7 +166,7 @@ namespace CommonForms
             if (!UseProgressBar)
             {
                 //  remove the progress bar;
-                RemoveRow(tableLayoutFiles, 3);
+                RemoveRow(tableLayoutFiles, 4);
             }
         }
 
@@ -170,7 +174,7 @@ namespace CommonForms
         {
             if (!UseStatus)
             {
-                RemoveRow(tableLayoutFiles, 2);
+                RemoveRow(tableLayoutFiles, 3);
             }
         }
 
@@ -332,7 +336,7 @@ namespace CommonForms
                 if (!isFolder)
                 {
                     string ext = Path.GetExtension(item).ToLower();
-                    
+
                     //  check if extension is allowed
                     if (!mFileFilters.Contains(ext))
                         e.Effect = DragDropEffects.None;
@@ -381,10 +385,17 @@ namespace CommonForms
                     added = true;
             }
 
-            if (AddFoldersRecursively)
+
+            if (ParseSubfolders)
             {
                 //  get all subfolders in current folder
-                //  call AddFolderToProcessor on each subfolder
+                var subfolders = Directory.GetDirectories(folder);
+
+                foreach (string dir in subfolders)
+                {
+                    if (AddFolderToProcessor(dir))
+                        added = true;
+                }
             }
 
             return added;
@@ -438,8 +449,19 @@ namespace CommonForms
                 }
 
                 btnSelectDesel.Text = _selectAll ? "DESELECT ALL" : "SELECT ALL";
-                _selectAll = !_selectAll;                
+                _selectAll = !_selectAll;
             }
+        }
+
+        private void chkAddFolders_CheckedChanged(object sender, EventArgs e)
+        {
+            AddFolders = chkAddFolders.Checked;
+            chkParseSubfolders.Enabled = chkAddFolders.Checked;
+        }
+
+        private void chkParseSubfolders_CheckedChanged(object sender, EventArgs e)
+        {
+            ParseSubfolders = chkParseSubfolders.Checked;
         }
     }
 }
