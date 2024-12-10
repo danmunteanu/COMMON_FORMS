@@ -41,8 +41,7 @@
             btnClear = new Button();
             lblStatus = new Label();
             tableLayoutAddOptions = new TableLayoutPanel();
-            chkAddFolders = new CheckBox();
-            chkParseSubfolders = new CheckBox();
+            btnSettings = new Button();
             mFolderBrowserDialog = new FolderBrowserDialog();
             tableLayoutFiles.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -221,12 +220,11 @@
             // 
             // tableLayoutAddOptions
             // 
-            tableLayoutAddOptions.ColumnCount = 3;
-            tableLayoutAddOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 223F));
-            tableLayoutAddOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutAddOptions.ColumnCount = 2;
             tableLayoutAddOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutAddOptions.Controls.Add(chkAddFolders, 0, 0);
-            tableLayoutAddOptions.Controls.Add(chkParseSubfolders, 1, 0);
+            tableLayoutAddOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
+            tableLayoutAddOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutAddOptions.Controls.Add(btnSettings, 1, 0);
             tableLayoutAddOptions.Dock = DockStyle.Fill;
             tableLayoutAddOptions.Location = new Point(3, 519);
             tableLayoutAddOptions.Name = "tableLayoutAddOptions";
@@ -235,29 +233,17 @@
             tableLayoutAddOptions.Size = new Size(550, 39);
             tableLayoutAddOptions.TabIndex = 37;
             // 
-            // chkAddFolders
+            // btnSettings
             // 
-            chkAddFolders.Anchor = AnchorStyles.Left;
-            chkAddFolders.AutoSize = true;
-            chkAddFolders.Location = new Point(3, 5);
-            chkAddFolders.Name = "chkAddFolders";
-            chkAddFolders.Size = new Size(209, 29);
-            chkAddFolders.TabIndex = 0;
-            chkAddFolders.Text = "Allow Adding Folders";
-            chkAddFolders.UseVisualStyleBackColor = true;
-            chkAddFolders.CheckedChanged += chkAddFolders_CheckedChanged;
-            // 
-            // chkParseSubfolders
-            // 
-            chkParseSubfolders.Anchor = AnchorStyles.Left;
-            chkParseSubfolders.AutoSize = true;
-            chkParseSubfolders.Location = new Point(226, 5);
-            chkParseSubfolders.Name = "chkParseSubfolders";
-            chkParseSubfolders.Size = new Size(170, 29);
-            chkParseSubfolders.TabIndex = 1;
-            chkParseSubfolders.Text = "Parse Subfolders";
-            chkParseSubfolders.UseVisualStyleBackColor = true;
-            chkParseSubfolders.CheckedChanged += chkParseSubfolders_CheckedChanged;
+            btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSettings.Font = new Font("Segoe UI", 7F);
+            btnSettings.Location = new Point(433, 4);
+            btnSettings.Name = "btnSettings";
+            btnSettings.Size = new Size(114, 31);
+            btnSettings.TabIndex = 2;
+            btnSettings.Text = "SETTINGS";
+            btnSettings.UseVisualStyleBackColor = true;
+            btnSettings.Click += btnSettings_Click;
             // 
             // FilesListControl
             // 
@@ -273,7 +259,6 @@
             tableLayoutPanel1.PerformLayout();
             tableLayoutRowButtons.ResumeLayout(false);
             tableLayoutAddOptions.ResumeLayout(false);
-            tableLayoutAddOptions.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -293,7 +278,6 @@
         private TableLayoutPanel tableLayoutPanel1;
         private Button btnSelectDesel;
         private TableLayoutPanel tableLayoutAddOptions;
-        private CheckBox chkAddFolders;
-        private CheckBox chkParseSubfolders;
+        private Button btnSettings;
     }
 }

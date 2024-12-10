@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using CommonForms.Components;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CommonForms
 {
@@ -71,6 +73,8 @@ namespace CommonForms
             set { mFileFilters = value; }
         }
 
+        private FilesListSettings _settings;
+
         //  Allows adding of subfolders
         public bool AddFolders { get; set; } = true;
 
@@ -81,6 +85,8 @@ namespace CommonForms
         public FilesListControl()
         {
             InitializeComponent();
+
+            _settings = new FilesListSettings(this);
 
             lstFiles.HorizontalScrollbar = true;
             lstFiles.SelectionMode = SelectionMode.None;
@@ -111,10 +117,6 @@ namespace CommonForms
             );
             btnSelectDesel.Visible = selectAllVisible;
             btnSelectDesel.Enabled = selectAllVisible && lstFiles.Items.Count > 0;
-
-            chkAddFolders.Checked = AddFolders;
-            chkParseSubfolders.Enabled = chkAddFolders.Checked;
-            chkParseSubfolders.Checked = ParseSubfolders;
         }
 
         private void CallUpdateUI()
@@ -453,15 +455,9 @@ namespace CommonForms
             }
         }
 
-        private void chkAddFolders_CheckedChanged(object sender, EventArgs e)
+        private void btnSettings_Click(object sender, EventArgs e)
         {
-            AddFolders = chkAddFolders.Checked;
-            chkParseSubfolders.Enabled = chkAddFolders.Checked;
-        }
-
-        private void chkParseSubfolders_CheckedChanged(object sender, EventArgs e)
-        {
-            ParseSubfolders = chkParseSubfolders.Checked;
+            _settings.Show();
         }
     }
 }
