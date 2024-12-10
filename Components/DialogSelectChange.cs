@@ -369,6 +369,9 @@ namespace CommonForms
             if (Change != null)
             {
                 Change.ResetDescription();
+                txtDesc.Text = Change.Description;
+                chkDesc.Checked = false;
+
                 CallModifiedCallback();
             }
         }
