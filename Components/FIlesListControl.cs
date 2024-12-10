@@ -4,7 +4,7 @@ namespace CommonForms
 {
     public partial class FilesListControl : ApplicationPageBase
     {
-        //  TYPES
+        //  DELEGATE TYPES
         public delegate void UpdateUIDelegate();
         public delegate void UpdateProgressDelegate(int progress);
         public delegate void SelectionChangedDelegate(string item);
@@ -21,10 +21,7 @@ namespace CommonForms
         //  this is called everytime the list selection is changed
         public SelectionChangedDelegate? SelectionChangedCallback { get; set; } = null;
 
-        /// <summary>
-        /// Should enable or disable usage of the progress bar - later.
-        /// </summary>
-        /// 
+        //  Disables usage of the progress bar
         private bool _useProgressBar = true;
         public bool UseProgressBar
         {
@@ -32,6 +29,7 @@ namespace CommonForms
             set { _useProgressBar = value; OnUseProgressBarSet(); }
         }
 
+        //  Disables usage of status bar
         private bool _useStatus = true;
         public bool UseStatus
         {
@@ -74,6 +72,8 @@ namespace CommonForms
             get { return mFileFilters; }
             set { mFileFilters = value; }
         }
+
+        public bool AddFoldersRecursively { get; set; } = false;
 
         /// <summary>
         /// Constructor.
@@ -324,56 +324,38 @@ namespace CommonForms
             e.Effect = DragDropEffects.All;
 
             string[] dropItems = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (dropItems.Length == 1)
+
+            bool isFolder = false;
+            foreach (string item in dropItems)
             {
-                //  Just 1 File
-
-                //  Get Extension
-                string ext = Path.GetExtension(dropItems[0]);
-
-                //  check if extension is allowed
-                if (!mFileFilters.Contains(ext.ToLower()))
+                isFolder = Directory.Exists(item);
+                if (!isFolder)
                 {
-                    e.Effect = DragDropEffects.None;
+                    string ext = Path.GetExtension(item).ToLower();
+                    
+                    //  check if extension is allowed
+                    if (!mFileFilters.Contains(ext))
+                        e.Effect = DragDropEffects.None;
                 }
             }
         }
 
         private void listFiles_DragDrop(object sender, DragEventArgs e)
         {
-            string[] dropItems = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string[]? dropItems = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             bool added = false;
             foreach (string item in dropItems)
             {
                 //  is the file a folder?
                 if (Directory.Exists(item))
                 {
-                    //  Get allowed files from this directory
-                    DirectoryInfo di = new(item);
-                    IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters.ToArray());
-                    foreach (FileInfo fi in files)
-                    {
-                        if (!mFilesProcessor.Contains(fi.FullName))
-                        {
-                            mFilesProcessor.AddFileName(fi.FullName);
-                            added = true;
-                        }
-                    }
+                    if (AddFolderToProcessor(item))
+                        added = true;
                 }
                 else
                 {
-                    //  Get Extension
-                    string ext = Path.GetExtension(item);
-
-                    //  check if extension is allowed
-                    if (mFileFilters.Contains(ext.ToLower()))
-                    {
-                        if (!mFilesProcessor.Contains(item))
-                        {
-                            mFilesProcessor.AddFileName(item);
-                            added = true;
-                        }
-                    }
+                    if (AddFileNameToProcessor(item))
+                        added = true;
                 }
             }
 
@@ -383,6 +365,47 @@ namespace CommonForms
                 CallUpdateUI();
             }
 
+        }
+
+        //  call this only on folders
+        private bool AddFolderToProcessor(string folder)
+        {
+            bool added = false;
+
+            DirectoryInfo dirInfo = new(folder);
+            IEnumerable<FileInfo> files = dirInfo.GetFilesByExtensions(mFileFilters.ToArray());
+            foreach (FileInfo fi in files)
+            {
+                //  is file, add if we can
+                if (AddFileNameToProcessor(fi.FullName))
+                    added = true;
+            }
+
+            if (AddFoldersRecursively)
+            {
+                //  get all subfolders in current folder
+                //  call AddFolderToProcessor on each subfolder
+            }
+
+            return added;
+        }
+
+        private bool AddFileNameToProcessor(string item)
+        {
+            //  Get Extension
+            string ext = Path.GetExtension(item).ToLower();
+
+            //  check if extension is allowed
+            if (mFileFilters.Contains(ext))
+            {
+                if (!mFilesProcessor.Contains(item))
+                {
+                    mFilesProcessor.AddFileName(item);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public void UpdateList(SelectionMode selMode, bool enableList)
