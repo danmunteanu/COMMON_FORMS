@@ -14,7 +14,7 @@ namespace CommonForms
         }
     }
 
-    public partial class TAB_ExtractPDF : ApplicationPageBase
+    public partial class TAB_EXTRACT_PDF : ApplicationPageBase
     {
         public ActionExtractPDFPages? Action { get; set; } = null;
 
@@ -24,7 +24,7 @@ namespace CommonForms
 
         public int mPageCount = 0;
 
-        public TAB_ExtractPDF()
+        public TAB_EXTRACT_PDF()
         {
             InitializeComponent();
 
