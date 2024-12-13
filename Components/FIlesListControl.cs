@@ -168,7 +168,7 @@ namespace CommonForms
             if (!UseProgressBar)
             {
                 //  remove the progress bar;
-                RemoveRow(tableLayoutFiles, 4);
+                RemoveRow(tableLayoutFiles, 3);
             }
         }
 
@@ -176,7 +176,7 @@ namespace CommonForms
         {
             if (!UseStatus)
             {
-                RemoveRow(tableLayoutFiles, 3);
+                RemoveRow(tableLayoutFiles, 2);
             }
         }
 
@@ -457,7 +457,10 @@ namespace CommonForms
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            _settings.Show();
+            //  List's state might have changed, reload them and then display
+            _settings.LoadListSettings();
+
+            _settings.ShowDialog(this);            
         }
     }
 }

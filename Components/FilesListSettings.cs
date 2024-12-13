@@ -1,34 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace CommonForms.Components
+﻿namespace CommonForms.Components
 {
-    public partial class FilesListSettings : UserControl
+    public partial class FilesListSettings : Form
     {
         FilesListControl? _listControl = null;
 
         public FilesListControl? ListControl
         {
             get { return _listControl; }
-            set { _listControl = value; OnListControlSet(); }
+            set { _listControl = value; LoadListSettings(); }
         }
 
         public FilesListSettings(FilesListControl listControl)
         {
             InitializeComponent();
 
+            this.MaximizeBox = false;
+
             //  use the setter to trigger OnListControlSet
             ListControl = listControl;
+
+            this.CenterToParent();
         }
 
-        private void OnListControlSet()
+        public void LoadListSettings()
         {
             if (_listControl != null)
             {

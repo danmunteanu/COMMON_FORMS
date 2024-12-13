@@ -36,9 +36,10 @@
             // 
             chkAddFolders.Anchor = AnchorStyles.Left;
             chkAddFolders.AutoSize = true;
-            chkAddFolders.Location = new Point(60, 53);
+            chkAddFolders.Location = new Point(48, 42);
+            chkAddFolders.Margin = new Padding(2);
             chkAddFolders.Name = "chkAddFolders";
-            chkAddFolders.Size = new Size(209, 29);
+            chkAddFolders.Size = new Size(174, 24);
             chkAddFolders.TabIndex = 1;
             chkAddFolders.Text = "Allow Adding Folders";
             chkAddFolders.UseVisualStyleBackColor = true;
@@ -48,22 +49,25 @@
             // 
             chkParseSubfolders.Anchor = AnchorStyles.Left;
             chkParseSubfolders.AutoSize = true;
-            chkParseSubfolders.Location = new Point(60, 100);
+            chkParseSubfolders.Location = new Point(48, 70);
+            chkParseSubfolders.Margin = new Padding(2);
             chkParseSubfolders.Name = "chkParseSubfolders";
-            chkParseSubfolders.Size = new Size(170, 29);
+            chkParseSubfolders.Size = new Size(173, 24);
             chkParseSubfolders.TabIndex = 2;
-            chkParseSubfolders.Text = "Parse Subfolders";
+            chkParseSubfolders.Text = "Also Parse Subfolders";
             chkParseSubfolders.UseVisualStyleBackColor = true;
             chkParseSubfolders.CheckedChanged += chkParseSubfolders_CheckedChanged;
             // 
             // FilesListSettings
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(475, 266);
             Controls.Add(chkParseSubfolders);
             Controls.Add(chkAddFolders);
+            Margin = new Padding(2);
             Name = "FilesListSettings";
-            Size = new Size(612, 379);
+            Text = "List Settings";
             ResumeLayout(false);
             PerformLayout();
         }
