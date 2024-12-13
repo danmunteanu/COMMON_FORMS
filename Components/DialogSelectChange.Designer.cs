@@ -71,7 +71,7 @@
             // 
             lblSelAct.Anchor = AnchorStyles.Left;
             lblSelAct.AutoSize = true;
-            lblSelAct.Location = new Point(469, 5);
+            lblSelAct.Location = new Point(546, 5);
             lblSelAct.Name = "lblSelAct";
             lblSelAct.Size = new Size(63, 20);
             lblSelAct.TabIndex = 37;
@@ -82,10 +82,10 @@
             cmbAction.Dock = DockStyle.Fill;
             cmbAction.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAction.FormattingEnabled = true;
-            cmbAction.Location = new Point(469, 34);
+            cmbAction.Location = new Point(546, 34);
             cmbAction.Margin = new Padding(3, 4, 3, 4);
             cmbAction.Name = "cmbAction";
-            cmbAction.Size = new Size(248, 28);
+            cmbAction.Size = new Size(194, 28);
             cmbAction.TabIndex = 40;
             cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
             // 
@@ -93,7 +93,7 @@
             // 
             lblSelCond.Anchor = AnchorStyles.Left;
             lblSelCond.AutoSize = true;
-            lblSelCond.Location = new Point(55, 5);
+            lblSelCond.Location = new Point(33, 5);
             lblSelCond.Name = "lblSelCond";
             lblSelCond.Size = new Size(31, 20);
             lblSelCond.TabIndex = 36;
@@ -104,10 +104,10 @@
             cmbCondition.Dock = DockStyle.Fill;
             cmbCondition.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCondition.FormattingEnabled = true;
-            cmbCondition.Location = new Point(55, 34);
+            cmbCondition.Location = new Point(33, 34);
             cmbCondition.Margin = new Padding(3, 4, 3, 4);
             cmbCondition.Name = "cmbCondition";
-            cmbCondition.Size = new Size(248, 28);
+            cmbCondition.Size = new Size(194, 28);
             cmbCondition.TabIndex = 39;
             cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
             // 
@@ -231,11 +231,11 @@
             // tableLayoutCondAct
             // 
             tableLayoutCondAct.ColumnCount = 5;
-            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 52F));
-            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 160F));
-            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 53F));
+            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
+            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutCondAct.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 30F));
             tableLayoutCondAct.Controls.Add(lblSelAct, 3, 0);
             tableLayoutCondAct.Controls.Add(cmbCondition, 1, 1);
             tableLayoutCondAct.Controls.Add(cmbAction, 3, 1);

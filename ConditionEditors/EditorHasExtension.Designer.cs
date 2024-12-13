@@ -45,9 +45,9 @@
             // 
             // lblAddExtension
             // 
-            lblAddExtension.Anchor = AnchorStyles.Left;
+            lblAddExtension.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblAddExtension.AutoSize = true;
-            lblAddExtension.Location = new Point(3, 12);
+            lblAddExtension.Location = new Point(30, 10);
             lblAddExtension.Name = "lblAddExtension";
             lblAddExtension.Size = new Size(72, 20);
             lblAddExtension.TabIndex = 0;
@@ -56,18 +56,18 @@
             // txtExt
             // 
             txtExt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtExt.Location = new Point(3, 54);
+            txtExt.Location = new Point(30, 33);
             txtExt.Name = "txtExt";
-            txtExt.Size = new Size(462, 27);
+            txtExt.Size = new Size(144, 27);
             txtExt.TabIndex = 1;
             // 
             // btnAddExt
             // 
             btnAddExt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnAddExt.Font = new Font("Segoe UI", 7F);
-            btnAddExt.Location = new Point(471, 53);
+            btnAddExt.Location = new Point(180, 33);
             btnAddExt.Name = "btnAddExt";
-            btnAddExt.Size = new Size(59, 29);
+            btnAddExt.Size = new Size(65, 24);
             btnAddExt.TabIndex = 2;
             btnAddExt.Text = "ADD";
             btnAddExt.UseVisualStyleBackColor = true;
@@ -75,10 +75,11 @@
             // 
             // btnClearExt
             // 
+            btnClearExt.Dock = DockStyle.Fill;
             btnClearExt.Font = new Font("Segoe UI", 7F);
-            btnClearExt.Location = new Point(3, 272);
+            btnClearExt.Location = new Point(3, 192);
             btnClearExt.Name = "btnClearExt";
-            btnClearExt.Size = new Size(53, 22);
+            btnClearExt.Size = new Size(59, 22);
             btnClearExt.TabIndex = 3;
             btnClearExt.Text = "CLEAR";
             btnClearExt.UseVisualStyleBackColor = true;
@@ -88,16 +89,16 @@
             // 
             lstExtensions.Dock = DockStyle.Fill;
             lstExtensions.FormattingEnabled = true;
-            lstExtensions.Location = new Point(3, 128);
+            lstExtensions.Location = new Point(30, 92);
             lstExtensions.Name = "lstExtensions";
-            lstExtensions.Size = new Size(462, 297);
+            lstExtensions.Size = new Size(144, 217);
             lstExtensions.TabIndex = 4;
             // 
             // lblExtensionList
             // 
             lblExtensionList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblExtensionList.AutoSize = true;
-            lblExtensionList.Location = new Point(3, 105);
+            lblExtensionList.Location = new Point(30, 69);
             lblExtensionList.Name = "lblExtensionList";
             lblExtensionList.Size = new Size(98, 20);
             lblExtensionList.TabIndex = 5;
@@ -105,27 +106,28 @@
             // 
             // tableLayoutPanel
             // 
-            tableLayoutPanel.ColumnCount = 3;
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel.Controls.Add(btnAddExt, 1, 1);
-            tableLayoutPanel.Controls.Add(lstExtensions, 0, 3);
-            tableLayoutPanel.Controls.Add(lblExtensionList, 0, 2);
-            tableLayoutPanel.Controls.Add(txtExt, 0, 1);
-            tableLayoutPanel.Controls.Add(lblAddExtension, 0, 0);
+            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 71F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel.Controls.Add(lstExtensions, 1, 3);
+            tableLayoutPanel.Controls.Add(lblExtensionList, 1, 2);
+            tableLayoutPanel.Controls.Add(lblAddExtension, 1, 0);
             tableLayoutPanel.Controls.Add(tableLayoutPanel1, 1, 3);
+            tableLayoutPanel.Controls.Add(btnAddExt, 2, 1);
+            tableLayoutPanel.Controls.Add(txtExt, 1, 1);
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.Location = new Point(0, 0);
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowCount = 6;
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 21F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Absolute, 5F));
-            tableLayoutPanel.Size = new Size(573, 473);
+            tableLayoutPanel.Size = new Size(276, 338);
             tableLayoutPanel.TabIndex = 6;
             // 
             // tableLayoutPanel1
@@ -137,7 +139,7 @@
             tableLayoutPanel1.Controls.Add(btnMd, 0, 1);
             tableLayoutPanel1.Controls.Add(btnTxt, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(471, 128);
+            tableLayoutPanel1.Location = new Point(180, 92);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
@@ -145,7 +147,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
-            tableLayoutPanel1.Size = new Size(59, 297);
+            tableLayoutPanel1.Size = new Size(65, 217);
             tableLayoutPanel1.TabIndex = 8;
             // 
             // btnPdf
@@ -154,7 +156,7 @@
             btnPdf.Font = new Font("Segoe UI", 7F);
             btnPdf.Location = new Point(3, 59);
             btnPdf.Name = "btnPdf";
-            btnPdf.Size = new Size(53, 22);
+            btnPdf.Size = new Size(59, 22);
             btnPdf.TabIndex = 8;
             btnPdf.Text = "pdf";
             btnPdf.UseVisualStyleBackColor = true;
@@ -166,7 +168,7 @@
             btnMd.Font = new Font("Segoe UI", 7F);
             btnMd.Location = new Point(3, 31);
             btnMd.Name = "btnMd";
-            btnMd.Size = new Size(53, 22);
+            btnMd.Size = new Size(59, 22);
             btnMd.TabIndex = 7;
             btnMd.Text = "md";
             btnMd.UseVisualStyleBackColor = true;
@@ -178,7 +180,7 @@
             btnTxt.Font = new Font("Segoe UI", 7F);
             btnTxt.Location = new Point(3, 3);
             btnTxt.Name = "btnTxt";
-            btnTxt.Size = new Size(53, 22);
+            btnTxt.Size = new Size(59, 22);
             btnTxt.TabIndex = 6;
             btnTxt.Text = "txt";
             btnTxt.UseVisualStyleBackColor = true;
@@ -188,7 +190,7 @@
             // 
             Controls.Add(tableLayoutPanel);
             Name = "EditorHasExtension";
-            Size = new Size(573, 473);
+            Size = new Size(276, 338);
             tableLayoutPanel.ResumeLayout(false);
             tableLayoutPanel.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
