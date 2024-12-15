@@ -1,6 +1,6 @@
 ﻿namespace CommonForms.Components
 {
-    partial class FilesListSettings
+    partial class FilesListSettingsDialog
     {
         /// <summary> 
         /// Required designer variable.

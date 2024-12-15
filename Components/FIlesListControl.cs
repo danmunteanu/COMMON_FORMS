@@ -6,6 +6,31 @@ namespace CommonForms
 {
     public partial class FilesListControl : ApplicationPageBase
     {
+        public struct ListSettings
+        {
+            //  The label above the list
+            public string TopLabel { get; set; } = "";         //  FILESLIST_COMPONENT_DEFAULT_ADD_LABEL
+
+            //  The text on button add
+            public string ButtonAddLabel { get; set; } = "";   //  FILESLIST_COMPONENT_BTN_ADD_LABEL
+
+            //  Disables use of status
+            //public bool UseStatus { get; set; } = false;
+
+            //  Disables use of the progress bar
+            //public bool UseProgressBar { get; set; } = true;
+
+            //  Allows adding of subfolders
+            public bool AddFolders { get; set; } = true;
+
+            //  Allow parsing subfolders when adding folders
+            public bool ParseSubfolders { get; set; } = false;
+
+            public ListSettings()
+            {
+            }
+        }
+
         //  DELEGATE TYPES
         public delegate void UpdateUIDelegate();
         public delegate void UpdateProgressDelegate(int progress);
@@ -23,6 +48,23 @@ namespace CommonForms
         //  this is called everytime the list selection is changed
         public SelectionChangedDelegate? SelectionChangedCallback { get; set; } = null;
 
+        private ListSettings mSettings = new();
+        public ListSettings Settings { 
+            get { return mSettings; }
+            set
+            {
+                mSettings = value;
+                OnSetSettings();
+            }
+        }
+
+        private void OnSetSettings()
+        {
+            //  Update UI elements based on new settings
+            lblAddFiles.Text = mSettings.TopLabel;
+            btnAdd.Text = mSettings.ButtonAddLabel;
+        }
+
         //  Disables usage of the progress bar
         private bool _useProgressBar = true;
         public bool UseProgressBar
@@ -39,18 +81,14 @@ namespace CommonForms
             set { _useStatus = value; OnUseStatusSet(); }
         }
 
-        /// <summary>
-        /// Sets the status string
-        /// </summary>
+        // Sets the status string
         public string Status
         {
             get { return lblStatus.Text; }
             set { lblStatus.Text = value; }
         }
 
-        /// <summary>
-        /// Sets the progress bar value
-        /// </summary>
+        // Sets the progress bar value
         public int Progress
         {
             get { return progressBar.Value; }
@@ -73,20 +111,14 @@ namespace CommonForms
             set { mFileFilters = value; }
         }
 
-        private FilesListSettings _settings;
-
-        //  Allows adding of subfolders
-        public bool AddFolders { get; set; } = true;
-
-        //  Allow parsing subfolders when adding folders
-        public bool ParseSubfolders { get; set; } = false;
+        private FilesListSettingsDialog _settings;
 
         // Constructor
         public FilesListControl()
         {
             InitializeComponent();
 
-            _settings = new FilesListSettings(this);
+            _settings = new FilesListSettingsDialog(this);
 
             lstFiles.HorizontalScrollbar = true;
             lstFiles.SelectionMode = SelectionMode.None;
@@ -388,7 +420,7 @@ namespace CommonForms
             }
 
 
-            if (ParseSubfolders)
+            if (Settings.ParseSubfolders)
             {
                 //  get all subfolders in current folder
                 var subfolders = Directory.GetDirectories(folder);

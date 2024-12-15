@@ -1,6 +1,6 @@
 ﻿namespace CommonForms.Components
 {
-    public partial class FilesListSettings : Form
+    public partial class FilesListSettingsDialog : Form
     {
         FilesListControl? _listControl = null;
 
@@ -10,7 +10,7 @@
             set { _listControl = value; LoadListSettings(); }
         }
 
-        public FilesListSettings(FilesListControl listControl)
+        public FilesListSettingsDialog(FilesListControl listControl)
         {
             InitializeComponent();
 
@@ -26,16 +26,20 @@
         {
             if (_listControl != null)
             {
-                chkAddFolders.Checked = _listControl.AddFolders;
+                chkAddFolders.Checked = _listControl.Settings.AddFolders;
                 chkParseSubfolders.Enabled = chkAddFolders.Checked;
-                chkParseSubfolders.Checked = _listControl.ParseSubfolders;
+                chkParseSubfolders.Checked = _listControl.Settings.ParseSubfolders;
             }
         }
 
         private void chkAddFolders_CheckedChanged(object sender, EventArgs e)
         {
             if (_listControl != null)
-                _listControl.AddFolders = chkAddFolders.Checked;
+            {
+                FilesListControl.ListSettings listSettings = _listControl.Settings;
+                listSettings.AddFolders = chkAddFolders.Checked;
+                _listControl.Settings = listSettings;
+            }
 
             chkParseSubfolders.Enabled = chkAddFolders.Checked;
         }
@@ -43,7 +47,11 @@
         private void chkParseSubfolders_CheckedChanged(object sender, EventArgs e)
         {
             if (_listControl != null)
-                _listControl.ParseSubfolders = chkParseSubfolders.Checked;
+            {
+                FilesListControl.ListSettings listSettings = _listControl.Settings;
+                listSettings.ParseSubfolders = chkAddFolders.Checked;
+                _listControl.Settings = listSettings;
+            }
         }
     }
 }
