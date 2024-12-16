@@ -14,6 +14,8 @@ namespace CommonForms
             //  The text on button add
             public string ButtonAddLabel { get; set; } = "";   //  FILESLIST_COMPONENT_BTN_ADD_LABEL
 
+            public bool ButtonSettingsVisible { get; set; } = true;
+
             //  Disables use of status
             //public bool UseStatus { get; set; } = false;
 
@@ -63,6 +65,8 @@ namespace CommonForms
             //  Update UI elements based on new settings
             lblAddFiles.Text = mSettings.TopLabel;
             btnAdd.Text = mSettings.ButtonAddLabel;
+
+            btnSettings.Visible = mSettings.ButtonSettingsVisible;
         }
 
         //  Disables usage of the progress bar
