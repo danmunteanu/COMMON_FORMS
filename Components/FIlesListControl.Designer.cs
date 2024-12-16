@@ -171,6 +171,7 @@
             // btnReload
             // 
             btnReload.Anchor = AnchorStyles.None;
+            btnReload.Font = new Font("Segoe UI", 7F);
             btnReload.Location = new Point(97, 9);
             btnReload.Margin = new Padding(2, 3, 2, 3);
             btnReload.Name = "btnReload";
@@ -197,6 +198,7 @@
             // 
             btnRem.Anchor = AnchorStyles.None;
             btnRem.Enabled = false;
+            btnRem.Font = new Font("Segoe UI", 7F);
             btnRem.Location = new Point(131, 9);
             btnRem.Margin = new Padding(2, 3, 2, 3);
             btnRem.Name = "btnRem";
