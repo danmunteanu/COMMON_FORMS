@@ -43,7 +43,15 @@
             RealityFrameworks.Actions.Action action;
             action = GenericFactory<RealityFrameworks.Actions.Action>.CreateByName(cmbActions.SelectedItem.ToString());
 
-            mSelectedEditor.SaveState(action);
+            try
+            {
+                mSelectedEditor.SaveState(action);
+            }
+            catch (Exception ex)
+            {
+                string title = "Exception";
+                MessageBox.Show(ex.Message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             //  foreach file in list, action.Execute();
         }
