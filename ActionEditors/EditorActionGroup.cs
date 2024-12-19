@@ -2,6 +2,9 @@
 
 namespace CommonForms
 {
+    /*
+     * Editor for a group of actions
+     */
     public partial class EditorActionGroup : EditorBase
     {
         //  The ActionGroup instance we're editing
@@ -11,7 +14,7 @@ namespace CommonForms
         private int _actionIndex = -1;
 
         //  List of editors we've already created
-        private List<CommonForms.EditorBase> mListEditors = new();
+        private List<CommonForms.EditorBase> _listOfEditors = new();
 
         public EditorActionGroup()
         {            
@@ -61,18 +64,18 @@ namespace CommonForms
                 lblActionName.Text = string.Format("({0})", actionTypeName);
 
                 CommonForms.EditorBase? editor = null;
-                if (_actionIndex >= 0 && _actionIndex < mListEditors.Count) 
+                if (_actionIndex >= 0 && _actionIndex < _listOfEditors.Count) 
                 {
                     //  get the editor from the list, but do not load the action's state
-                    editor = mListEditors[_actionIndex];
+                    editor = _listOfEditors[_actionIndex];
                 } 
                 else
                 {
                     //  Create the Editor
                     editor = GenericFactory<CommonForms.EditorBase>.CreateByName(actionTypeName);
                     
-                    //  Save editor to the list
-                    mListEditors.Insert(_actionIndex, editor);
+                    //  Insert editor in list
+                    _listOfEditors.Insert(_actionIndex, editor);
 
                     //  Load the action state, but only when creating editor
                     editor.LoadState(currentAction);

@@ -41,19 +41,19 @@
             lblPath.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblPath.AutoSize = true;
             lblPath.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblPath.Location = new Point(3, 25);
+            lblPath.Location = new Point(3, 20);
             lblPath.Name = "lblPath";
-            lblPath.Size = new Size(102, 20);
+            lblPath.Size = new Size(128, 25);
             lblPath.TabIndex = 0;
             lblPath.Text = "Copy to folder:";
             // 
             // txtFolder
             // 
             txtFolder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtFolder.Location = new Point(3, 54);
+            txtFolder.Location = new Point(3, 52);
             txtFolder.Name = "txtFolder";
             txtFolder.ReadOnly = true;
-            txtFolder.Size = new Size(536, 27);
+            txtFolder.Size = new Size(536, 31);
             txtFolder.TabIndex = 1;
             // 
             // btnBrowse

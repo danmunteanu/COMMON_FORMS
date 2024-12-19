@@ -1,6 +1,4 @@
-﻿using RealityFrameworks;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
     public static class GenericFactory<BaseClass>
     {

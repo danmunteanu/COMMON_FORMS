@@ -21,7 +21,8 @@ namespace CommonForms
 
         public override void LoadState(RealityFrameworks.Actions.Action action)
         {
-            if (action is ActionRenameFile arf) {
+            if (action is ActionRenameFile arf)
+            {
                 txtExtension.Text = arf.Extension;
                 txtPrefix.Text = arf.Prefix;
                 txtCustom.Text = arf.NewFileName;
@@ -63,6 +64,25 @@ namespace CommonForms
                 chkAddPrefix.Checked = false;
                 chkExtension.Checked = false;
             }
+        }
+
+        private void btnTxt_Click(object sender, EventArgs e)
+        {
+            string ext = "txt";
+            if (!txtExtension.Text.Contains(ext))
+                txtExtension.Text = ext;
+        }
+
+        private void btnMD_Click(object sender, EventArgs e)
+        {
+            string ext = "md";
+            if (!txtExtension.Text.Contains(ext))
+                txtExtension.Text = ext;
+        }
+
+        private void btnClearExt_Click(object sender, EventArgs e)
+        {
+            txtExtension.Clear();
         }
     }
 }
