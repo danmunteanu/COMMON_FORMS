@@ -133,7 +133,7 @@ namespace CommonForms
             //  empty the status
             CallUpdateStatus(string.Empty);
 
-            UpdateLocalUI();
+            UpdateUI();
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace CommonForms
             lblStatus.Text = message;
         }
 
-        public void UpdateLocalUI()
+        public override void UpdateUI()
         {
             bool selectAllVisible = (
                 lstFiles.SelectionMode == SelectionMode.MultiSimple ||
@@ -283,7 +283,7 @@ namespace CommonForms
             ReloadFilesList();
 
             //  Forces all listeners to update their UI
-            UpdateLocalUI();
+            UpdateUI();
             CallUpdateUI();
         }
 
@@ -322,7 +322,7 @@ namespace CommonForms
             //  Reset progress bar
             CallUpdateProgress(0);
 
-            UpdateLocalUI();
+            UpdateUI();
         }
 
         /// <summary>
