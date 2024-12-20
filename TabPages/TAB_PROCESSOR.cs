@@ -52,8 +52,13 @@ namespace CommonForms
 
         protected override void OnResourceSet()
         {
-            //  Update Localizations
+            UpdateLocalizations();
         }
+
+		private void UpdateLocalizations()
+		{
+			//	reload localization strings
+		}
 
         private void lstProcessor_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -69,8 +74,10 @@ namespace CommonForms
             btnDel.Enabled = haveSelection;
         }
 
+		//	Reloads Changes from Processor
         private void ReloadProcessor()
         {
+			//	TODO: Rename to ReloadList or ReloadChanges
             lstProcessor.Items.Clear();
             for (int idx = 0; idx < mFilesProcessor.CountChanges(); idx++)
             {
@@ -79,13 +86,15 @@ namespace CommonForms
             }
         }
 
+		//	Updates the UI state based on the Processor state
         public override void UpdateUI()
         {
             bool hasFiles = Processor.CountFileNames() > 0;
             bool hasChanges = Processor.CountChanges() > 0;
             bool hasSelection = lstProcessor.SelectedIndex != -1;
 
-            btnProcess.Enabled = hasFiles;
+            //	btnProcess.Enabled = hasFiles;
+            btnProcess.Enabled = false;
 
             btnAdd.Enabled = true;
             btnEdit.Enabled = hasSelection;
@@ -105,6 +114,7 @@ namespace CommonForms
             mDlgEditChange.ShowDialog(this);
         }
 
+		//	Displays the Edit Change dialog for the selected Change
         private void OnEditSelection()
         {
             if (lstProcessor.SelectedIndex < 0) return;
@@ -127,11 +137,14 @@ namespace CommonForms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+			//	TODO: Localize strings
             string title = "Heads up!";
             string msg = string.Format("You are about to remove {0} change(s) from the processor.\n\nAre you sure you want to continue?", Processor.CountChanges());
             DialogResult answer = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (answer == DialogResult.Yes)
             {
+				//	TODO: Link Clear changes to a delegate? 
+				//	Maybe call ReloadProcessor and UpdateUI automatically when ClearChanges is Called
                 Processor.ClearChanges();
                 ReloadProcessor();
                 UpdateUI();
