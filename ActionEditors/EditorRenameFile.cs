@@ -17,6 +17,8 @@ namespace CommonForms
 
             chkCustom.Checked = false;
             txtCustom.Enabled = false;
+
+            UpdateUI();
         }
 
         public override void LoadState(RealityFrameworks.Actions.Action action)
@@ -39,12 +41,31 @@ namespace CommonForms
             }
         }
 
-        private void chkAddPrefix_CheckedChanged(object sender, EventArgs e)
+        public override bool ValidateState()
         {
+            bool hasRename =
+                (chkAddPrefix.Checked && (!string.IsNullOrEmpty(txtPrefix.Text))) ||
+                (chkExtension.Checked && (!string.IsNullOrEmpty(txtExtension.Text)) ||
+                (chkCustom.Checked && (!string.IsNullOrEmpty(txtCustom.Text))));
+
+            return hasRename;
+        }
+
+        private void UpdateUI()
+        {
+            //  Add Prefix
             txtPrefix.Enabled = chkAddPrefix.Checked;
+            dpDate.Enabled = chkAddPrefix.Checked;
+            btnUseDate.Enabled = chkAddPrefix.Checked;
 
             if (chkAddPrefix.Checked)
                 chkCustom.Checked = false;
+
+        }
+
+        private void chkAddPrefix_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
         }
 
         private void chkNewExt_CheckedChanged(object sender, EventArgs e)

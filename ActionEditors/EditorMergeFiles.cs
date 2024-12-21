@@ -38,6 +38,11 @@ namespace CommonForms
             //  Load Stuff from amf
         }
 
+        public override bool ValidateState()
+        {
+            return true;
+        }
+
         private void btnSelectMergeName_Click(object sender, EventArgs e)
         {
             dlgSaveFile.FileName = "MERGE_FILE.txt";

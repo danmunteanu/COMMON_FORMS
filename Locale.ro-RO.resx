@@ -174,4 +174,10 @@
   <data name="DLG_CHANGE_ERR_TITILE_DESC" xml:space="preserve">
     <value>Descrierea Personalizată Lipsește</value>
   </data>
+  <data name="EDITOR_COPYFILE_ERROR_SELECT_FOLDER" xml:space="preserve">
+    <value>Alegeți directorul unde vor fi copiate fișierele</value>
+  </data>
+  <data name="EDITOR_COPYFILE_ERROR_FOLDER_NOT_EXIST" xml:space="preserve">
+    <value>Directorul trebuie să existe</value>
+  </data>
 </root>

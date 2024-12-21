@@ -115,7 +115,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Action Is Not Valid.
+        ///   Looks up a localized string similar to Action is not valid!.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID {
             get {
@@ -124,7 +124,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Condition Is Not Valid.
+        ///   Looks up a localized string similar to Condition is not valid!.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID {
             get {
@@ -156,6 +156,24 @@ namespace CommonForms {
         internal static string DLG_CHANGE_TITLE_EDIT {
             get {
                 return ResourceManager.GetString("DLG_CHANGE_TITLE_EDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder must exist.
+        /// </summary>
+        internal static string EDITOR_COPYFILE_ERROR_FOLDER_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("EDITOR_COPYFILE_ERROR_FOLDER_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select the folder where to copy the files.
+        /// </summary>
+        internal static string EDITOR_COPYFILE_ERROR_SELECT_FOLDER {
+            get {
+                return ResourceManager.GetString("EDITOR_COPYFILE_ERROR_SELECT_FOLDER", resourceCulture);
             }
         }
         

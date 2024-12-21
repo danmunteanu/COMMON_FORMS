@@ -13,14 +13,14 @@ namespace CommonForms
         {
             //  must be set
             if (string.IsNullOrWhiteSpace(txtFolder.Text))
-            {
-                PushError("Select the folder where to copy files");
+            {                
+                PushError(Locale.EDITOR_COPYFILE_ERROR_SELECT_FOLDER);
                 return false;
             }
 
             if (!Path.Exists(txtFolder.Text))
             {
-                PushError("Folder must exist.");
+                PushError(Locale.EDITOR_COPYFILE_ERROR_FOLDER_NOT_EXIST);
                 return false;
             }
 

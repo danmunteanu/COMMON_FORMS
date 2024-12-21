@@ -36,23 +36,25 @@
             chkCustom = new CheckBox();
             tableLayoutMain = new TableLayoutPanel();
             tableLayoutPrefix = new TableLayoutPanel();
-            dpDate = new DateTimePicker();
-            btnUseDate = new Button();
             tableLayoutPanelExt = new TableLayoutPanel();
             btnClearExt = new Button();
-            btnTxt = new Button();
             btnMD = new Button();
+            btnTxt = new Button();
+            tableLayoutDatePrefix = new TableLayoutPanel();
+            dpDate = new DateTimePicker();
+            btnUseDate = new Button();
             tableLayoutMain.SuspendLayout();
             tableLayoutPrefix.SuspendLayout();
             tableLayoutPanelExt.SuspendLayout();
+            tableLayoutDatePrefix.SuspendLayout();
             SuspendLayout();
             // 
             // txtPrefix
             // 
             txtPrefix.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPrefix.Location = new Point(98, 3);
+            txtPrefix.Location = new Point(3, 3);
             txtPrefix.Name = "txtPrefix";
-            txtPrefix.Size = new Size(185, 31);
+            txtPrefix.Size = new Size(580, 31);
             txtPrefix.TabIndex = 1;
             // 
             // txtExtension
@@ -66,7 +68,7 @@
             // txtCustom
             // 
             txtCustom.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtCustom.Location = new Point(3, 207);
+            txtCustom.Location = new Point(3, 277);
             txtCustom.Name = "txtCustom";
             txtCustom.Size = new Size(586, 31);
             txtCustom.TabIndex = 4;
@@ -87,7 +89,7 @@
             // 
             chkExtension.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkExtension.AutoSize = true;
-            chkExtension.Location = new Point(3, 88);
+            chkExtension.Location = new Point(3, 143);
             chkExtension.Name = "chkExtension";
             chkExtension.Size = new Size(182, 29);
             chkExtension.TabIndex = 7;
@@ -99,7 +101,7 @@
             // 
             chkCustom.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkCustom.AutoSize = true;
-            chkCustom.Location = new Point(3, 168);
+            chkCustom.Location = new Point(3, 238);
             chkCustom.Name = "chkCustom";
             chkCustom.Size = new Size(104, 29);
             chkCustom.TabIndex = 8;
@@ -112,35 +114,36 @@
             tableLayoutMain.ColumnCount = 1;
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutMain.Controls.Add(tableLayoutPrefix, 0, 1);
-            tableLayoutMain.Controls.Add(tableLayoutPanelExt, 0, 3);
+            tableLayoutMain.Controls.Add(tableLayoutPanelExt, 0, 4);
             tableLayoutMain.Controls.Add(chkAddPrefix, 0, 0);
-            tableLayoutMain.Controls.Add(chkExtension, 0, 2);
-            tableLayoutMain.Controls.Add(chkCustom, 0, 4);
-            tableLayoutMain.Controls.Add(txtCustom, 0, 5);
+            tableLayoutMain.Controls.Add(chkExtension, 0, 4);
+            tableLayoutMain.Controls.Add(chkCustom, 0, 7);
+            tableLayoutMain.Controls.Add(txtCustom, 0, 8);
+            tableLayoutMain.Controls.Add(tableLayoutDatePrefix, 0, 2);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
-            tableLayoutMain.RowCount = 7;
+            tableLayoutMain.RowCount = 10;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutMain.Size = new Size(592, 693);
             tableLayoutMain.TabIndex = 9;
             // 
             // tableLayoutPrefix
             // 
-            tableLayoutPrefix.ColumnCount = 3;
-            tableLayoutPrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 95F));
+            tableLayoutPrefix.ColumnCount = 1;
             tableLayoutPrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 300F));
-            tableLayoutPrefix.Controls.Add(dpDate, 2, 0);
-            tableLayoutPrefix.Controls.Add(txtPrefix, 1, 0);
-            tableLayoutPrefix.Controls.Add(btnUseDate, 0, 0);
+            tableLayoutPrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPrefix.Controls.Add(txtPrefix, 0, 0);
             tableLayoutPrefix.Dock = DockStyle.Fill;
             tableLayoutPrefix.Location = new Point(3, 43);
             tableLayoutPrefix.Name = "tableLayoutPrefix";
@@ -148,25 +151,6 @@
             tableLayoutPrefix.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPrefix.Size = new Size(586, 34);
             tableLayoutPrefix.TabIndex = 15;
-            // 
-            // dpDate
-            // 
-            dpDate.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            dpDate.Location = new Point(289, 3);
-            dpDate.Name = "dpDate";
-            dpDate.Size = new Size(294, 31);
-            dpDate.TabIndex = 14;
-            // 
-            // btnUseDate
-            // 
-            btnUseDate.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnUseDate.Font = new Font("Segoe UI", 8F);
-            btnUseDate.Location = new Point(3, 3);
-            btnUseDate.Name = "btnUseDate";
-            btnUseDate.Size = new Size(89, 28);
-            btnUseDate.TabIndex = 10;
-            btnUseDate.Text = "USE DATE";
-            btnUseDate.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelExt
             // 
@@ -181,7 +165,7 @@
             tableLayoutPanelExt.Controls.Add(btnMD, 2, 0);
             tableLayoutPanelExt.Controls.Add(btnTxt, 1, 0);
             tableLayoutPanelExt.Dock = DockStyle.Fill;
-            tableLayoutPanelExt.Location = new Point(3, 123);
+            tableLayoutPanelExt.Location = new Point(3, 178);
             tableLayoutPanelExt.Name = "tableLayoutPanelExt";
             tableLayoutPanelExt.RowCount = 1;
             tableLayoutPanelExt.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -200,18 +184,6 @@
             btnClearExt.UseVisualStyleBackColor = true;
             btnClearExt.Click += btnClearExt_Click;
             // 
-            // btnTxt
-            // 
-            btnTxt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnTxt.Font = new Font("Segoe UI", 8F);
-            btnTxt.Location = new Point(173, 3);
-            btnTxt.Name = "btnTxt";
-            btnTxt.Size = new Size(39, 28);
-            btnTxt.TabIndex = 12;
-            btnTxt.Text = ".txt";
-            btnTxt.UseVisualStyleBackColor = true;
-            btnTxt.Click += btnTxt_Click;
-            // 
             // btnMD
             // 
             btnMD.Anchor = AnchorStyles.Left | AnchorStyles.Right;
@@ -224,6 +196,52 @@
             btnMD.UseVisualStyleBackColor = true;
             btnMD.Click += btnMD_Click;
             // 
+            // btnTxt
+            // 
+            btnTxt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnTxt.Font = new Font("Segoe UI", 8F);
+            btnTxt.Location = new Point(173, 3);
+            btnTxt.Name = "btnTxt";
+            btnTxt.Size = new Size(39, 28);
+            btnTxt.TabIndex = 12;
+            btnTxt.Text = ".txt";
+            btnTxt.UseVisualStyleBackColor = true;
+            btnTxt.Click += btnTxt_Click;
+            // 
+            // tableLayoutDatePrefix
+            // 
+            tableLayoutDatePrefix.ColumnCount = 2;
+            tableLayoutDatePrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130F));
+            tableLayoutDatePrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutDatePrefix.Controls.Add(dpDate, 1, 0);
+            tableLayoutDatePrefix.Controls.Add(btnUseDate, 0, 0);
+            tableLayoutDatePrefix.Dock = DockStyle.Fill;
+            tableLayoutDatePrefix.Location = new Point(3, 83);
+            tableLayoutDatePrefix.Name = "tableLayoutDatePrefix";
+            tableLayoutDatePrefix.RowCount = 1;
+            tableLayoutDatePrefix.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutDatePrefix.Size = new Size(586, 34);
+            tableLayoutDatePrefix.TabIndex = 16;
+            // 
+            // dpDate
+            // 
+            dpDate.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            dpDate.Location = new Point(133, 3);
+            dpDate.Name = "dpDate";
+            dpDate.Size = new Size(450, 31);
+            dpDate.TabIndex = 14;
+            // 
+            // btnUseDate
+            // 
+            btnUseDate.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnUseDate.Font = new Font("Segoe UI", 8F);
+            btnUseDate.Location = new Point(3, 3);
+            btnUseDate.Name = "btnUseDate";
+            btnUseDate.Size = new Size(124, 28);
+            btnUseDate.TabIndex = 10;
+            btnUseDate.Text = "USE DATE";
+            btnUseDate.UseVisualStyleBackColor = true;
+            // 
             // EditorRenameFile
             // 
             Controls.Add(tableLayoutMain);
@@ -235,6 +253,7 @@
             tableLayoutPrefix.PerformLayout();
             tableLayoutPanelExt.ResumeLayout(false);
             tableLayoutPanelExt.PerformLayout();
+            tableLayoutDatePrefix.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -253,5 +272,6 @@
         private DateTimePicker dpDate;
         private TableLayoutPanel tableLayoutPanelExt;
         private TableLayoutPanel tableLayoutPrefix;
+        private TableLayoutPanel tableLayoutDatePrefix;
     }
 }

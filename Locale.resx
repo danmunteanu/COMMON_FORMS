@@ -161,10 +161,10 @@
     <value>Please Select A Condition First!</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID" xml:space="preserve">
-    <value>Action Is Not Valid</value>
+    <value>Action is not valid!</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID" xml:space="preserve">
-    <value>Condition Is Not Valid</value>
+    <value>Condition is not valid!</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_WARNING" xml:space="preserve">
     <value>Warning</value>
@@ -174,5 +174,11 @@
   </data>
   <data name="DLG_CHANGE_ERR_TITILE_DESC" xml:space="preserve">
     <value>Custom Description Empty</value>
+  </data>
+  <data name="EDITOR_COPYFILE_ERROR_SELECT_FOLDER" xml:space="preserve">
+    <value>Please select the folder where to copy the files</value>
+  </data>
+  <data name="EDITOR_COPYFILE_ERROR_FOLDER_NOT_EXIST" xml:space="preserve">
+    <value>Folder must exist</value>
   </data>
 </root>
