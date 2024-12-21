@@ -53,8 +53,8 @@ namespace CommonForms
         private void LoadStateAdd()
         {
             //  get these strings from localization
-            btnSubmit.Text = "ADD";
-            Text = "Add Change";
+            btnSubmit.Text = Locale.DLG_CHANGE_BUTTON_ADD_LABEL;
+            Text = Locale.DLG_CHANGE_TITLE_ADD;
 
             //  Clear Editor Condition
             panelCondition.Controls.Clear();
@@ -85,11 +85,13 @@ namespace CommonForms
 
         private void LoadStateEdit(Change ch)
         {
-            btnSubmit.Text = "UPDATE";
-            Text = "Edit Change";
+            btnSubmit.Text = Locale.DLG_CHANGE_BUTTON_UPDATE_LABEL;
+            Text = Locale.DLG_CHANGE_TITLE_EDIT;
 
             if (ch == null)
+            {
                 return;
+            }
 
             //  CONDITION editor
             try
@@ -112,7 +114,7 @@ namespace CommonForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             //  ACTION Editor
@@ -134,7 +136,7 @@ namespace CommonForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 panelAction.Controls.Clear();
 
                 //  TODO: Deselect Action Editor or something.
@@ -189,7 +191,7 @@ namespace CommonForms
             catch (Exception ex)
             {
                 panelCondition.Controls.Clear();
-                MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -212,7 +214,7 @@ namespace CommonForms
             catch (Exception ex)
             {
                 panelAction.Controls.Clear();
-                MessageBox.Show(ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -230,16 +232,14 @@ namespace CommonForms
             if (mSelCondEditor == null)
             {
                 errTitle = "Heads up!";
-                errMsg = "Please select a condition first!";
-                MessageBox.Show(errMsg, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(errMsg, Locale.DLG_CHANGE_ERR_MSG_SELECT_CONDITION, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (mSelActionEditor == null)
             {
                 errTitle = "Heads up!";
-                errMsg = "Please select an action first!";
-                MessageBox.Show(errMsg, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(errMsg, Locale.DLG_CHANGE_ERR_MSG_SELECT_ACTION, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -253,7 +253,6 @@ namespace CommonForms
             }
             else
             {
-                errTitle = "Condition not valid";
                 errMsg = string.Empty;
                 while (mSelCondEditor.HasErrors())
                 {
@@ -261,7 +260,7 @@ namespace CommonForms
                         errMsg += "\n\n";
                     errMsg += mSelCondEditor.PopError();
                 }
-                MessageBox.Show(errMsg, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(errMsg, Locale.DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             bool actionIsValid = false;
@@ -275,7 +274,7 @@ namespace CommonForms
                 }
                 else
                 {
-                    errTitle = "Action not valid";
+                    //  Collect the Action validation errors (from the editor)
                     errMsg = string.Empty;
                     while (mSelActionEditor.HasErrors())
                     {
@@ -283,7 +282,7 @@ namespace CommonForms
                             errMsg += "\n\n";
                         errMsg += mSelActionEditor.PopError();
                     }
-                    MessageBox.Show(errMsg, errTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(errMsg, Locale.DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
@@ -301,26 +300,67 @@ namespace CommonForms
         private void HandleUpdate()
         {
             //  UPDATE
-
+            
             if (Change == null || Change.Condition == null || Change.Action == null)
             {
                 MessageBox.Show("Something is wrong with the Change, it is not valid");
                 return;
             }
 
+            string errMsg;
+
+            //  CONDITION Validation
             if (mSelCondEditor != null && mSelCondEditor.ValidateState())
                 mSelCondEditor?.SaveState(Change.Condition);
             else
             {
-                MessageBox.Show("Invalid Condition Editor State or no Condition Editor selected");
+                if (mSelCondEditor == null)
+                    errMsg = Locale.DLG_CHANGE_ERR_MSG_SELECT_CONDITION;
+                else
+                {
+                    errMsg = string.Empty;
+                    while (mSelCondEditor.HasErrors())
+                    {
+                        if (!string.IsNullOrEmpty(errMsg))
+                            errMsg += "\n\n";
+                        errMsg += mSelCondEditor.PopError();
+                    }
+                    
+                }                 
+                MessageBox.Show(
+                    errMsg,
+                    Locale.DLG_CHANGE_ERR_TITLE_WARNING,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
+            //  ACTION Validation
+            errMsg = string.Empty;
             if (mSelActionEditor != null && mSelActionEditor.ValidateState())
                 mSelActionEditor?.SaveState(Change.Action);
             else
             {
-                MessageBox.Show("Invalid Action Editor State or no Action editor selected");
+                if (mSelActionEditor == null)
+                    errMsg = Locale.DLG_CHANGE_ERR_MSG_SELECT_ACTION;
+                else
+                {
+                    errMsg = string.Empty;
+                    while (mSelActionEditor.HasErrors())
+                    {
+                        if (!string.IsNullOrEmpty(errMsg))
+                            errMsg += "\n\n";
+                        errMsg += mSelActionEditor.PopError();
+                    }
+
+                }
+                MessageBox.Show(
+                    errMsg,
+                    Locale.DLG_CHANGE_ERR_TITLE_WARNING,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 return;
             }
 
@@ -328,7 +368,11 @@ namespace CommonForms
             {
                 if (string.IsNullOrEmpty(txtDesc.Text))
                 {
-                    MessageBox.Show("Either disable custom description or enter some text", "Custom description empty!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        Locale.DLG_CHANGE_ERR_MSG_DESC, 
+                        Locale.DLG_CHANGE_ERR_TITILE_DESC, 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Warning);
                     return;
                 }
 

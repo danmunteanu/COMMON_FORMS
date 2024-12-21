@@ -141,4 +141,37 @@
   <data name="FILE_LIST_BUTTON_CLEAR" xml:space="preserve">
     <value>CURĂȚĂ</value>
   </data>
+  <data name="DLG_CHANGE_BUTTON_ADD_LABEL" xml:space="preserve">
+    <value>ADAUGA</value>
+  </data>
+  <data name="DLG_CHANGE_BUTTON_UPDATE_LABEL" xml:space="preserve">
+    <value>ACTUALIZEAZĂ</value>
+  </data>
+  <data name="DLG_CHANGE_TITLE_ADD" xml:space="preserve">
+    <value>Adaugă O Schimbare</value>
+  </data>
+  <data name="DLG_CHANGE_TITLE_EDIT" xml:space="preserve">
+    <value>Editează O Schimbare</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_MSG_SELECT_ACTION" xml:space="preserve">
+    <value>Alegeți O Acțiune Din Listă Mai Întâi!</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_MSG_SELECT_CONDITION" xml:space="preserve">
+    <value>Alegeți O Condiție Din Listă Mai Întâi!</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID" xml:space="preserve">
+    <value>Acțiunea Nu Este Validă</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID" xml:space="preserve">
+    <value>Condiția Nu Este Validă</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_TITLE_WARNING" xml:space="preserve">
+    <value>Atenție</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_MSG_DESC" xml:space="preserve">
+    <value>Introduceți text pentru descriere sau dezactivați descrierea personalizată</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_TITILE_DESC" xml:space="preserve">
+    <value>Descrierea Personalizată Lipsește</value>
+  </data>
 </root>

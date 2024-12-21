@@ -61,6 +61,105 @@ namespace CommonForms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD.
+        /// </summary>
+        internal static string DLG_CHANGE_BUTTON_ADD_LABEL {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_BUTTON_ADD_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE.
+        /// </summary>
+        internal static string DLG_CHANGE_BUTTON_UPDATE_LABEL {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_BUTTON_UPDATE_LABEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Either disable custom description or enter some text.
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_MSG_DESC {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_MSG_DESC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select An Action First!.
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_MSG_SELECT_ACTION {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_MSG_SELECT_ACTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Select A Condition First!.
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_MSG_SELECT_CONDITION {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_MSG_SELECT_CONDITION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Description Empty.
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_TITILE_DESC {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_TITILE_DESC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action Is Not Valid.
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Condition Is Not Valid.
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_TITLE_WARNING {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_TITLE_WARNING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Change.
+        /// </summary>
+        internal static string DLG_CHANGE_TITLE_ADD {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_TITLE_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Change.
+        /// </summary>
+        internal static string DLG_CHANGE_TITLE_EDIT {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_TITLE_EDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ADD FILES.
         /// </summary>
         internal static string FILE_LIST_BUTTON_ADD {
