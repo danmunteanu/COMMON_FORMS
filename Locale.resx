@@ -167,10 +167,10 @@
     <value>Condition is not valid</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_WARNING" xml:space="preserve">
-    <value>Error</value>
+    <value>Warning</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_ERROR" xml:space="preserve">
-    <value>Warning</value>
+    <value>Error</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_DESC" xml:space="preserve">
     <value>Either disable the custom description or enter some text into the field</value>
@@ -186,5 +186,8 @@
   </data>
   <data name="EDITOR_HAS_EXTENSION_ERR_MSG_MUST_ADD_EXT" xml:space="preserve">
     <value>Must add at least one extension.</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_MSG_CHANGE_WRONG" xml:space="preserve">
+    <value>Something went wrong with the Change, it is not valid.</value>
   </data>
 </root>

@@ -302,7 +302,12 @@ namespace CommonForms
             //  UPDATE            
             if (Change == null || Change.Condition == null || Change.Action == null)
             {
-                MessageBox.Show("Something is wrong with the Change, it is not valid");
+                MessageBox.Show(
+                    Locale.DLG_CHANGE_ERR_MSG_CHANGE_WRONG,
+                    Locale.DLG_CHANGE_ERR_TITLE_ERROR,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
                 return;
             }
 

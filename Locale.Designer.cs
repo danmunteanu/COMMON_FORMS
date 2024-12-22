@@ -79,6 +79,15 @@ namespace CommonForms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Something went wrong with the Change, it is not valid..
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_MSG_CHANGE_WRONG {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_MSG_CHANGE_WRONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Either disable the custom description or enter some text into the field.
         /// </summary>
         internal static string DLG_CHANGE_ERR_MSG_DESC {
@@ -133,7 +142,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Warning.
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_ERROR {
             get {
@@ -142,7 +151,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error.
+        ///   Looks up a localized string similar to Warning.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_WARNING {
             get {

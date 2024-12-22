@@ -166,10 +166,10 @@
     <value>Condiția nu este validă</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_WARNING" xml:space="preserve">
-    <value>Eroare</value>
+    <value>Atenție</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_ERROR" xml:space="preserve">
-    <value>Atenție</value>
+    <value>Eroare</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_DESC" xml:space="preserve">
     <value>Introduceți text pentru descriere sau dezactivați descrierea personalizată</value>
@@ -185,5 +185,8 @@
   </data>
   <data name="EDITOR_HAS_EXTENSION_ERR_MSG_MUST_ADD_EXT" xml:space="preserve">
     <value>Adaugați cel puțin o extensie</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_MSG_CHANGE_WRONG" xml:space="preserve">
+    <value>Ceva e în neregula cu Schimbarea aceasta, nu e configurată corect.</value>
   </data>
 </root>
