@@ -176,7 +176,7 @@
     <value>Either disable the custom description or enter some text into the field</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITILE_DESC" xml:space="preserve">
-    <value>Custom Description Empty</value>
+    <value>Custom description is empty.</value>
   </data>
   <data name="EDITOR_COPYFILE_ERROR_SELECT_FOLDER" xml:space="preserve">
     <value>Please select the folder where to copy the files</value>

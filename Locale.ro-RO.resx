@@ -142,7 +142,7 @@
     <value>CURĂȚĂ</value>
   </data>
   <data name="DLG_CHANGE_BUTTON_ADD_LABEL" xml:space="preserve">
-    <value>ADAUGA</value>
+    <value>ADAUGĂ</value>
   </data>
   <data name="DLG_CHANGE_BUTTON_UPDATE_LABEL" xml:space="preserve">
     <value>ACTUALIZEAZĂ</value>
@@ -154,10 +154,10 @@
     <value>Editează O Schimbare</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_SELECT_ACTION" xml:space="preserve">
-    <value>Alegeți O Acțiune Din Listă Mai Întâi!</value>
+    <value>Alege o acțiune din listă mai întâi!</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_SELECT_CONDITION" xml:space="preserve">
-    <value>Alegeți O Condiție Din Listă Mai Întâi!</value>
+    <value>Alege o condiție din listă mai întâi!</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID" xml:space="preserve">
     <value>Acțiunea nu este validă</value>
@@ -175,7 +175,7 @@
     <value>Introduceți text pentru descriere sau dezactivați descrierea personalizată</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITILE_DESC" xml:space="preserve">
-    <value>Descrierea Personalizată Lipsește</value>
+    <value>Descrierea personalizată lipsește.</value>
   </data>
   <data name="EDITOR_COPYFILE_ERROR_SELECT_FOLDER" xml:space="preserve">
     <value>Alegeți directorul unde vor fi copiate fișierele</value>

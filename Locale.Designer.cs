@@ -115,7 +115,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Custom Description Empty.
+        ///   Looks up a localized string similar to Custom description is empty..
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITILE_DESC {
             get {
