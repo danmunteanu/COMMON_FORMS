@@ -160,12 +160,15 @@
     <value>Alegeți O Condiție Din Listă Mai Întâi!</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID" xml:space="preserve">
-    <value>Acțiunea Nu Este Validă</value>
+    <value>Acțiunea nu este validă</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID" xml:space="preserve">
-    <value>Condiția Nu Este Validă</value>
+    <value>Condiția nu este validă</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_WARNING" xml:space="preserve">
+    <value>Eroare</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_TITLE_ERROR" xml:space="preserve">
     <value>Atenție</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_DESC" xml:space="preserve">
@@ -179,5 +182,8 @@
   </data>
   <data name="EDITOR_COPYFILE_ERROR_FOLDER_NOT_EXIST" xml:space="preserve">
     <value>Directorul trebuie să existe</value>
+  </data>
+  <data name="EDITOR_HAS_EXTENSION_ERR_MSG_MUST_ADD_EXT" xml:space="preserve">
+    <value>Adaugați cel puțin o extensie</value>
   </data>
 </root>

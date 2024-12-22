@@ -79,7 +79,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Either disable custom description or enter some text.
+        ///   Looks up a localized string similar to Either disable the custom description or enter some text into the field.
         /// </summary>
         internal static string DLG_CHANGE_ERR_MSG_DESC {
             get {
@@ -115,7 +115,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Action is not valid!.
+        ///   Looks up a localized string similar to Action is not valid.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID {
             get {
@@ -124,7 +124,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Condition is not valid!.
+        ///   Looks up a localized string similar to Condition is not valid.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID {
             get {
@@ -134,6 +134,15 @@ namespace CommonForms {
         
         /// <summary>
         ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string DLG_CHANGE_ERR_TITLE_ERROR {
+            get {
+                return ResourceManager.GetString("DLG_CHANGE_ERR_TITLE_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_WARNING {
             get {
@@ -174,6 +183,15 @@ namespace CommonForms {
         internal static string EDITOR_COPYFILE_ERROR_SELECT_FOLDER {
             get {
                 return ResourceManager.GetString("EDITOR_COPYFILE_ERROR_SELECT_FOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must add at least one extension..
+        /// </summary>
+        internal static string EDITOR_HAS_EXTENSION_ERR_MSG_MUST_ADD_EXT {
+            get {
+                return ResourceManager.GetString("EDITOR_HAS_EXTENSION_ERR_MSG_MUST_ADD_EXT", resourceCulture);
             }
         }
         

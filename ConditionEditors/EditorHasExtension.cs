@@ -29,12 +29,11 @@ namespace CommonForms
 
         public override bool ValidateState()
         {
-            List<string> listExt = txtExtensions.Text.Split(KExtensionSeparator).ToList();
+            List<string> listExt = txtExtensions.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             if (listExt.Count <= 0)
             {
-                const string errmsg = "Must add at least one extension.";
-                PushError(errmsg);
+                PushError(Locale.EDITOR_HAS_EXTENSION_ERR_MSG_MUST_ADD_EXT);
                 return false;
             }
 
@@ -43,26 +42,23 @@ namespace CommonForms
 
         public override void LoadState(Condition cond)
         {
-            //if (cond is ConditionHasExtension hasExt)
-            //{
-            //    lstExtensions.Items.Clear();
-            //    for (int idx = 0; idx < hasExt.CountExtensions(); ++idx)
-            //    {
-            //        lstExtensions.Items.Add(hasExt.GetExtensionAt(idx));
-            //    }
-            //}
+            if (cond is ConditionHasExtension hasExt)
+            {
+                txtExtensions.Clear();
+                AddExtensions(hasExt.GetExtensionsArray());
+            }
         }
 
         public override void SaveState(Condition cond)
         {
-            //if (cond is ConditionHasExtension hasExt)
-            //{
-            //    hasExt.ClearExtensions();
-            //    foreach (string ext in lstExtensions.Items)
-            //    {
-            //        hasExt.AddExtension(ext);
-            //    }
-            //}
+            if (cond is ConditionHasExtension hasExt)
+            {
+                string[] tokens = txtExtensions.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries);
+                
+                hasExt.ClearExtensions();
+                foreach (string ext in tokens)
+                    hasExt.AddExtension(ext);
+            }
         }
 
         private void btnAddExt_Click(object sender, EventArgs e)
@@ -70,9 +66,11 @@ namespace CommonForms
             //  Add Extension
             if (txtAddExt.Text.Length > 0)
             {
-                string[] tokens = txtAddExt.Text.Split(KExtensionSeparator);
+                string[] tokens = txtAddExt.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries);
 
                 AddExtensions(tokens);
+
+                txtAddExt.Clear();
             }
         }
 
@@ -102,7 +100,7 @@ namespace CommonForms
             int arrCount = _arrayExt.Count();
 
             //  Tokenize extensions
-            List<string> listExt = txtExtensions.Text.Split(KExtensionSeparator).ToList();
+            List<string> listExt = txtExtensions.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             //  Add each extensions if it's not already added
             for (int i = 0; i < arrCount; i++)

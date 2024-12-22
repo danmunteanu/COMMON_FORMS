@@ -299,8 +299,7 @@ namespace CommonForms
 
         private void HandleUpdate()
         {
-            //  UPDATE
-            
+            //  UPDATE            
             if (Change == null || Change.Condition == null || Change.Action == null)
             {
                 MessageBox.Show("Something is wrong with the Change, it is not valid");
@@ -331,7 +330,7 @@ namespace CommonForms
                     errMsg,
                     Locale.DLG_CHANGE_ERR_TITLE_WARNING,
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
+                    MessageBoxIcon.Error
                 );
                 return;
             }
@@ -359,7 +358,7 @@ namespace CommonForms
                     errMsg,
                     Locale.DLG_CHANGE_ERR_TITLE_WARNING,
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
+                    MessageBoxIcon.Error
                 );
                 return;
             }
@@ -372,7 +371,7 @@ namespace CommonForms
                         Locale.DLG_CHANGE_ERR_MSG_DESC, 
                         Locale.DLG_CHANGE_ERR_TITILE_DESC, 
                         MessageBoxButtons.OK, 
-                        MessageBoxIcon.Warning);
+                        MessageBoxIcon.Error);
                     return;
                 }
 

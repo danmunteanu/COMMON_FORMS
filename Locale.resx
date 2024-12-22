@@ -161,16 +161,19 @@
     <value>Please Select A Condition First!</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID" xml:space="preserve">
-    <value>Action is not valid!</value>
+    <value>Action is not valid</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID" xml:space="preserve">
-    <value>Condition is not valid!</value>
+    <value>Condition is not valid</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_WARNING" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="DLG_CHANGE_ERR_TITLE_ERROR" xml:space="preserve">
     <value>Warning</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_DESC" xml:space="preserve">
-    <value>Either disable custom description or enter some text</value>
+    <value>Either disable the custom description or enter some text into the field</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITILE_DESC" xml:space="preserve">
     <value>Custom Description Empty</value>
@@ -180,5 +183,8 @@
   </data>
   <data name="EDITOR_COPYFILE_ERROR_FOLDER_NOT_EXIST" xml:space="preserve">
     <value>Folder must exist</value>
+  </data>
+  <data name="EDITOR_HAS_EXTENSION_ERR_MSG_MUST_ADD_EXT" xml:space="preserve">
+    <value>Must add at least one extension.</value>
   </data>
 </root>
