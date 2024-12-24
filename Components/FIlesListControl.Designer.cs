@@ -30,12 +30,12 @@
         {
             tableLayoutFiles = new TableLayoutPanel();
             tableLayoutPanel1 = new TableLayoutPanel();
+            btnSettings = new Button();
             lblAddFiles = new Label();
             btnSelectDesel = new Button();
             progressBar = new ProgressBar();
             lstFiles = new ListBox();
             tableLayoutRowButtons = new TableLayoutPanel();
-            btnSettings = new Button();
             btnReload = new Button();
             btnAdd = new Button();
             btnRem = new Button();
@@ -64,17 +64,18 @@
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
             tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
-            tableLayoutFiles.Size = new Size(445, 577);
+            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutFiles.Size = new Size(634, 593);
             tableLayoutFiles.TabIndex = 33;
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.ColumnCount = 3;
+            tableLayoutPanel1.ColumnCount = 4;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 222F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 82F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 23F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
+            tableLayoutPanel1.Controls.Add(btnSettings, 3, 0);
             tableLayoutPanel1.Controls.Add(lblAddFiles, 0, 0);
             tableLayoutPanel1.Controls.Add(btnSelectDesel, 2, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
@@ -83,8 +84,21 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(441, 29);
+            tableLayoutPanel1.Size = new Size(630, 29);
             tableLayoutPanel1.TabIndex = 34;
+            // 
+            // btnSettings
+            // 
+            btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSettings.Font = new Font("Segoe UI", 7F);
+            btnSettings.Location = new Point(552, 3);
+            btnSettings.Margin = new Padding(2, 3, 2, 3);
+            btnSettings.Name = "btnSettings";
+            btnSettings.Size = new Size(76, 23);
+            btnSettings.TabIndex = 2;
+            btnSettings.Text = "SETTINGS";
+            btnSettings.UseVisualStyleBackColor = true;
+            btnSettings.Click += btnSettings_Click;
             // 
             // lblAddFiles
             // 
@@ -100,10 +114,10 @@
             // 
             btnSelectDesel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnSelectDesel.Font = new Font("Segoe UI", 7F);
-            btnSelectDesel.Location = new Point(361, 3);
+            btnSelectDesel.Location = new Point(472, 3);
             btnSelectDesel.Margin = new Padding(2, 3, 2, 3);
             btnSelectDesel.Name = "btnSelectDesel";
-            btnSelectDesel.Size = new Size(78, 23);
+            btnSelectDesel.Size = new Size(76, 23);
             btnSelectDesel.TabIndex = 27;
             btnSelectDesel.Text = "SELECT ALL";
             btnSelectDesel.UseVisualStyleBackColor = true;
@@ -112,10 +126,10 @@
             // progressBar
             // 
             progressBar.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            progressBar.Location = new Point(3, 486);
+            progressBar.Location = new Point(3, 507);
             progressBar.Margin = new Padding(3, 4, 3, 4);
             progressBar.Name = "progressBar";
-            progressBar.Size = new Size(439, 32);
+            progressBar.Size = new Size(628, 32);
             progressBar.TabIndex = 35;
             // 
             // lstFiles
@@ -126,7 +140,7 @@
             lstFiles.Location = new Point(2, 38);
             lstFiles.Margin = new Padding(2, 3, 2, 3);
             lstFiles.Name = "lstFiles";
-            lstFiles.Size = new Size(441, 405);
+            lstFiles.Size = new Size(630, 426);
             lstFiles.TabIndex = 18;
             lstFiles.SelectedIndexChanged += lstFiles_SelectedIndexChanged;
             lstFiles.DragDrop += listFiles_DragDrop;
@@ -134,45 +148,31 @@
             // 
             // tableLayoutRowButtons
             // 
-            tableLayoutRowButtons.ColumnCount = 6;
+            tableLayoutRowButtons.ColumnCount = 5;
             tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 95F));
             tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 34F));
             tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 34F));
             tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 63F));
             tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 71F));
-            tableLayoutRowButtons.Controls.Add(btnSettings, 5, 0);
+            tableLayoutRowButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutRowButtons.Controls.Add(btnReload, 1, 0);
             tableLayoutRowButtons.Controls.Add(btnAdd, 0, 0);
             tableLayoutRowButtons.Controls.Add(btnRem, 2, 0);
             tableLayoutRowButtons.Controls.Add(btnClear, 4, 0);
             tableLayoutRowButtons.Dock = DockStyle.Fill;
-            tableLayoutRowButtons.Location = new Point(2, 525);
+            tableLayoutRowButtons.Location = new Point(2, 546);
             tableLayoutRowButtons.Margin = new Padding(2, 3, 2, 3);
             tableLayoutRowButtons.Name = "tableLayoutRowButtons";
             tableLayoutRowButtons.RowCount = 1;
             tableLayoutRowButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutRowButtons.Size = new Size(441, 49);
+            tableLayoutRowButtons.Size = new Size(630, 44);
             tableLayoutRowButtons.TabIndex = 34;
-            // 
-            // btnSettings
-            // 
-            btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnSettings.Font = new Font("Segoe UI", 7F);
-            btnSettings.Location = new Point(372, 8);
-            btnSettings.Margin = new Padding(2, 3, 2, 3);
-            btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(67, 33);
-            btnSettings.TabIndex = 2;
-            btnSettings.Text = "SETTINGS";
-            btnSettings.UseVisualStyleBackColor = true;
-            btnSettings.Click += btnSettings_Click;
             // 
             // btnReload
             // 
             btnReload.Anchor = AnchorStyles.None;
-            btnReload.Font = new Font("Segoe UI", 7F);
-            btnReload.Location = new Point(97, 9);
+            btnReload.Font = new Font("Segoe UI", 8F);
+            btnReload.Location = new Point(97, 7);
             btnReload.Margin = new Padding(2, 3, 2, 3);
             btnReload.Name = "btnReload";
             btnReload.Size = new Size(30, 30);
@@ -184,8 +184,8 @@
             // btnAdd
             // 
             btnAdd.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnAdd.Font = new Font("Segoe UI", 7F);
-            btnAdd.Location = new Point(2, 8);
+            btnAdd.Font = new Font("Segoe UI", 8F);
+            btnAdd.Location = new Point(2, 5);
             btnAdd.Margin = new Padding(2, 3, 2, 3);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(91, 33);
@@ -198,8 +198,8 @@
             // 
             btnRem.Anchor = AnchorStyles.None;
             btnRem.Enabled = false;
-            btnRem.Font = new Font("Segoe UI", 7F);
-            btnRem.Location = new Point(131, 9);
+            btnRem.Font = new Font("Segoe UI", 8F);
+            btnRem.Location = new Point(131, 7);
             btnRem.Margin = new Padding(2, 3, 2, 3);
             btnRem.Name = "btnRem";
             btnRem.Size = new Size(30, 30);
@@ -211,11 +211,11 @@
             // btnClear
             // 
             btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnClear.Font = new Font("Segoe UI", 7F);
-            btnClear.Location = new Point(309, 8);
+            btnClear.Font = new Font("Segoe UI", 8F);
+            btnClear.Location = new Point(561, 5);
             btnClear.Margin = new Padding(2, 3, 2, 3);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(59, 33);
+            btnClear.Size = new Size(67, 33);
             btnClear.TabIndex = 30;
             btnClear.Text = "CLEAR";
             btnClear.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@
             // 
             lblStatus.Anchor = AnchorStyles.Left;
             lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(3, 454);
+            lblStatus.Location = new Point(3, 475);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(52, 20);
             lblStatus.TabIndex = 36;
@@ -238,7 +238,7 @@
             Controls.Add(tableLayoutFiles);
             Margin = new Padding(2, 3, 2, 3);
             Name = "FilesListControl";
-            Size = new Size(445, 577);
+            Size = new Size(634, 593);
             tableLayoutFiles.ResumeLayout(false);
             tableLayoutFiles.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
