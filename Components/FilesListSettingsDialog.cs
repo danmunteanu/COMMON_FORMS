@@ -34,24 +34,28 @@
 
         private void chkAddFolders_CheckedChanged(object sender, EventArgs e)
         {
-            if (_listControl != null)
-            {
-                FilesListControl.ListSettings listSettings = _listControl.Settings;
-                listSettings.AddFolders = chkAddFolders.Checked;
-                _listControl.Settings = listSettings;
-            }
-
             chkParseSubfolders.Enabled = chkAddFolders.Checked;
         }
 
         private void chkParseSubfolders_CheckedChanged(object sender, EventArgs e)
         {
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
             if (_listControl != null)
             {
-                FilesListControl.ListSettings listSettings = _listControl.Settings;
-                listSettings.ParseSubfolders = chkAddFolders.Checked;
-                _listControl.Settings = listSettings;
+                FilesListControl.ListSettings settings = _listControl.Settings;
+                settings.AddFolders = chkAddFolders.Checked;
+                settings.ParseSubfolders = chkParseSubfolders.Checked;
+                _listControl.Settings = settings;
             }
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

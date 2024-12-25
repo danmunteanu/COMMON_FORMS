@@ -102,9 +102,9 @@
             // 
             // lblAddFiles
             // 
-            lblAddFiles.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblAddFiles.AutoSize = true;
-            lblAddFiles.Location = new Point(3, 9);
+            lblAddFiles.Location = new Point(3, 4);
             lblAddFiles.Name = "lblAddFiles";
             lblAddFiles.Size = new Size(216, 20);
             lblAddFiles.TabIndex = 26;

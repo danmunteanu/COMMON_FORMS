@@ -500,7 +500,6 @@ namespace CommonForms
         {
             //  List's state might have changed, reload them and then display
             _settings.LoadListSettings();
-
             _settings.ShowDialog(this);            
         }
     }
