@@ -2,15 +2,15 @@
 {
     public partial class FilesListSettingsDialog : Form
     {
-        FilesListControl? _listControl = null;
+        FilesListComponent? _listControl = null;
 
-        public FilesListControl? ListControl
+        public FilesListComponent? ListControl
         {
             get { return _listControl; }
             set { _listControl = value; LoadListSettings(); }
         }
 
-        public FilesListSettingsDialog(FilesListControl listControl)
+        public FilesListSettingsDialog(FilesListComponent listControl)
         {
             InitializeComponent();
 
@@ -45,7 +45,7 @@
         {
             if (_listControl != null)
             {
-                FilesListControl.ListSettings settings = _listControl.Settings;
+                FilesListComponent.ListSettings settings = _listControl.Settings;
                 settings.AddFolders = chkAddFolders.Checked;
                 settings.ParseSubfolders = chkParseSubfolders.Checked;
                 _listControl.Settings = settings;

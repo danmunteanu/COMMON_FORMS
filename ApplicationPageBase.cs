@@ -35,7 +35,7 @@ namespace CommonForms
             }
         }
 
-        public FilesListControl FilesListComponent { get; set; } = null;
+        public FilesListComponent FilesListComponent { get; set; } = null;
 
         public ApplicationPageBase()
         {

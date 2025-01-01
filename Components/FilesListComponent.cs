@@ -4,12 +4,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CommonForms
 {
-    public partial class FilesListControl : ApplicationPageBase
+    public partial class FilesListComponent : ApplicationPageBase
     {
         public struct ListSettings
         {
             //  The label above the list
-            public string TopLabel { get; set; } = "";         //  FILESLIST_COMPONENT_DEFAULT_ADD_LABEL
+            public string TopLabel { get; set; } = ""; //  FILESLIST_COMPONENT_DEFAULT_ADD_LABEL
 
             //  The text on button add
             public string ButtonAddLabel { get; set; } = "";   //  FILESLIST_COMPONENT_BTN_ADD_LABEL
@@ -118,7 +118,7 @@ namespace CommonForms
         private FilesListSettingsDialog _settings;
 
         // Constructor
-        public FilesListControl()
+        public FilesListComponent()
         {
             InitializeComponent();
 
@@ -260,16 +260,16 @@ namespace CommonForms
 
         private void AddFilesFromFolder(string folder)
         {
-            if (folder == null || folder == "")
+            if (string.IsNullOrWhiteSpace(folder))
+                return;
+
+            // Check if folder exists before proceeding
+            if (!Directory.Exists(folder))
                 return;
 
             //  clear the list 
             lstFiles.Items.Clear();
             Processor.ClearFileNames();
-
-            //  folder must exist
-            if (!Directory.Exists(folder))
-                return;
 
             //  Add file names to mFilesToProcess
             DirectoryInfo di = new(folder);

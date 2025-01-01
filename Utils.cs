@@ -2,6 +2,37 @@
 {
     public class Utils
     {
+        /// <summary>
+        /// An array of file extensions that commonly contain Markdown or YAML content.
+        /// </summary>
+        public static string[] YamlFileExtensions { get; } =
+        {
+            ".md",       // Markdown files
+            ".txt",      // Plain text files
+            ".markdown", // Alternative Markdown extension
+            ".yaml",     // YAML files
+            ".yml"       // Alternative YAML extension
+        };
+
+        /// <summary>
+        /// An array of common audio file extensions.
+        /// </summary>
+        public static string[] AudioFileExtensions { get; } =
+        {
+            ".mp3",  // MPEG Audio Layer III
+            ".wav",  // Waveform Audio File Format
+            ".flac", // Free Lossless Audio Codec
+            ".aac",  // Advanced Audio Codec
+            ".ogg",  // Ogg Vorbis
+            ".wma",  // Windows Media Audio
+            ".m4a",  // MPEG-4 Audio
+            ".aiff", // Audio Interchange File Format
+            ".amr",  // Adaptive Multi-Rate
+            ".opus"  // Opus Audio
+        };
+
+
+
         //	Helper to add user controls to a panel - should be common somewhere
         public static void AddUserControl(Panel panel, UserControl control)
         {
