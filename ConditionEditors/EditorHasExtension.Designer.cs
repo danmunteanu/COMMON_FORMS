@@ -47,19 +47,19 @@
             // 
             // txtAddExt
             // 
-            txtAddExt.Dock = DockStyle.Fill;
-            txtAddExt.Location = new Point(368, 3);
+            txtAddExt.Font = new Font("Segoe UI", 7F);
+            txtAddExt.Location = new Point(381, 3);
             txtAddExt.Name = "txtAddExt";
-            txtAddExt.Size = new Size(67, 31);
+            txtAddExt.Size = new Size(64, 23);
             txtAddExt.TabIndex = 1;
             // 
             // btnAddExt
             // 
             btnAddExt.Dock = DockStyle.Fill;
             btnAddExt.Font = new Font("Segoe UI", 7F);
-            btnAddExt.Location = new Point(441, 3);
+            btnAddExt.Location = new Point(451, 3);
             btnAddExt.Name = "btnAddExt";
-            btnAddExt.Size = new Size(64, 28);
+            btnAddExt.Size = new Size(54, 23);
             btnAddExt.TabIndex = 2;
             btnAddExt.Text = "ADD";
             btnAddExt.UseVisualStyleBackColor = true;
@@ -69,9 +69,9 @@
             // 
             btnClearExt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnClearExt.Font = new Font("Segoe UI", 7F);
-            btnClearExt.Location = new Point(441, 3);
+            btnClearExt.Location = new Point(451, 3);
             btnClearExt.Name = "btnClearExt";
-            btnClearExt.Size = new Size(64, 28);
+            btnClearExt.Size = new Size(54, 23);
             btnClearExt.TabIndex = 3;
             btnClearExt.Text = "CLEAR";
             btnClearExt.UseVisualStyleBackColor = true;
@@ -83,7 +83,7 @@
             lblExtensionList.AutoSize = true;
             lblExtensionList.Location = new Point(3, 4);
             lblExtensionList.Name = "lblExtensionList";
-            lblExtensionList.Size = new Size(126, 25);
+            lblExtensionList.Size = new Size(104, 20);
             lblExtensionList.TabIndex = 5;
             lblExtensionList.Text = "Extensions List";
             // 
@@ -93,7 +93,7 @@
             btnImages.Font = new Font("Segoe UI", 7F);
             btnImages.Location = new Point(3, 3);
             btnImages.Name = "btnImages";
-            btnImages.Size = new Size(69, 28);
+            btnImages.Size = new Size(59, 23);
             btnImages.TabIndex = 9;
             btnImages.Text = "IMAGES";
             btnImages.UseVisualStyleBackColor = true;
@@ -102,7 +102,7 @@
             // txtExtensions
             // 
             txtExtensions.Dock = DockStyle.Fill;
-            txtExtensions.Location = new Point(23, 63);
+            txtExtensions.Location = new Point(23, 58);
             txtExtensions.Multiline = true;
             txtExtensions.Name = "txtExtensions";
             txtExtensions.Size = new Size(508, 64);
@@ -112,9 +112,9 @@
             // 
             btnDocExt.Dock = DockStyle.Fill;
             btnDocExt.Font = new Font("Segoe UI", 7F);
-            btnDocExt.Location = new Point(78, 3);
+            btnDocExt.Location = new Point(68, 3);
             btnDocExt.Name = "btnDocExt";
-            btnDocExt.Size = new Size(54, 28);
+            btnDocExt.Size = new Size(49, 23);
             btnDocExt.TabIndex = 11;
             btnDocExt.Text = "DOCS";
             btnDocExt.UseVisualStyleBackColor = true;
@@ -124,9 +124,9 @@
             // 
             btnTextExt.Dock = DockStyle.Fill;
             btnTextExt.Font = new Font("Segoe UI", 7F);
-            btnTextExt.Location = new Point(138, 3);
+            btnTextExt.Location = new Point(123, 3);
             btnTextExt.Name = "btnTextExt";
-            btnTextExt.Size = new Size(44, 28);
+            btnTextExt.Size = new Size(40, 23);
             btnTextExt.TabIndex = 12;
             btnTextExt.Text = "TXT";
             btnTextExt.UseVisualStyleBackColor = true;
@@ -135,21 +135,21 @@
             // tableLayoutExtButtons
             // 
             tableLayoutExtButtons.ColumnCount = 5;
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
+            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
+            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
+            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 46F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));
+            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             tableLayoutExtButtons.Controls.Add(btnImages, 0, 0);
             tableLayoutExtButtons.Controls.Add(btnClearExt, 4, 0);
             tableLayoutExtButtons.Controls.Add(btnDocExt, 1, 0);
             tableLayoutExtButtons.Controls.Add(btnTextExt, 2, 0);
             tableLayoutExtButtons.Dock = DockStyle.Fill;
-            tableLayoutExtButtons.Location = new Point(23, 133);
+            tableLayoutExtButtons.Location = new Point(23, 128);
             tableLayoutExtButtons.Name = "tableLayoutExtButtons";
             tableLayoutExtButtons.RowCount = 1;
             tableLayoutExtButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutExtButtons.Size = new Size(508, 34);
+            tableLayoutExtButtons.Size = new Size(508, 29);
             tableLayoutExtButtons.TabIndex = 13;
             // 
             // tableLayoutMain
@@ -166,9 +166,9 @@
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 6;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
             tableLayoutMain.Size = new Size(554, 405);
@@ -179,9 +179,9 @@
             tableLayoutPanelAdd.ColumnCount = 5;
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 139F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 49F));
-            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 73F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));
+            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));
+            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             tableLayoutPanelAdd.Controls.Add(btnAddExt, 4, 0);
             tableLayoutPanelAdd.Controls.Add(lblExtensionList, 0, 0);
             tableLayoutPanelAdd.Controls.Add(txtAddExt, 3, 0);
@@ -191,18 +191,18 @@
             tableLayoutPanelAdd.Name = "tableLayoutPanelAdd";
             tableLayoutPanelAdd.RowCount = 1;
             tableLayoutPanelAdd.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelAdd.Size = new Size(508, 34);
+            tableLayoutPanelAdd.Size = new Size(508, 29);
             tableLayoutPanelAdd.TabIndex = 15;
             // 
             // lblExt
             // 
             lblExt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblExt.AutoSize = true;
-            lblExt.Location = new Point(319, 4);
+            lblExt.Location = new Point(311, 4);
             lblExt.Name = "lblExt";
-            lblExt.Size = new Size(43, 25);
+            lblExt.Size = new Size(64, 20);
             lblExt.TabIndex = 6;
-            lblExt.Text = "Ext:";
+            lblExt.Text = "Add Ext:";
             // 
             // EditorHasExtension
             // 

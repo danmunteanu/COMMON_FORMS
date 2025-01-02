@@ -114,7 +114,7 @@ namespace CommonForms
 
         private void btnImages_Click(object sender, EventArgs e)
         {
-            AddExtensions(_imgExt);
+            AddExtensions(Utils.ImageFileExtensions);
         }
 
         private void btnDocExt_Click(object sender, EventArgs e)
@@ -124,7 +124,7 @@ namespace CommonForms
 
         private void btnTextExt_Click(object sender, EventArgs e)
         {
-            AddExtensions(_txtExt);
+            AddExtensions(Utils.YamlFileExtensions);
         }
     }
 }

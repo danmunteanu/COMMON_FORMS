@@ -31,7 +31,20 @@
             ".opus"  // Opus Audio
         };
 
-
+        public static string[] ImageFileExtensions { get; } =
+        {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".bmp",
+            ".tiff",
+            ".webp",
+            ".ico",
+            ".svg",
+            ".heif",
+            ".raw"
+        };
 
         //	Helper to add user controls to a panel - should be common somewhere
         public static void AddUserControl(Panel panel, UserControl control)

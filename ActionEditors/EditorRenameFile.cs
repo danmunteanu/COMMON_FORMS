@@ -58,14 +58,24 @@ namespace CommonForms
             dpDate.Enabled = chkAddPrefix.Checked;
             btnUseDate.Enabled = chkAddPrefix.Checked;
 
+            //  Extension
+            txtExtension.Enabled = chkExtension.Checked;
+            btnTxt.Enabled = chkExtension.Checked;
+            btnMD.Enabled = chkExtension.Checked;
+            btnClearExt.Enabled = chkExtension.Checked;
+
             if (chkAddPrefix.Checked)
                 chkCustom.Checked = false;
-
         }
 
         private void chkAddPrefix_CheckedChanged(object sender, EventArgs e)
         {
             UpdateUI();
+
+            if (chkAddPrefix.Checked)
+            {
+                txtPrefix.Focus();
+            }
         }
 
         private void chkNewExt_CheckedChanged(object sender, EventArgs e)
@@ -73,7 +83,12 @@ namespace CommonForms
             txtExtension.Enabled = chkExtension.Checked;
 
             if (chkExtension.Checked)
+            {
                 chkCustom.Checked = false;
+                txtExtension.Focus();
+            }
+            
+            UpdateUI();
         }
 
         private void chkCustom_CheckedChanged(object sender, EventArgs e)
@@ -84,6 +99,8 @@ namespace CommonForms
             {
                 chkAddPrefix.Checked = false;
                 chkExtension.Checked = false;
+
+                txtCustom.Focus();
             }
         }
 
