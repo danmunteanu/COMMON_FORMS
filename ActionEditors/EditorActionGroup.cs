@@ -72,7 +72,7 @@ namespace CommonForms
                 else
                 {
                     //  Create the Editor
-                    editor = GenericFactory<CommonForms.EditorBase>.CreateByName(actionTypeName);
+                    editor = GenericFactory<CommonForms.EditorBase>.Create(actionTypeName);
                     
                     //  Insert editor in list
                     _listOfEditors.Insert(_actionIndex, editor);

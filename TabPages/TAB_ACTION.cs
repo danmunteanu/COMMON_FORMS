@@ -24,7 +24,7 @@
 
             //string actionName = (new ActionCopyFile as object).GetType().Name.ToString();
 
-            mSelectedEditor = GenericFactory<EditorBase>.CreateByName(cmbActions.SelectedItem.ToString());
+            mSelectedEditor = GenericFactory<EditorBase>.Create(cmbActions.SelectedItem.ToString());
 
             if (panelEditor.Controls.Contains(mSelectedEditor))
                 return;
@@ -41,7 +41,7 @@
                 return;
 
             RealityFrameworks.Actions.Action action;
-            action = GenericFactory<RealityFrameworks.Actions.Action>.CreateByName(cmbActions.SelectedItem.ToString());
+            action = GenericFactory<RealityFrameworks.Actions.Action>.Create(cmbActions.SelectedItem.ToString());
 
             try
             {

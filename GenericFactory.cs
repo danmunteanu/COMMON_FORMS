@@ -1,35 +1,38 @@
 ﻿namespace CommonForms
 {
-    public static class GenericFactory<BaseClass>
+    public static class GenericFactory<TBase>
     {
-        public delegate BaseClass Creator();
+        public delegate TBase Creator();
 
-        private static readonly Dictionary<string, Creator> _factoryByName = new();
+        private static readonly Dictionary<string, Creator> _creators = new();
 
-        public static void RegisterCreatorByName(string id, Creator creator)
+        public static int Count => _creators.Count;
+
+        //  Registers a creator delegate by id
+        public static void Register(string id, Creator creator)
         {
-            _factoryByName.Add(id, creator);
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException("ID cannot be null or empty.", nameof(id));
+
+            if (creator == null)
+                throw new ArgumentNullException(nameof(creator), "The creator delegate cannot be null.");
+
+            if (!_creators.TryAdd(id, creator))
+                throw new InvalidOperationException($"There is a creator already registered with ID \"{id}\"");
         }
 
-        public static BaseClass CreateByName(string id)
+        //  Calls the associated creator for the specified ID
+        public static TBase Create(string id)
         {
-            if (_factoryByName.TryGetValue(id, out var creator))
-            {
-                return creator();  // Call the method to create the editor
-            }
-            
-            string message = string.Format("There is no creator registered for {0}.", id);
-            throw new InvalidOperationException(message);
-        }
+            if (_creators.TryGetValue(id, out var creator))
+                return creator();
 
-        public static int CountNames()
-        {
-            return _factoryByName.Count;
+            throw new KeyNotFoundException($"There is no creator registered with the ID \"{id}\".");
         }
 
         public static string GetNameAt(int idx)
         {
-            return _factoryByName.ElementAt(idx).Key;
+            return _creators.ElementAt(idx).Key;
         }
     }
 }

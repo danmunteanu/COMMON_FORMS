@@ -99,7 +99,7 @@ namespace CommonForms
                 //  Try to FIND Condition Editor INSTEAD of Creating it
                 //  If it's not found, Create it and Store it in a Dictionary
                 string condName = ch.Condition.GetType().Name;
-                mSelCondEditor = GenericFactory<EditorBase>.CreateByName(condName);
+                mSelCondEditor = GenericFactory<EditorBase>.Create(condName);
                 mSelCondEditor.LoadState(ch.Condition);
 
                 int condIndex = cmbCondition.Items.IndexOf(condName);
@@ -121,7 +121,7 @@ namespace CommonForms
             try
             {
                 string actName = ch.Action.GetType().Name;
-                mSelActionEditor = GenericFactory<EditorBase>.CreateByName(actName);
+                mSelActionEditor = GenericFactory<EditorBase>.Create(actName);
                 mSelActionEditor.LoadState(ch.Action);
 
                 int actIndex = cmbAction.Items.IndexOf(actName);
@@ -185,7 +185,7 @@ namespace CommonForms
             try
             {
                 //  EditorFactory.FindOrCreateActionEditor
-                mSelCondEditor = GenericFactory<EditorBase>.CreateByName(condName);
+                mSelCondEditor = GenericFactory<EditorBase>.Create(condName);
                 Utils.AddUserControl(panelCondition, mSelCondEditor);
             }
             catch (Exception ex)
@@ -208,7 +208,7 @@ namespace CommonForms
 
             try
             {
-                mSelActionEditor = GenericFactory<EditorBase>.CreateByName(actionName);
+                mSelActionEditor = GenericFactory<EditorBase>.Create(actionName);
                 Utils.AddUserControl(panelAction, mSelActionEditor);
             }
             catch (Exception ex)
@@ -247,7 +247,7 @@ namespace CommonForms
             if (conditionIsValid && cmbCondition.SelectedItem != null)
             {
                 //  Create New Condition by Name
-                cond = GenericFactory<Condition>.CreateByName(cmbCondition.SelectedItem.ToString());
+                cond = GenericFactory<Condition>.Create(cmbCondition.SelectedItem.ToString());
                 mSelCondEditor.SaveState(cond);
 
             }
@@ -269,7 +269,7 @@ namespace CommonForms
                 actionIsValid = mSelActionEditor.ValidateState();
                 if (actionIsValid && cmbAction.SelectedItem != null)
                 {
-                    action = GenericFactory<RealityFrameworks.Actions.Action>.CreateByName(cmbAction.SelectedItem.ToString());
+                    action = GenericFactory<RealityFrameworks.Actions.Action>.Create(cmbAction.SelectedItem.ToString());
                     mSelActionEditor.SaveState(action);
                 }
                 else
