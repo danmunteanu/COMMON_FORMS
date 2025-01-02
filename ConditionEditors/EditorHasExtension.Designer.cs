@@ -91,7 +91,7 @@
             // 
             btnImages.Dock = DockStyle.Fill;
             btnImages.Font = new Font("Segoe UI", 7F);
-            btnImages.Location = new Point(3, 3);
+            btnImages.Location = new Point(111, 3);
             btnImages.Name = "btnImages";
             btnImages.Size = new Size(59, 23);
             btnImages.TabIndex = 9;
@@ -112,9 +112,9 @@
             // 
             btnDocExt.Dock = DockStyle.Fill;
             btnDocExt.Font = new Font("Segoe UI", 7F);
-            btnDocExt.Location = new Point(68, 3);
+            btnDocExt.Location = new Point(3, 3);
             btnDocExt.Name = "btnDocExt";
-            btnDocExt.Size = new Size(49, 23);
+            btnDocExt.Size = new Size(47, 23);
             btnDocExt.TabIndex = 11;
             btnDocExt.Text = "DOCS";
             btnDocExt.UseVisualStyleBackColor = true;
@@ -124,26 +124,26 @@
             // 
             btnTextExt.Dock = DockStyle.Fill;
             btnTextExt.Font = new Font("Segoe UI", 7F);
-            btnTextExt.Location = new Point(123, 3);
+            btnTextExt.Location = new Point(56, 3);
             btnTextExt.Name = "btnTextExt";
-            btnTextExt.Size = new Size(40, 23);
+            btnTextExt.Size = new Size(49, 23);
             btnTextExt.TabIndex = 12;
-            btnTextExt.Text = "TXT";
+            btnTextExt.Text = "YAML";
             btnTextExt.UseVisualStyleBackColor = true;
             btnTextExt.Click += btnTextExt_Click;
             // 
             // tableLayoutExtButtons
             // 
             tableLayoutExtButtons.ColumnCount = 5;
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
+            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 53F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 46F));
+            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
-            tableLayoutExtButtons.Controls.Add(btnImages, 0, 0);
             tableLayoutExtButtons.Controls.Add(btnClearExt, 4, 0);
-            tableLayoutExtButtons.Controls.Add(btnDocExt, 1, 0);
-            tableLayoutExtButtons.Controls.Add(btnTextExt, 2, 0);
+            tableLayoutExtButtons.Controls.Add(btnImages, 2, 0);
+            tableLayoutExtButtons.Controls.Add(btnTextExt, 1, 0);
+            tableLayoutExtButtons.Controls.Add(btnDocExt, 0, 0);
             tableLayoutExtButtons.Dock = DockStyle.Fill;
             tableLayoutExtButtons.Location = new Point(23, 128);
             tableLayoutExtButtons.Name = "tableLayoutExtButtons";
