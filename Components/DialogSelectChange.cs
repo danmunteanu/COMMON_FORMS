@@ -62,20 +62,15 @@ namespace CommonForms
             //  Clear Editor Action
             panelAction.Controls.Clear();
 
-            //  Select first Condition
-            if (cmbCondition.Items.Count > 0)
+            ComboBox[] comboBoxes = { cmbCondition, cmbAction };
+            foreach (ComboBox comboBox in comboBoxes)
             {
-                cmbCondition.SelectedIndex = -1;
-                cmbCondition.SelectedIndex = 0;
+                if (comboBox.Items.Count > 0)
+                {
+                    cmbAction.SelectedIndex = -1;
+                    comboBox.SelectedIndex = 0;  // Select first item
+                }
             }
-
-            //  Select first Action
-            if (cmbAction.Items.Count > 0)
-            {
-                cmbAction.SelectedIndex = -1;
-                cmbAction.SelectedIndex = 0;
-            }
-
             txtDesc.Clear();
             chkDesc.Checked = true;
             btnResetDesc.Enabled = false;

@@ -10,13 +10,12 @@ namespace CommonForms
             return sourcePdf.GetNumberOfPages();
         }
 
-
         //  The Output PDF
-        public string Destination { get; set; } = null;
+        public string? Destination { get; set; } = null;
 
         //  expects an array like 
         //  int[] pagesToExtract = new int[] { 1, 2, 5 };  // Example: pages 1, 2, and 5
-        public int[] Pages { get; set; } = null;
+        public int[]? Pages { get; set; } = null;
 
         public static void ExtractPages(string sourcePdfPath, string destinationPdfPath, int[] pagesToExtract)
         {
