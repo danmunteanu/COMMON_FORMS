@@ -31,7 +31,7 @@ namespace CommonForms
         {
             if (action is ActionCopyFile actionCopyFile)
             {
-                txtFolder.Text = actionCopyFile.Folder;
+                txtFolder.Text = actionCopyFile.DestinationFolder;
             }
         }
 
@@ -39,7 +39,7 @@ namespace CommonForms
         {
             if (action is ActionCopyFile actionCopyFile)
             {
-                actionCopyFile.Folder = txtFolder.Text;
+                actionCopyFile.DestinationFolder = txtFolder.Text;
             }    
         }
 
