@@ -13,7 +13,7 @@ namespace CommonForms
         //	The active Action editor
         private EditorBase? mSelActionEditor = null;
 
-        public FilesProcessor? Processor { get; set; }
+        public Processor? Processor { get; set; }
 
         //  States the Editor can be in (Add or Edit)
         public enum EditorState { Add, Edit };

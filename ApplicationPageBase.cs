@@ -11,7 +11,7 @@ namespace CommonForms
         protected string DefaultOutputFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
 
         protected ResourceManager mResourceManager = null;
-        protected FilesProcessor mFilesProcessor = null;
+        protected Processor mFilesProcessor = null;
 
         public ResourceManager Resource
         {
@@ -24,7 +24,7 @@ namespace CommonForms
             }
         }
 
-        public FilesProcessor Processor
+        public Processor Processor
         {
             get { return mFilesProcessor; }
             set
