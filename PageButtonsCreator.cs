@@ -15,11 +15,11 @@ namespace CommonForms
         public int WidthPadding { get; set; } = 20;
         public int HeightPadding { get; set; } = 20;
 
-        public Guna2Button CreatePageButton(string btnName, string btnText, EventHandler? eventHandler)
+        public Guna2Button CreatePageButton(string btnName, string btnText, EventHandler? eventHandler, bool buttonChecked = false)
         {
             Guna2Button button = new();
             button.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            button.Checked = true;
+            button.Checked = buttonChecked;
             button.CheckedState.CustomBorderColor = Color.FromArgb(192, 0, 0);
             button.CheckedState.FillColor = Color.White;
             button.CustomBorderThickness = new Padding(0, 0, 0, 3);
