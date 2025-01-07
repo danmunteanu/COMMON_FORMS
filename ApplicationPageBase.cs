@@ -6,14 +6,15 @@ namespace CommonForms
     public partial class ApplicationPageBase : UserControl
     {
         public delegate void UpdateStatusDelegate(string message);
-        public UpdateStatusDelegate UpdateStatusCallback { get; set; } = null;
+        public UpdateStatusDelegate? UpdateStatusCallback { get; set; } = null;
 
-        protected string DefaultOutputFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
+        protected string DefaultOutputFolder = 
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
 
-        protected ResourceManager mResourceManager = null;
-        protected Processor mFilesProcessor = null;
+        protected ResourceManager? mResourceManager = null;
+        protected Processor? mFilesProcessor = null;
 
-        public ResourceManager Resource
+        public ResourceManager? Resource
         {
             get { return mResourceManager; }
             set
@@ -24,7 +25,7 @@ namespace CommonForms
             }
         }
 
-        public Processor Processor
+        public Processor? Processor
         {
             get { return mFilesProcessor; }
             set
@@ -60,6 +61,11 @@ namespace CommonForms
         {
             if (UpdateStatusCallback != null)
                 UpdateStatusCallback(message);
+        }
+
+        public virtual void StoreSettings(Dictionary<string, string> iniKeys)
+        {
+
         }
     }
 }
