@@ -38,33 +38,44 @@ namespace CommonForms.Components
 
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Label
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100)); // Empty space
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));  // Button 1 (fixed width)
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100));  // Button 2 (fixed width)
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Button 1 (fixed width)
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Button 2 (fixed width)
 
             Label label = new Label();
-            label.Text = "Label:";
+            label.Text = "↓↓ Add Files To Merge ↓↓";
             label.TextAlign = ContentAlignment.MiddleLeft;
             label.Padding = new Padding(10, 0, 0, 0);
             label.Font = new Font(label.Font.FontFamily, 8);
             label.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
 
-            Button button1 = new Button();
-            button1.Text = "SELECT ALL";
-            button1.Font = new Font(button1.Font.FontFamily, 8);
-            button1.AutoSize = true;
-            button1.TextAlign = ContentAlignment.MiddleCenter;
-            button1.Anchor = AnchorStyles.Right;
+            Button btnSelectAll = new Button();
+            btnSelectAll.Text = "SELECT ALL";
+            btnSelectAll.Font = new Font(btnSelectAll.Font.FontFamily, 8);
+            btnSelectAll.AutoSize = false;
+            btnSelectAll.Height = 23;
+            btnSelectAll.TextAlign = ContentAlignment.MiddleCenter;
+            btnSelectAll.Anchor = AnchorStyles.Right;
+            Size textSize = TextRenderer.MeasureText(btnSelectAll.Text, btnSelectAll.Font);
+            btnSelectAll.Width = textSize.Width + 5;
+            btnSelectAll.Height = textSize.Height + 5;
 
-            Button button2 = new Button();
-            button2.Text = "LIST SETTINGS";
-            button2.Font = new Font(button2.Font.FontFamily, 8);
-            button2.AutoSize = true;
-            button2.TextAlign = ContentAlignment.MiddleCenter;
-            button2.Anchor = AnchorStyles.Right;
+            Button btnSettings = new Button();
+            btnSettings.Text = "LIST SETTINGS";
+            btnSettings.Font = new Font(btnSettings.Font.FontFamily, 8);
+            btnSettings.AutoSize = false;
+            btnSettings.Height = 23;
+            btnSettings.TextAlign = ContentAlignment.MiddleCenter;
+            btnSettings.Anchor = AnchorStyles.Right;
+            textSize = TextRenderer.MeasureText(btnSettings.Text, btnSettings.Font);
+
+            // Set the button size
+            btnSettings.Width = textSize.Width + 5;
+            btnSettings.Height = textSize.Height + 5;
+
 
             tableLayoutPanel.Controls.Add(label, 0, 0);
-            tableLayoutPanel.Controls.Add(button1, 2, 0);
-            tableLayoutPanel.Controls.Add(button2, 3, 0);
+            tableLayoutPanel.Controls.Add(btnSelectAll, 2, 0);
+            tableLayoutPanel.Controls.Add(btnSettings, 3, 0);
 
             return tableLayoutPanel;
         }
