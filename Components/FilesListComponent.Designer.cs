@@ -74,7 +74,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 222F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
             tableLayoutPanel1.Controls.Add(btnSettings, 3, 0);
             tableLayoutPanel1.Controls.Add(lblAddFiles, 0, 0);
             tableLayoutPanel1.Controls.Add(btnSelectDesel, 2, 0);
@@ -91,12 +91,12 @@
             // 
             btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSettings.Font = new Font("Segoe UI", 7F);
-            btnSettings.Location = new Point(552, 3);
+            btnSettings.Location = new Point(532, 3);
             btnSettings.Margin = new Padding(2, 3, 2, 3);
             btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(76, 23);
+            btnSettings.Size = new Size(96, 23);
             btnSettings.TabIndex = 2;
-            btnSettings.Text = "SETTINGS";
+            btnSettings.Text = "LIST SETTINGS";
             btnSettings.UseVisualStyleBackColor = true;
             btnSettings.Click += btnSettings_Click;
             // 
@@ -114,7 +114,7 @@
             // 
             btnSelectDesel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnSelectDesel.Font = new Font("Segoe UI", 7F);
-            btnSelectDesel.Location = new Point(472, 3);
+            btnSelectDesel.Location = new Point(452, 3);
             btnSelectDesel.Margin = new Padding(2, 3, 2, 3);
             btnSelectDesel.Name = "btnSelectDesel";
             btnSelectDesel.Size = new Size(76, 23);
@@ -231,13 +231,13 @@
             lblStatus.TabIndex = 36;
             lblStatus.Text = "Status:";
             // 
-            // FilesListControl
+            // FilesListComponent
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutFiles);
             Margin = new Padding(2, 3, 2, 3);
-            Name = "FilesListControl";
+            Name = "FilesListComponent";
             Size = new Size(634, 593);
             tableLayoutFiles.ResumeLayout(false);
             tableLayoutFiles.PerformLayout();
