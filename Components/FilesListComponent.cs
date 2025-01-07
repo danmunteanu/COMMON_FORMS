@@ -115,14 +115,14 @@ namespace CommonForms
             set { mFileFilters = value; }
         }
 
-        private FilesListSettingsDialog _settings;
+        private FilesListSettingsDialog _dlgSettings;
 
         // Constructor
         public FilesListComponent()
         {
             InitializeComponent();
 
-            _settings = new FilesListSettingsDialog(this);
+            _dlgSettings = new FilesListSettingsDialog(this);
 
             lstFiles.HorizontalScrollbar = true;
             lstFiles.SelectionMode = SelectionMode.None;
@@ -269,14 +269,14 @@ namespace CommonForms
 
             //  clear the list 
             lstFiles.Items.Clear();
-            Processor.ClearFileNames();
+            Processor?.ClearFileNames();
 
             //  Add file names to mFilesToProcess
             DirectoryInfo di = new(folder);
             IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters.ToArray());
             foreach (FileInfo fi in files)
             {
-                Processor.AddFileName(fi.FullName);
+                Processor?.AddFileName(fi.FullName);
             }
 
             //  reload mFilesToProcess into the list
@@ -499,8 +499,8 @@ namespace CommonForms
         private void btnSettings_Click(object sender, EventArgs e)
         {
             //  List's state might have changed, reload them and then display
-            _settings.LoadListSettings();
-            _settings.ShowDialog(this);            
+            _dlgSettings.LoadListSettings();
+            _dlgSettings.ShowDialog(this);            
         }
     }
 }

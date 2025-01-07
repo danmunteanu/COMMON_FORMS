@@ -1,4 +1,5 @@
-﻿using RealityFrameworks;
+﻿using CommonForms.Components;
+using RealityFrameworks;
 using System.Resources;
 
 namespace CommonForms
@@ -36,7 +37,7 @@ namespace CommonForms
             }
         }
 
-        public FilesListComponent FilesListComponent { get; set; } = null;
+        public FilesList2? FilesListComponent { get; set; } = null;
 
         public ApplicationPageBase()
         {
