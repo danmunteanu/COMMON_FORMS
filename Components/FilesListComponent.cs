@@ -209,7 +209,7 @@ namespace CommonForms
             if (!UseProgressBar)
             {
                 //  remove the progress bar;
-                RemoveRow(tableLayoutFiles, 3);
+                RemoveRow(tableLayoutMaster, 3);
             }
         }
 
@@ -217,7 +217,7 @@ namespace CommonForms
         {
             if (!UseStatus)
             {
-                RemoveRow(tableLayoutFiles, 2);
+                RemoveRow(tableLayoutMaster, 2);
             }
         }
 

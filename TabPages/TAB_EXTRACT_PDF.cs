@@ -231,7 +231,7 @@ namespace CommonForms
                     Action.Destination = dlgSave.FileName;
                     Action.Execute(txtSource.Text);
 
-                    UpdateStatus("Selected pages extracted.");
+                    UpdateStatus("Selected pages have been extracted.");
                     UpdateUI();
 
                     btnExtract.Enabled = false;

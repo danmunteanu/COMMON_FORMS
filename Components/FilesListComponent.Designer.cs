@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tableLayoutFiles = new TableLayoutPanel();
+            tableLayoutMaster = new TableLayoutPanel();
             tableLayoutPanel1 = new TableLayoutPanel();
             btnSettings = new Button();
             lblAddFiles = new Label();
@@ -42,31 +42,31 @@
             btnClear = new Button();
             lblStatus = new Label();
             mFolderBrowserDialog = new FolderBrowserDialog();
-            tableLayoutFiles.SuspendLayout();
+            tableLayoutMaster.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutRowButtons.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutFiles
             // 
-            tableLayoutFiles.ColumnCount = 1;
-            tableLayoutFiles.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutFiles.Controls.Add(tableLayoutPanel1, 0, 0);
-            tableLayoutFiles.Controls.Add(progressBar, 0, 3);
-            tableLayoutFiles.Controls.Add(lstFiles, 0, 1);
-            tableLayoutFiles.Controls.Add(tableLayoutRowButtons, 0, 4);
-            tableLayoutFiles.Controls.Add(lblStatus, 0, 2);
-            tableLayoutFiles.Dock = DockStyle.Fill;
-            tableLayoutFiles.Location = new Point(0, 0);
-            tableLayoutFiles.Name = "tableLayoutFiles";
-            tableLayoutFiles.RowCount = 5;
-            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
-            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutFiles.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutFiles.Size = new Size(634, 593);
-            tableLayoutFiles.TabIndex = 33;
+            tableLayoutMaster.ColumnCount = 1;
+            tableLayoutMaster.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutMaster.Controls.Add(tableLayoutPanel1, 0, 0);
+            tableLayoutMaster.Controls.Add(progressBar, 0, 3);
+            tableLayoutMaster.Controls.Add(lstFiles, 0, 1);
+            tableLayoutMaster.Controls.Add(tableLayoutRowButtons, 0, 4);
+            tableLayoutMaster.Controls.Add(lblStatus, 0, 2);
+            tableLayoutMaster.Dock = DockStyle.Fill;
+            tableLayoutMaster.Location = new Point(0, 0);
+            tableLayoutMaster.Name = "tableLayoutFiles";
+            tableLayoutMaster.RowCount = 5;
+            tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
+            tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 36F));
+            tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutMaster.Size = new Size(634, 593);
+            tableLayoutMaster.TabIndex = 33;
             // 
             // tableLayoutPanel1
             // 
@@ -235,12 +235,12 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tableLayoutFiles);
+            Controls.Add(tableLayoutMaster);
             Margin = new Padding(2, 3, 2, 3);
             Name = "FilesListComponent";
             Size = new Size(634, 593);
-            tableLayoutFiles.ResumeLayout(false);
-            tableLayoutFiles.PerformLayout();
+            tableLayoutMaster.ResumeLayout(false);
+            tableLayoutMaster.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             tableLayoutRowButtons.ResumeLayout(false);
@@ -249,7 +249,7 @@
 
         #endregion
 
-        private TableLayoutPanel tableLayoutFiles;
+        private TableLayoutPanel tableLayoutMaster;
         private Label lblAddFiles;
         private ListBox lstFiles;
         private TableLayoutPanel tableLayoutRowButtons;
