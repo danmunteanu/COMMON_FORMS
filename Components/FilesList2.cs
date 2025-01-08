@@ -102,7 +102,7 @@ namespace CommonForms.Components
             InitializeComponent();
             CreateMasterLayout();
 
-            //_dlgSettings = new FilesListSettingsDialog(this);
+            _dlgSettings = new FilesListSettingsDialog(this);
 
             lstFiles.HorizontalScrollbar = true;
             lstFiles.SelectionMode = SelectionMode.None;
