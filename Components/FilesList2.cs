@@ -1,16 +1,14 @@
-﻿using System.Windows.Forms;
-
-namespace CommonForms.Components
+﻿namespace CommonForms.Components
 {
     public partial class FilesList2 : ApplicationPageBase
     {
         public struct ListSettings
         {
             //  The label above the list
-            public string TopLabel { get; set; } = ""; //  FILESLIST_COMPONENT_DEFAULT_ADD_LABEL
+            public string TopLabel { get; set; } = "Add Files"; //  FILESLIST_COMPONENT_DEFAULT_ADD_LABEL
 
             //  The text on button add
-            public string ButtonAddLabel { get; set; } = "";   //  FILESLIST_COMPONENT_BTN_ADD_LABEL
+            public string ButtonAddLabel { get; set; } = "ADD";   //  FILESLIST_COMPONENT_BTN_ADD_LABEL
 
             public bool ButtonSettingsVisible { get; set; } = true;
 
@@ -137,7 +135,8 @@ namespace CommonForms.Components
         /// <param name="message">The message will be set as the status</param>
         private void UpdateStatusLocal(string message)
         {
-            lblStatus.Text = message;
+            if (lblStatus != null)
+                lblStatus.Text = message;
         }
 
         public override void UpdateUI()
@@ -585,26 +584,40 @@ namespace CommonForms.Components
 
             masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
             masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
-            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+
+            if (Settings.UseStatus)
+            {
+                masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
+                lblStatus = CreateStatus();
+                lblStatus.Dock = DockStyle.Fill;
+            }
+
+            if (Settings.UseProgressBar)
+            {
+                masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+                progressBar = CreateProgressBar();
+            }
+
             masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45));
 
             TableLayoutPanel topLineLayout = CreateTopLine();
             lstFiles = CreateListBox();
-            lblStatus = CreateStatus();
-            progressBar = CreateProgressBar();
-            TableLayoutPanel buttonLayout = CreateBottomLayout();
+            
+            TableLayoutPanel bottomLayout = CreateBottomLayout();
 
             topLineLayout.Dock = DockStyle.Fill;
             lstFiles.Dock = DockStyle.Fill;
-            lblStatus.Dock = DockStyle.Fill;
-            buttonLayout.Dock = DockStyle.Fill;
+            bottomLayout.Dock = DockStyle.Fill;
 
-            masterTableLayout.Controls.Add(topLineLayout, 0, 0);
-            masterTableLayout.Controls.Add(lstFiles, 0, 1);
-            masterTableLayout.Controls.Add(lblStatus, 0, 2);
-            masterTableLayout.Controls.Add(progressBar, 0, 3);
-            masterTableLayout.Controls.Add(buttonLayout, 0, 4);
+            int rowIdx = 0;
+            masterTableLayout.Controls.Add(topLineLayout, 0, rowIdx++);
+            masterTableLayout.Controls.Add(lstFiles, 0, rowIdx++);
+            if (Settings.UseStatus && lblStatus != null)
+                masterTableLayout.Controls.Add(lblStatus, 0, rowIdx++);
+            if (Settings.UseProgressBar && progressBar != null)
+                masterTableLayout.Controls.Add(progressBar, 0, rowIdx++);
+
+            masterTableLayout.Controls.Add(bottomLayout, 0, rowIdx++);
 
             this.Controls.Add(masterTableLayout);
         }
