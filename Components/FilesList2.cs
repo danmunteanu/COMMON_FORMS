@@ -35,8 +35,9 @@ namespace CommonForms.Components
         public delegate void UpdateUIDelegate();
         public delegate void UpdateProgressDelegate(int progress);
         public delegate void SelectionChangedDelegate(string item);
-
-        private bool _selectAll = true;     //  true = select all, false = deselect all
+        
+        //  true = select all, false = deselect all
+        private bool mSelectAll = true;
 
         //  DELEGATES
         //  this will be called when pages have to update their UI
@@ -57,11 +58,11 @@ namespace CommonForms.Components
             set
             {
                 mSettings = value;
-                OnSetSettings();
+                OnSettingsSet();
             }
         }
 
-        private void OnSetSettings()
+        private void OnSettingsSet()
         {
             //  Update UI elements based on new settings
             lblAddFiles.Text = mSettings.TopLabel;
@@ -100,6 +101,8 @@ namespace CommonForms.Components
         public FilesList2()
         {
             InitializeComponent();
+
+            //  creates all the buttons and components
             CreateMasterLayout();
 
             _dlgSettings = new FilesListSettingsDialog(this);
@@ -424,11 +427,11 @@ namespace CommonForms.Components
             {
                 for (int idx = 0; idx < lstFiles.Items.Count; idx++)
                 {
-                    lstFiles.SetSelected(idx, _selectAll);
+                    lstFiles.SetSelected(idx, mSelectAll);
                 }
 
-                btnSelectAll.Text = _selectAll ? "DESELECT ALL" : "SELECT ALL";
-                _selectAll = !_selectAll;
+                btnSelectAll.Text = mSelectAll ? "DESELECT ALL" : "SELECT ALL";
+                mSelectAll = !mSelectAll;
             }
         }
 
@@ -587,46 +590,46 @@ namespace CommonForms.Components
             masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45));
 
             TableLayoutPanel topLineLayout = CreateTopLine();
-            ListBox listBox = CreateListBox();
-            Label statusLabel = CreateStatus();
-            System.Windows.Forms.ProgressBar progressBar = CreateProgressBar();
+            lstFiles = CreateListBox();
+            lblStatus = CreateStatus();
+            progressBar = CreateProgressBar();
             TableLayoutPanel buttonLayout = CreateBottomLayout();
 
             topLineLayout.Dock = DockStyle.Fill;
-            listBox.Dock = DockStyle.Fill;
-            statusLabel.Dock = DockStyle.Fill;
+            lstFiles.Dock = DockStyle.Fill;
+            lblStatus.Dock = DockStyle.Fill;
             buttonLayout.Dock = DockStyle.Fill;
 
             masterTableLayout.Controls.Add(topLineLayout, 0, 0);
-            masterTableLayout.Controls.Add(listBox, 0, 1);
-            masterTableLayout.Controls.Add(statusLabel, 0, 2);
+            masterTableLayout.Controls.Add(lstFiles, 0, 1);
+            masterTableLayout.Controls.Add(lblStatus, 0, 2);
             masterTableLayout.Controls.Add(progressBar, 0, 3);
             masterTableLayout.Controls.Add(buttonLayout, 0, 4);
 
             this.Controls.Add(masterTableLayout);
         }
 
-        
+        //  The dialog to select folders
+        private FolderBrowserDialog mFolderBrowserDialog = new FolderBrowserDialog();
+
         //  Top bar
-        private Label lblAddFiles;
-        private Button btnSelectAll;
-        private Button btnSettings;
+        private Label? lblAddFiles;
+        private Button? btnSelectAll;
+        private Button? btnSettings;
         
         //  Listbox
-        ListBox lstFiles;
+        private ListBox? lstFiles;
         
         //  Status
-        private Label lblStatus;
+        private Label? lblStatus;
 
         //  Progress bar
-        private ProgressBar progressBar;
+        private ProgressBar? progressBar;
         
         //  Bottom
-        private Button btnAddFiles;
-        private Button btnReload;
-        private Button btnRem;
-        private Button btnClear;
-
-        private FolderBrowserDialog mFolderBrowserDialog = new FolderBrowserDialog();
+        private Button? btnAddFiles;
+        private Button? btnReload;
+        private Button? btnRem;
+        private Button? btnClear;
     }
 }
