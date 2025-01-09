@@ -31,6 +31,29 @@
             ".opus"  // Opus Audio
         };
 
+        public static string[] ArchiveFileExtensions { get; } =
+        {
+            ".zip",
+            ".tar",
+            ".gz",
+            ".tar.gz",
+            ".tgz",
+            ".tar.bz2",
+            ".rar",
+            ".7z",
+            ".iso",
+            ".cab",
+            ".xz",
+            ".lz",
+            ".tar.xz",
+            ".z01",
+            ".ace",
+            ".arj",
+            ".lzh",
+            ".dmg",
+            ".apk"
+        };
+
         public static string[] ImageFileExtensions { get; } =
         {
             ".jpg",
