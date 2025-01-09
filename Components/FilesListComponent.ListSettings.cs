@@ -5,11 +5,11 @@
         //  LIST SETTINGS Structure
         public struct ListSettings
         {
-            //  The label above the list - FILESLIST_COMPONENT_DEFAULT_ADD_LABEL
-            public string TopLabel { get; set; } = "↓↓ Add Files To Merge ↓↓";
+            //  The label above the list
+            public string TopLabel { get; set; } = Locale.FILES_LIST_LABEL_ADD;
 
-            //  The text on button add - FILESLIST_COMPONENT_BTN_ADD_LABEL
-            public string ButtonAddLabel { get; set; } = "ADD";
+            //  The text on button add
+            public string ButtonAddLabel { get; set; } = Locale.FILES_LIST_BUTTON_ADD;
 
             public bool SettingsButtonVisible { get; set; } = true;
 
@@ -55,7 +55,7 @@
             RebuildLayout();
         }
 
-        //  The list must always have settings instantiated
+        //  The list must always have a settings instance
         private ListSettings mSettings = new();
     }
 }

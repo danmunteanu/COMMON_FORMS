@@ -15,17 +15,6 @@ namespace CommonForms
         protected ResourceManager? mResourceManager = null;
         protected Processor? mFilesProcessor = null;
 
-        public ResourceManager? Resource
-        {
-            get { return mResourceManager; }
-            set
-            {
-                mResourceManager = value;
-
-                OnResourceSet();
-            }
-        }
-
         public Processor? Processor
         {
             get { return mFilesProcessor; }
@@ -41,11 +30,6 @@ namespace CommonForms
 
         public ApplicationPageBase()
         {
-        }
-
-        protected virtual void OnResourceSet()
-        {
-            //  implement in derived class
         }
 
         protected virtual void OnProcessorSet()

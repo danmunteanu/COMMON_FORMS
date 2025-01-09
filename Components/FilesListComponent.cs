@@ -83,24 +83,12 @@
             btnRem.Enabled = haveFiles && lstFiles.SelectedIndex != -1;
         }
 
-        // Overrides <c>OnResourceSet</c> from the base class <c>ApplicationPageBase</c>
-        // Loads this list's localization strings.
-        protected override void OnResourceSet()
-        {
-            //  Load file list localisations
-            if (Resource != null)
-            {
-                //  load topmost string
-                UpdateLocalizations();
-            }
-        }
-
         private void UpdateLocalizations()
         {
-            lblAddFiles.Text = Locale.FILE_LIST_LABEL_ADD;
-            btnAddFiles.Text = Locale.FILE_LIST_BUTTON_ADD;
-            btnRem.Text = Locale.FILE_LIST_BUTTON_REM;
-            btnClear.Text = Locale.FILE_LIST_BUTTON_CLEAR;
+            lblAddFiles.Text = Locale.FILES_LIST_LABEL_ADD;
+            btnAddFiles.Text = Locale.FILES_LIST_BUTTON_ADD;
+            btnRem.Text = Locale.FILES_LIST_BUTTON_REM;
+            btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
         }
 
         private void AddFilesFromFolder(string folder)
@@ -349,6 +337,10 @@
         {
             //  setup the table layout for the top line
             TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
+
+            // BORDER for debugging
+            //tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.ColumnCount = 4;
             tableLayoutPanel.RowCount = 1;
@@ -365,9 +357,8 @@
             lblAddFiles.AutoSize = true;
             lblAddFiles.Text = Settings.TopLabel;
             lblAddFiles.TextAlign = ContentAlignment.MiddleLeft;
-            lblAddFiles.Padding = new Padding(10, 0, 0, 0);
+            lblAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
             lblAddFiles.Font = new Font(lblAddFiles.Font.FontFamily, 9);
-            lblAddFiles.Anchor = AnchorStyles.Left;
 
             //  button Select All
             btnSelectAll.Text = "SELECT ALL";
@@ -410,8 +401,11 @@
             lstFiles.SelectionMode = SelectionMode.None;
             lstFiles.Margin = new Padding(0);
 
+            lstFiles.DragEnter -= listFiles_DragEnter;
             lstFiles.DragEnter += listFiles_DragEnter;
+            lstFiles.DragDrop -= listFiles_DragDrop;
             lstFiles.DragDrop += listFiles_DragDrop;
+            lstFiles.SelectedIndexChanged -= lstFiles_SelectedIndexChanged;
             lstFiles.SelectedIndexChanged += lstFiles_SelectedIndexChanged;
 
             return lstFiles;
@@ -440,7 +434,7 @@
         {
             TableLayoutPanel layoutBottomLine = new TableLayoutPanel();
             layoutBottomLine.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
-
+            
             // BORDER for debugging
             //layoutBottomLine.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
@@ -460,7 +454,7 @@
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnClear
 
             // btnAddFolder
-            btnAddFiles.Text = "ADD FOLDER";
+            btnAddFiles.Text = Settings.ButtonAddLabel;
             btnAddFiles.Font = new Font(btnAddFiles.Font.FontFamily, 8);
             btnAddFiles.Dock = DockStyle.Fill;
             btnAddFiles.Click -= btnAdd_Click;

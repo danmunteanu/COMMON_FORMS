@@ -4,9 +4,9 @@ namespace CommonForms
 {
     public partial class EditorMergeFiles : EditorBase
     {
-        private ActionMergeFiles _action = null;
+        private ActionMergeTextFiles _action = null;
 
-        public ActionMergeFiles Action
+        public ActionMergeTextFiles Action
         {
             get { return _action; }
             set { _action = value; LoadState(_action); }
@@ -19,7 +19,7 @@ namespace CommonForms
 
         public override void SaveState(RealityFrameworks.Actions.Action action)
         {
-            if (action is ActionMergeFiles amf)
+            if (action is ActionMergeTextFiles amf)
             {
                 amf.OutputFile = txtMergeName.Text;
             }
@@ -27,13 +27,13 @@ namespace CommonForms
 
         public override void LoadState(RealityFrameworks.Actions.Action action)
         {
-            if (action is ActionMergeFiles amf)
+            if (action is ActionMergeTextFiles amf)
             {
                 txtMergeName.Text = amf.OutputFile;
             }
         }
 
-        private void LoadState(ActionMergeFiles amf)
+        private void LoadState(ActionMergeTextFiles amf)
         {
             //  Load Stuff from amf
         }

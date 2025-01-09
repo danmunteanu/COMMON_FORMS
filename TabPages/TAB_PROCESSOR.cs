@@ -40,6 +40,8 @@ namespace CommonForms
 
             //mFilesProcessor.AddFolder(@"E:\EXILE_3.25", true);
             //mFilesProcessor.AddFolder(@"e:\Path of Building\Data\", true);
+
+            UpdateLocalizations();
         }
 
         protected override void OnProcessorSet()
@@ -49,11 +51,6 @@ namespace CommonForms
             ReloadProcessor();
 
             UpdateUI();
-        }
-
-        protected override void OnResourceSet()
-        {
-            UpdateLocalizations();
         }
 
 		private void UpdateLocalizations()

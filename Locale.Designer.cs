@@ -207,41 +207,41 @@ namespace CommonForms {
         /// <summary>
         ///   Looks up a localized string similar to ADD FILES.
         /// </summary>
-        internal static string FILE_LIST_BUTTON_ADD {
+        internal static string FILES_LIST_BUTTON_ADD {
             get {
-                return ResourceManager.GetString("FILE_LIST_BUTTON_ADD", resourceCulture);
+                return ResourceManager.GetString("FILES_LIST_BUTTON_ADD", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to CLEAR.
         /// </summary>
-        internal static string FILE_LIST_BUTTON_CLEAR {
+        internal static string FILES_LIST_BUTTON_CLEAR {
             get {
-                return ResourceManager.GetString("FILE_LIST_BUTTON_CLEAR", resourceCulture);
+                return ResourceManager.GetString("FILES_LIST_BUTTON_CLEAR", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to -.
         /// </summary>
-        internal static string FILE_LIST_BUTTON_REM {
+        internal static string FILES_LIST_BUTTON_REM {
             get {
-                return ResourceManager.GetString("FILE_LIST_BUTTON_REM", resourceCulture);
+                return ResourceManager.GetString("FILES_LIST_BUTTON_REM", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ↓↓ Add Files To Merge ↓↓.
         /// </summary>
-        internal static string FILE_LIST_LABEL_ADD {
+        internal static string FILES_LIST_LABEL_ADD {
             get {
-                return ResourceManager.GetString("FILE_LIST_LABEL_ADD", resourceCulture);
+                return ResourceManager.GetString("FILES_LIST_LABEL_ADD", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folder was added..
+        ///   Looks up a localized string similar to Folder added..
         /// </summary>
         internal static string STATUS_FOLDER_ADDED {
             get {
@@ -250,7 +250,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folder was not added..
+        ///   Looks up a localized string similar to Folder not added..
         /// </summary>
         internal static string STATUS_FOLDER_NOT_ADDED {
             get {
@@ -259,7 +259,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Folder was reloaded..
+        ///   Looks up a localized string similar to Folder reloaded..
         /// </summary>
         internal static string STATUS_FOLDER_RELOADED {
             get {
@@ -268,7 +268,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List was cleared..
+        ///   Looks up a localized string similar to List cleared..
         /// </summary>
         internal static string STATUS_LIST_CLEARED {
             get {
