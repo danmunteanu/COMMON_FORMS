@@ -34,8 +34,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Name = "FilesList2";
-            Load += FilesList2_Load;
+            Name = "FilesList2";            
             ResumeLayout(false);
         }
 

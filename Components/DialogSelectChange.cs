@@ -2,7 +2,7 @@
 using RealityFrameworks.Conditions;
 using System.Windows.Forms;
 
-namespace CommonForms
+namespace CommonForms.Components
 {
     public partial class DialogSelectChange : Form
     {

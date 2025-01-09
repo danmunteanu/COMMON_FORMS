@@ -3,7 +3,7 @@
     public partial class FilesListComponent : ApplicationPageBase
     {
         //  Settings dialog
-        private FilesListSettingsDialog _dlgSettings;
+        private FilesListSettingsDialog mDlgSettings;
 
         //  Keeps track of the Select All/Deselect All state
         private bool mSelectAll = true;
@@ -14,6 +14,24 @@
         {
             get { return mFileFilters; }
             set { mFileFilters = value; }
+        }
+
+        public FilesListComponent()
+        {
+            InitializeComponent();
+
+            //  creates all the components - labels, buttons, listbox
+            CreateMasterLayout();
+
+            mDlgSettings = new FilesListSettingsDialog(this);
+
+            //  provide a default local status updater
+            UpdateStatusCallback = this.UpdateStatusLocal;
+
+            //  empty the status
+            CallUpdateStatus(string.Empty);
+
+            UpdateUI();
         }
 
         // Sets the progress bar value
@@ -31,30 +49,6 @@
                 if (progressBar != null)
                     progressBar.Value = value;
             }
-        }
-
-
-        public FilesListComponent()
-        {
-            InitializeComponent();
-
-            //  creates all the components - labels, buttons, listbox
-            CreateMasterLayout();
-
-            _dlgSettings = new FilesListSettingsDialog(this);
-
-            //  provide a default local status updater
-            UpdateStatusCallback = this.UpdateStatusLocal;
-
-            //  empty the status
-            CallUpdateStatus(string.Empty);
-
-            UpdateUI();
-        }
-
-        private void FilesList2_Load(object? sender, EventArgs e)
-        {
-            RebuildLayout();
         }
 
         public void RebuildLayout()
@@ -97,11 +91,16 @@
             if (Resource != null)
             {
                 //  load topmost string
-                lblAddFiles.Text = Locale.FILE_LIST_LABEL_ADD;
-                btnAddFiles.Text = Locale.FILE_LIST_BUTTON_ADD;
-                btnRem.Text = Locale.FILE_LIST_BUTTON_REM;
-                btnClear.Text = Locale.FILE_LIST_BUTTON_CLEAR;
+                UpdateLocalizations();
             }
+        }
+
+        private void UpdateLocalizations()
+        {
+            lblAddFiles.Text = Locale.FILE_LIST_LABEL_ADD;
+            btnAddFiles.Text = Locale.FILE_LIST_BUTTON_ADD;
+            btnRem.Text = Locale.FILE_LIST_BUTTON_REM;
+            btnClear.Text = Locale.FILE_LIST_BUTTON_CLEAR;
         }
 
         private void AddFilesFromFolder(string folder)
@@ -151,10 +150,13 @@
         {
             //  show dialog to select folder
             DialogResult res = mFolderBrowserDialog.ShowDialog();
-            if (res == DialogResult.OK && !string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
+            if (res == DialogResult.OK)
             {
-                AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
-                CallUpdateStatus(Locale.STATUS_FOLDER_ADDED);
+                if (!string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
+                {
+                    AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
+                    CallUpdateStatus(Locale.STATUS_FOLDER_ADDED);
+                }
             }
             else
             {
@@ -339,8 +341,8 @@
         private void btnSettings_Click(object? sender, EventArgs e)
         {
             //  List's state might have changed, reload them and then display
-            _dlgSettings.LoadListSettings();
-            _dlgSettings.ShowDialog(this);
+            mDlgSettings.LoadListSettings();
+            mDlgSettings.ShowDialog(this);
         }
 
         private TableLayoutPanel CreateTopLine()
@@ -378,7 +380,8 @@
             Size textSize = TextRenderer.MeasureText(btnSelectAll.Text, btnSelectAll.Font);
             btnSelectAll.Width = textSize.Width + 5;
             btnSelectAll.Height = textSize.Height + 5;
-            btnSelectAll.Click += btnSelectAll_Click;
+            btnSelectAll.Click -= btnSelectAll_Click;   //  remove prev handler
+            btnSelectAll.Click += btnSelectAll_Click;   //  make sure it's only once
 
             //  button Settings
             btnSettings.Text = "SETTINGS";
@@ -387,6 +390,7 @@
             btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSettings.AutoSize = true;
             btnSettings.TextAlign = ContentAlignment.MiddleCenter;
+            btnSettings.Click -= btnSettings_Click;
             btnSettings.Click += btnSettings_Click;
 
             //  Add the controls to the layout
@@ -404,6 +408,7 @@
             lstFiles.Font = new Font("Arial", 10);
             lstFiles.HorizontalScrollbar = true;
             lstFiles.SelectionMode = SelectionMode.None;
+            lstFiles.Margin = new Padding(0);
 
             lstFiles.DragEnter += listFiles_DragEnter;
             lstFiles.DragDrop += listFiles_DragDrop;
@@ -434,47 +439,62 @@
         private TableLayoutPanel CreateBottomLayout()
         {
             TableLayoutPanel layoutBottomLine = new TableLayoutPanel();
+            layoutBottomLine.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
+
+            // BORDER for debugging
+            //layoutBottomLine.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+
             layoutBottomLine.Dock = DockStyle.Fill;
+            layoutBottomLine.AutoSize = true;
             layoutBottomLine.ColumnCount = 5;
             layoutBottomLine.RowCount = 1;
 
+            // Set row style to fill the available height
+            layoutBottomLine.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+
+            // Add the column styles
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnAdd
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnReload (square)
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnRem (square)
-            layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70));  // Empty space
+            layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));  // Empty space
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnClear
 
-            btnAddFiles = new System.Windows.Forms.Button();
+            // btnAddFolder
             btnAddFiles.Text = "ADD FOLDER";
             btnAddFiles.Font = new Font(btnAddFiles.Font.FontFamily, 8);
-            btnAddFiles.AutoSize = true;
-            btnAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-
-            btnAddFiles.Anchor = AnchorStyles.Left;
+            btnAddFiles.Dock = DockStyle.Fill;
+            btnAddFiles.Click -= btnAdd_Click;
             btnAddFiles.Click += btnAdd_Click;
-
-            btnReload = new System.Windows.Forms.Button();
+            
+            // btnReload
             btnReload.Text = "↻";
-            btnReload.AutoSize = true;
             btnReload.Font = new Font(btnReload.Font.FontFamily, 8);
-            btnReload.Size = new Size(27, 27);
-            btnReload.Anchor = AnchorStyles.Left;
+            btnReload.Width = 35;
+            btnReload.Dock = DockStyle.Fill; // Ensure it fills the height
+            btnReload.Click -= btnReloadFolder_Click;
             btnReload.Click += btnReloadFolder_Click;
 
-            btnRem = new System.Windows.Forms.Button();
-            btnRem.AutoSize = true;
+            // btnRem
             btnRem.Text = "-";
             btnRem.Font = new Font(btnRem.Font.FontFamily, 8);
-            btnRem.Size = new Size(27, 27);
-            btnRem.Anchor = AnchorStyles.Left;
-
-            btnClear = new ();
+            btnRem.Width = 35;
+            btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
+            
+            // btnClear
             btnClear.Text = "CLEAR";
-            btnClear.AutoSize = true;
             btnClear.Font = new Font(btnClear.Font.FontFamily, 8);
-            btnClear.AutoSize = true;
-            btnClear.Anchor = AnchorStyles.Left;
+            btnClear.AutoSize = false;
+            btnClear.Dock = DockStyle.Fill;
+            btnClear.Click -= btnClear_Click;
             btnClear.Click += btnClear_Click;
+
+            //  Remove padding from all components
+            Control[] controls = { btnAddFiles, btnReload, btnRem, btnClear };
+            foreach (Control control in controls)
+            {
+                control.Padding = new Padding(0);
+                control.Margin = new Padding(0);
+            }
 
             layoutBottomLine.Controls.Add(btnAddFiles, 0, 0);
             layoutBottomLine.Controls.Add(btnReload, 1, 0);
@@ -483,6 +503,7 @@
 
             return layoutBottomLine;
         }
+
 
         private void CreateMasterLayout()
         {
@@ -496,12 +517,12 @@
             topLineLayout.Dock = DockStyle.Fill;
             masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
 
-            //  List
+            //  ListBox
             lstFiles = CreateListBox();
             lstFiles.Dock = DockStyle.Fill;
             masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
 
-            //  Status
+            //  Status line
             if (Settings.UseStatus)
             {
                 lblStatus = CreateStatus();
@@ -518,17 +539,15 @@
 
             //  Bottom Buttons
             TableLayoutPanel bottomLayout = CreateBottomLayout();
-            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45));          
+            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45));
             bottomLayout.Dock = DockStyle.Fill;
 
             //  Add all controls to the master layout
             int rowIdx = 0;
             masterTableLayout.Controls.Add(topLineLayout, 0, rowIdx++);
             masterTableLayout.Controls.Add(lstFiles, 0, rowIdx++);
-            if (Settings.UseStatus && lblStatus != null)
-                masterTableLayout.Controls.Add(lblStatus, 0, rowIdx++);
-            if (Settings.UseProgressBar && progressBar != null)
-                masterTableLayout.Controls.Add(progressBar, 0, rowIdx++);
+            if (Settings.UseStatus && lblStatus != null) masterTableLayout.Controls.Add(lblStatus, 0, rowIdx++);
+            if (Settings.UseProgressBar && progressBar != null) masterTableLayout.Controls.Add(progressBar, 0, rowIdx++);
             masterTableLayout.Controls.Add(bottomLayout, 0, rowIdx++);
 
             this.Controls.Add(masterTableLayout);
