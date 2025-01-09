@@ -43,9 +43,6 @@
 
             _dlgSettings = new FilesListSettingsDialog(this);
 
-            lstFiles.HorizontalScrollbar = true;
-            lstFiles.SelectionMode = SelectionMode.None;
-
             //  provide a default local status updater
             UpdateStatusCallback = this.UpdateStatusLocal;
 
@@ -348,18 +345,20 @@
 
         private TableLayoutPanel CreateTopLine()
         {
+            //  setup the table layout for the top line
             TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.ColumnCount = 4;
             tableLayoutPanel.RowCount = 1;
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
+            //  table columns
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Label
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F)); // Empty space
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Button 1 (fixed width)
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Button 2 (fixed width)
 
-            lblAddFiles = new();
+            //  label Add Files
             lblAddFiles.Name = "lblAddFiles";
             lblAddFiles.AutoSize = true;
             lblAddFiles.Text = Settings.TopLabel;
@@ -368,6 +367,7 @@
             lblAddFiles.Font = new Font(lblAddFiles.Font.FontFamily, 9);
             lblAddFiles.Anchor = AnchorStyles.Left;
 
+            //  button Select All
             btnSelectAll.Text = "SELECT ALL";
             btnSelectAll.Font = new Font(btnSelectAll.Font.FontFamily, 8);
             btnSelectAll.Anchor = AnchorStyles.Left | AnchorStyles.Right;
@@ -380,20 +380,16 @@
             btnSelectAll.Height = textSize.Height + 5;
             btnSelectAll.Click += btnSelectAll_Click;
 
-            btnSettings = new();
+            //  button Settings
             btnSettings.Text = "SETTINGS";
+            btnSettings.Visible = Settings.SettingsButtonVisible;
             btnSettings.Font = new Font(btnSettings.Font.FontFamily, 8);
             btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSettings.AutoSize = true;
-            btnSettings.Height = 23;
             btnSettings.TextAlign = ContentAlignment.MiddleCenter;
-            textSize = TextRenderer.MeasureText(btnSettings.Text, btnSettings.Font);
             btnSettings.Click += btnSettings_Click;
 
-            // Set the button size
-            btnSettings.Width = textSize.Width + 5;
-            btnSettings.Height = textSize.Height + 5;
-
+            //  Add the controls to the layout
             tableLayoutPanel.Controls.Add(lblAddFiles, 0, 0);
             tableLayoutPanel.Controls.Add(btnSelectAll, 2, 0);
             tableLayoutPanel.Controls.Add(btnSettings, 3, 0);
@@ -403,10 +399,11 @@
 
         private ListBox CreateListBox()
         {
-            lstFiles = new ListBox();
             lstFiles.Dock = DockStyle.Fill;
             lstFiles.SelectionMode = SelectionMode.None;
             lstFiles.Font = new Font("Arial", 10);
+            lstFiles.HorizontalScrollbar = true;
+            lstFiles.SelectionMode = SelectionMode.None;
 
             lstFiles.DragEnter += listFiles_DragEnter;
             lstFiles.DragDrop += listFiles_DragDrop;
