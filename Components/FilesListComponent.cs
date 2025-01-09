@@ -357,11 +357,11 @@
             lblAddFiles.AutoSize = true;
             lblAddFiles.Text = Settings.TopLabel;
             lblAddFiles.TextAlign = ContentAlignment.MiddleLeft;
-            lblAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Bottom;
+            lblAddFiles.Anchor = AnchorStyles.Left; // | AnchorStyles.Bottom;
             lblAddFiles.Font = new Font(lblAddFiles.Font.FontFamily, 9);
 
             //  button Select All
-            btnSelectAll.Text = "SELECT ALL";
+            btnSelectAll.Text = Locale.FILES_LIST_BUTTON_SELECT_ALL ;
             btnSelectAll.Font = new Font(btnSelectAll.Font.FontFamily, 8);
             btnSelectAll.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSelectAll.AutoSize = true;
@@ -375,7 +375,7 @@
             btnSelectAll.Click += btnSelectAll_Click;   //  make sure it's only once
 
             //  button Settings
-            btnSettings.Text = "SETTINGS";
+            btnSettings.Text = Locale.FILES_LIST_BUTTON_SETTINGS;
             btnSettings.Visible = Settings.SettingsButtonVisible;
             btnSettings.Font = new Font(btnSettings.Font.FontFamily, 8);
             btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;

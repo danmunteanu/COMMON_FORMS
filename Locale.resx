@@ -190,4 +190,10 @@
   <data name="DLG_CHANGE_ERR_MSG_CHANGE_WRONG" xml:space="preserve">
     <value>Something went wrong with the Change, it is not valid.</value>
   </data>
+  <data name="FILES_LIST_BUTTON_SELECT_ALL" xml:space="preserve">
+    <value>SELECT ALL</value>
+  </data>
+  <data name="FILES_LIST_BUTTON_SETTINGS" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
 </root>

@@ -232,6 +232,24 @@ namespace CommonForms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SELECT ALL.
+        /// </summary>
+        internal static string FILES_LIST_BUTTON_SELECT_ALL {
+            get {
+                return ResourceManager.GetString("FILES_LIST_BUTTON_SELECT_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SETTINGS.
+        /// </summary>
+        internal static string FILES_LIST_BUTTON_SETTINGS {
+            get {
+                return ResourceManager.GetString("FILES_LIST_BUTTON_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ↓↓ Add Files To Merge ↓↓.
         /// </summary>
         internal static string FILES_LIST_LABEL_ADD {
