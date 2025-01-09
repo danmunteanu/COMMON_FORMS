@@ -2,15 +2,15 @@
 {
     public partial class FilesListSettingsDialog : Form
     {
-        FilesList2? _listControl = null;
+        FilesListComponent? _listControl = null;
 
-        public FilesList2? ListControl
+        public FilesListComponent? ListControl
         {
             get { return _listControl; }
             set { _listControl = value; LoadListSettings(); }
         }
 
-        public FilesListSettingsDialog(FilesList2 listControl)
+        public FilesListSettingsDialog(FilesListComponent listControl)
         {
             InitializeComponent();
 
@@ -26,7 +26,7 @@
         {
             if (_listControl != null)
             {
-                chkAddFolders.Checked = _listControl.Settings.AddFolders;
+                chkAddFolders.Checked = _listControl.Settings.AllowAddFolders;
                 chkParseSubfolders.Enabled = chkAddFolders.Checked;
                 chkParseSubfolders.Checked = _listControl.Settings.ParseSubfolders;
             }
@@ -45,8 +45,8 @@
         {
             if (_listControl != null)
             {
-                FilesList2.ListSettings settings = _listControl.Settings;
-                settings.AddFolders = chkAddFolders.Checked;
+                FilesListComponent.ListSettings settings = _listControl.Settings;
+                settings.AllowAddFolders = chkAddFolders.Checked;
                 settings.ParseSubfolders = chkParseSubfolders.Checked;
                 _listControl.Settings = settings;
             }
