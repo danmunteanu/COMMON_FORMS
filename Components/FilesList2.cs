@@ -445,21 +445,6 @@
             _dlgSettings.ShowDialog(this);
         }
 
-        /*
-         *             tableLayoutPanel1.ColumnCount = 4;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 222F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
-            tableLayoutPanel1.Controls.Add(lblAddFiles, 0, 0);
-            tableLayoutPanel1.Controls.Add(btnSelectDesel, 2, 0);
-            tableLayoutPanel1.Controls.Add(btnSettings, 3, 0);
-            tableLayoutPanel1.Location = new Point(2, 3);
-            tableLayoutPanel1.Margin = new Padding(2, 3, 2, 3);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Size = new Size(630, 29);
-         */
-
         private TableLayoutPanel CreateTopLine()
         {
             TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
