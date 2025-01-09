@@ -539,7 +539,7 @@
 
             //  Bottom Buttons
             TableLayoutPanel bottomLayout = CreateBottomLayout();
-            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45));
+            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
             bottomLayout.Dock = DockStyle.Fill;
 
             //  Add all controls to the master layout

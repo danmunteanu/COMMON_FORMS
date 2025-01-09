@@ -43,8 +43,7 @@
 
         private void OnSettingsSet()
         {
-            bool canSet = lblAddFiles != null && btnAddFiles != null && btnSettings != null;
-            if (!canSet)
+            if (!(lblAddFiles != null && btnAddFiles != null && btnSettings != null))
                 return;
 
             //  Update UI elements based on new settings
