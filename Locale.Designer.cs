@@ -207,6 +207,42 @@ namespace CommonForms {
         /// <summary>
         ///   Looks up a localized string similar to ADD FILES.
         /// </summary>
+        internal static string FILE_LIST_BUTTON_ADD {
+            get {
+                return ResourceManager.GetString("FILE_LIST_BUTTON_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CLEAR.
+        /// </summary>
+        internal static string FILE_LIST_BUTTON_CLEAR {
+            get {
+                return ResourceManager.GetString("FILE_LIST_BUTTON_CLEAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -.
+        /// </summary>
+        internal static string FILE_LIST_BUTTON_REM {
+            get {
+                return ResourceManager.GetString("FILE_LIST_BUTTON_REM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ↓↓ Add Files ↓↓ .
+        /// </summary>
+        internal static string FILE_LIST_LABEL_ADD {
+            get {
+                return ResourceManager.GetString("FILE_LIST_LABEL_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD FILES.
+        /// </summary>
         internal static string FILES_LIST_BUTTON_ADD {
             get {
                 return ResourceManager.GetString("FILES_LIST_BUTTON_ADD", resourceCulture);
@@ -241,7 +277,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SETTINGS.
+        ///   Looks up a localized string similar to LIST SETTINGS.
         /// </summary>
         internal static string FILES_LIST_BUTTON_SETTINGS {
             get {
@@ -255,6 +291,15 @@ namespace CommonForms {
         internal static string FILES_LIST_LABEL_ADD {
             get {
                 return ResourceManager.GetString("FILES_LIST_LABEL_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List ready..
+        /// </summary>
+        internal static string FILES_LIST_STATUS_READY {
+            get {
+                return ResourceManager.GetString("FILES_LIST_STATUS_READY", resourceCulture);
             }
         }
         

@@ -32,6 +32,8 @@
             chkParseSubfolders = new CheckBox();
             btnCancel = new Button();
             btnSave = new Button();
+            chkShowStatus = new CheckBox();
+            chkShowProgressBar = new CheckBox();
             SuspendLayout();
             // 
             // chkAddFolders
@@ -80,11 +82,33 @@
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
             // 
+            // chkUseStatus
+            // 
+            chkShowStatus.AutoSize = true;
+            chkShowStatus.Location = new Point(48, 119);
+            chkShowStatus.Name = "chkUseStatus";
+            chkShowStatus.Size = new Size(111, 24);
+            chkShowStatus.TabIndex = 5;
+            chkShowStatus.Text = "Show Status";
+            chkShowStatus.UseVisualStyleBackColor = true;
+            // 
+            // chkShowProgress
+            // 
+            chkShowProgressBar.AutoSize = true;
+            chkShowProgressBar.Location = new Point(48, 149);
+            chkShowProgressBar.Name = "chkShowProgress";
+            chkShowProgressBar.Size = new Size(141, 24);
+            chkShowProgressBar.TabIndex = 6;
+            chkShowProgressBar.Text = "Use Progress Bar";
+            chkShowProgressBar.UseVisualStyleBackColor = true;
+            // 
             // FilesListSettingsDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(475, 266);
+            Controls.Add(chkShowProgressBar);
+            Controls.Add(chkShowStatus);
             Controls.Add(btnSave);
             Controls.Add(btnCancel);
             Controls.Add(chkParseSubfolders);
@@ -102,5 +126,7 @@
         private CheckBox chkParseSubfolders;
         private Button btnCancel;
         private Button btnSave;
+        private CheckBox chkShowStatus;
+        private CheckBox chkShowProgressBar;
     }
 }

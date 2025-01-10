@@ -129,17 +129,14 @@
   <data name="STATUS_LIST_CLEARED" xml:space="preserve">
     <value>Lista a fost golită.</value>
   </data>
-  <data name="FILE_LIST_LABEL_ADD" xml:space="preserve">
-    <value>↓↓ Adaugă fișiere pentru îmbinare ↓↓</value>
+  <data name="FILES_LIST_BUTTON_ADD" xml:space="preserve">
+    <value>ADAUGĂ</value>
   </data>
-  <data name="FILE_LIST_BUTTON_ADD" xml:space="preserve">
-    <value>ADAUGĂ FIȘIERE</value>
-  </data>
-  <data name="FILE_LIST_BUTTON_REM" xml:space="preserve">
+  <data name="FILES_LIST_BUTTON_REM" xml:space="preserve">
     <value>-</value>
   </data>
-  <data name="FILE_LIST_BUTTON_CLEAR" xml:space="preserve">
-    <value>CURĂȚĂ</value>
+  <data name="FILES_LIST_BUTTON_CLEAR" xml:space="preserve">
+    <value>Curăță</value>
   </data>
   <data name="DLG_CHANGE_BUTTON_ADD_LABEL" xml:space="preserve">
     <value>ADAUGĂ</value>
@@ -188,5 +185,26 @@
   </data>
   <data name="DLG_CHANGE_ERR_MSG_CHANGE_WRONG" xml:space="preserve">
     <value>Ceva e în neregula cu Schimbarea aceasta, nu e configurată corect.</value>
+  </data>
+  <data name="FILES_LIST_BUTTON_SELECT_ALL" xml:space="preserve">
+    <value>SELECTEAZĂ TOATE</value>
+  </data>
+  <data name="FILES_LIST_BUTTON_SETTINGS" xml:space="preserve">
+    <value>SETĂRI LISTĂ</value>
+  </data>
+  <data name="FILE_LIST_LABEL_ADD" xml:space="preserve">
+    <value>↓↓ Adaugă fișiere pentru îmbinare ↓↓</value>
+  </data>
+  <data name="FILE_LIST_BUTTON_ADD" xml:space="preserve">
+    <value>ADAUGĂ FIȘIERE</value>
+  </data>
+  <data name="FILE_LIST_BUTTON_REM" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="FILE_LIST_BUTTON_CLEAR" xml:space="preserve">
+    <value>CURĂȚĂ</value>
+  </data>
+  <data name="FILES_LIST_STATUS_READY" xml:space="preserve">
+    <value>Lista inițializată.</value>
   </data>
 </root>

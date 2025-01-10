@@ -3,12 +3,13 @@
     public partial class FilesListComponent : ApplicationPageBase
     {
         //  Settings dialog
-        private FilesListSettingsDialog mDlgSettings;
+        private FilesListSettingsDialog mDialolgSettings;
 
         //  Keeps track of the Select All/Deselect All state
         private bool mSelectAll = true;
 
-        //  The file filters used to add files to the list.
+        //  The file filters used to add files to the list
+        //  via btnAddFiles and drag & drop
         private List<string> mFileFilters = new();
         public List<string> FileFilters
         {
@@ -23,13 +24,13 @@
             //  creates all the components - labels, buttons, listbox
             CreateMasterLayout();
 
-            mDlgSettings = new FilesListSettingsDialog(this);
+            mDialolgSettings = new FilesListSettingsDialog(this);
 
             //  provide a default local status updater
             UpdateStatusCallback = this.UpdateStatusLocal;
 
             //  empty the status
-            CallUpdateStatus(string.Empty);
+            CallUpdateStatus(Locale.FILES_LIST_STATUS_READY);
 
             UpdateUI();
         }
@@ -278,6 +279,9 @@
 
         private bool AddFileNameToProcessor(string item)
         {
+            if (mFilesProcessor == null)
+                return false;
+
             //  Get Extension
             string ext = Path.GetExtension(item).ToLower();
 
@@ -329,8 +333,8 @@
         private void btnSettings_Click(object? sender, EventArgs e)
         {
             //  List's state might have changed, reload them and then display
-            mDlgSettings.LoadListSettings();
-            mDlgSettings.ShowDialog(this);
+            mDialolgSettings.LoadListSettings();
+            mDialolgSettings.ShowDialog(this);
         }
 
         private TableLayoutPanel CreateTopLine()
@@ -413,8 +417,6 @@
 
         private Label CreateStatus()
         {
-            lblStatus = new Label();
-            lblStatus.Text = "Status:";
             lblStatus.Font = new Font(lblStatus.Font.FontFamily, 8);
             lblStatus.Anchor = AnchorStyles.Left;
             lblStatus.TextAlign = ContentAlignment.MiddleLeft;
@@ -423,7 +425,7 @@
 
         private ProgressBar CreateProgressBar()
         {
-            progressBar = new ();
+            progressBar.Value = 0;
             progressBar.Style = ProgressBarStyle.Marquee;
             progressBar.Dock = DockStyle.Fill;
 
@@ -457,6 +459,7 @@
             btnAddFiles.Text = Settings.ButtonAddLabel;
             btnAddFiles.Font = new Font(btnAddFiles.Font.FontFamily, 8);
             btnAddFiles.Dock = DockStyle.Fill;
+            btnAddFiles.AutoSize = true;
             btnAddFiles.Click -= btnAdd_Click;
             btnAddFiles.Click += btnAdd_Click;
             
@@ -477,7 +480,7 @@
             // btnClear
             btnClear.Text = "CLEAR";
             btnClear.Font = new Font(btnClear.Font.FontFamily, 8);
-            btnClear.AutoSize = false;
+            btnClear.AutoSize = true;
             btnClear.Dock = DockStyle.Fill;
             btnClear.Click -= btnClear_Click;
             btnClear.Click += btnClear_Click;
@@ -559,10 +562,10 @@
         private ListBox lstFiles = new();
         
         //  Status
-        private Label? lblStatus;
+        private Label lblStatus = new();
 
         //  Progress bar
-        private ProgressBar? progressBar;
+        private ProgressBar progressBar = new();
         
         //  Bottom
         private Button btnAddFiles = new();
