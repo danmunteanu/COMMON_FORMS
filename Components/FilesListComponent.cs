@@ -1,4 +1,6 @@
-﻿namespace CommonForms.Components
+﻿using System.Globalization;
+
+namespace CommonForms.Components
 {
     public partial class FilesListComponent : ApplicationPageBase
     {
@@ -114,7 +116,7 @@
             }
 
             //  reload mFilesToProcess into the list
-            ReloadFilesList();
+            ReloadFiles();
 
             //  Forces all listeners to update their UI
             UpdateUI();
@@ -124,7 +126,7 @@
         /// <summary>
         /// Clears the list and reloads the list of file names from the Processor
         /// </summary>
-        public void ReloadFilesList()
+        public void ReloadFiles()
         {
             lstFiles.Items.Clear();
             for (int idx = 0; idx < Processor?.CountFileNames(); idx++)
@@ -132,6 +134,20 @@
                 var item = Processor.GetFileNameAt(idx);
                 lstFiles.Items.Add(item);
             }
+        }
+
+        public override void UpdateLocale()
+        {
+            //  top
+            lblAddFiles.Text = Locale.FILES_LIST_LABEL_ADD;
+            btnSelectAll.Text = Locale.FILES_LIST_BUTTON_SELECT_ALL;
+            btnSettings.Text = Locale.FILES_LIST_BUTTON_SETTINGS;
+
+            //  bottom
+            btnAddFiles.Text = Locale.FILES_LIST_BUTTON_ADD;
+            //btnReload.Text = Locale.FILES_LIST_BUTTON_RELOAD;
+            btnRem.Text = Locale.FILES_LIST_BUTTON_REM;
+            btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
         }
 
         // Handler for the Add button.
@@ -241,7 +257,7 @@
 
             if (added)
             {
-                ReloadFilesList();
+                ReloadFiles();
                 CallUpdateUI();
             }
 
@@ -343,7 +359,7 @@
             TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
 
             // BORDER for debugging
-            tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            //tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.ColumnCount = 4;
@@ -479,7 +495,7 @@
             btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
             
             // btnClear
-            btnClear.Text = "CLEAR";
+            btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
             btnClear.Font = new Font(btnClear.Font.FontFamily, 8);
             btnClear.AutoSize = true;
             btnClear.Dock = DockStyle.Fill;
@@ -539,6 +555,9 @@
             TableLayoutPanel bottomLayout = CreateBottomLayout();
             masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.BottomLineHeight));
             bottomLayout.Dock = DockStyle.Fill;
+
+            //  some bottom border
+            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 5));
 
             //  Add all controls to the master layout
             int rowIdx = 0;

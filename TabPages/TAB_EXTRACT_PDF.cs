@@ -173,6 +173,12 @@ namespace CommonForms
 
         private void btnExtract_Click(object sender, EventArgs e)
         {
+            if (Action == null)
+            {
+                UpdateStatus("Action not set.");
+                return;
+            }
+
             string input = txtPages.Text.TrimEnd(',', ' ');
 
             if (input.Length <= 0)

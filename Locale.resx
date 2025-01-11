@@ -129,17 +129,11 @@
   <data name="STATUS_LIST_CLEARED" xml:space="preserve">
     <value>List cleared.</value>
   </data>
-  <data name="FILES_LIST_LABEL_ADD" xml:space="preserve">
-    <value>↓↓ Add Files To Merge ↓↓</value>
-  </data>
   <data name="FILES_LIST_BUTTON_ADD" xml:space="preserve">
     <value>ADD FILES</value>
   </data>
   <data name="FILES_LIST_BUTTON_REM" xml:space="preserve">
     <value>-</value>
-  </data>
-  <data name="FILES_LIST_BUTTON_CLEAR" xml:space="preserve">
-    <value>CLEAR</value>
   </data>
   <data name="DLG_CHANGE_BUTTON_ADD_LABEL" xml:space="preserve">
     <value>ADD</value>
@@ -196,16 +190,10 @@
   <data name="FILES_LIST_BUTTON_SETTINGS" xml:space="preserve">
     <value>LIST SETTINGS</value>
   </data>
-  <data name="FILE_LIST_LABEL_ADD" xml:space="preserve">
-    <value>↓↓ Add Files ↓↓ </value>
+  <data name="FILES_LIST_LABEL_ADD" xml:space="preserve">
+    <value>↓↓ Add Files To Merge ↓↓</value>
   </data>
-  <data name="FILE_LIST_BUTTON_ADD" xml:space="preserve">
-    <value>ADD FILES</value>
-  </data>
-  <data name="FILE_LIST_BUTTON_REM" xml:space="preserve">
-    <value>-</value>
-  </data>
-  <data name="FILE_LIST_BUTTON_CLEAR" xml:space="preserve">
+  <data name="FILES_LIST_BUTTON_CLEAR" xml:space="preserve">
     <value>CLEAR</value>
   </data>
   <data name="FILES_LIST_STATUS_READY" xml:space="preserve">

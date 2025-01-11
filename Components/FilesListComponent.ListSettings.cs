@@ -1,5 +1,6 @@
 ﻿namespace CommonForms.Components
 {
+    //  Everything List-Settings related
     public partial class FilesListComponent : ApplicationPageBase
     {
         //  LIST SETTINGS Structure
@@ -11,7 +12,20 @@
             //  The text on button add
             public string ButtonAddLabel { get; set; } = Locale.FILES_LIST_BUTTON_ADD;
 
+            //  Shows/hides the Settings button
             public bool SettingsButtonVisible { get; set; } = true;
+
+            //  Allows adding of subfolders
+            public bool AllowAddFolders { get; set; } = true;
+
+            //  Allow parsing subfolders when adding folders
+            public bool ParseSubfolders { get; set; } = false;
+
+            //  Disables use of status
+            public bool UseStatus { get; set; } = true;
+
+            //  Disables use of the progress bar
+            public bool UseProgressBar { get; set; } = true;
 
             //  LINE HEIGHTS
             public int TopLineHeight { get; set; } = 45;
@@ -21,18 +35,6 @@
             public int StatusBarLineHeight { get; set; } = 33;
 
             public int ProgressBarLineHeight { get; set; } = 45;
-
-            //  Disables use of status
-            public bool UseStatus { get; set; } = true;
-
-            //  Disables use of the progress bar
-            public bool UseProgressBar { get; set; } = true;
-
-            //  Allows adding of subfolders
-            public bool AllowAddFolders { get; set; } = true;
-
-            //  Allow parsing subfolders when adding folders
-            public bool ParseSubfolders { get; set; } = false;
 
             public ListSettings()
             {
@@ -45,8 +47,15 @@
             get { return mSettings; }
             set
             {
+                //  rebuild only if necessary
+                bool mustRebuild = 
+                    Settings.UseStatus != value.UseStatus || 
+                    Settings.UseProgressBar != value.UseProgressBar;
+
                 mSettings = value;
-                OnSettingsSet();
+
+                if (mustRebuild)
+                    OnSettingsSet();
             }
         }
 

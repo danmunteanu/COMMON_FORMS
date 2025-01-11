@@ -11,10 +11,10 @@ namespace CommonForms
     {
         public class ButtonConfig
         {
-            public string Name { get; set; }
-            public string Text { get; set; }
+            public string? Name { get; set; }
+            public string? Text { get; set; }
             public bool Checked { get; set; }
-            public EventHandler ClickHandler { get; set; }
+            public EventHandler? ClickHandler { get; set; }
         }
 
         public List<ButtonConfig> PageButtonsConfigs { get; set; } = new();
@@ -62,8 +62,11 @@ namespace CommonForms
             return button;
         }
 
-        public void CreateButtons(Panel panel)
+        public void CreateButtons(Panel panel, bool clearPanel = false)
         {
+            if (clearPanel)
+                panel.Controls.Clear();
+
             foreach (var cfg in PageButtonsConfigs)
             {
                 panel.Controls.Add(

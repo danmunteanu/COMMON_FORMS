@@ -1,6 +1,4 @@
-﻿using CommonForms.Components;
-using RealityFrameworks;
-using System.Resources;
+﻿using RealityFrameworks;
 
 namespace CommonForms
 {
@@ -12,7 +10,6 @@ namespace CommonForms
         protected string DefaultOutputFolder = 
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
 
-        protected ResourceManager? mResourceManager = null;
         protected Processor? mFilesProcessor = null;
 
         public Processor? Processor
@@ -38,6 +35,11 @@ namespace CommonForms
         }
 
         public virtual void UpdateUI()
+        {
+            //  implement in derived class
+        }
+
+        public virtual void UpdateLocale()
         {
             //  implement in derived class
         }

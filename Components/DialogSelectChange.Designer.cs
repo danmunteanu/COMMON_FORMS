@@ -402,11 +402,9 @@
         private Label lblConditionDesc;
         private CheckBox chkEnabled;
         private Label lblActionDesc;
-        private FlowLayoutPanel flowLayoutPanel1;
         private TextBox txtDesc;
         private TableLayoutPanel tableLayoutMain;
         private TableLayoutPanel tableLayoutEditors;
-        private TableLayoutPanel tableLayoutPanel3;
         private TableLayoutPanel tableLayoutChangeDesc;
         private CheckBox chkDesc;
         private TableLayoutPanel tableLayoutDesc;
