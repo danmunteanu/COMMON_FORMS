@@ -37,6 +37,12 @@ namespace CommonForms.Components
             UpdateUI();
         }
 
+        public string Status
+        {
+            get { return lblStatus.Text; }
+            set { lblStatus.Text = value; }
+        }
+
         // Sets the progress bar value
         public int Progress
         {
@@ -382,7 +388,7 @@ namespace CommonForms.Components
 
             //  button Select All
             btnSelectAll.Text = Locale.FILES_LIST_BUTTON_SELECT_ALL ;
-            btnSelectAll.Font = new Font(btnSelectAll.Font.FontFamily, 8);
+            btnSelectAll.Font = new Font(btnSelectAll.Font.FontFamily, Settings.FontSize);
             btnSelectAll.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSelectAll.AutoSize = true;
             btnSelectAll.Dock = DockStyle.Fill;
@@ -398,7 +404,7 @@ namespace CommonForms.Components
             //  button Settings
             btnSettings.Text = Locale.FILES_LIST_BUTTON_SETTINGS;
             btnSettings.Visible = Settings.SettingsButtonVisible;
-            btnSettings.Font = new Font(btnSettings.Font.FontFamily, 8);
+            btnSettings.Font = new Font(btnSettings.Font.FontFamily, Settings.FontSize);
             btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSettings.AutoSize = true;
             btnSettings.TextAlign = ContentAlignment.MiddleCenter;
@@ -434,7 +440,7 @@ namespace CommonForms.Components
 
         private Label CreateStatus()
         {
-            lblStatus.Font = new Font(lblStatus.Font.FontFamily, 8);
+            lblStatus.Font = new Font(Settings.FontFamily, 10);
             lblStatus.Anchor = AnchorStyles.Left;
             lblStatus.TextAlign = ContentAlignment.MiddleLeft;
             return lblStatus;
@@ -474,7 +480,7 @@ namespace CommonForms.Components
 
             // btnAddFolder
             btnAddFiles.Text = Settings.ButtonAddLabel;
-            btnAddFiles.Font = new Font(btnAddFiles.Font.FontFamily, 8);
+            btnAddFiles.Font = new Font(btnAddFiles.Font.FontFamily, Settings.FontSize);
             btnAddFiles.Dock = DockStyle.Fill;
             btnAddFiles.AutoSize = true;
             btnAddFiles.Click -= btnAdd_Click;
@@ -482,7 +488,7 @@ namespace CommonForms.Components
             
             // btnReload
             btnReload.Text = "↻";
-            btnReload.Font = new Font(btnReload.Font.FontFamily, 8);
+            btnReload.Font = new Font(btnReload.Font.FontFamily, Settings.FontSize);
             btnReload.Width = 35;
             btnReload.Dock = DockStyle.Fill; // Ensure it fills the height
             btnReload.Click -= btnReloadFolder_Click;
@@ -490,13 +496,13 @@ namespace CommonForms.Components
 
             // btnRem
             btnRem.Text = "-";
-            btnRem.Font = new Font(btnRem.Font.FontFamily, 8);
+            btnRem.Font = new Font(btnRem.Font.FontFamily, Settings.FontSize);
             btnRem.Width = 35;
             btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
             
             // btnClear
             btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
-            btnClear.Font = new Font(btnClear.Font.FontFamily, 8);
+            btnClear.Font = new Font(btnClear.Font.FontFamily, Settings.FontSize);
             btnClear.AutoSize = true;
             btnClear.Dock = DockStyle.Fill;
             btnClear.Click -= btnClear_Click;

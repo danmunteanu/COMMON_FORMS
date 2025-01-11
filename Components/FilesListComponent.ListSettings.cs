@@ -36,6 +36,12 @@
 
             public int ProgressBarLineHeight { get; set; } = 45;
 
+            //  FONT SETTINGS
+            public string FontFamily { get; set; } = "Segoe UI";
+
+            public int FontSize { get; set; } = 8;
+
+            //  CTOR
             public ListSettings()
             {
             }
