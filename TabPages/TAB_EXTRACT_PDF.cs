@@ -2,17 +2,17 @@
 
 namespace CommonForms
 {
-    public abstract class ActionSetter<TAction>
-    {
-        private TAction? _action;
+    //public abstract class ActionSetter<TAction>
+    //{
+    //    private TAction? _action;
 
-        public abstract void OnActionSet();
+    //    public abstract void OnActionSet();
        
-        TAction? Action {  
-            get { return _action; } 
-            set { _action = value; OnActionSet(); }
-        }
-    }
+    //    TAction? Action {  
+    //        get { return _action; } 
+    //        set { _action = value; OnActionSet(); }
+    //    }
+    //}
 
     public partial class TAB_EXTRACT_PDF : ApplicationPageBase
     {
@@ -29,7 +29,7 @@ namespace CommonForms
             InitializeComponent();
 
             UpdateUI();
-            UpdateStatus("");
+            UpdateStatus(string.Empty);
         }
 
         private void UpdateStatus(string message)
@@ -146,7 +146,6 @@ namespace CommonForms
             }
             return true;
         }
-
 
         public override void UpdateUI()
         {
@@ -290,19 +289,18 @@ namespace CommonForms
                 outputName = string.Format("ExtractPages-{1}", DateTime.Now.ToString(K_DATE_MASK), simpleFileName);
             }
 
-
-
             return outputName;
-        }
-
-        private void btnDest_Click(object sender, EventArgs e)
-        {
         }
 
         private void btnClearPages_Click(object sender, EventArgs e)
         {
             txtPages.Clear();
             txtPages.Select();
+        }
+
+        public override void UpdateLocale()
+        {
+            //  update string localizations
         }
     }
 }
