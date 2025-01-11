@@ -13,6 +13,15 @@
 
             public bool SettingsButtonVisible { get; set; } = true;
 
+            //  LINE HEIGHTS
+            public int TopLineHeight { get; set; } = 45;
+
+            public int BottomLineHeight { get; set; } = 55;
+
+            public int StatusBarLineHeight { get; set; } = 33;
+
+            public int ProgressBarLineHeight { get; set; } = 45;
+
             //  Disables use of status
             public bool UseStatus { get; set; } = true;
 

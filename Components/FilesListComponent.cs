@@ -343,7 +343,7 @@
             TableLayoutPanel tableLayoutPanel = new TableLayoutPanel();
 
             // BORDER for debugging
-            //tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.ColumnCount = 4;
@@ -369,7 +369,8 @@
             btnSelectAll.Font = new Font(btnSelectAll.Font.FontFamily, 8);
             btnSelectAll.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSelectAll.AutoSize = true;
-            btnSelectAll.Height = 23;
+            btnSelectAll.Dock = DockStyle.Fill;
+            //btnSelectAll.Height = 23;
             btnSelectAll.TextAlign = ContentAlignment.MiddleCenter;
             btnSelectAll.Anchor = AnchorStyles.Right;
             Size textSize = TextRenderer.MeasureText(btnSelectAll.Text, btnSelectAll.Font);
@@ -512,7 +513,7 @@
             //  Top Line
             TableLayoutPanel topLineLayout = CreateTopLine();
             topLineLayout.Dock = DockStyle.Fill;
-            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.TopLineHeight));
 
             //  ListBox
             lstFiles = CreateListBox();
@@ -524,19 +525,19 @@
             {
                 lblStatus = CreateStatus();
                 lblStatus.Dock = DockStyle.Fill;
-                masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
+                masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.StatusBarLineHeight));
             }
 
             //  Progress Bar    
             if (Settings.UseProgressBar)
             {
                 progressBar = CreateProgressBar();
-                masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+                masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.ProgressBarLineHeight));
             }
 
             //  Bottom Buttons
             TableLayoutPanel bottomLayout = CreateBottomLayout();
-            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.BottomLineHeight));
             bottomLayout.Dock = DockStyle.Fill;
 
             //  Add all controls to the master layout
