@@ -210,15 +210,16 @@ namespace CommonForms.Components
 
         /// <summary>
         /// Handler for changing list selection.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void lstFiles_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (lstFiles.SelectedItem == null)
                 return;
 
-            CallOnSelectionChanged(lstFiles?.SelectedItem.ToString());
+            if (lstFiles.SelectedItem != null)
+            {
+                CallOnSelectionChanged(lstFiles.SelectedItem.ToString());
+
+            }
         }
 
         private void listFiles_DragEnter(object? sender, DragEventArgs e)

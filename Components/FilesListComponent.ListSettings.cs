@@ -1,6 +1,6 @@
 ﻿namespace CommonForms.Components
 {
-    //  Everything List-Settings related
+    //  Everything List Settings related
     public partial class FilesListComponent : ApplicationPageBase
     {
         //  LIST SETTINGS Structure
@@ -54,9 +54,11 @@
             set
             {
                 //  rebuild only if necessary
-                bool mustRebuild = 
-                    Settings.UseStatus != value.UseStatus || 
-                    Settings.UseProgressBar != value.UseProgressBar;
+                bool mustRebuild =
+                    Settings.UseStatus != value.UseStatus ||
+                    Settings.UseProgressBar != value.UseProgressBar ||
+                    Settings.ProgressBarLineHeight != value.ProgressBarLineHeight ||
+                    Settings.BottomLineHeight != value.BottomLineHeight;
 
                 mSettings = value;
 
