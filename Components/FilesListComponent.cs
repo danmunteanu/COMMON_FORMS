@@ -228,19 +228,28 @@ namespace CommonForms.Components
 
             string[] dropItems = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 
-            bool isFolder = false;
+            bool allow = false;
             foreach (string item in dropItems)
             {
-                isFolder = Directory.Exists(item);
-                if (!isFolder)
-                {
-                    string ext = Path.GetExtension(item).ToLower();
+                //  need at least one allowed file type in the list
+                if (allow)
+                    break;
 
-                    //  check if extension is allowed
-                    if (!mFileFilters.Contains(ext))
-                        e.Effect = DragDropEffects.None;
+                //  Allow folders
+                if (Directory.Exists(item))
+                {
+                    allow = true;
+                    continue;
                 }
+
+                string ext = Path.GetExtension(item).ToLower();
+
+                //  check if extension is allowed
+                if (mFileFilters.Contains(ext))
+                    allow = true;
             }
+            if (!allow)
+                e.Effect = DragDropEffects.None;
         }
 
         private void listFiles_DragDrop(object? sender, DragEventArgs e)
@@ -266,6 +275,11 @@ namespace CommonForms.Components
             {
                 ReloadFiles();
                 CallUpdateUI();
+
+                //  TOOD:
+                //  Count how many files were added
+                //  Add to Locale STATUS_FILES_ADDED with {0} replaced by the count
+                CallUpdateStatus($"Files added.");
             }
 
         }
@@ -429,6 +443,7 @@ namespace CommonForms.Components
             lstFiles.SelectionMode = SelectionMode.None;
             lstFiles.Margin = new Padding(0);
 
+            lstFiles.AllowDrop = true;
             lstFiles.DragEnter -= listFiles_DragEnter;
             lstFiles.DragEnter += listFiles_DragEnter;
             lstFiles.DragDrop -= listFiles_DragDrop;
