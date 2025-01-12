@@ -64,7 +64,6 @@
             chkParseSubfolders.TabIndex = 2;
             chkParseSubfolders.Text = "Also Parse Subfolders";
             chkParseSubfolders.UseVisualStyleBackColor = true;
-            chkParseSubfolders.CheckedChanged += chkParseSubfolders_CheckedChanged;
             // 
             // btnCancel
             // 
