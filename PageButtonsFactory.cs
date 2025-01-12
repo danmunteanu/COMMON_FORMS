@@ -57,7 +57,10 @@ namespace CommonForms
 
             // Add the event handler
             if (eventHandler != null)
+            {
+                button.Click -= eventHandler;
                 button.Click += eventHandler;
+            }
 
             return button;
         }
