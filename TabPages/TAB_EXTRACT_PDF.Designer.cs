@@ -133,10 +133,10 @@
             // btnExtract
             // 
             btnExtract.Dock = DockStyle.Fill;
-            btnExtract.Location = new Point(166, 232);
+            btnExtract.Location = new Point(166, 242);
             btnExtract.Margin = new Padding(3, 2, 3, 2);
             btnExtract.Name = "btnExtract";
-            btnExtract.Size = new Size(585, 52);
+            btnExtract.Size = new Size(585, 56);
             btnExtract.TabIndex = 3;
             btnExtract.Text = "EXTRACT PAGES";
             btnExtract.UseVisualStyleBackColor = true;
@@ -171,8 +171,8 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 3F));
             tableLayoutPanel1.Size = new Size(877, 421);
@@ -194,23 +194,23 @@
             // 
             // lblStatus
             // 
-            lblStatus.Anchor = AnchorStyles.Left;
+            lblStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblStatus.ForeColor = Color.Red;
-            lblStatus.Location = new Point(166, 200);
+            lblStatus.Location = new Point(166, 220);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(48, 20);
             lblStatus.TabIndex = 20;
             lblStatus.Text = "Status";
             // 
-            // TAB_ExtractPDF
+            // TAB_EXTRACT_PDF
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(3, 2, 3, 2);
-            Name = "TAB_ExtractPDF";
+            Name = "TAB_EXTRACT_PDF";
             Size = new Size(877, 421);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();

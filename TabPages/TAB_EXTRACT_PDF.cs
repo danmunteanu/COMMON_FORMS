@@ -183,6 +183,7 @@ namespace CommonForms
             if (input.Length <= 0)
             {
                 UpdateStatus("Please enter one or more page numbers.");
+                txtPages.Focus();
                 return;
             }
 
