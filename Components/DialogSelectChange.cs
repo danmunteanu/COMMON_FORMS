@@ -6,7 +6,6 @@ namespace CommonForms.Components
 {
     public partial class DialogSelectChange : Form
     {
-
         //	The active Condition editor
         private EditorBase? mSelCondEditor = null;
 
@@ -80,6 +79,18 @@ namespace CommonForms.Components
 
         private void LoadStateEdit(Change ch)
         {
+            //  Make sure Condition and Action are not null
+            if (ch.Condition == null || ch.Action == null)
+            {
+                MessageBox.Show(
+                    Locale.DLG_CHANGE_ERR_MSG_CHANGE_WRONG,
+                    Locale.DLG_CHANGE_ERR_TITLE_ERROR,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
             btnSubmit.Text = Locale.DLG_CHANGE_BUTTON_UPDATE_LABEL;
             Text = Locale.DLG_CHANGE_TITLE_EDIT;
 
@@ -109,7 +120,12 @@ namespace CommonForms.Components
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    ex.Message, 
+                    Locale.DLG_CHANGE_ERR_TITLE_WARNING, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning
+                );
             }
 
             //  ACTION Editor
@@ -191,7 +207,7 @@ namespace CommonForms.Components
 
         }
 
-        private void cmbAction_SelectedIndexChanged(object sender, EventArgs e)
+        private void cmbAction_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (cmbAction.SelectedIndex == -1 || cmbAction.SelectedItem == null)
             {
@@ -417,6 +433,16 @@ namespace CommonForms.Components
 
                 CallModifiedCallback();
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;    //  consume the key press event
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
