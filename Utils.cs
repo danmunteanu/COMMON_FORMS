@@ -107,7 +107,7 @@
             return false;
         }
 
-        public static string Bool2StringYesNo(bool b)
+        public static string Bool2String(bool b)
         {
             return b ? "yes" : "no";
         }

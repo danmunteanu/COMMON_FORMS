@@ -50,9 +50,8 @@ namespace CommonForms
                 UpdateStatusCallback(message);
         }
 
-        public virtual void StoreSettings(Dictionary<string, string> iniKeys)
+        public virtual void StoreSettings(ref Dictionary<string, string> iniKeys)
         {
-
         }
     }
 }
