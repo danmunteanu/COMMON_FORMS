@@ -142,11 +142,11 @@
     <value>UPDATE</value>
   </data>
   <data name="DLG_CHANGE_TITLE_ADD" xml:space="preserve">
-    <value>Add Change</value>
+    <value>ADD Change</value>
     <comment>Title of DialogSelectChange</comment>
   </data>
   <data name="DLG_CHANGE_TITLE_EDIT" xml:space="preserve">
-    <value>Edit Change</value>
+    <value>EDIT Change</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_SELECT_ACTION" xml:space="preserve">
     <value>Please Select An Action First!</value>

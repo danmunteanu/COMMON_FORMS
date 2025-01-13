@@ -142,10 +142,10 @@
     <value>ACTUALIZEAZĂ</value>
   </data>
   <data name="DLG_CHANGE_TITLE_ADD" xml:space="preserve">
-    <value>Adaugă O Schimbare</value>
+    <value>ADAUGĂ O Schimbare</value>
   </data>
   <data name="DLG_CHANGE_TITLE_EDIT" xml:space="preserve">
-    <value>Editează O Schimbare</value>
+    <value>ADAUGĂ O Schimbare</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_SELECT_ACTION" xml:space="preserve">
     <value>Alege o acțiune din listă mai întâi!</value>
