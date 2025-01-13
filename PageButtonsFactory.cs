@@ -11,6 +11,7 @@ namespace CommonForms
     {
         public class ButtonConfig
         {
+            public ApplicationPageBase? Page { get; set; } = null;
             public string? Name { get; set; }
             public string? Text { get; set; }
             public bool Checked { get; set; }
