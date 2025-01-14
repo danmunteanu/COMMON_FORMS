@@ -31,7 +31,7 @@ namespace CommonForms
             if (panelEditor.Controls.Contains(mSelectedEditor))
                 return;
 
-            Utils.AddUserControl(panelEditor, mSelectedEditor);
+            Utils.AddUserControlToPanel(panelEditor, mSelectedEditor);
         }
 
         private void btnApply_Click(object sender, EventArgs e)

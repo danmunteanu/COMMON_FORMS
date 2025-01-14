@@ -362,7 +362,11 @@ namespace CommonForms.Components
                     lstFiles.SetSelected(idx, mSelectAll);
                 }
 
-                btnSelectAll.Text = mSelectAll ? "DESELECT ALL" : "SELECT ALL";
+                if (mSelectAll)
+                    btnSelectAll.Text = Locale.FILES_LIST_BUTTON_DESELECT_ALL;
+                else
+                    btnSelectAll.Text = Locale.FILES_LIST_BUTTON_SELECT_ALL;
+
                 mSelectAll = !mSelectAll;
             }
         }
@@ -454,7 +458,7 @@ namespace CommonForms.Components
             return lstFiles;
         }
 
-        private Label CreateStatus()
+        private Label SetupStatusLine()
         {
             lblStatus.Font = new Font(Settings.FontFamily, 10);
             lblStatus.Anchor = AnchorStyles.Left;
@@ -462,13 +466,11 @@ namespace CommonForms.Components
             return lblStatus;
         }
 
-        private ProgressBar CreateProgressBar()
+        private void SetupProgressBar()
         {
             progressBar.Value = 0;
             progressBar.Style = ProgressBarStyle.Marquee;
             progressBar.Dock = DockStyle.Fill;
-
-            return progressBar;
         }
 
         private TableLayoutPanel CreateBottomLayout()
@@ -561,7 +563,7 @@ namespace CommonForms.Components
             //  Status line
             if (Settings.UseStatus)
             {
-                lblStatus = CreateStatus();
+                lblStatus = SetupStatusLine();
                 lblStatus.Dock = DockStyle.Fill;
                 masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.StatusBarLineHeight));
             }
@@ -569,7 +571,7 @@ namespace CommonForms.Components
             //  Progress Bar    
             if (Settings.UseProgressBar)
             {
-                progressBar = CreateProgressBar();
+                SetupProgressBar();
                 masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.ProgressBarLineHeight));
             }
 

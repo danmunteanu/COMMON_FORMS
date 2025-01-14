@@ -223,6 +223,15 @@ namespace CommonForms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DESELECT ALL.
+        /// </summary>
+        internal static string FILES_LIST_BUTTON_DESELECT_ALL {
+            get {
+                return ResourceManager.GetString("FILES_LIST_BUTTON_DESELECT_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -.
         /// </summary>
         internal static string FILES_LIST_BUTTON_REM {

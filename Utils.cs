@@ -70,7 +70,7 @@
         };
 
         //	Helper to add user controls to a panel - should be common somewhere
-        public static void AddUserControl(Panel panel, UserControl control)
+        public static void AddUserControlToPanel(Panel panel, UserControl control)
         {
             if (panel.Controls.Contains(control))
                 return;

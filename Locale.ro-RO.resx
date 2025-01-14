@@ -181,7 +181,7 @@
     <value>Adaugați cel puțin o extensie</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_CHANGE_WRONG" xml:space="preserve">
-    <value>Ceva e în neregula cu Schimbarea aceasta, nu e configurată corect.</value>
+    <value>Ceva nu e în regulă cu Schimbarea aceasta, nu e configurată corect.</value>
   </data>
   <data name="FILES_LIST_BUTTON_SELECT_ALL" xml:space="preserve">
     <value>SELECTEAZĂ TOATE</value>
@@ -197,5 +197,8 @@
   </data>
   <data name="FILES_LIST_STATUS_READY" xml:space="preserve">
     <value>Lista inițializată.</value>
+  </data>
+  <data name="FILES_LIST_BUTTON_DESELECT_ALL" xml:space="preserve">
+    <value>DESELECTEAZĂ TOATE</value>
   </data>
 </root>

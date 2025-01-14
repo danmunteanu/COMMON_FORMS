@@ -199,4 +199,7 @@
   <data name="FILES_LIST_STATUS_READY" xml:space="preserve">
     <value>List ready.</value>
   </data>
+  <data name="FILES_LIST_BUTTON_DESELECT_ALL" xml:space="preserve">
+    <value>DESELECT ALL</value>
+  </data>
 </root>

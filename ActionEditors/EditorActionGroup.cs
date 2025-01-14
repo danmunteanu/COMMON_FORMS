@@ -83,7 +83,7 @@ namespace CommonForms
                 }                
 
                 //  add editor
-                Utils.AddUserControl(panelActiveAction, editor);
+                Utils.AddUserControlToPanel(panelActiveAction, editor);
             }
         }
 

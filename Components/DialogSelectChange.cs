@@ -116,7 +116,7 @@ namespace CommonForms.Components
                     cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
                 }
 
-                Utils.AddUserControl(panelCondition, mSelCondEditor);
+                Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
             }
             catch (Exception ex)
             {
@@ -143,7 +143,7 @@ namespace CommonForms.Components
                     cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
                 }
 
-                Utils.AddUserControl(panelAction, mSelActionEditor);
+                Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
             }
             catch (Exception ex)
             {
@@ -197,7 +197,7 @@ namespace CommonForms.Components
             {
                 //  EditorFactory.FindOrCreateActionEditor
                 mSelCondEditor = GenericFactory<EditorBase>.Create(condName);
-                Utils.AddUserControl(panelCondition, mSelCondEditor);
+                Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
             }
             catch (Exception ex)
             {
@@ -220,7 +220,7 @@ namespace CommonForms.Components
             try
             {
                 mSelActionEditor = GenericFactory<EditorBase>.Create(actionName);
-                Utils.AddUserControl(panelAction, mSelActionEditor);
+                Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
             }
             catch (Exception ex)
             {
