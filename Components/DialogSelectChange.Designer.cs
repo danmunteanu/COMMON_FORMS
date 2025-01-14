@@ -42,22 +42,28 @@
             lblConditionDesc = new Label();
             lblActionDesc = new Label();
             tableLayoutMain = new TableLayoutPanel();
-            tableLayoutPanelConditionAction = new TableLayoutPanel();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            tableLayoutPanelCond = new TableLayoutPanel();
             tableLayoutChangeDesc = new TableLayoutPanel();
             tableLayoutDesc = new TableLayoutPanel();
             chkDesc = new CheckBox();
             btnResetDesc = new Button();
             tableLayoutEditors = new TableLayoutPanel();
+            grpCondition = new GroupBox();
+            tableLayoutPanelConditionGroup = new TableLayoutPanel();
+            tableLayoutPanelCmbCondition = new TableLayoutPanel();
+            grpAction = new GroupBox();
+            tableLayoutPanelAction = new TableLayoutPanel();
+            tableLayoutPanelCmbAction = new TableLayoutPanel();
             tableLayoutButtons.SuspendLayout();
             tableLayoutMain.SuspendLayout();
-            tableLayoutPanelConditionAction.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
-            tableLayoutPanelCond.SuspendLayout();
             tableLayoutChangeDesc.SuspendLayout();
             tableLayoutDesc.SuspendLayout();
             tableLayoutEditors.SuspendLayout();
+            grpCondition.SuspendLayout();
+            tableLayoutPanelConditionGroup.SuspendLayout();
+            tableLayoutPanelCmbCondition.SuspendLayout();
+            grpAction.SuspendLayout();
+            tableLayoutPanelAction.SuspendLayout();
+            tableLayoutPanelCmbAction.SuspendLayout();
             SuspendLayout();
             // 
             // txtDesc
@@ -67,14 +73,14 @@
             txtDesc.Location = new Point(16, 53);
             txtDesc.Multiline = true;
             txtDesc.Name = "txtDesc";
-            txtDesc.Size = new Size(853, 96);
+            txtDesc.Size = new Size(759, 96);
             txtDesc.TabIndex = 51;
             // 
             // lblSelAct
             // 
-            lblSelAct.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblSelAct.Anchor = AnchorStyles.Right;
             lblSelAct.AutoSize = true;
-            lblSelAct.Location = new Point(4, 12);
+            lblSelAct.Location = new Point(16, 9);
             lblSelAct.Margin = new Padding(4, 0, 4, 0);
             lblSelAct.Name = "lblSelAct";
             lblSelAct.Size = new Size(75, 25);
@@ -83,21 +89,21 @@
             // 
             // cmbAction
             // 
-            cmbAction.Dock = DockStyle.Fill;
+            cmbAction.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbAction.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAction.FormattingEnabled = true;
-            cmbAction.Location = new Point(4, 42);
+            cmbAction.Location = new Point(99, 5);
             cmbAction.Margin = new Padding(4, 5, 4, 5);
             cmbAction.Name = "cmbAction";
-            cmbAction.Size = new Size(236, 33);
+            cmbAction.Size = new Size(210, 33);
             cmbAction.TabIndex = 40;
             cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
             // 
             // lblSelCond
             // 
-            lblSelCond.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblSelCond.Anchor = AnchorStyles.Right;
             lblSelCond.AutoSize = true;
-            lblSelCond.Location = new Point(4, 12);
+            lblSelCond.Location = new Point(9, 9);
             lblSelCond.Margin = new Padding(4, 0, 4, 0);
             lblSelCond.Name = "lblSelCond";
             lblSelCond.Size = new Size(62, 25);
@@ -106,32 +112,32 @@
             // 
             // cmbCondition
             // 
-            cmbCondition.Dock = DockStyle.Fill;
+            cmbCondition.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             cmbCondition.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCondition.FormattingEnabled = true;
-            cmbCondition.Location = new Point(4, 42);
+            cmbCondition.Location = new Point(79, 5);
             cmbCondition.Margin = new Padding(4, 5, 4, 5);
             cmbCondition.Name = "cmbCondition";
-            cmbCondition.Size = new Size(236, 33);
+            cmbCondition.Size = new Size(233, 33);
             cmbCondition.TabIndex = 39;
             cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
             // 
             // panelAction
             // 
             panelAction.Dock = DockStyle.Fill;
-            panelAction.Location = new Point(443, 2);
+            panelAction.Location = new Point(1, 67);
             panelAction.Margin = new Padding(1, 2, 1, 2);
             panelAction.Name = "panelAction";
-            panelAction.Size = new Size(441, 256);
+            panelAction.Size = new Size(382, 377);
             panelAction.TabIndex = 42;
             // 
             // panelCondition
             // 
             panelCondition.Dock = DockStyle.Fill;
-            panelCondition.Location = new Point(1, 2);
+            panelCondition.Location = new Point(1, 67);
             panelCondition.Margin = new Padding(1, 2, 1, 2);
             panelCondition.Name = "panelCondition";
-            panelCondition.Size = new Size(440, 256);
+            panelCondition.Size = new Size(381, 377);
             panelCondition.TabIndex = 43;
             // 
             // tableLayoutButtons
@@ -146,18 +152,18 @@
             tableLayoutButtons.Controls.Add(btnSubmit, 2, 0);
             tableLayoutButtons.Controls.Add(chkEnabled, 1, 0);
             tableLayoutButtons.Dock = DockStyle.Fill;
-            tableLayoutButtons.Location = new Point(4, 590);
+            tableLayoutButtons.Location = new Point(4, 659);
             tableLayoutButtons.Margin = new Padding(4, 3, 4, 3);
             tableLayoutButtons.Name = "tableLayoutButtons";
             tableLayoutButtons.RowCount = 1;
             tableLayoutButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutButtons.Size = new Size(883, 44);
+            tableLayoutButtons.Size = new Size(789, 44);
             tableLayoutButtons.TabIndex = 48;
             // 
             // btnClose
             // 
             btnClose.Dock = DockStyle.Fill;
-            btnClose.Location = new Point(721, 2);
+            btnClose.Location = new Point(627, 2);
             btnClose.Margin = new Padding(1, 2, 1, 2);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(148, 40);
@@ -169,7 +175,7 @@
             // btnSubmit
             // 
             btnSubmit.Dock = DockStyle.Fill;
-            btnSubmit.Location = new Point(571, 2);
+            btnSubmit.Location = new Point(477, 2);
             btnSubmit.Margin = new Padding(1, 2, 1, 2);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(148, 40);
@@ -215,74 +221,20 @@
             // 
             tableLayoutMain.ColumnCount = 1;
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutMain.Controls.Add(tableLayoutPanelConditionAction, 0, 1);
-            tableLayoutMain.Controls.Add(tableLayoutChangeDesc, 0, 4);
-            tableLayoutMain.Controls.Add(tableLayoutEditors, 0, 3);
-            tableLayoutMain.Controls.Add(tableLayoutButtons, 0, 5);
+            tableLayoutMain.Controls.Add(tableLayoutChangeDesc, 0, 1);
+            tableLayoutMain.Controls.Add(tableLayoutEditors, 0, 0);
+            tableLayoutMain.Controls.Add(tableLayoutButtons, 0, 2);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
-            tableLayoutMain.RowCount = 7;
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 93F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutMain.RowCount = 4;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 168F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 13F));
-            tableLayoutMain.Size = new Size(891, 650);
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutMain.Size = new Size(797, 719);
             tableLayoutMain.TabIndex = 1;
-            // 
-            // tableLayoutPanelConditionAction
-            // 
-            tableLayoutPanelConditionAction.ColumnCount = 3;
-            tableLayoutPanelConditionAction.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 13F));
-            tableLayoutPanelConditionAction.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelConditionAction.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelConditionAction.Controls.Add(tableLayoutPanel2, 2, 0);
-            tableLayoutPanelConditionAction.Controls.Add(tableLayoutPanelCond, 1, 0);
-            tableLayoutPanelConditionAction.Dock = DockStyle.Fill;
-            tableLayoutPanelConditionAction.Location = new Point(4, 18);
-            tableLayoutPanelConditionAction.Margin = new Padding(4, 3, 4, 3);
-            tableLayoutPanelConditionAction.Name = "tableLayoutPanelConditionAction";
-            tableLayoutPanelConditionAction.RowCount = 1;
-            tableLayoutPanelConditionAction.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelConditionAction.Size = new Size(883, 87);
-            tableLayoutPanelConditionAction.TabIndex = 41;
-            // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 244F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(lblSelAct, 0, 0);
-            tableLayoutPanel2.Controls.Add(cmbAction, 0, 1);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(452, 3);
-            tableLayoutPanel2.Margin = new Padding(4, 3, 4, 3);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 2;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel2.Size = new Size(427, 81);
-            tableLayoutPanel2.TabIndex = 42;
-            // 
-            // tableLayoutPanelCond
-            // 
-            tableLayoutPanelCond.ColumnCount = 2;
-            tableLayoutPanelCond.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 244F));
-            tableLayoutPanelCond.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelCond.Controls.Add(lblSelCond, 0, 0);
-            tableLayoutPanelCond.Controls.Add(cmbCondition, 0, 1);
-            tableLayoutPanelCond.Dock = DockStyle.Fill;
-            tableLayoutPanelCond.Location = new Point(17, 3);
-            tableLayoutPanelCond.Margin = new Padding(4, 3, 4, 3);
-            tableLayoutPanelCond.Name = "tableLayoutPanelCond";
-            tableLayoutPanelCond.RowCount = 2;
-            tableLayoutPanelCond.RowStyles.Add(new RowStyle(SizeType.Absolute, 37F));
-            tableLayoutPanelCond.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanelCond.Size = new Size(427, 81);
-            tableLayoutPanelCond.TabIndex = 42;
             // 
             // tableLayoutChangeDesc
             // 
@@ -293,13 +245,13 @@
             tableLayoutChangeDesc.Controls.Add(tableLayoutDesc, 1, 0);
             tableLayoutChangeDesc.Controls.Add(txtDesc, 1, 1);
             tableLayoutChangeDesc.Dock = DockStyle.Fill;
-            tableLayoutChangeDesc.Location = new Point(3, 422);
+            tableLayoutChangeDesc.Location = new Point(3, 491);
             tableLayoutChangeDesc.Name = "tableLayoutChangeDesc";
             tableLayoutChangeDesc.RowCount = 3;
             tableLayoutChangeDesc.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
             tableLayoutChangeDesc.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutChangeDesc.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
-            tableLayoutChangeDesc.Size = new Size(885, 162);
+            tableLayoutChangeDesc.Size = new Size(791, 162);
             tableLayoutChangeDesc.TabIndex = 52;
             // 
             // tableLayoutDesc
@@ -316,7 +268,7 @@
             tableLayoutDesc.Name = "tableLayoutDesc";
             tableLayoutDesc.RowCount = 1;
             tableLayoutDesc.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutDesc.Size = new Size(851, 44);
+            tableLayoutDesc.Size = new Size(757, 44);
             tableLayoutDesc.TabIndex = 0;
             // 
             // chkDesc
@@ -350,22 +302,109 @@
             tableLayoutEditors.ColumnCount = 2;
             tableLayoutEditors.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutEditors.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutEditors.Controls.Add(panelCondition, 0, 0);
-            tableLayoutEditors.Controls.Add(panelAction, 1, 0);
+            tableLayoutEditors.Controls.Add(grpCondition, 0, 0);
+            tableLayoutEditors.Controls.Add(grpAction, 1, 0);
             tableLayoutEditors.Dock = DockStyle.Fill;
-            tableLayoutEditors.Location = new Point(3, 156);
+            tableLayoutEditors.Location = new Point(3, 3);
             tableLayoutEditors.Name = "tableLayoutEditors";
             tableLayoutEditors.RowCount = 1;
             tableLayoutEditors.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutEditors.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutEditors.Size = new Size(885, 260);
+            tableLayoutEditors.Size = new Size(791, 482);
             tableLayoutEditors.TabIndex = 0;
+            // 
+            // grpCondition
+            // 
+            grpCondition.Controls.Add(tableLayoutPanelConditionGroup);
+            grpCondition.Dock = DockStyle.Fill;
+            grpCondition.Location = new Point(3, 3);
+            grpCondition.Name = "grpCondition";
+            grpCondition.Size = new Size(389, 476);
+            grpCondition.TabIndex = 2;
+            grpCondition.TabStop = false;
+            grpCondition.Text = "CONDITION";
+            // 
+            // tableLayoutPanelConditionGroup
+            // 
+            tableLayoutPanelConditionGroup.ColumnCount = 1;
+            tableLayoutPanelConditionGroup.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelConditionGroup.Controls.Add(tableLayoutPanelCmbCondition, 0, 1);
+            tableLayoutPanelConditionGroup.Controls.Add(panelCondition, 0, 2);
+            tableLayoutPanelConditionGroup.Dock = DockStyle.Fill;
+            tableLayoutPanelConditionGroup.Location = new Point(3, 27);
+            tableLayoutPanelConditionGroup.Name = "tableLayoutPanelConditionGroup";
+            tableLayoutPanelConditionGroup.RowCount = 3;
+            tableLayoutPanelConditionGroup.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutPanelConditionGroup.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanelConditionGroup.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelConditionGroup.Size = new Size(383, 446);
+            tableLayoutPanelConditionGroup.TabIndex = 45;
+            // 
+            // tableLayoutPanelCmbCondition
+            // 
+            tableLayoutPanelCmbCondition.ColumnCount = 3;
+            tableLayoutPanelCmbCondition.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
+            tableLayoutPanelCmbCondition.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 241F));
+            tableLayoutPanelCmbCondition.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelCmbCondition.Controls.Add(lblSelCond, 0, 0);
+            tableLayoutPanelCmbCondition.Controls.Add(cmbCondition, 1, 0);
+            tableLayoutPanelCmbCondition.Dock = DockStyle.Fill;
+            tableLayoutPanelCmbCondition.Location = new Point(3, 18);
+            tableLayoutPanelCmbCondition.Name = "tableLayoutPanelCmbCondition";
+            tableLayoutPanelCmbCondition.RowCount = 1;
+            tableLayoutPanelCmbCondition.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelCmbCondition.Size = new Size(377, 44);
+            tableLayoutPanelCmbCondition.TabIndex = 44;
+            // 
+            // grpAction
+            // 
+            grpAction.Controls.Add(tableLayoutPanelAction);
+            grpAction.Dock = DockStyle.Fill;
+            grpAction.Location = new Point(398, 3);
+            grpAction.Name = "grpAction";
+            grpAction.Size = new Size(390, 476);
+            grpAction.TabIndex = 43;
+            grpAction.TabStop = false;
+            grpAction.Text = "ACTION";
+            // 
+            // tableLayoutPanelAction
+            // 
+            tableLayoutPanelAction.ColumnCount = 1;
+            tableLayoutPanelAction.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelAction.Controls.Add(panelAction, 0, 2);
+            tableLayoutPanelAction.Controls.Add(tableLayoutPanelCmbAction, 0, 1);
+            tableLayoutPanelAction.Dock = DockStyle.Fill;
+            tableLayoutPanelAction.Location = new Point(3, 27);
+            tableLayoutPanelAction.Name = "tableLayoutPanelAction";
+            tableLayoutPanelAction.RowCount = 3;
+            tableLayoutPanelAction.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutPanelAction.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutPanelAction.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelAction.Size = new Size(384, 446);
+            tableLayoutPanelAction.TabIndex = 44;
+            // 
+            // tableLayoutPanelCmbAction
+            // 
+            tableLayoutPanelCmbAction.ColumnCount = 3;
+            tableLayoutPanelCmbAction.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 95F));
+            tableLayoutPanelCmbAction.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 218F));
+            tableLayoutPanelCmbAction.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelCmbAction.Controls.Add(lblSelAct, 0, 0);
+            tableLayoutPanelCmbAction.Controls.Add(cmbAction, 1, 0);
+            tableLayoutPanelCmbAction.Dock = DockStyle.Fill;
+            tableLayoutPanelCmbAction.Location = new Point(3, 18);
+            tableLayoutPanelCmbAction.Name = "tableLayoutPanelCmbAction";
+            tableLayoutPanelCmbAction.RowCount = 1;
+            tableLayoutPanelCmbAction.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelCmbAction.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelCmbAction.Size = new Size(378, 44);
+            tableLayoutPanelCmbAction.TabIndex = 45;
             // 
             // DialogSelectChange
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(891, 650);
+            ClientSize = new Size(797, 719);
             Controls.Add(tableLayoutMain);
             Margin = new Padding(1, 2, 1, 2);
             MaximizeBox = false;
@@ -375,16 +414,19 @@
             tableLayoutButtons.ResumeLayout(false);
             tableLayoutButtons.PerformLayout();
             tableLayoutMain.ResumeLayout(false);
-            tableLayoutPanelConditionAction.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
-            tableLayoutPanel2.PerformLayout();
-            tableLayoutPanelCond.ResumeLayout(false);
-            tableLayoutPanelCond.PerformLayout();
             tableLayoutChangeDesc.ResumeLayout(false);
             tableLayoutChangeDesc.PerformLayout();
             tableLayoutDesc.ResumeLayout(false);
             tableLayoutDesc.PerformLayout();
             tableLayoutEditors.ResumeLayout(false);
+            grpCondition.ResumeLayout(false);
+            tableLayoutPanelConditionGroup.ResumeLayout(false);
+            tableLayoutPanelCmbCondition.ResumeLayout(false);
+            tableLayoutPanelCmbCondition.PerformLayout();
+            grpAction.ResumeLayout(false);
+            tableLayoutPanelAction.ResumeLayout(false);
+            tableLayoutPanelCmbAction.ResumeLayout(false);
+            tableLayoutPanelCmbAction.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -408,8 +450,11 @@
         private CheckBox chkDesc;
         private TableLayoutPanel tableLayoutDesc;
         private Button btnResetDesc;
-        private TableLayoutPanel tableLayoutPanelConditionAction;
-        private TableLayoutPanel tableLayoutPanelCond;
-        private TableLayoutPanel tableLayoutPanel2;
+        private GroupBox grpCondition;
+        private GroupBox grpAction;
+        private TableLayoutPanel tableLayoutPanelCmbCondition;
+        private TableLayoutPanel tableLayoutPanelConditionGroup;
+        private TableLayoutPanel tableLayoutPanelAction;
+        private TableLayoutPanel tableLayoutPanelCmbAction;
     }
 }
