@@ -10,8 +10,11 @@ namespace CommonForms
         protected string DefaultOutputFolder = 
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
 
-        protected Processor? mFilesProcessor = null;
+        //  FILESLIST link
+        public Components.FilesListComponent? FilesList { get; set; } = null;
 
+        //  PROCESSOR link
+        protected Processor? mFilesProcessor = null;
         public Processor? Processor
         {
             get { return mFilesProcessor; }
@@ -23,25 +26,23 @@ namespace CommonForms
             }
         }
 
-        public Components.FilesListComponent? FilesList { get; set; } = null;
-
         public ApplicationPageBase()
         {
         }
 
         protected virtual void OnProcessorSet()
         {
-            //  implement in derived class
+            //  implement this in derived classes
         }
 
         public virtual void UpdateUI()
         {
-            //  implement in derived class
+            //  implement this in derived classes
         }
 
         public virtual void UpdateLocale()
         {
-            //  implement in derived class
+            //  implement this in derived classes
         }
 
         protected void CallUpdateStatus(string message)
@@ -52,6 +53,7 @@ namespace CommonForms
 
         public virtual void StoreSettings(ref Dictionary<string, string> iniKeys)
         {
+            //  implement this in derived classes
         }
     }
 }

@@ -37,7 +37,7 @@ namespace CommonForms
             throw new NotImplementedException();
         }
 
-        //  Error stack
+        //  ERROR STACK
         protected Stack<string> mErrorStack = new();
 
         public void PushError(string error)
