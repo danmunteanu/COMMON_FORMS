@@ -54,7 +54,7 @@ namespace CommonForms
             if (cond is ConditionHasExtension hasExt)
             {
                 string[] tokens = txtExtensions.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries);
-                
+
                 hasExt.ClearExtensions();
                 foreach (string ext in tokens)
                     hasExt.AddExtension(ext);
@@ -82,7 +82,7 @@ namespace CommonForms
 
         private void btnTxt_Click(object sender, EventArgs e)
         {
-            AddExtensions(["txt"]);            
+            AddExtensions(["txt"]);
         }
 
         private void btnMd_Click(object sender, EventArgs e)
@@ -125,6 +125,11 @@ namespace CommonForms
         private void btnTextExt_Click(object sender, EventArgs e)
         {
             AddExtensions(Utils.YamlFileExtensions);
+        }
+
+        private void btnArchives_Click(object sender, EventArgs e)
+        {
+            AddExtensions(Utils.ArchiveFileExtensions);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Guna.UI2.WinForms;
-using static CommonForms.PageButtonsFactory;
 
 /*
 	Creates buttons for tab pages
@@ -27,7 +26,7 @@ namespace CommonForms
         public int WidthPadding { get; set; } = 20;
         public int HeightPadding { get; set; } = 20;
 
-        private Guna2Button CreatePageButton(string btnName, string btnText, EventHandler? eventHandler, bool buttonChecked = false)
+        private Guna2Button CreatePageButton(string btnName, string? btnText, EventHandler? eventHandler, bool buttonChecked = false)
         {
             Guna2Button button = new();
             button.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
@@ -75,7 +74,7 @@ namespace CommonForms
             {
                 panel.Controls.Add(
                     CreatePageButton(
-                        cfg.Name, 
+                        cfg.Name ?? string.Empty, 
                         cfg.Text, 
                         cfg.ClickHandler, 
                         cfg.Checked

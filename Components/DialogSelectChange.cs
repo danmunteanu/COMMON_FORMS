@@ -66,12 +66,12 @@ namespace CommonForms.Components
             {
                 if (comboBox.Items.Count > 0)
                 {
-                    cmbAction.SelectedIndex = -1;
+                    comboBox.SelectedIndex = -1;
                     comboBox.SelectedIndex = 0;  // Select first item
                 }
             }
             txtDesc.Clear();
-            chkDesc.Checked = true;
+            chkDesc.Checked = false;
             btnResetDesc.Enabled = false;
 
             chkEnabled.Checked = true;
@@ -239,7 +239,7 @@ namespace CommonForms.Components
 
             string errTitle = string.Empty;
             string errMsg = string.Empty;
-
+            
             if (mSelCondEditor == null)
             {
                 errTitle = "Heads up!";
