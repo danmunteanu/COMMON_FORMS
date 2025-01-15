@@ -8,16 +8,8 @@ namespace CommonForms
     {
         private const string KExtensionSeparator = ";";
 
-        private static string[] _imgExt = [
-            "png", "jpg", "jpeg", "bmp"
-        ];
-
         private static string[] _docExt = [
             "doc", "docx", "pdf"
-        ];
-
-        private static string[] _txtExt = [
-            "txt", "md"
         ];
 
         public EditorHasExtension()
