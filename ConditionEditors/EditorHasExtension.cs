@@ -72,21 +72,6 @@ namespace CommonForms
             txtExtensions.Clear();
         }
 
-        private void btnTxt_Click(object sender, EventArgs e)
-        {
-            AddExtensions(["txt"]);
-        }
-
-        private void btnMd_Click(object sender, EventArgs e)
-        {
-            AddExtensions(["md"]);
-        }
-
-        private void btnPdf_Click(object sender, EventArgs e)
-        {
-            AddExtensions(["pdf"]);
-        }
-
         private void AddExtensions(string[] _arrayExt)
         {
             int arrCount = _arrayExt.Count();
