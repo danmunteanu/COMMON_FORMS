@@ -1,6 +1,4 @@
 ﻿using RealityFrameworks.Conditions;
-using SharpCompress;
-using System.ComponentModel;
 
 namespace CommonForms
 {
