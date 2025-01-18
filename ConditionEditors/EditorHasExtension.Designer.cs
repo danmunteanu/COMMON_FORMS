@@ -140,7 +140,7 @@
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 56F));
+            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 81F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
             tableLayoutExtButtons.Controls.Add(btnClearExt, 5, 0);
@@ -162,9 +162,9 @@
             btnArchives.Font = new Font("Segoe UI", 7F);
             btnArchives.Location = new Point(198, 3);
             btnArchives.Name = "btnArchives";
-            btnArchives.Size = new Size(50, 28);
+            btnArchives.Size = new Size(75, 28);
             btnArchives.TabIndex = 13;
-            btnArchives.Text = "ARCH";
+            btnArchives.Text = "ARCHIVES";
             btnArchives.UseVisualStyleBackColor = true;
             btnArchives.Click += btnArchives_Click;
             // 
