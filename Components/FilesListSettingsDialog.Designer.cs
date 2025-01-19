@@ -34,9 +34,13 @@
             btnSave = new Button();
             chkShowStatus = new CheckBox();
             chkShowProgressBar = new CheckBox();
-            tableLayoutPanelMain = new TableLayoutPanel();
             tableLayoutPanelButtons = new TableLayoutPanel();
-            tableLayoutPanelMain.SuspendLayout();
+            txtFileFilters = new TextBox();
+            btnYaml = new Button();
+            btnImg = new Button();
+            btnArchives = new Button();
+            lblFileFilters = new Label();
+            btnClearFilters = new Button();
             tableLayoutPanelButtons.SuspendLayout();
             SuspendLayout();
             // 
@@ -44,7 +48,7 @@
             // 
             chkAddFolders.Anchor = AnchorStyles.Left;
             chkAddFolders.AutoSize = true;
-            chkAddFolders.Location = new Point(12, 15);
+            chkAddFolders.Location = new Point(23, 36);
             chkAddFolders.Margin = new Padding(2);
             chkAddFolders.Name = "chkAddFolders";
             chkAddFolders.Size = new Size(174, 24);
@@ -57,20 +61,21 @@
             // 
             chkParseSubfolders.Anchor = AnchorStyles.Left;
             chkParseSubfolders.AutoSize = true;
-            chkParseSubfolders.Location = new Point(12, 50);
+            chkParseSubfolders.Location = new Point(22, 64);
             chkParseSubfolders.Margin = new Padding(2);
             chkParseSubfolders.Name = "chkParseSubfolders";
-            chkParseSubfolders.Size = new Size(173, 24);
+            chkParseSubfolders.Size = new Size(140, 24);
             chkParseSubfolders.TabIndex = 2;
-            chkParseSubfolders.Text = "Also Parse Subfolders";
+            chkParseSubfolders.Text = "Parse Subfolders";
             chkParseSubfolders.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
             btnCancel.Dock = DockStyle.Fill;
-            btnCancel.Location = new Point(255, 3);
+            btnCancel.Font = new Font("Segoe UI", 8F);
+            btnCancel.Location = new Point(272, 3);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(84, 33);
+            btnCancel.Size = new Size(84, 26);
             btnCancel.TabIndex = 3;
             btnCancel.Text = "CANCEL";
             btnCancel.UseVisualStyleBackColor = true;
@@ -79,9 +84,10 @@
             // btnSave
             // 
             btnSave.Dock = DockStyle.Fill;
-            btnSave.Location = new Point(165, 3);
+            btnSave.Font = new Font("Segoe UI", 8F);
+            btnSave.Location = new Point(182, 3);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(84, 33);
+            btnSave.Size = new Size(84, 26);
             btnSave.TabIndex = 4;
             btnSave.Text = "SAVE";
             btnSave.UseVisualStyleBackColor = true;
@@ -90,7 +96,7 @@
             // chkShowStatus
             // 
             chkShowStatus.AutoSize = true;
-            chkShowStatus.Location = new Point(13, 93);
+            chkShowStatus.Location = new Point(22, 117);
             chkShowStatus.Name = "chkShowStatus";
             chkShowStatus.Size = new Size(125, 24);
             chkShowStatus.TabIndex = 5;
@@ -100,39 +106,12 @@
             // chkShowProgressBar
             // 
             chkShowProgressBar.AutoSize = true;
-            chkShowProgressBar.Location = new Point(13, 128);
+            chkShowProgressBar.Location = new Point(22, 147);
             chkShowProgressBar.Name = "chkShowProgressBar";
             chkShowProgressBar.Size = new Size(141, 24);
             chkShowProgressBar.TabIndex = 6;
             chkShowProgressBar.Text = "Use Progress Bar";
             chkShowProgressBar.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanelMain
-            // 
-            tableLayoutPanelMain.ColumnCount = 3;
-            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
-            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelMain.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
-            tableLayoutPanelMain.Controls.Add(tableLayoutPanelButtons, 1, 7);
-            tableLayoutPanelMain.Controls.Add(chkAddFolders, 1, 1);
-            tableLayoutPanelMain.Controls.Add(chkShowProgressBar, 1, 5);
-            tableLayoutPanelMain.Controls.Add(chkParseSubfolders, 1, 2);
-            tableLayoutPanelMain.Controls.Add(chkShowStatus, 1, 4);
-            tableLayoutPanelMain.Dock = DockStyle.Fill;
-            tableLayoutPanelMain.Location = new Point(0, 0);
-            tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            tableLayoutPanelMain.RowCount = 9;
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanelMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
-            tableLayoutPanelMain.Size = new Size(368, 243);
-            tableLayoutPanelMain.TabIndex = 7;
             // 
             // tableLayoutPanelButtons
             // 
@@ -142,27 +121,93 @@
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90F));
             tableLayoutPanelButtons.Controls.Add(btnCancel, 2, 0);
             tableLayoutPanelButtons.Controls.Add(btnSave, 1, 0);
-            tableLayoutPanelButtons.Dock = DockStyle.Fill;
-            tableLayoutPanelButtons.Location = new Point(13, 191);
+            tableLayoutPanelButtons.Location = new Point(22, 200);
             tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
             tableLayoutPanelButtons.RowCount = 1;
             tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelButtons.Size = new Size(342, 39);
+            tableLayoutPanelButtons.Size = new Size(359, 32);
             tableLayoutPanelButtons.TabIndex = 8;
+            // 
+            // txtFileFilters
+            // 
+            txtFileFilters.Location = new Point(249, 36);
+            txtFileFilters.Multiline = true;
+            txtFileFilters.Name = "txtFileFilters";
+            txtFileFilters.ReadOnly = true;
+            txtFileFilters.Size = new Size(132, 58);
+            txtFileFilters.TabIndex = 11;
+            // 
+            // btnYaml
+            // 
+            btnYaml.Font = new Font("Segoe UI", 7F);
+            btnYaml.Location = new Point(249, 134);
+            btnYaml.Name = "btnYaml";
+            btnYaml.Size = new Size(54, 28);
+            btnYaml.TabIndex = 12;
+            btnYaml.Text = "YAML";
+            btnYaml.UseVisualStyleBackColor = true;
+            // 
+            // btnImg
+            // 
+            btnImg.Font = new Font("Segoe UI", 7F);
+            btnImg.Location = new Point(305, 100);
+            btnImg.Name = "btnImg";
+            btnImg.Size = new Size(38, 28);
+            btnImg.TabIndex = 13;
+            btnImg.Text = "IMG";
+            btnImg.UseVisualStyleBackColor = true;
+            // 
+            // btnArchives
+            // 
+            btnArchives.Font = new Font("Segoe UI", 7F);
+            btnArchives.Location = new Point(249, 100);
+            btnArchives.Name = "btnArchives";
+            btnArchives.Size = new Size(50, 29);
+            btnArchives.TabIndex = 14;
+            btnArchives.Text = "ARCH";
+            btnArchives.UseVisualStyleBackColor = true;
+            // 
+            // lblFileFilters
+            // 
+            lblFileFilters.AutoSize = true;
+            lblFileFilters.Location = new Point(249, 13);
+            lblFileFilters.Name = "lblFileFilters";
+            lblFileFilters.Size = new Size(78, 20);
+            lblFileFilters.TabIndex = 15;
+            lblFileFilters.Text = "File Filters:";
+            // 
+            // btnClearFilters
+            // 
+            btnClearFilters.Font = new Font("Segoe UI", 7F);
+            btnClearFilters.Location = new Point(349, 100);
+            btnClearFilters.Name = "btnClearFilters";
+            btnClearFilters.Size = new Size(32, 29);
+            btnClearFilters.TabIndex = 16;
+            btnClearFilters.Text = "X";
+            btnClearFilters.UseVisualStyleBackColor = true;
             // 
             // FilesListSettingsDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(368, 243);
-            Controls.Add(tableLayoutPanelMain);
+            ClientSize = new Size(402, 254);
+            Controls.Add(chkAddFolders);
+            Controls.Add(btnClearFilters);
+            Controls.Add(chkParseSubfolders);
+            Controls.Add(chkShowProgressBar);
+            Controls.Add(chkShowStatus);
+            Controls.Add(tableLayoutPanelButtons);
+            Controls.Add(lblFileFilters);
+            Controls.Add(btnArchives);
+            Controls.Add(btnImg);
+            Controls.Add(btnYaml);
+            Controls.Add(txtFileFilters);
             Margin = new Padding(2);
             Name = "FilesListSettingsDialog";
-            Text = "LIST Settings";
-            tableLayoutPanelMain.ResumeLayout(false);
-            tableLayoutPanelMain.PerformLayout();
+            Text = "FilesList Settings";
             tableLayoutPanelButtons.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -173,7 +218,12 @@
         private Button btnSave;
         private CheckBox chkShowStatus;
         private CheckBox chkShowProgressBar;
-        private TableLayoutPanel tableLayoutPanelMain;
         private TableLayoutPanel tableLayoutPanelButtons;
+        private TextBox txtFileFilters;
+        private Button btnYaml;
+        private Button btnImg;
+        private Button btnArchives;
+        private Label lblFileFilters;
+        private Button btnClearFilters;
     }
 }

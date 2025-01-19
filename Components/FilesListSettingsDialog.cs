@@ -31,6 +31,11 @@
                 chkParseSubfolders.Checked = _listControl.Settings.ParseSubfolders;
                 chkShowStatus.Checked = _listControl.Settings.UseStatus;
                 chkShowProgressBar.Checked = _listControl.Settings.UseProgressBar;
+                
+                //  Load file filters
+                txtFileFilters.Text = string.Empty;
+                foreach (var filter in _listControl.FileFilters)
+                    txtFileFilters.Text += filter + ";";
             }
             this.CenterToParent();
         }
