@@ -22,6 +22,9 @@ namespace CommonForms.Components
 
         private Change? Change { get; set; } = null;
 
+        //  Cache of Editors
+        Dictionary<string, EditorBase> mEditorCache = new Dictionary<string, EditorBase>();
+
         //  The callback for when something has been modified
         public delegate void OnModifiedCallback();
         public OnModifiedCallback? OnModified { get; set; }
@@ -47,6 +50,18 @@ namespace CommonForms.Components
             foreach (var action in actionNames)
                 cmbAction.Items.Add(action);
             cmbAction.SelectedIndex = 0;
+        }
+
+        //  Tries to find an editor in the cache, if not found, creates it
+        private EditorBase? FindOrCreateEditor(string name)
+        {
+            EditorBase? editor = null;
+            if (!mEditorCache.TryGetValue(name, out editor))
+            {
+                editor = GenericFactory<EditorBase>.Create(name);
+                mEditorCache.Add(name, editor);
+            }
+            return editor;
         }
 
         private void LoadStateAdd()
@@ -105,7 +120,7 @@ namespace CommonForms.Components
                 //  Try to FIND Condition Editor INSTEAD of Creating it
                 //  If it's not found, Create it and Store it in a Dictionary
                 string condName = ch.Condition.GetType().Name;
-                mSelCondEditor = GenericFactory<EditorBase>.Create(condName);
+                mSelCondEditor = FindOrCreateEditor(condName);
                 mSelCondEditor.LoadState(ch.Condition);
 
                 int condIndex = cmbCondition.Items.IndexOf(condName);
@@ -132,7 +147,7 @@ namespace CommonForms.Components
             try
             {
                 string actName = ch.Action.GetType().Name;
-                mSelActionEditor = GenericFactory<EditorBase>.Create(actName);
+                mSelActionEditor = FindOrCreateEditor(actName);
                 mSelActionEditor.LoadState(ch.Action);
 
                 int actIndex = cmbAction.Items.IndexOf(actName);
@@ -195,8 +210,7 @@ namespace CommonForms.Components
 
             try
             {
-                //  EditorFactory.FindOrCreateActionEditor
-                mSelCondEditor = GenericFactory<EditorBase>.Create(condName);
+                mSelCondEditor = FindOrCreateEditor(condName);
                 Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
             }
             catch (Exception ex)
@@ -219,7 +233,7 @@ namespace CommonForms.Components
 
             try
             {
-                mSelActionEditor = GenericFactory<EditorBase>.Create(actionName);
+                mSelActionEditor = FindOrCreateEditor(actionName);
                 Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
             }
             catch (Exception ex)
