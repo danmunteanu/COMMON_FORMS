@@ -193,18 +193,15 @@ namespace CommonForms.Components
             CallUpdateUI();
         }
 
-        /// <summary>
-        /// Handler for button Clear.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        // Handler for button Clear.
         private void btnClear_Click(object? sender, EventArgs e)
         {
             //clear inner list and list ui
             Processor?.ClearFileNames();
             lstFiles.Items.Clear();
             CallUpdateStatus(Locale.STATUS_LIST_CLEARED);
-
+            
+            CallOnSelectionChanged(string.Empty);   //  force a deselect
             CallUpdateUI();
         }
 
@@ -216,10 +213,7 @@ namespace CommonForms.Components
                 return;
 
             if (lstFiles.SelectedItem != null)
-            {
                 CallOnSelectionChanged(lstFiles.SelectedItem.ToString());
-
-            }
         }
 
         private void listFiles_DragEnter(object? sender, DragEventArgs e)
