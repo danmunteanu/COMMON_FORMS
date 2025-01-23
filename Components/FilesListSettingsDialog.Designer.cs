@@ -73,7 +73,7 @@
             // 
             btnCancel.Dock = DockStyle.Fill;
             btnCancel.Font = new Font("Segoe UI", 8F);
-            btnCancel.Location = new Point(272, 3);
+            btnCancel.Location = new Point(365, 3);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(84, 26);
             btnCancel.TabIndex = 3;
@@ -85,7 +85,7 @@
             // 
             btnSave.Dock = DockStyle.Fill;
             btnSave.Font = new Font("Segoe UI", 8F);
-            btnSave.Location = new Point(182, 3);
+            btnSave.Location = new Point(275, 3);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(84, 26);
             btnSave.TabIndex = 4;
@@ -125,7 +125,7 @@
             tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
             tableLayoutPanelButtons.RowCount = 1;
             tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelButtons.Size = new Size(359, 32);
+            tableLayoutPanelButtons.Size = new Size(452, 32);
             tableLayoutPanelButtons.TabIndex = 8;
             // 
             // txtFileFilters
@@ -134,13 +134,13 @@
             txtFileFilters.Multiline = true;
             txtFileFilters.Name = "txtFileFilters";
             txtFileFilters.ReadOnly = true;
-            txtFileFilters.Size = new Size(132, 58);
+            txtFileFilters.Size = new Size(225, 58);
             txtFileFilters.TabIndex = 11;
             // 
             // btnYaml
             // 
             btnYaml.Font = new Font("Segoe UI", 7F);
-            btnYaml.Location = new Point(249, 134);
+            btnYaml.Location = new Point(249, 100);
             btnYaml.Name = "btnYaml";
             btnYaml.Size = new Size(54, 28);
             btnYaml.TabIndex = 12;
@@ -150,7 +150,7 @@
             // btnImg
             // 
             btnImg.Font = new Font("Segoe UI", 7F);
-            btnImg.Location = new Point(305, 100);
+            btnImg.Location = new Point(365, 100);
             btnImg.Name = "btnImg";
             btnImg.Size = new Size(38, 28);
             btnImg.TabIndex = 13;
@@ -160,7 +160,7 @@
             // btnArchives
             // 
             btnArchives.Font = new Font("Segoe UI", 7F);
-            btnArchives.Location = new Point(249, 100);
+            btnArchives.Location = new Point(309, 101);
             btnArchives.Name = "btnArchives";
             btnArchives.Size = new Size(50, 28);
             btnArchives.TabIndex = 14;
@@ -179,7 +179,7 @@
             // btnClearFilters
             // 
             btnClearFilters.Font = new Font("Segoe UI", 7F);
-            btnClearFilters.Location = new Point(349, 100);
+            btnClearFilters.Location = new Point(442, 100);
             btnClearFilters.Name = "btnClearFilters";
             btnClearFilters.Size = new Size(32, 29);
             btnClearFilters.TabIndex = 16;
@@ -190,7 +190,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(402, 254);
+            ClientSize = new Size(493, 254);
             Controls.Add(chkAddFolders);
             Controls.Add(btnClearFilters);
             Controls.Add(chkParseSubfolders);
