@@ -162,7 +162,7 @@
             btnArchives.Font = new Font("Segoe UI", 7F);
             btnArchives.Location = new Point(249, 100);
             btnArchives.Name = "btnArchives";
-            btnArchives.Size = new Size(50, 29);
+            btnArchives.Size = new Size(50, 28);
             btnArchives.TabIndex = 14;
             btnArchives.Text = "ARCH";
             btnArchives.UseVisualStyleBackColor = true;
