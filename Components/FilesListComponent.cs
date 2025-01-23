@@ -261,6 +261,10 @@ namespace CommonForms.Components
                 //  is the file a folder?
                 if (Directory.Exists(item))
                 {
+                    //  ADD the folder to the Processor's list of folders
+                    //  this way, on reload, it should reload the folder's contents
+                    //  not just the files
+                    //Processor?.AddFolder(item);
                     if (AddFolderToProcessor(item))
                         added = true;
                 }
