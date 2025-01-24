@@ -39,10 +39,11 @@ Also includes an error stack to be used during actual validation in the concrete
 <br>
 This project depends heavily on REALITY_FRAMEWORKS_DLL, which is not public (yet!).
 
-But many parts of the code can be re-used at will or serve as inspiration for you, dear visitor.
+But many parts of the code can be repurposed at will or serve as inspiration for you, dear visitor.
 
 Re-use anything you'd like, but be warned: this work is in progress and will surely change over time.
 
-That's it! I might come back and add some additional details. Or I might not, who knows. This is my project and I do as I like here. 
+That's it! 
+I might come back and add some additional details. Or not, who knows. Since this is my project, I rule here (and do as I like).
 
 Ciao ;)
