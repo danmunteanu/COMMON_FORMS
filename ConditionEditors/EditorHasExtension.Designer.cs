@@ -48,9 +48,9 @@
             // 
             // txtAddExt
             // 
-            txtAddExt.Dock = DockStyle.Fill;
+            txtAddExt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtAddExt.Font = new Font("Segoe UI", 7F);
-            txtAddExt.Location = new Point(421, 3);
+            txtAddExt.Location = new Point(421, 5);
             txtAddExt.Name = "txtAddExt";
             txtAddExt.Size = new Size(64, 23);
             txtAddExt.TabIndex = 1;
@@ -85,17 +85,17 @@
             lblExtensionList.AutoSize = true;
             lblExtensionList.Location = new Point(3, 7);
             lblExtensionList.Name = "lblExtensionList";
-            lblExtensionList.Size = new Size(104, 20);
+            lblExtensionList.Size = new Size(98, 20);
             lblExtensionList.TabIndex = 5;
-            lblExtensionList.Text = "Extensions List";
+            lblExtensionList.Text = "Extension List";
             // 
             // btnImages
             // 
             btnImages.Dock = DockStyle.Fill;
             btnImages.Font = new Font("Segoe UI", 7F);
-            btnImages.Location = new Point(123, 3);
+            btnImages.Location = new Point(198, 3);
             btnImages.Name = "btnImages";
-            btnImages.Size = new Size(69, 28);
+            btnImages.Size = new Size(75, 28);
             btnImages.TabIndex = 9;
             btnImages.Text = "IMAGES";
             btnImages.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@
             // 
             btnDocExt.Dock = DockStyle.Fill;
             btnDocExt.Font = new Font("Segoe UI", 7F);
-            btnDocExt.Location = new Point(3, 3);
+            btnDocExt.Location = new Point(63, 3);
             btnDocExt.Name = "btnDocExt";
             btnDocExt.Size = new Size(54, 28);
             btnDocExt.TabIndex = 11;
@@ -126,7 +126,7 @@
             // 
             btnTextExt.Dock = DockStyle.Fill;
             btnTextExt.Font = new Font("Segoe UI", 7F);
-            btnTextExt.Location = new Point(63, 3);
+            btnTextExt.Location = new Point(3, 3);
             btnTextExt.Name = "btnTextExt";
             btnTextExt.Size = new Size(54, 28);
             btnTextExt.TabIndex = 12;
@@ -144,10 +144,10 @@
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
             tableLayoutExtButtons.Controls.Add(btnClearExt, 5, 0);
-            tableLayoutExtButtons.Controls.Add(btnImages, 2, 0);
-            tableLayoutExtButtons.Controls.Add(btnTextExt, 1, 0);
-            tableLayoutExtButtons.Controls.Add(btnDocExt, 0, 0);
-            tableLayoutExtButtons.Controls.Add(btnArchives, 3, 0);
+            tableLayoutExtButtons.Controls.Add(btnDocExt, 1, 0);
+            tableLayoutExtButtons.Controls.Add(btnTextExt, 0, 0);
+            tableLayoutExtButtons.Controls.Add(btnImages, 3, 0);
+            tableLayoutExtButtons.Controls.Add(btnArchives, 2, 0);
             tableLayoutExtButtons.Dock = DockStyle.Fill;
             tableLayoutExtButtons.Location = new Point(3, 133);
             tableLayoutExtButtons.Name = "tableLayoutExtButtons";
@@ -160,9 +160,9 @@
             // 
             btnArchives.Dock = DockStyle.Fill;
             btnArchives.Font = new Font("Segoe UI", 7F);
-            btnArchives.Location = new Point(198, 3);
+            btnArchives.Location = new Point(123, 3);
             btnArchives.Name = "btnArchives";
-            btnArchives.Size = new Size(75, 28);
+            btnArchives.Size = new Size(69, 28);
             btnArchives.TabIndex = 13;
             btnArchives.Text = "ARCHIVES";
             btnArchives.UseVisualStyleBackColor = true;
@@ -193,7 +193,7 @@
             // tableLayoutPanelAdd
             // 
             tableLayoutPanelAdd.ColumnCount = 5;
-            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 139F));
+            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 109F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));

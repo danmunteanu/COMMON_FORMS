@@ -41,26 +41,26 @@
             lblPath.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblPath.AutoSize = true;
             lblPath.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblPath.Location = new Point(3, 20);
+            lblPath.Location = new Point(3, 45);
             lblPath.Name = "lblPath";
-            lblPath.Size = new Size(128, 25);
+            lblPath.Size = new Size(102, 20);
             lblPath.TabIndex = 0;
             lblPath.Text = "Copy to folder:";
             // 
             // txtFolder
             // 
             txtFolder.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtFolder.Location = new Point(3, 52);
+            txtFolder.Location = new Point(3, 74);
             txtFolder.Name = "txtFolder";
             txtFolder.ReadOnly = true;
-            txtFolder.Size = new Size(536, 31);
+            txtFolder.Size = new Size(536, 27);
             txtFolder.TabIndex = 1;
             // 
             // btnBrowse
             // 
             btnBrowse.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnBrowse.Font = new Font("Segoe UI", 7F);
-            btnBrowse.Location = new Point(545, 51);
+            btnBrowse.Location = new Point(545, 71);
             btnBrowse.Name = "btnBrowse";
             btnBrowse.Size = new Size(79, 33);
             btnBrowse.TabIndex = 2;
@@ -73,18 +73,16 @@
             tableLayout.ColumnCount = 2;
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 85F));
-            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayout.Controls.Add(txtFolder, 0, 1);
             tableLayout.Controls.Add(lblPath, 0, 0);
+            tableLayout.Controls.Add(txtFolder, 0, 1);
             tableLayout.Controls.Add(btnBrowse, 1, 1);
             tableLayout.Dock = DockStyle.Fill;
             tableLayout.Location = new Point(0, 0);
             tableLayout.Name = "tableLayout";
             tableLayout.RowCount = 3;
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayout.Size = new Size(627, 176);
             tableLayout.TabIndex = 3;
             // 

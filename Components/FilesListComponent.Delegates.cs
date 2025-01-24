@@ -1,5 +1,4 @@
-﻿
-namespace CommonForms.Components
+﻿namespace CommonForms.Components
 {
     //  Everything delegate related for the FilesListComponent
     public partial class FilesListComponent
