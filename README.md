@@ -4,6 +4,8 @@ This project contains all sorts of common utilities I use in two of my C# projec
 ## List of Components  
 Some components can be found in the **Components** folder, while others are located in the root of the project.
 
+Please check the [Wiki](https://github.com/danmunteanu/COMMON_FORMS/wiki) for a more detailed class information.
+
 ### Main Components  
 - **FilesListComponent**: A configurable list component for adding files to a C# application.  
 - **FilesListSettings**: A configuration dialog for the `FilesListComponent`.  
