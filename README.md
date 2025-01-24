@@ -27,15 +27,52 @@ You will find some of them in the Components folder and others in the root of th
 **Inherits**: *UserControl*
 <br>
 **Methods**:
-- virtual bool ValidateState() - override this in derived classes to implement validation of the editor fields 
-- virtual LoadState(Condition) - override this in derived classes to load the state of a Condition into the condition editor
-- virtual SaveState(Condition) - override this in derived classes to save the state of the condition editor into a  Condition  
-- virtual LoadState(Action) - override this in derived classes to load the internal state of an Action into the action editor
-- virtual SaveState(Action) - override this in derived classes to save the state of the action editor into an Action
-Also includes an error stack to be used during actual validation in the concrete classes
+```cs
+// override in derived classes to implement validation of the editor fields 
+public virtual bool ValidateState()
+
+// override in derived classes to load the state of a Condition into the editor
+public virtual void LoadState(RealityFrameworks.Conditons.Condition cond)
+
+// override in derived classes to save the state of the condition editor into a  Condition  
+public virtual void SaveState(RealityFrameworks.Conditions.Condition cond)
+
+// override in derived classes to load the state of an Action into the editor
+public virtual void LoadState(RealityFrameworks.Actions.Action action)
+
+// override in derived classes to save the state of the action editor into an Action  
+public virtual void SaveState(RealityFrameworks.Actions.Action action)
+```
+This base class also includes an error stack to be used during the actual editor validation in derived classes.
+
+## ApplicationPageBase
+
+**Inherits**: *UserControl*
+
+**Methods**
+
+When your application logic must take action immediately after setting the Processor value, you will override: 
+```cs
+protected virtual void OnProcessorSet()
+```
+
+Override this to implement user interface updates.
+```cs
+public virtual void UpdateUI()
+```
+
+Override this to implement locale updates.
+```cs
+public virtual void UpdateLocale()
+```
+
+Two methods for saving / loading ini settings.
+```cs
+public virtual void StoreSettings()
+public virtual void LoadSettings()
+```
 
 *..more coming soon..*
-
 <br>
 This project depends heavily on REALITY_FRAMEWORKS_DLL, which is not public (yet!).
 
