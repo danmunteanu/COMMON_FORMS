@@ -40,20 +40,21 @@ Some components can be found in the **Components** folder, while others are loca
 
 #### **Methods**  
 ```cs
-// Validates the editor fields. Must be overridden in derived classes.
+// Validates the editor fields. Override in derived classes, if needed.
 public virtual bool ValidateState()
 
-// Loads the state of a Condition into the editor. Must be overridden in derived classes.
+// Loads the state of a Condition into the editor. Override in derived classes, if needed.
 public virtual void LoadState(RealityFrameworks.Conditions.Condition cond)
 
-// Saves the state of the Condition editor into a Condition. Must be overridden in derived classes.
+// Saves the state of the Condition editor into a Condition. Override in derived classes, if needed.
 public virtual void SaveState(RealityFrameworks.Conditions.Condition cond)
 
-// Loads the state of an Action into the editor. Must be overridden in derived classes.
+// Loads the state of an Action into the editor. Override in derived classes, if needed.
 public virtual void LoadState(RealityFrameworks.Actions.Action action)
 
-// Saves the state of the Action editor into an Action. Must be overridden in derived classes.
+// Saves the state of the Action editor into an Action. Override in derived classes, if needed.
 public virtual void SaveState(RealityFrameworks.Actions.Action action)
+
 ```
 
 ## ApplicationPageBase
@@ -62,20 +63,23 @@ public virtual void SaveState(RealityFrameworks.Actions.Action action)
 
 **Methods**
 
-When your application logic must take action immediately after setting the Processor value, you will override: 
+```cs
+//	Override when your application logic must take action immediately after setting the Processor value 
 protected virtual void OnProcessorSet()
 
-Override this to implement user interface updates.
+//	Override to implement user interface updates
 public virtual void UpdateUI()
 
-Override this to implement locale updates.
+//	Override to implement locale updates.
 public virtual void UpdateLocale()
 
-Two methods for saving / loading ini settings.
+//	Override to save and load ini settings.
 public virtual void StoreSettings()
 public virtual void LoadSettings()
+```cs
 
 *..more coming soon..*
+
 <br>
 This project depends heavily on REALITY_FRAMEWORKS_DLL, which is not public (yet!).
 
