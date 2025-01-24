@@ -471,6 +471,23 @@ namespace CommonForms.Components
             progressBar.Dock = DockStyle.Fill;
         }
 
+        private void CreateSearchBar()
+        {
+            //  Search bar
+            
+            txtSearch.Dock = DockStyle.Fill;
+            txtSearch.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtSearch.Margin = new Padding(0);
+            txtSearch.Padding = new Padding(0);
+            txtSearch.Font = new Font(txtSearch.Font.FontFamily, 10);
+            txtSearch.TextChanged += (sender, e) =>
+            {
+                string search = txtSearch.Text;
+
+                //  remove items matching the text
+            };
+        }
+
         private TableLayoutPanel CreateBottomLayout()
         {
             TableLayoutPanel layoutBottomLine = new TableLayoutPanel();
@@ -573,6 +590,10 @@ namespace CommonForms.Components
                 masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.ProgressBarLineHeight));
             }
 
+            //  Search bar
+            //CreateSearchBar();
+            //masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
+
             //  Bottom Buttons
             TableLayoutPanel bottomLayout = CreateBottomLayout();
             masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, Settings.BottomLineHeight));
@@ -587,6 +608,7 @@ namespace CommonForms.Components
             masterTableLayout.Controls.Add(lstFiles, 0, rowIdx++);
             if (Settings.UseStatus && lblStatus != null) masterTableLayout.Controls.Add(lblStatus, 0, rowIdx++);
             if (Settings.UseProgressBar && progressBar != null) masterTableLayout.Controls.Add(progressBar, 0, rowIdx++);
+            //masterTableLayout.Controls.Add(txtSearch, 0, rowIdx++);
             masterTableLayout.Controls.Add(bottomLayout, 0, rowIdx++);
 
             this.Controls.Add(masterTableLayout);
@@ -608,7 +630,10 @@ namespace CommonForms.Components
 
         //  Progress bar
         private ProgressBar progressBar = new();
-        
+
+        //  Search bar
+        TextBox txtSearch = new();
+
         //  Bottom
         private Button btnAddFiles = new();
         private Button btnReload = new();
