@@ -1,49 +1,60 @@
-This project contains all sorts of common utilities I use in two of my projects - MASS_YAML and MERGE_PDF.
+# COMMON_FORMS
 
-## List of Components
-You will find some of them in the Components folder and others in the root of the project.
-- **FilesListComponent** provides a configurable list component to add files to a C# application.
-- **FilesListSettings** serves as a configuration dialog for FilesListComponent
-- **DialogSelectChange** configures a Condition and Action pair (known as a Change)
-- **ApplicationPageBase** - base class for all application pages / tabs
-- **EditorBase** - serves as a base class for all Condition and Action editors
-- **PageButtonsFactory** - responsible with the configuration and creation of application page buttons
+This project contains all sorts of common utilities I use in two of my C# projects - MASS_YAML and MERGE_PDF.
+## List of Components  
+Some components can be found in the **Components** folder, while others are located in the root of the project.
 
-### Condition Editors
-*Folder:* ConditionEditors
-- EditorHasExtension
-- EditorIsFolder
-- EditorConditionGroup
+### Main Components  
+- **FilesListComponent**: A configurable list component for adding files to a C# application.  
+- **FilesListSettings**: A configuration dialog for the `FilesListComponent`.  
+- **DialogSelectChange**: Used to configure a Condition and Action pair (referred to as a "Change").  
+- **ApplicationPageBase**: The base class for all application pages or tabs.  
+- **EditorBase**: Serves as the base class for all Condition and Action editors.  
+- **PageButtonsFactory**: Handles the configuration and creation of application page buttons.
 
-### Action Editors
-*Folder*: ActionEditors
-- EditorActionGroup
-- EditorCopyFile
-- EditorRenameFile
-- EditorMergeFiles
+---
 
-## Classes
-### EditorBase
-**Inherits**: *UserControl*
-<br>
-**Methods**:
+### Condition Editors  
+**Folder:** `ConditionEditors`  
+- **EditorHasExtension**: Evaluates files based on their extensions.  
+- **EditorIsFolder**: Checks whether a target is a folder.  
+- **EditorConditionGroup**: Groups multiple conditions for composite evaluations.
+
+---
+
+### Action Editors  
+**Folder:** `ActionEditors`  
+- **EditorActionGroup**: Groups multiple actions to execute as a sequence.  
+- **EditorCopyFile**: Facilitates copying files.  
+- **EditorRenameFile**: Handles file renaming operations.  
+- **EditorMergeFiles**: Combines multiple files into one.
+
+
+## Classes  
+
+### **EditorBase**  
+**Inherits**: *UserControl*  
+
+#### **Overview**  
+`EditorBase` serves as the foundation for all editor components, providing methods to validate, load, and save the state of both Conditions and Actions. It also includes an **error stack** to assist with validation in derived classes.  
+
+#### **Methods**  
 ```cs
-// override in derived classes to implement validation of the editor fields 
+// Validates the editor fields. Must be overridden in derived classes.
 public virtual bool ValidateState()
 
-// override in derived classes to load the state of a Condition into the editor
-public virtual void LoadState(RealityFrameworks.Conditons.Condition cond)
+// Loads the state of a Condition into the editor. Must be overridden in derived classes.
+public virtual void LoadState(RealityFrameworks.Conditions.Condition cond)
 
-// override in derived classes to save the state of the condition editor into a  Condition  
+// Saves the state of the Condition editor into a Condition. Must be overridden in derived classes.
 public virtual void SaveState(RealityFrameworks.Conditions.Condition cond)
 
-// override in derived classes to load the state of an Action into the editor
+// Loads the state of an Action into the editor. Must be overridden in derived classes.
 public virtual void LoadState(RealityFrameworks.Actions.Action action)
 
-// override in derived classes to save the state of the action editor into an Action  
+// Saves the state of the Action editor into an Action. Must be overridden in derived classes.
 public virtual void SaveState(RealityFrameworks.Actions.Action action)
 ```
-This base class also includes an error stack to be used during the actual editor validation in derived classes.
 
 ## ApplicationPageBase
 
@@ -52,25 +63,17 @@ This base class also includes an error stack to be used during the actual editor
 **Methods**
 
 When your application logic must take action immediately after setting the Processor value, you will override: 
-```cs
 protected virtual void OnProcessorSet()
-```
 
 Override this to implement user interface updates.
-```cs
 public virtual void UpdateUI()
-```
 
 Override this to implement locale updates.
-```cs
 public virtual void UpdateLocale()
-```
 
 Two methods for saving / loading ini settings.
-```cs
 public virtual void StoreSettings()
 public virtual void LoadSettings()
-```
 
 *..more coming soon..*
 <br>
