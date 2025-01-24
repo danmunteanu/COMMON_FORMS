@@ -10,7 +10,7 @@ You will find some of them in the Components folder and others in the root of th
 - **PageButtonsFactory** - responsible with the configuration and creation of application page buttons
 
 ### Condition Editors
-You will find them in the **ConditionEditors** folder.
+*Folder:* ConditionEditors
 - EditorHasExtension
 - EditorIsFolder
 - EditorConditionGroup
@@ -23,18 +23,19 @@ You will find them in the **ConditionEditors** folder.
 - EditorMergeFiles
 
 ## Classes
-#### EditorBase
-- ValidateState
-*Virtual methods:*
-- LoadState(Condition)
-- SaveState(Condition)
-- LoadState(Action)
-- SaveState(Action)
+### EditorBase
+Inherits: *UserControl*
+Methods:
+- virtual bool ValidateState() - override this in derived classes to implement validation of the editor fields 
+- virtual LoadState(Condition) - override this in derived classes to load the state of a Condition into the condition editor
+- virtual SaveState(Condition) - override this in derived classes to save the state of the condition editor into a  Condition  
+- virtual LoadState(Action) - override this in derived classes to load the internal state of an Action into the action editor
+- virtual SaveState(Action) - override this in derived classes to save the state of the action editor into an Action
 Also includes an error stack to be used during actual validation in the concrete classes
 
 *..more coming soon..*
 
-The depends heavily on REALITY_FRAMEWORKS_DLL, which is not public (yet!).
+This project depends heavily on REALITY_FRAMEWORKS_DLL, which is not public (yet!).
 
 But many parts of the code can be re-used at will or serve as inspiration for you, dear visitor.
 
