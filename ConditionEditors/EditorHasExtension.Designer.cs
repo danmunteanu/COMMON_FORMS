@@ -50,9 +50,9 @@
             // 
             txtAddExt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtAddExt.Font = new Font("Segoe UI", 7F);
-            txtAddExt.Location = new Point(421, 5);
+            txtAddExt.Location = new Point(421, 4);
             txtAddExt.Name = "txtAddExt";
-            txtAddExt.Size = new Size(64, 23);
+            txtAddExt.Size = new Size(64, 26);
             txtAddExt.TabIndex = 1;
             // 
             // btnAddExt
@@ -83,9 +83,9 @@
             // 
             lblExtensionList.Anchor = AnchorStyles.Left;
             lblExtensionList.AutoSize = true;
-            lblExtensionList.Location = new Point(3, 7);
+            lblExtensionList.Location = new Point(3, 0);
             lblExtensionList.Name = "lblExtensionList";
-            lblExtensionList.Size = new Size(98, 20);
+            lblExtensionList.Size = new Size(92, 34);
             lblExtensionList.TabIndex = 5;
             lblExtensionList.Text = "Extension List";
             // 
@@ -104,7 +104,7 @@
             // txtExtensions
             // 
             txtExtensions.Dock = DockStyle.Fill;
-            txtExtensions.Location = new Point(3, 63);
+            txtExtensions.Location = new Point(3, 119);
             txtExtensions.Multiline = true;
             txtExtensions.Name = "txtExtensions";
             txtExtensions.Size = new Size(548, 64);
@@ -149,7 +149,7 @@
             tableLayoutExtButtons.Controls.Add(btnImages, 3, 0);
             tableLayoutExtButtons.Controls.Add(btnArchives, 2, 0);
             tableLayoutExtButtons.Dock = DockStyle.Fill;
-            tableLayoutExtButtons.Location = new Point(3, 133);
+            tableLayoutExtButtons.Location = new Point(3, 189);
             tableLayoutExtButtons.Name = "tableLayoutExtButtons";
             tableLayoutExtButtons.RowCount = 1;
             tableLayoutExtButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -180,13 +180,12 @@
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
-            tableLayoutMain.RowCount = 6;
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutMain.RowCount = 5;
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 70F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
             tableLayoutMain.Size = new Size(554, 405);
             tableLayoutMain.TabIndex = 14;
             // 
@@ -203,7 +202,7 @@
             tableLayoutPanelAdd.Controls.Add(txtAddExt, 3, 0);
             tableLayoutPanelAdd.Controls.Add(lblExt, 2, 0);
             tableLayoutPanelAdd.Dock = DockStyle.Fill;
-            tableLayoutPanelAdd.Location = new Point(3, 23);
+            tableLayoutPanelAdd.Location = new Point(3, 79);
             tableLayoutPanelAdd.Name = "tableLayoutPanelAdd";
             tableLayoutPanelAdd.RowCount = 1;
             tableLayoutPanelAdd.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -215,9 +214,9 @@
             lblExt.Anchor = AnchorStyles.Right;
             lblExt.AutoSize = true;
             lblExt.Font = new Font("Segoe UI", 9F);
-            lblExt.Location = new Point(351, 7);
+            lblExt.Location = new Point(364, 0);
             lblExt.Name = "lblExt";
-            lblExt.Size = new Size(64, 20);
+            lblExt.Size = new Size(51, 34);
             lblExt.TabIndex = 6;
             lblExt.Text = "Add Ext:";
             // 
