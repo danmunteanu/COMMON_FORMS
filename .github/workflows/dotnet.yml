@@ -1,0 +1,41 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the COMMON_FORMS repository
+    - name: Checkout COMMON_FORMS
+      uses: actions/checkout@v4
+
+    # Clone the REALITY_FRAMEWORKS repository using GITHUB_TOKEN for authentication
+    - name: Clone REALITY_FRAMEWORKS
+      run: git clone https://github.com/danmunteanu/REALITY_FRAMEWORKS.git ./REALITY_FRAMEWORKS
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    # Setup .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    # Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Build COMMON_FORMS
+    - name: Build
+      run: dotnet build --no-restore
+
+    # Run tests
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
