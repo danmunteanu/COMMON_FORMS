@@ -7,7 +7,7 @@ namespace CommonForms
     //    private TAction? _action;
 
     //    public abstract void OnActionSet();
-       
+
     //    TAction? Action {  
     //        get { return _action; } 
     //        set { _action = value; OnActionSet(); }
@@ -19,7 +19,8 @@ namespace CommonForms
         public ActionExtractPDFPages? Action { get; set; } = null;
 
         private string DESKTOP_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\";
-
+        
+        private const string K_OUPUT_FILENAME_MASK = "EXTRACT-PAGES-{0}";
         public const string K_DATE_MASK = "yyyy-MM-dd hh:mm tt";
 
         public int mPageCount = 0;
@@ -278,7 +279,7 @@ namespace CommonForms
             if (string.IsNullOrEmpty(sourceName))
             {
                 //  EXTRACT + DATE
-                outputName = string.Format("EXTRACT-PAGES-{0}", DateTime.Now.ToString(K_DATE_MASK));
+                outputName = string.Format(K_OUPUT_FILENAME_MASK, DateTime.Now.ToString(K_DATE_MASK));
             }
             else
             {
@@ -302,6 +303,53 @@ namespace CommonForms
         public override void UpdateLocale()
         {
             //  update string localizations
+        }
+
+        private void btnSelectDoc_DragEnter(object sender, DragEventArgs e)
+        {
+            // Check if the data being dragged is a file
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files.Length > 0 && Path.GetExtension(files[0]).Equals(".pdf", StringComparison.OrdinalIgnoreCase))
+                {
+                    e.Effect = DragDropEffects.Copy; // Allow the drop
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.None; // Deny the drop
+                }
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void btnSelectDoc_DragDrop(object sender, DragEventArgs e)
+        {
+            // Get the dragged files
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if (files.Length > 0)
+                {
+                    string pdfFilePath = files[0];
+                    //MessageBox.Show($"PDF file dropped: {pdfFilePath}", "File Dropped", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    txtSource.Text = pdfFilePath;
+
+                    //  clear the fields
+                    txtPages.Clear();
+
+                    UpdateStatus("Source document selected.");
+
+                    UpdateUI();
+
+                    txtPages.Select();
+
+                }
+            }
         }
     }
 }
