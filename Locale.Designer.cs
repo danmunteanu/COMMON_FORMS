@@ -250,15 +250,6 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LIST SETTINGS.
-        /// </summary>
-        internal static string FILES_LIST_BUTTON_SETTINGS {
-            get {
-                return ResourceManager.GetString("FILES_LIST_BUTTON_SETTINGS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ↓↓ Add Files To Merge ↓↓.
         /// </summary>
         internal static string FILES_LIST_LABEL_ADD {

@@ -186,9 +186,6 @@
   <data name="FILES_LIST_BUTTON_SELECT_ALL" xml:space="preserve">
     <value>SELECTEAZĂ TOATE</value>
   </data>
-  <data name="FILES_LIST_BUTTON_SETTINGS" xml:space="preserve">
-    <value>SETĂRI LISTĂ</value>
-  </data>
   <data name="FILES_LIST_LABEL_ADD" xml:space="preserve">
     <value>↓↓ Adaugă fișiere pentru îmbinare ↓↓</value>
   </data>

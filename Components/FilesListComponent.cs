@@ -147,7 +147,6 @@ namespace CommonForms.Components
             //  top
             lblAddFiles.Text = Locale.FILES_LIST_LABEL_ADD;
             btnSelectAll.Text = Locale.FILES_LIST_BUTTON_SELECT_ALL;
-            btnSettings.Text = Locale.FILES_LIST_BUTTON_SETTINGS;
 
             //  bottom
             btnAddFiles.Text = Locale.FILES_LIST_BUTTON_ADD;
@@ -385,7 +384,7 @@ namespace CommonForms.Components
             //tableLayoutPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 
             tableLayoutPanel.Dock = DockStyle.Fill;
-            tableLayoutPanel.ColumnCount = 4;
+            tableLayoutPanel.ColumnCount = 3;
             tableLayoutPanel.RowCount = 1;
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
@@ -393,7 +392,6 @@ namespace CommonForms.Components
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Label
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F)); // Empty space
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Button 1 (fixed width)
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // Button 2 (fixed width)
 
             //  label Add Files
             lblAddFiles.Name = "lblAddFiles";
@@ -418,20 +416,9 @@ namespace CommonForms.Components
             btnSelectAll.Click -= btnSelectAll_Click;   //  remove prev handler
             btnSelectAll.Click += btnSelectAll_Click;   //  make sure it's only once
 
-            //  button Settings
-            btnSettings.Text = Locale.FILES_LIST_BUTTON_SETTINGS;
-            btnSettings.Visible = Settings.SettingsButtonVisible;
-            btnSettings.Font = new Font(btnSettings.Font.FontFamily, Settings.FontSize);
-            btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnSettings.AutoSize = true;
-            btnSettings.TextAlign = ContentAlignment.MiddleCenter;
-            btnSettings.Click -= btnSettings_Click;
-            btnSettings.Click += btnSettings_Click;
-
             //  Add the controls to the layout
             tableLayoutPanel.Controls.Add(lblAddFiles, 0, 0);
             tableLayoutPanel.Controls.Add(btnSelectAll, 2, 0);
-            tableLayoutPanel.Controls.Add(btnSettings, 3, 0);
 
             return tableLayoutPanel;
         }
@@ -498,7 +485,7 @@ namespace CommonForms.Components
 
             layoutBottomLine.Dock = DockStyle.Fill;
             layoutBottomLine.AutoSize = true;
-            layoutBottomLine.ColumnCount = 5;
+            layoutBottomLine.ColumnCount = 6;
             layoutBottomLine.RowCount = 1;
 
             // Set row style to fill the available height
@@ -508,14 +495,17 @@ namespace CommonForms.Components
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnAdd
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnReload (square)
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnRem (square)
+            layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnSettings
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));  // Empty space
             layoutBottomLine.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // btnClear
 
             // btnAddFolder
             btnAddFiles.Text = Settings.ButtonAddLabel;
             btnAddFiles.Font = new Font(btnAddFiles.Font.FontFamily, Settings.FontSize);
-            btnAddFiles.Dock = DockStyle.Fill;
+            btnAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            //btnAddFiles.Dock = DockStyle.Fill;
             btnAddFiles.AutoSize = true;
+            btnAddFiles.Height = Settings.BottomLineHeight;
             btnAddFiles.Click -= btnAdd_Click;
             btnAddFiles.Click += btnAdd_Click;
             
@@ -523,7 +513,9 @@ namespace CommonForms.Components
             btnReload.Text = "↻";
             btnReload.Font = new Font(btnReload.Font.FontFamily, Settings.FontSize);
             btnReload.Width = 35;
-            btnReload.Dock = DockStyle.Fill; // Ensure it fills the height
+            btnReload.AutoSize = true;
+            btnReload.Padding = new Padding(3);
+            btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnReload.Click -= btnReloadFolder_Click;
             btnReload.Click += btnReloadFolder_Click;
 
@@ -531,17 +523,35 @@ namespace CommonForms.Components
             btnRem.Text = "-";
             btnRem.Font = new Font(btnRem.Font.FontFamily, Settings.FontSize);
             btnRem.Width = 35;
-            btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
-            
+            btnRem.AutoSize = true;
+            btnRem.Padding = new Padding(3);
+            btnRem.TextAlign = ContentAlignment.MiddleCenter;
+            btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            //btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
+
+            //  button Settings
+            btnSettings.Text = "⚙"; // Gear emoji
+            btnSettings.Visible = Settings.SettingsButtonVisible;
+            btnSettings.Font = new Font(btnSettings.Font.FontFamily, Settings.FontSize);
+            btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSettings.Width = 35;
+            btnSettings.AutoSize = true;
+            btnSettings.Padding = new Padding(3);
+            btnSettings.TextAlign = ContentAlignment.MiddleCenter;
+            btnSettings.Click -= btnSettings_Click;
+            btnSettings.Click += btnSettings_Click;
+
             // btnClear
             btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
             btnClear.Font = new Font(btnClear.Font.FontFamily, Settings.FontSize);
             btnClear.AutoSize = true;
-            btnClear.Dock = DockStyle.Fill;
+            btnClear.Height = Settings.BottomLineHeight;
+            //btnClear.Dock = DockStyle.Fill;
+            btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnClear.Click -= btnClear_Click;
             btnClear.Click += btnClear_Click;
 
-            //  Remove padding from all components
+            //  Remove padding from all components (except btnSettings)
             Control[] controls = { btnAddFiles, btnReload, btnRem, btnClear };
             foreach (Control control in controls)
             {
@@ -549,10 +559,13 @@ namespace CommonForms.Components
                 control.Margin = new Padding(0);
             }
 
-            layoutBottomLine.Controls.Add(btnAddFiles, 0, 0);
-            layoutBottomLine.Controls.Add(btnReload, 1, 0);
-            layoutBottomLine.Controls.Add(btnRem, 2, 0);
-            layoutBottomLine.Controls.Add(btnClear, 4, 0);
+            int idx = 0;
+            layoutBottomLine.Controls.Add(btnAddFiles, idx++, 0);
+            layoutBottomLine.Controls.Add(btnReload, idx++, 0);
+            layoutBottomLine.Controls.Add(btnRem, idx++, 0);
+            layoutBottomLine.Controls.Add(btnSettings, idx++, 0);
+            idx++; // Skip Empty space
+            layoutBottomLine.Controls.Add(btnClear, idx++, 0);
 
             return layoutBottomLine;
         }

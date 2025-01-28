@@ -187,9 +187,6 @@
   <data name="FILES_LIST_BUTTON_SELECT_ALL" xml:space="preserve">
     <value>SELECT ALL</value>
   </data>
-  <data name="FILES_LIST_BUTTON_SETTINGS" xml:space="preserve">
-    <value>LIST SETTINGS</value>
-  </data>
   <data name="FILES_LIST_LABEL_ADD" xml:space="preserve">
     <value>↓↓ Add Files To Merge ↓↓</value>
   </data>
