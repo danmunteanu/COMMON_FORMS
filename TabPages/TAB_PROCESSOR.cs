@@ -53,49 +53,53 @@ namespace CommonForms
             UpdateUI();
         }
 
-		private void UpdateLocalizations()
-		{
-			//	reload localization strings
-		}
+        private void UpdateLocalizations()
+        {
+            //	reload localization strings
+        }
 
         private void lstProcessor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstProcessor.SelectedIndex == -1)
-                return;
+            if (Processor == null) return;
 
-            if (Processor == null)
+            if (lstProcessor.SelectedIndex == -1)
                 return;
 
             bool haveSelection = lstProcessor.SelectedIndex != -1;
 
             btnEdit.Enabled = haveSelection;
+            btnEnableDisable.Enabled = haveSelection;
+            btnEnableDisable.Text = Processor.GetChangeAt(lstProcessor.SelectedIndex).Enabled ? "D" : "E";
             btnDel.Enabled = haveSelection;
         }
 
-		//	Reloads Changes from Processor
+        //	Reloads Changes from Processor
         private void ReloadProcessor()
         {
-			//	TODO: Rename to ReloadList or ReloadChanges
+            if (Processor == null) return;
             lstProcessor.Items.Clear();
-            for (int idx = 0; idx < mFilesProcessor.CountChanges(); idx++)
+            for (int idx = 0; idx < Processor.CountChanges(); idx++)
             {
-                var item = mFilesProcessor.GetChangeAt(idx);
+                var item = Processor.GetChangeAt(idx);
                 lstProcessor.Items.Add(item.Description);
             }
         }
 
-		//	Updates the UI state based on the Processor state
+        //	Updates the UI state based on the Processor state
         public override void UpdateUI()
         {
+            if (Processor == null)
+                return;
+
             bool hasFiles = Processor.CountFileNames() > 0;
             bool hasChanges = Processor.CountChanges() > 0;
             bool hasSelection = lstProcessor.SelectedIndex != -1;
 
-            //	btnProcess.Enabled = hasFiles;
-            btnProcess.Enabled = false;
+            btnProcess.Enabled = hasFiles;
 
             btnAdd.Enabled = true;
             btnEdit.Enabled = hasSelection;
+            btnEnableDisable.Enabled = hasSelection;
             btnDel.Enabled = hasSelection;
             btnClear.Enabled = hasChanges;
         }
@@ -112,13 +116,14 @@ namespace CommonForms
             mDlgEditChange.ShowDialog(this);
         }
 
-		//	Displays the Edit Change dialog for the selected Change
+        //	Displays the Edit Change dialog for the selected Change
         private void OnEditSelection()
         {
+            if (Processor == null) return;
             if (lstProcessor.SelectedIndex < 0) return;
 
             //  get current change
-            Change change = mFilesProcessor.GetChangeAt(lstProcessor.SelectedIndex);
+            Change change = Processor.GetChangeAt(lstProcessor.SelectedIndex);
             mDlgEditChange.LoadState(DialogSelectChange.EditorState.Edit, change);
             mDlgEditChange.ShowDialog(this);
         }
@@ -135,14 +140,14 @@ namespace CommonForms
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-			//	TODO: Localize strings
+            //	TODO: Localize strings
             string title = "Heads up!";
             string msg = string.Format("You are about to remove {0} change(s) from the processor.\n\nAre you sure you want to continue?", Processor.CountChanges());
             DialogResult answer = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (answer == DialogResult.Yes)
             {
-				//	TODO: Link Clear changes to a delegate? 
-				//	Maybe call ReloadProcessor and UpdateUI automatically when ClearChanges is Called
+                //	TODO: Link Clear changes to a delegate? 
+                //	Maybe call ReloadProcessor and UpdateUI automatically when ClearChanges is Called
                 Processor.ClearChanges();
                 ReloadProcessor();
                 UpdateUI();
@@ -158,6 +163,18 @@ namespace CommonForms
         private void btnDel_Click(object sender, EventArgs e)
         {
             //  OnDelSelection();
+        }
+
+        private void btnEnableDisable_Click(object sender, EventArgs e)
+        {
+            if (Processor == null) return;
+            if (lstProcessor.SelectedIndex < 0) return;
+
+            //  get current change
+            Change ch = Processor.GetChangeAt(lstProcessor.SelectedIndex);
+            ch.Enabled = !ch.Enabled;
+
+            btnEnableDisable.Text = ch.Enabled ? "D" : "E";
         }
     }
 }
