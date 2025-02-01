@@ -51,7 +51,7 @@ namespace CommonForms
                 UpdateStatusCallback(message);
         }
 
-        public virtual void StoreSettings(ref Dictionary<string, string> iniKeys)
+        public virtual void SaveSettings(ref Dictionary<string, string> iniKeys)
         {
             //  implement this in derived classes
         }
