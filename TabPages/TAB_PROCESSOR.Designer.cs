@@ -60,7 +60,7 @@
             tableLayoutButtons.Controls.Add(btnReload, 4, 0);
             tableLayoutButtons.Controls.Add(btnEnableDisable, 2, 0);
             tableLayoutButtons.Dock = DockStyle.Fill;
-            tableLayoutButtons.Location = new Point(2, 267);
+            tableLayoutButtons.Location = new Point(2, 237);
             tableLayoutButtons.Margin = new Padding(2);
             tableLayoutButtons.Name = "tableLayoutButtons";
             tableLayoutButtons.RowCount = 1;
@@ -136,9 +136,10 @@
             // 
             btnEnableDisable.Dock = DockStyle.Fill;
             btnEnableDisable.Font = new Font("Segoe UI", 7F);
-            btnEnableDisable.Location = new Point(107, 3);
+            btnEnableDisable.Location = new Point(106, 2);
+            btnEnableDisable.Margin = new Padding(2);
             btnEnableDisable.Name = "btnEnableDisable";
-            btnEnableDisable.Size = new Size(34, 22);
+            btnEnableDisable.Size = new Size(36, 24);
             btnEnableDisable.TabIndex = 5;
             btnEnableDisable.Text = "*";
             btnEnableDisable.UseVisualStyleBackColor = true;
@@ -160,7 +161,7 @@
             // 
             lstProcessor.Dock = DockStyle.Fill;
             lstProcessor.FormattingEnabled = true;
-            lstProcessor.Location = new Point(3, 69);
+            lstProcessor.Location = new Point(3, 39);
             lstProcessor.Margin = new Padding(3, 4, 3, 4);
             lstProcessor.Name = "lstProcessor";
             lstProcessor.Size = new Size(622, 192);
@@ -181,7 +182,7 @@
             tableLayoutMain.Margin = new Padding(0);
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 7;
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 0F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
@@ -195,7 +196,7 @@
             // 
             lblChangeList.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblChangeList.AutoSize = true;
-            lblChangeList.Location = new Point(3, 37);
+            lblChangeList.Location = new Point(3, 7);
             lblChangeList.Name = "lblChangeList";
             lblChangeList.Size = new Size(622, 20);
             lblChangeList.TabIndex = 49;

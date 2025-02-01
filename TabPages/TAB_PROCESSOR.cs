@@ -36,7 +36,11 @@ namespace CommonForms
 
             lstProcessor.HorizontalScrollbar = true;
 
-            mDlgEditChange.OnModified = () => { ReloadProcessor(); UpdateUI(); };
+            mDlgEditChange.OnModified = () => 
+            { 
+                ReloadProcessor(); 
+                UpdateUI(); 
+            };
 
             //mFilesProcessor.AddFolder(@"E:\EXILE_3.25", true);
             //mFilesProcessor.AddFolder(@"e:\Path of Building\Data\", true);
