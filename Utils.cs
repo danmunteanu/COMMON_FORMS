@@ -3,6 +3,16 @@
     public class Utils
     {
         /// <summary>
+        /// An array of video file extensions
+        /// </summary>
+        public static string[] VideoFileExtensions { get; } =
+        {
+            ".mp4",
+            ".mkv",
+            ".webm",
+        };
+
+        /// <summary>
         /// An array of file extensions that commonly contain Markdown or YAML content.
         /// </summary>
         public static string[] YamlFileExtensions { get; } =
