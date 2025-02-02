@@ -29,7 +29,7 @@ namespace CommonForms.Components
             mDialolgSettings = new FilesListSettingsDialog(this);
 
             //  provide a default local status updater
-            UpdateStatusCallback = this.UpdateStatusLocal;
+            UpdateStatusCallback = this.UpdateLocalStatus;
 
             //  empty the status
             CallUpdateStatus(Locale.FILES_LIST_STATUS_READY);
@@ -70,7 +70,7 @@ namespace CommonForms.Components
         /// A default status updater, updates the local status label with the message.
         /// </summary>
         /// <param name="message">The message will be set as the status</param>
-        private void UpdateStatusLocal(string message)
+        private void UpdateLocalStatus(string message)
         {
             if (lblStatus != null)
                 lblStatus.Text = message;
@@ -98,6 +98,12 @@ namespace CommonForms.Components
             btnAddFiles.Text = Locale.FILES_LIST_BUTTON_ADD;
             btnRem.Text = Locale.FILES_LIST_BUTTON_REM;
             btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
+        }
+
+        public override void SaveSettings(ref Dictionary<string, string> iniKeys)
+        {
+            //  Dump settings to iniKeys
+
         }
 
         private void AddFilesFromFolder(string folder)
@@ -504,6 +510,7 @@ namespace CommonForms.Components
             btnAddFiles.Font = new Font(btnAddFiles.Font.FontFamily, Settings.FontSize);
             btnAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             //btnAddFiles.Dock = DockStyle.Fill;
+            btnAddFiles.Padding = new Padding(3);
             btnAddFiles.AutoSize = true;
             btnAddFiles.Height = Settings.BottomLineHeight;
             btnAddFiles.Click -= btnAdd_Click;
@@ -516,6 +523,7 @@ namespace CommonForms.Components
             btnReload.AutoSize = true;
             btnReload.Padding = new Padding(3);
             btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnReload.Height = Settings.BottomLineHeight;
             btnReload.Click -= btnReloadFolder_Click;
             btnReload.Click += btnReloadFolder_Click;
 
@@ -527,6 +535,7 @@ namespace CommonForms.Components
             btnRem.Padding = new Padding(3);
             btnRem.TextAlign = ContentAlignment.MiddleCenter;
             btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnRem.Height = Settings.BottomLineHeight;
             //btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
 
             //  button Settings
@@ -538,6 +547,7 @@ namespace CommonForms.Components
             btnSettings.AutoSize = true;
             btnSettings.Padding = new Padding(3);
             btnSettings.TextAlign = ContentAlignment.MiddleCenter;
+            btnSettings.Height = Settings.BottomLineHeight;
             btnSettings.Click -= btnSettings_Click;
             btnSettings.Click += btnSettings_Click;
 
@@ -548,6 +558,7 @@ namespace CommonForms.Components
             btnClear.Height = Settings.BottomLineHeight;
             //btnClear.Dock = DockStyle.Fill;
             btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnClear.Height = Settings.BottomLineHeight;
             btnClear.Click -= btnClear_Click;
             btnClear.Click += btnClear_Click;
 
