@@ -5,7 +5,7 @@ namespace CommonForms.Components
     public partial class FilesListComponent : ApplicationPageBase
     {
         //  Settings dialog
-        private FilesListSettingsDialog mDialolgSettings;
+        private FilesListSettingsDialog mDialogSettings;
 
         //  Keeps track of the Select All/Deselect All state
         private bool mSelectAll = true;
@@ -26,7 +26,7 @@ namespace CommonForms.Components
             //  creates all the components - labels, buttons, listbox
             CreateMasterLayout();
 
-            mDialolgSettings = new FilesListSettingsDialog(this);
+            mDialogSettings = new FilesListSettingsDialog(this);
 
             //  provide a default local status updater
             UpdateStatusCallback = this.UpdateLocalStatus;
@@ -377,8 +377,8 @@ namespace CommonForms.Components
         private void btnSettings_Click(object? sender, EventArgs e)
         {
             //  List's state might have changed, reload them and then display
-            mDialolgSettings.LoadListSettings();
-            mDialolgSettings.ShowDialog(this);
+            mDialogSettings.LoadListSettings();
+            mDialogSettings.ShowDialog(this);
         }
 
         private TableLayoutPanel CreateTopLine()
