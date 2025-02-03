@@ -56,7 +56,7 @@ namespace CommonForms
             //  implement this in derived classes
         }
 
-        public virtual void LoadSettings(ref Dictionary<string, string> iniKeys)
+        public virtual void LoadSettings(Dictionary<string, string> iniKeys)
         {
             //  implement this in derived classes
         }
