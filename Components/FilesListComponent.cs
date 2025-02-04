@@ -148,6 +148,9 @@ namespace CommonForms.Components
             }
         }
 
+        /// <summary>
+        /// Reloads localizations
+        /// </summary>
         public override void UpdateLocale()
         {
             //  top
@@ -161,7 +164,9 @@ namespace CommonForms.Components
             btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
         }
 
-        // Handler for the Add button.
+        /// <summary>
+        /// Handles button ADD's click
+        /// </summary>
         private void btnAdd_Click(object? sender, EventArgs e)
         {
             //  show dialog to select folder
@@ -175,9 +180,7 @@ namespace CommonForms.Components
                 }
             }
             else
-            {
                 CallUpdateStatus(Locale.STATUS_FOLDER_NOT_ADDED);
-            }
 
             //  Reset progress bar
             CallUpdateProgress(0);
@@ -188,8 +191,6 @@ namespace CommonForms.Components
         /// <summary>
         /// Handler for button Reload.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnReloadFolder_Click(object? sender, EventArgs e)
         {
             AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
@@ -198,11 +199,14 @@ namespace CommonForms.Components
             CallUpdateUI();
         }
 
-        // Handler for button Clear.
+        /// <summary>
+        /// Handler for button Clear
+        /// </summary>
         private void btnClear_Click(object? sender, EventArgs e)
         {
             //clear inner list and list ui
-            Processor?.ClearFileNames();
+            Processor?.ClearFileNames();    //  this should trigger list reloading
+
             lstFiles.Items.Clear();
             CallUpdateStatus(Locale.STATUS_LIST_CLEARED);
             
@@ -540,13 +544,13 @@ namespace CommonForms.Components
 
             //  button Settings
             btnSettings.Text = "⚙"; // Gear emoji
-            btnSettings.Visible = Settings.SettingsButtonVisible;
             btnSettings.Font = new Font(btnSettings.Font.FontFamily, Settings.FontSize);
-            btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSettings.Visible = Settings.SettingsButtonVisible;
             btnSettings.Width = 35;
             btnSettings.AutoSize = true;
             btnSettings.Padding = new Padding(3);
             btnSettings.TextAlign = ContentAlignment.MiddleCenter;
+            btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSettings.Height = Settings.BottomLineHeight;
             btnSettings.Click -= btnSettings_Click;
             btnSettings.Click += btnSettings_Click;
