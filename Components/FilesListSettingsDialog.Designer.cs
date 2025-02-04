@@ -63,10 +63,10 @@
             // 
             chkAddFolders.Anchor = AnchorStyles.Left;
             chkAddFolders.AutoSize = true;
-            chkAddFolders.Location = new Point(2, 38);
+            chkAddFolders.Location = new Point(2, 3);
             chkAddFolders.Margin = new Padding(2);
             chkAddFolders.Name = "chkAddFolders";
-            chkAddFolders.Size = new Size(190, 29);
+            chkAddFolders.Size = new Size(209, 29);
             chkAddFolders.TabIndex = 1;
             chkAddFolders.Text = "Allow Adding Folders";
             chkAddFolders.UseVisualStyleBackColor = true;
@@ -76,7 +76,7 @@
             // 
             chkParseSubfolders.Anchor = AnchorStyles.Left;
             chkParseSubfolders.AutoSize = true;
-            chkParseSubfolders.Location = new Point(2, 148);
+            chkParseSubfolders.Location = new Point(2, 38);
             chkParseSubfolders.Margin = new Padding(2);
             chkParseSubfolders.Name = "chkParseSubfolders";
             chkParseSubfolders.Size = new Size(170, 29);
@@ -113,7 +113,7 @@
             // chkShowStatus
             // 
             chkShowStatus.AutoSize = true;
-            chkShowStatus.Location = new Point(4, 4);
+            chkShowStatus.Location = new Point(4, 114);
             chkShowStatus.Margin = new Padding(4);
             chkShowStatus.Name = "chkShowStatus";
             chkShowStatus.Size = new Size(150, 27);
@@ -124,7 +124,7 @@
             // chkShowProgressBar
             // 
             chkShowProgressBar.AutoSize = true;
-            chkShowProgressBar.Location = new Point(4, 114);
+            chkShowProgressBar.Location = new Point(4, 149);
             chkShowProgressBar.Margin = new Padding(4);
             chkShowProgressBar.Name = "chkShowProgressBar";
             chkShowProgressBar.Size = new Size(171, 27);
@@ -164,10 +164,10 @@
             // 
             tableLayoutPanelLeft.ColumnCount = 1;
             tableLayoutPanelLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelLeft.Controls.Add(chkShowStatus, 0, 0);
-            tableLayoutPanelLeft.Controls.Add(chkAddFolders, 0, 1);
-            tableLayoutPanelLeft.Controls.Add(chkParseSubfolders, 0, 4);
-            tableLayoutPanelLeft.Controls.Add(chkShowProgressBar, 0, 3);
+            tableLayoutPanelLeft.Controls.Add(chkParseSubfolders, 0, 1);
+            tableLayoutPanelLeft.Controls.Add(chkAddFolders, 0, 0);
+            tableLayoutPanelLeft.Controls.Add(chkShowProgressBar, 0, 4);
+            tableLayoutPanelLeft.Controls.Add(chkShowStatus, 0, 3);
             tableLayoutPanelLeft.Dock = DockStyle.Fill;
             tableLayoutPanelLeft.Location = new Point(3, 3);
             tableLayoutPanelLeft.Name = "tableLayoutPanelLeft";
@@ -178,13 +178,13 @@
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelLeft.Size = new Size(194, 208);
+            tableLayoutPanelLeft.Size = new Size(218, 208);
             tableLayoutPanelLeft.TabIndex = 17;
             // 
             // tableLayoutColumns
             // 
             tableLayoutColumns.ColumnCount = 3;
-            tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 224F));
             tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 349F));
             tableLayoutColumns.Controls.Add(tableLayoutPanelButtonsAndFilters, 2, 0);

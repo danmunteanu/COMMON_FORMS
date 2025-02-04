@@ -523,35 +523,33 @@ namespace CommonForms.Components
             // btnReload
             btnReload.Text = "↻";
             btnReload.Font = new Font(btnReload.Font.FontFamily, Settings.FontSize);
-            btnReload.Width = 35;
+            btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnReload.AutoSize = true;
             btnReload.Padding = new Padding(3);
-            btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnReload.Height = Settings.BottomLineHeight;
+            btnReload.Size = new(35, Settings.BottomLineHeight);
             btnReload.Click -= btnReloadFolder_Click;
             btnReload.Click += btnReloadFolder_Click;
 
             // btnRem
             btnRem.Text = "-";
             btnRem.Font = new Font(btnRem.Font.FontFamily, Settings.FontSize);
-            btnRem.Width = 35;
             btnRem.AutoSize = true;
             btnRem.Padding = new Padding(3);
-            btnRem.TextAlign = ContentAlignment.MiddleCenter;
+            //btnRem.TextAlign = ContentAlignment.MiddleCenter;
             btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnRem.Height = Settings.BottomLineHeight;
-            //btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
+            btnRem.Size = new Size(35, Settings.BottomLineHeight);
+            btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
+
 
             //  button Settings
             btnSettings.Text = "⚙"; // Gear emoji
             btnSettings.Font = new Font(btnSettings.Font.FontFamily, Settings.FontSize);
             btnSettings.Visible = Settings.SettingsButtonVisible;
-            btnSettings.Width = 35;
             btnSettings.AutoSize = true;
             btnSettings.Padding = new Padding(3);
             btnSettings.TextAlign = ContentAlignment.MiddleCenter;
             btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnSettings.Height = Settings.BottomLineHeight;
+            btnSettings.Size = new Size(35, Settings.BottomLineHeight);
             btnSettings.Click -= btnSettings_Click;
             btnSettings.Click += btnSettings_Click;
 
@@ -560,14 +558,13 @@ namespace CommonForms.Components
             btnClear.Font = new Font(btnClear.Font.FontFamily, Settings.FontSize);
             btnClear.AutoSize = true;
             btnClear.Height = Settings.BottomLineHeight;
-            //btnClear.Dock = DockStyle.Fill;
             btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnClear.Height = Settings.BottomLineHeight;
             btnClear.Click -= btnClear_Click;
             btnClear.Click += btnClear_Click;
 
-            //  Remove padding from all components (except btnSettings)
-            Control[] controls = { btnAddFiles, btnReload, btnRem, btnClear };
+            //  Remove padding from all components
+            Control[] controls = { btnAddFiles, btnReload, btnRem, btnSettings, btnClear };
             foreach (Control control in controls)
             {
                 control.Padding = new Padding(0);
