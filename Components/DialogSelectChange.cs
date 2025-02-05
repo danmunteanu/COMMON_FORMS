@@ -147,17 +147,20 @@ namespace CommonForms.Components
             {
                 string actName = ch.Action.GetType().Name;
                 mSelActionEditor = FindOrCreateEditor(actName);
-                mSelActionEditor.LoadState(ch.Action);
-
-                int actIndex = cmbAction.Items.IndexOf(actName);
-                if (actIndex != -1)
+                if (mSelActionEditor != null)
                 {
-                    cmbAction.SelectedIndexChanged -= cmbAction_SelectedIndexChanged;
-                    cmbAction.SelectedIndex = actIndex;
-                    cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
-                }
+                    mSelActionEditor.LoadState(ch.Action);
 
-                Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
+                    int actIndex = cmbAction.Items.IndexOf(actName);
+                    if (actIndex != -1)
+                    {
+                        cmbAction.SelectedIndexChanged -= cmbAction_SelectedIndexChanged;
+                        cmbAction.SelectedIndex = actIndex;
+                        cmbAction.SelectedIndexChanged += cmbAction_SelectedIndexChanged;
+                    }
+
+                    Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
+                }
             }
             catch (Exception ex)
             {
@@ -173,7 +176,7 @@ namespace CommonForms.Components
             btnResetDesc.Enabled = ch.HasCustomDescription;
 
             //  Fill-in remaining change fields
-            lblConditionDesc.Text = ch.Condition.Name;
+            lblConditionDesc.Text = ch.Condition.Description();
             lblActionDesc.Text = ch.Action.Description;
 
             chkEnabled.Checked = ch.Enabled;
