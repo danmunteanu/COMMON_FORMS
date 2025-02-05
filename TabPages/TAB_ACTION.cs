@@ -4,7 +4,7 @@ namespace CommonForms
 {
     public partial class TAB_Action : ApplicationPageBase
     {
-        private EditorBase? mSelectedEditor = null;
+        private EditorBase<string>? mSelectedEditor = null;
 
         public TAB_Action()
         {
@@ -26,7 +26,7 @@ namespace CommonForms
 
             //string actionName = (new ActionCopyFile as object).GetType().Name.ToString();
 
-            mSelectedEditor = GenericFactory<EditorBase>.Create(cmbActions.SelectedItem.ToString());
+            mSelectedEditor = GenericFactory<EditorBase<string>>.Create(cmbActions.SelectedItem.ToString());
 
             if (panelEditor.Controls.Contains(mSelectedEditor))
                 return;
@@ -42,8 +42,8 @@ namespace CommonForms
             if (mSelectedEditor == null)
                 return;
 
-            RealityFrameworks.Actions.Action action;
-            action = GenericFactory<RealityFrameworks.Actions.Action>.Create(cmbActions.SelectedItem.ToString());
+            RealityFrameworks.Actions.Action<string> action;
+            action = GenericFactory<RealityFrameworks.Actions.Action<string>>.Create(cmbActions.SelectedItem.ToString());
 
             try
             {

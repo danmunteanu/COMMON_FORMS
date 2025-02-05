@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorHasExtension : EditorBase
+    public partial class EditorHasExtension : EditorBase<string>
     {
         private const string KExtensionSeparator = ";";
 
@@ -30,7 +30,7 @@ namespace CommonForms
             return true;
         }
 
-        public override void LoadState(Condition cond)
+        public override void LoadState(Condition<string> cond)
         {
             if (cond is ConditionHasExtension hasExt)
             {
@@ -39,7 +39,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(Condition cond)
+        public override void SaveState(Condition<string> cond)
         {
             if (cond is ConditionHasExtension hasExt)
             {

@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace CommonForms
 {
-    public partial class EditorRenameFile : EditorBase
+    public partial class EditorRenameFile : EditorBase<string>
     {
         public EditorRenameFile()
         {
@@ -21,7 +21,7 @@ namespace CommonForms
             UpdateUI();
         }
 
-        public override void LoadState(RealityFrameworks.Actions.Action action)
+        public override void LoadState(RealityFrameworks.Actions.Action<string> action)
         {
             if (action is ActionRenameFile arf)
             {
@@ -31,7 +31,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(RealityFrameworks.Actions.Action action)
+        public override void SaveState(RealityFrameworks.Actions.Action<string> action)
         {
             if (action is ActionRenameFile arf)
             {

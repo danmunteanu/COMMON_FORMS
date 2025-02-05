@@ -6,12 +6,12 @@ namespace CommonForms.Components
     public partial class DialogSelectChange : Form
     {
         //	The active Condition editor
-        private EditorBase? mSelCondEditor = null;
+        private EditorBase<string>? mSelCondEditor = null;
 
         //	The active Action editor
-        private EditorBase? mSelActionEditor = null;
+        private EditorBase<string>? mSelActionEditor = null;
 
-        public Processor? Processor { get; set; }
+        public FilesProcessor? Processor { get; set; }
 
         //  States the Editor can be in (Add or Edit)
         public enum EditorState { Add, Edit };
@@ -19,10 +19,10 @@ namespace CommonForms.Components
         //	Editor's state
         public EditorState State { get; set; }
 
-        private Change? Change { get; set; } = null;
+        private Transform<string>? Transform { get; set; } = null;
 
         //  Cache of Editors
-        Dictionary<string, EditorBase> mEditorCache = new Dictionary<string, EditorBase>();
+        Dictionary<string, EditorBase<string>> mEditorCache = new();
 
         //  The callback for when something has been modified
         public delegate void OnModifiedCallback();
@@ -52,12 +52,12 @@ namespace CommonForms.Components
         }
 
         //  Tries to find an editor in the cache, if not found, creates it
-        private EditorBase? FindOrCreateEditor(string name)
+        private EditorBase<string>? FindOrCreateEditor(string name)
         {
-            EditorBase? editor = null;
+            EditorBase<string>? editor = null;
             if (!mEditorCache.TryGetValue(name, out editor))
             {
-                editor = GenericFactory<EditorBase>.Create(name);
+                editor = GenericFactory<EditorBase<string>>.Create(name);
                 mEditorCache.Add(name, editor);
             }
             return editor;
@@ -91,7 +91,7 @@ namespace CommonForms.Components
             chkEnabled.Checked = true;
         }
 
-        private void LoadStateEdit(Change ch)
+        private void LoadStateEdit(Transform<string> ch)
         {
             //  Make sure Condition and Action are not null
             if (ch.Condition == null || ch.Action == null)
@@ -179,15 +179,15 @@ namespace CommonForms.Components
             chkEnabled.Checked = ch.Enabled;
         }
 
-        public void LoadState(EditorState state, Change change = null)
+        public void LoadState(EditorState state, Transform<string> transform = null)
         {
             State = state;
-            Change = change;
+            Transform = transform;
 
             if (State == EditorState.Add)
                 LoadStateAdd();
             else if (State == EditorState.Edit)
-                LoadStateEdit(Change);
+                LoadStateEdit(Transform);
 
             mSelCondEditor?.Select();
         }
@@ -245,10 +245,10 @@ namespace CommonForms.Components
         private void HandleAdd()
         {
             //  Condition to be created
-            Condition? cond = null;
+            Condition<string>? cond = null;
 
             //  Action to be created
-            RealityFrameworks.Actions.Action? action = null;
+            RealityFrameworks.Actions.Action<string>? action = null;
 
             string errTitle = string.Empty;
             string errMsg = string.Empty;
@@ -271,7 +271,7 @@ namespace CommonForms.Components
             if (conditionIsValid && cmbCondition.SelectedItem != null)
             {
                 //  Create New Condition by Name
-                cond = GenericFactory<Condition>.Create(cmbCondition.SelectedItem.ToString());
+                cond = GenericFactory<Condition<string>>.Create(cmbCondition.SelectedItem.ToString());
                 mSelCondEditor.SaveState(cond);
 
             }
@@ -293,7 +293,7 @@ namespace CommonForms.Components
                 actionIsValid = mSelActionEditor.ValidateState();
                 if (actionIsValid && cmbAction.SelectedItem != null)
                 {
-                    action = GenericFactory<RealityFrameworks.Actions.Action>.Create(cmbAction.SelectedItem.ToString());
+                    action = GenericFactory<RealityFrameworks.Actions.Action<string>>.Create(cmbAction.SelectedItem.ToString());
                     mSelActionEditor.SaveState(action);
                 }
                 else
@@ -324,7 +324,7 @@ namespace CommonForms.Components
         private void HandleUpdate()
         {
             //  UPDATE            
-            if (Change == null || Change.Condition == null || Change.Action == null)
+            if (Transform == null || Transform.Condition == null || Transform.Action == null)
             {
                 MessageBox.Show(
                     Locale.DLG_CHANGE_ERR_MSG_CHANGE_WRONG,
@@ -339,7 +339,7 @@ namespace CommonForms.Components
 
             //  CONDITION Validation
             if (mSelCondEditor != null && mSelCondEditor.ValidateState())
-                mSelCondEditor?.SaveState(Change.Condition);
+                mSelCondEditor?.SaveState(Transform.Condition);
             else
             {
                 if (mSelCondEditor == null)
@@ -367,7 +367,7 @@ namespace CommonForms.Components
             //  ACTION Validation
             errMsg = string.Empty;
             if (mSelActionEditor != null && mSelActionEditor.ValidateState())
-                mSelActionEditor?.SaveState(Change.Action);
+                mSelActionEditor?.SaveState(Transform.Action);
             else
             {
                 if (mSelActionEditor == null)
@@ -404,10 +404,10 @@ namespace CommonForms.Components
                     return;
                 }
 
-                Change.Description = txtDesc.Text;
+                Transform.Description = txtDesc.Text;
             }
 
-            Change.Enabled = chkEnabled.Checked;
+            Transform.Enabled = chkEnabled.Checked;
 
             CallModifiedCallback();
 
@@ -438,10 +438,10 @@ namespace CommonForms.Components
 
         private void btnResetDesc_Click(object sender, EventArgs e)
         {
-            if (Change != null)
+            if (Transform != null)
             {
-                Change.ResetDescription();
-                txtDesc.Text = Change.Description;
+                Transform.ResetDescription();
+                txtDesc.Text = Transform.Description;
                 chkDesc.Checked = false;
 
                 CallModifiedCallback();

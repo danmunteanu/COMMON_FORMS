@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public class ActionExtractPDFPages : RealityFrameworks.Actions.Action
+    public class ActionExtractPDFPages : RealityFrameworks.Actions.Action<string>
     {
         public static int CountPages(string sourcePDF)
         {

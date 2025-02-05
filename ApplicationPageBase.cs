@@ -14,8 +14,8 @@ namespace CommonForms
         public Components.FilesListComponent? FilesList { get; set; } = null;
 
         //  PROCESSOR link
-        protected Processor? mFilesProcessor = null;
-        public Processor? Processor
+        protected FilesProcessor? mFilesProcessor = null;
+        public FilesProcessor? Processor
         {
             get { return mFilesProcessor; }
             set

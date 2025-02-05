@@ -73,7 +73,7 @@ namespace CommonForms
 
             btnEdit.Enabled = haveSelection;
             btnEnableDisable.Enabled = haveSelection;
-            btnEnableDisable.Text = Processor.GetChangeAt(lstProcessor.SelectedIndex).Enabled ? "D" : "E";
+            btnEnableDisable.Text = Processor.GetTransformAt(lstProcessor.SelectedIndex).Enabled ? "D" : "E";
             btnDel.Enabled = haveSelection;
         }
 
@@ -84,7 +84,7 @@ namespace CommonForms
             lstProcessor.Items.Clear();
             for (int idx = 0; idx < Processor.CountChanges(); idx++)
             {
-                var item = Processor.GetChangeAt(idx);
+                var item = Processor.GetTransformAt(idx);
                 lstProcessor.Items.Add(item.Description);
             }
         }
@@ -127,8 +127,8 @@ namespace CommonForms
             if (lstProcessor.SelectedIndex < 0) return;
 
             //  get current change
-            Change change = Processor.GetChangeAt(lstProcessor.SelectedIndex);
-            mDlgEditChange.LoadState(DialogSelectChange.EditorState.Edit, change);
+            Transform<string> transform = Processor.GetTransformAt(lstProcessor.SelectedIndex);
+            mDlgEditChange.LoadState(DialogSelectChange.EditorState.Edit, transform);
             mDlgEditChange.ShowDialog(this);
         }
 
@@ -174,11 +174,11 @@ namespace CommonForms
             if (Processor == null) return;
             if (lstProcessor.SelectedIndex < 0) return;
 
-            //  get current change
-            Change ch = Processor.GetChangeAt(lstProcessor.SelectedIndex);
-            ch.Enabled = !ch.Enabled;
+            //  get current transform
+            Transform<string> tr = Processor.GetTransformAt(lstProcessor.SelectedIndex);
+            tr.Enabled = !tr.Enabled;
 
-            btnEnableDisable.Text = ch.Enabled ? "D" : "E";
+            btnEnableDisable.Text = tr.Enabled ? "D" : "E";
         }
     }
 }

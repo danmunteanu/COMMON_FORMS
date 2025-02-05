@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorMergeFiles : EditorBase
+    public partial class EditorMergeFiles : EditorBase<string>
     {
         private ActionMergeTextFiles _action = null;
 
@@ -17,7 +17,7 @@ namespace CommonForms
             InitializeComponent();
         }
 
-        public override void SaveState(RealityFrameworks.Actions.Action action)
+        public override void SaveState(RealityFrameworks.Actions.Action<string> action)
         {
             if (action is ActionMergeTextFiles amf)
             {
@@ -25,7 +25,7 @@ namespace CommonForms
             }
         }
 
-        public override void LoadState(RealityFrameworks.Actions.Action action)
+        public override void LoadState(RealityFrameworks.Actions.Action<string> action)
         {
             if (action is ActionMergeTextFiles amf)
             {

@@ -6,25 +6,25 @@ namespace CommonForms
     /*
      * Editor for a group of actions
      */
-    public partial class EditorActionGroup : EditorBase
+    public partial class EditorActionGroup : EditorBase<string>
     {
         //  The ActionGroup instance we're editing
-        private ActionGroup? _actionGroup = null;
+        private ActionGroup<string>? _actionGroup = null;
 
         //  Index of the current action in _actionGroup
         private int _actionIndex = -1;
 
         //  List of editors we've already created
-        private List<CommonForms.EditorBase> _listOfEditors = new();
+        private List<CommonForms.EditorBase<string>> _listOfEditors = new();
 
         public EditorActionGroup()
         {            
             InitializeComponent();
         }
 
-        public override void LoadState(RealityFrameworks.Actions.Action action)
+        public override void LoadState(RealityFrameworks.Actions.Action<string> action)
         {
-            if (action is ActionGroup ag)
+            if (action is ActionGroup<string> ag)
             {
                 _actionGroup = ag;
                 _actionIndex = 0;
@@ -33,9 +33,9 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(RealityFrameworks.Actions.Action action)
+        public override void SaveState(RealityFrameworks.Actions.Action<string> action)
         {
-            if (action is ActionGroup ag)
+            if (action is ActionGroup<string> ag)
             {
                 //  for each editor, call editor's SaveState
                 MessageBox.Show("Please implement SaveState() in EditorActionGroup", "Method Not Implemented!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -59,12 +59,12 @@ namespace CommonForms
                 lblCountActions.Text = string.Format("{0}/{1}", _actionIndex + 1, count);
 
                 //  get current action
-                RealityFrameworks.Actions.Action currentAction = _actionGroup.GetActionAt(_actionIndex);
+                RealityFrameworks.Actions.Action<string> currentAction = _actionGroup.GetActionAt(_actionIndex);
 
                 string actionTypeName = currentAction.GetType().Name;
                 lblActionName.Text = string.Format("({0})", actionTypeName);
 
-                CommonForms.EditorBase? editor = null;
+                CommonForms.EditorBase<string>? editor = null;
                 if (_actionIndex >= 0 && _actionIndex < _listOfEditors.Count) 
                 {
                     //  get the editor from the list, but do not load the action's state
@@ -73,7 +73,7 @@ namespace CommonForms
                 else
                 {
                     //  Create the Editor
-                    editor = GenericFactory<CommonForms.EditorBase>.Create(actionTypeName);
+                    editor = GenericFactory<CommonForms.EditorBase<string>>.Create(actionTypeName);
                     
                     //  Insert editor in list
                     _listOfEditors.Insert(_actionIndex, editor);
