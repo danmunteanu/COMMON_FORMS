@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtAddExt = new TextBox();
+            txtAddExtension = new TextBox();
             btnAddExt = new Button();
             btnClearExt = new Button();
             lblExtensionList = new Label();
@@ -54,12 +54,12 @@
             // 
             // txtAddExt
             // 
-            txtAddExt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtAddExt.Font = new Font("Segoe UI", 7F);
-            txtAddExt.Location = new Point(329, 4);
-            txtAddExt.Name = "txtAddExt";
-            txtAddExt.Size = new Size(64, 26);
-            txtAddExt.TabIndex = 1;
+            txtAddExtension.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtAddExtension.Font = new Font("Segoe UI", 7F);
+            txtAddExtension.Location = new Point(329, 4);
+            txtAddExtension.Name = "txtAddExt";
+            txtAddExtension.Size = new Size(64, 26);
+            txtAddExtension.TabIndex = 1;
             // 
             // btnAddExt
             // 
@@ -202,7 +202,7 @@
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             tableLayoutPanelAdd.Controls.Add(btnAddExt, 4, 0);
             tableLayoutPanelAdd.Controls.Add(lblExtensionList, 0, 0);
-            tableLayoutPanelAdd.Controls.Add(txtAddExt, 3, 0);
+            tableLayoutPanelAdd.Controls.Add(txtAddExtension, 3, 0);
             tableLayoutPanelAdd.Controls.Add(lblExt, 2, 0);
             tableLayoutPanelAdd.Dock = DockStyle.Fill;
             tableLayoutPanelAdd.Location = new Point(3, 48);
@@ -290,7 +290,7 @@
         }
 
         #endregion
-        private TextBox txtAddExt;
+        private TextBox txtAddExtension;
         private Button btnAddExt;
         private Button btnClearExt;
         private Label lblExtensionList;

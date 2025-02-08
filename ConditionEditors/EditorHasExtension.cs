@@ -14,11 +14,14 @@ namespace CommonForms
         {
             InitializeComponent();
 
-            txtAddExt.Select();
+            txtAddExtension.Select();
         }
 
         public override bool ValidateState()
         {
+            //  clear previous errors
+            mErrorStack.Clear();
+
             List<string> listExt = txtExtensions.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries).ToList();
 
             if (listExt.Count <= 0)
@@ -51,16 +54,23 @@ namespace CommonForms
             }
         }
 
+        public override void ClearState()
+        {
+            //  just clear the list and the add field
+            txtExtensions.Clear();
+            txtAddExtension.Clear();
+        }
+
         private void btnAddExt_Click(object sender, EventArgs e)
         {
             //  Add Extension
-            if (txtAddExt.Text.Length > 0)
+            if (txtAddExtension.Text.Length > 0)
             {
-                string[] tokens = txtAddExt.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries);
+                string[] tokens = txtAddExtension.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries);
 
                 AddExtensions(tokens);
 
-                txtAddExt.Clear();
+                txtAddExtension.Clear();
             }
         }
 

@@ -88,13 +88,19 @@ namespace CommonForms.Components
             chkDesc.Checked = false;
             btnResetDesc.Enabled = false;
 
+            //  reset the editors
+            string condName = cmbCondition.Text;
+            mSelCondEditor = FindOrCreateEditor(condName);
+            if (mSelCondEditor != null)
+                mSelCondEditor.ClearState();
+
             chkEnabled.Checked = true;
         }
 
-        private void LoadStateEdit(Transform<string> ch)
+        private void LoadStateEdit(Transform<string> trans)
         {
             //  Make sure Condition and Action are not null
-            if (ch.Condition == null || ch.Action == null)
+            if (trans.Condition == null || trans.Action == null)
             {
                 MessageBox.Show(
                     Locale.DLG_CHANGE_ERR_MSG_CHANGE_WRONG,
@@ -108,7 +114,7 @@ namespace CommonForms.Components
             btnSubmit.Text = Locale.DLG_CHANGE_BUTTON_UPDATE_LABEL;
             Text = Locale.DLG_CHANGE_TITLE_EDIT;
 
-            if (ch == null)
+            if (trans == null)
             {
                 return;
             }
@@ -118,9 +124,9 @@ namespace CommonForms.Components
             {
                 //  Try to FIND Condition Editor INSTEAD of Creating it
                 //  If it's not found, Create it and Store it in a Dictionary
-                string condName = ch.Condition.GetType().Name;
+                string condName = trans.Condition.GetType().Name;
                 mSelCondEditor = FindOrCreateEditor(condName);
-                mSelCondEditor.LoadState(ch.Condition);
+                mSelCondEditor.LoadState(trans.Condition);
 
                 int condIndex = cmbCondition.Items.IndexOf(condName);
                 if (condIndex != -1)
@@ -145,11 +151,11 @@ namespace CommonForms.Components
             //  ACTION Editor
             try
             {
-                string actName = ch.Action.GetType().Name;
+                string actName = trans.Action.GetType().Name;
                 mSelActionEditor = FindOrCreateEditor(actName);
                 if (mSelActionEditor != null)
                 {
-                    mSelActionEditor.LoadState(ch.Action);
+                    mSelActionEditor.LoadState(trans.Action);
 
                     int actIndex = cmbAction.Items.IndexOf(actName);
                     if (actIndex != -1)
@@ -170,16 +176,16 @@ namespace CommonForms.Components
                 //  TODO: Deselect Action Editor or something.
             }
 
-            chkDesc.Checked = ch.HasCustomDescription;
-            txtDesc.Enabled = ch.HasCustomDescription;
-            txtDesc.Text = ch.Description;
-            btnResetDesc.Enabled = ch.HasCustomDescription;
+            chkDesc.Checked = trans.HasCustomDescription;
+            txtDesc.Enabled = trans.HasCustomDescription;
+            txtDesc.Text = trans.Description;
+            btnResetDesc.Enabled = trans.HasCustomDescription;
 
             //  Fill-in remaining change fields
-            lblConditionDesc.Text = ch.Condition.Description();
-            lblActionDesc.Text = ch.Action.Description;
+            lblConditionDesc.Text = trans.Condition.Description();
+            lblActionDesc.Text = trans.Action.Description;
 
-            chkEnabled.Checked = ch.Enabled;
+            chkEnabled.Checked = trans.Enabled;
         }
 
         public void LoadState(EditorState state, Transform<string> transform = null)
@@ -213,7 +219,11 @@ namespace CommonForms.Components
             try
             {
                 mSelCondEditor = FindOrCreateEditor(condName);
-                Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
+                if (mSelCondEditor != null)
+                {
+                    mSelCondEditor.ClearState();
+                    Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
+                }
             }
             catch (Exception ex)
             {
@@ -236,7 +246,11 @@ namespace CommonForms.Components
             try
             {
                 mSelActionEditor = FindOrCreateEditor(actionName);
-                Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
+                if (mSelActionEditor != null)
+                {
+                    mSelActionEditor.ClearState();
+                    Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
+                }
             }
             catch (Exception ex)
             {

@@ -13,28 +13,31 @@ namespace CommonForms
             return true;
         }
 
+        //  loads the editor state from a concrete condition
+        //  must override in derived classes
         public virtual void LoadState(Condition<T> cond)
-            //  loads the editor state from a concrete condition
-            //  must override in derived classes
             => throw new NotImplementedException();
         
+       //  Saves the editor's state into the condition
         public virtual void SaveState(Condition<T> cond)
-        {
-            //  Saves the editor's state into the condition
-            throw new NotImplementedException();
-        }
+            => throw new NotImplementedException();
 
+        //  Loads the state of the editor from a concrete Action
+        //  Override in derived classes
         public virtual void LoadState(RealityFrameworks.Actions.Action<T> action)
+            => throw new NotImplementedException();
+
+        //  Saves the state of the editor to an Action instance
+        //  Override in derived classes
+        public virtual void SaveState(RealityFrameworks.Actions.Action<T> action)
+            => throw new NotImplementedException();
+
+        //  Resets the editor state - implement in derived classes
+        public virtual void ClearState()
         {
-            //  Loads the state of the editor based on a concrete Action - override in derived classes
-            throw new NotImplementedException();
+
         }
 
-        public virtual void SaveState(RealityFrameworks.Actions.Action<T> action)
-        {
-            //  Saves the state of the editor to an Action instance - override in derived classes
-            throw new NotImplementedException();
-        }
 
         //  ERROR STACK
         protected Stack<string> mErrorStack = new();
