@@ -21,11 +21,14 @@
             //  Allow parsing subfolders when adding folders
             public bool ParseSubfolders { get; set; } = false;
 
-            //  Disables use of status
+            //  Enable/Disable use of status
             public bool UseStatus { get; set; } = true;
 
-            //  Disables use of the progress bar
+            //  Enables/Disable use of the progress bar
             public bool UseProgressBar { get; set; } = true;
+
+            //  Enable/Disable search bar
+            public bool UseSearchBar {  get; set; } = false;
 
             //  LINE HEIGHTS
             public int TopLineHeight { get; set; } = 45;
@@ -33,6 +36,8 @@
             public int BottomLineHeight { get; set; } = 55;
 
             public int StatusBarLineHeight { get; set; } = 33;
+
+            public int SearchBarHeight { get; set; } = 55;
 
             public int ProgressBarLineHeight { get; set; } = 45;
 

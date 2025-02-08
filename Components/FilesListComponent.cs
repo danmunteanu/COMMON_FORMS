@@ -321,6 +321,13 @@ namespace CommonForms.Components
             return added;
         }
 
+        private void SearchTextChanged(object sender, EventArgs e)
+        {
+            string search = txtSearch.Text;
+
+            //  find items in list
+
+        }
         private bool AddFileNameToProcessor(string item)
         {
             if (mFilesProcessor == null)
@@ -468,21 +475,43 @@ namespace CommonForms.Components
             progressBar.Dock = DockStyle.Fill;
         }
 
-        private void CreateSearchBar()
+        private TableLayoutPanel CreateSearchBar()  
         {
             //  Search bar
-            
+            TableLayoutPanel layoutSearch = new();
+            layoutSearch.CellBorderStyle = TableLayoutPanelCellBorderStyle.None;
+            layoutSearch.Dock = DockStyle.Fill;
+
+            layoutSearch.Dock = DockStyle.Fill;
+            layoutSearch.AutoSize = true;
+            layoutSearch.ColumnCount = 2;
+            layoutSearch.RowCount = 1;
+
+            // Set row style to fill the available height
+            layoutSearch.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+
+            // Add the column styles
+            layoutSearch.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));  // lblSearch
+            layoutSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));  // txtSearch
+
+            //  lblSearch
+            lblSearch.Text = "Search: ";
+            lblSearch.Dock = DockStyle.Fill;
+
+            //  txtSearch
             txtSearch.Dock = DockStyle.Fill;
             txtSearch.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtSearch.Margin = new Padding(0);
             txtSearch.Padding = new Padding(0);
             txtSearch.Font = new Font(txtSearch.Font.FontFamily, 10);
-            txtSearch.TextChanged += (sender, e) =>
-            {
-                string search = txtSearch.Text;
+            txtSearch.TextChanged -= SearchTextChanged; 
+            txtSearch.TextChanged += SearchTextChanged; 
 
-                //  remove items matching the text
-            };
+            int idx = 0;
+            layoutSearch.Controls.Add(lblSearch, idx++, 0);
+            layoutSearch.Controls.Add(txtSearch, idx++, 0);
+
+            return layoutSearch;
         }
 
         private TableLayoutPanel CreateBottomLayout()
@@ -588,7 +617,13 @@ namespace CommonForms.Components
             TableLayoutPanel masterTableLayout = new TableLayoutPanel();
             masterTableLayout.Dock = DockStyle.Fill;
             masterTableLayout.ColumnCount = 1;
-            masterTableLayout.RowCount = 5;
+
+            //  topLine, listBox, searchBar, statusBar, progressBar, buttons
+            masterTableLayout.RowCount =
+                3 +  //  top, list, buttons
+                (Settings.UseSearchBar ? 1 : 0) +
+                (Settings.UseStatus ? 1 : 0) +
+                (Settings.UseSearchBar ? 1 : 0);
 
             //  Top Line
             TableLayoutPanel topLineLayout = CreateTopLine();
@@ -616,8 +651,9 @@ namespace CommonForms.Components
             }
 
             //  Search bar
-            //CreateSearchBar();
-            //masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
+            TableLayoutPanel tableSearch = CreateSearchBar();
+            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
+            tableSearch.Dock = DockStyle.Fill;
 
             //  Bottom Buttons
             TableLayoutPanel bottomLayout = CreateBottomLayout();
@@ -631,9 +667,16 @@ namespace CommonForms.Components
             int rowIdx = 0;
             masterTableLayout.Controls.Add(topLineLayout, 0, rowIdx++);
             masterTableLayout.Controls.Add(lstFiles, 0, rowIdx++);
-            if (Settings.UseStatus && lblStatus != null) masterTableLayout.Controls.Add(lblStatus, 0, rowIdx++);
-            if (Settings.UseProgressBar && progressBar != null) masterTableLayout.Controls.Add(progressBar, 0, rowIdx++);
-            //masterTableLayout.Controls.Add(txtSearch, 0, rowIdx++);
+            
+            if (Settings.UseSearchBar && lblSearch != null)
+                masterTableLayout.Controls.Add(tableSearch, 0, rowIdx++);
+            
+            if (Settings.UseStatus && lblStatus != null) 
+                masterTableLayout.Controls.Add(lblStatus, 0, rowIdx++);
+            
+            if (Settings.UseProgressBar && progressBar != null) 
+                masterTableLayout.Controls.Add(progressBar, 0, rowIdx++);
+            
             masterTableLayout.Controls.Add(bottomLayout, 0, rowIdx++);
 
             this.Controls.Add(masterTableLayout);
@@ -649,15 +692,16 @@ namespace CommonForms.Components
         
         //  Listbox
         private ListBox lstFiles = new();
-        
+
+        //  Search
+        private Label lblSearch = new();
+        private TextBox txtSearch = new();
+
         //  Status
         private Label lblStatus = new();
 
         //  Progress bar
         private ProgressBar progressBar = new();
-
-        //  Search bar
-        TextBox txtSearch = new();
 
         //  Bottom
         private Button btnAddFiles = new();
