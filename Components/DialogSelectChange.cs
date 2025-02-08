@@ -30,7 +30,7 @@ namespace CommonForms.Components
 
         public DialogSelectChange()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         //	Load Condition Names
