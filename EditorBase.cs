@@ -1,6 +1,4 @@
-﻿using RealityFrameworks.Conditions;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
     /*
      * The base class for all Condition and Action editors
@@ -15,11 +13,11 @@ namespace CommonForms
 
         //  loads the editor state from a concrete condition
         //  must override in derived classes
-        public virtual void LoadState(Condition<T> cond)
+        public virtual void LoadState(RealityFrameworks.Conditions.Condition<T> cond)
             => throw new NotImplementedException();
         
        //  Saves the editor's state into the condition
-        public virtual void SaveState(Condition<T> cond)
+        public virtual void SaveState(RealityFrameworks.Conditions.Condition<T> cond)
             => throw new NotImplementedException();
 
         //  Loads the state of the editor from a concrete Action
@@ -37,7 +35,6 @@ namespace CommonForms
         {
 
         }
-
 
         //  ERROR STACK
         protected Stack<string> mErrorStack = new();
