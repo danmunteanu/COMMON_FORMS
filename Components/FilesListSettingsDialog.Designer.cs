@@ -44,10 +44,11 @@
             tableLayoutExtButtons = new TableLayoutPanel();
             btnClearExt = new Button();
             tableLayoutPanelButtonList = new TableLayoutPanel();
+            btnAudio = new Button();
             btnTextExt = new Button();
             btnDocExt = new Button();
             btnImages = new Button();
-            button1 = new Button();
+            btnArchives = new Button();
             tableLayoutMaster = new TableLayoutPanel();
             tableLayoutPanelButtons.SuspendLayout();
             tableLayoutPanelLeft.SuspendLayout();
@@ -271,19 +272,22 @@
             btnClearExt.TabIndex = 3;
             btnClearExt.Text = "CLEAR";
             btnClearExt.UseVisualStyleBackColor = true;
+            btnClearExt.Click += btnClearExt_Click;
             // 
             // tableLayoutPanelButtonList
             // 
             tableLayoutPanelButtonList.ColumnCount = 1;
             tableLayoutPanelButtonList.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelButtonList.Controls.Add(btnAudio, 0, 4);
             tableLayoutPanelButtonList.Controls.Add(btnTextExt, 0, 0);
             tableLayoutPanelButtonList.Controls.Add(btnDocExt, 0, 1);
             tableLayoutPanelButtonList.Controls.Add(btnImages, 0, 2);
-            tableLayoutPanelButtonList.Controls.Add(button1, 0, 3);
+            tableLayoutPanelButtonList.Controls.Add(btnArchives, 0, 3);
             tableLayoutPanelButtonList.Dock = DockStyle.Fill;
             tableLayoutPanelButtonList.Location = new Point(3, 3);
             tableLayoutPanelButtonList.Name = "tableLayoutPanelButtonList";
-            tableLayoutPanelButtonList.RowCount = 5;
+            tableLayoutPanelButtonList.RowCount = 6;
+            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
             tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
@@ -291,6 +295,18 @@
             tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelButtonList.Size = new Size(94, 202);
             tableLayoutPanelButtonList.TabIndex = 17;
+            // 
+            // btnAudio
+            // 
+            btnAudio.Dock = DockStyle.Fill;
+            btnAudio.Font = new Font("Segoe UI", 7F);
+            btnAudio.Location = new Point(3, 143);
+            btnAudio.Name = "btnAudio";
+            btnAudio.Size = new Size(88, 29);
+            btnAudio.TabIndex = 14;
+            btnAudio.Text = "AUDIO";
+            btnAudio.UseVisualStyleBackColor = true;
+            btnAudio.Click += btnAudio_Click;
             // 
             // btnTextExt
             // 
@@ -302,6 +318,7 @@
             btnTextExt.TabIndex = 12;
             btnTextExt.Text = "YAML";
             btnTextExt.UseVisualStyleBackColor = true;
+            btnTextExt.Click += btnTextExt_Click;
             // 
             // btnDocExt
             // 
@@ -313,6 +330,7 @@
             btnDocExt.TabIndex = 11;
             btnDocExt.Text = "DOCS";
             btnDocExt.UseVisualStyleBackColor = true;
+            btnDocExt.Click += btnDocExt_Click;
             // 
             // btnImages
             // 
@@ -324,17 +342,19 @@
             btnImages.TabIndex = 9;
             btnImages.Text = "IMAGES";
             btnImages.UseVisualStyleBackColor = true;
+            btnImages.Click += btnImages_Click;
             // 
-            // button1
+            // btnArchives
             // 
-            button1.Dock = DockStyle.Fill;
-            button1.Font = new Font("Segoe UI", 7F);
-            button1.Location = new Point(3, 108);
-            button1.Name = "button1";
-            button1.Size = new Size(88, 29);
-            button1.TabIndex = 13;
-            button1.Text = "ARCHIVES";
-            button1.UseVisualStyleBackColor = true;
+            btnArchives.Dock = DockStyle.Fill;
+            btnArchives.Font = new Font("Segoe UI", 7F);
+            btnArchives.Location = new Point(3, 108);
+            btnArchives.Name = "btnArchives";
+            btnArchives.Size = new Size(88, 29);
+            btnArchives.TabIndex = 13;
+            btnArchives.Text = "ARCHIVES";
+            btnArchives.UseVisualStyleBackColor = true;
+            btnArchives.Click += btnArchives_Click;
             // 
             // tableLayoutMaster
             // 
@@ -400,7 +420,8 @@
         private Button btnTextExt;
         private Button btnDocExt;
         private Button btnImages;
-        private Button button1;
+        private Button btnArchives;
         private TableLayoutPanel tableLayoutMaster;
+        private Button btnAudio;
     }
 }

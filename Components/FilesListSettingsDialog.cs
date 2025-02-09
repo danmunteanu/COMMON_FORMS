@@ -16,7 +16,7 @@
 
             this.MaximizeBox = false;
 
-            //  use the setter to trigger OnListControlSet
+            //  use the setter to trigger LoadListSettings
             ListControl = listControl;
 
             this.CenterToParent();
@@ -31,7 +31,7 @@
                 chkParseSubfolders.Checked = _listControl.Settings.ParseSubfolders;
                 chkShowStatus.Checked = _listControl.Settings.UseStatus;
                 chkShowProgressBar.Checked = _listControl.Settings.UseProgressBar;
-                
+
                 //  Load file filters
                 txtFileFilters.Text = string.Empty;
                 foreach (var filter in _listControl.FileFilters)
@@ -72,6 +72,53 @@
                 return true;    //  consume the key press event
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void AddExtensions(string[] extensions)
+        {
+            if (_listControl == null)
+                return;
+
+            _listControl.FileFilters.AddRange(
+                extensions.Except(_listControl.FileFilters).ToArray()
+            );
+
+            txtFileFilters.Text = string.Empty;
+            foreach (var filter in _listControl.FileFilters)
+                txtFileFilters.Text += filter + ";";
+        }
+
+        private void btnAudio_Click(object sender, EventArgs e)
+        {
+            AddExtensions(Utils.AudioFileExtensions);
+        }
+
+        private void btnClearExt_Click(object sender, EventArgs e)
+        {
+            if (_listControl == null) return;
+            _listControl.FileFilters.Clear();
+            txtFileFilters.Clear();
+        }
+
+        private void btnTextExt_Click(object sender, EventArgs e)
+        {
+            AddExtensions(Utils.YamlFileExtensions);
+        }
+
+        private void btnDocExt_Click(object sender, EventArgs e)
+        {
+            string[] docExt = { ".doc", ".docx", ".pdf" };
+            AddExtensions(docExt);
+        }
+
+        private void btnImages_Click(object sender, EventArgs e)
+        {
+            AddExtensions(Utils.ImageFileExtensions);
+        }
+
+        private void btnArchives_Click(object sender, EventArgs e)
+        {
+            AddExtensions(Utils.ArchiveFileExtensions);
         }
     }
 }
