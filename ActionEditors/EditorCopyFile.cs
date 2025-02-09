@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorCopyFile : EditorBase<string>
+    public partial class EditorCopyFile : EditorBase
     {
         public EditorCopyFile()
         {

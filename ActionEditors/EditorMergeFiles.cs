@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorMergeFiles : EditorBase<string>
+    public partial class EditorMergeFiles : EditorBase
     {
         private ActionMergeTextFiles _action = null;
 

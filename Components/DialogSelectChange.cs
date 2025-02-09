@@ -6,10 +6,10 @@ namespace CommonForms.Components
     public partial class DialogSelectChange : Form
     {
         //	The active Condition editor
-        private EditorBase<string>? mSelCondEditor = null;
+        private EditorBase? mSelCondEditor = null;
 
         //	The active Action editor
-        private EditorBase<string>? mSelActionEditor = null;
+        private EditorBase? mSelActionEditor = null;
 
         public FilesProcessor? Processor { get; set; }
 
@@ -22,7 +22,7 @@ namespace CommonForms.Components
         private Transform<string>? Transform { get; set; } = null;
 
         //  Cache of Editors
-        Dictionary<string, EditorBase<string>> mEditorCache = new();
+        Dictionary<string, EditorBase> mEditorCache = new();
 
         //  The callback for when something has been modified
         public delegate void OnModifiedCallback();
@@ -52,12 +52,12 @@ namespace CommonForms.Components
         }
 
         //  Tries to find an editor in the cache, if not found, creates it
-        private EditorBase<string>? FindOrCreateEditor(string name)
+        private EditorBase? FindOrCreateEditor(string name)
         {
-            EditorBase<string>? editor = null;
+            EditorBase? editor = null;
             if (!mEditorCache.TryGetValue(name, out editor))
             {
-                editor = GenericFactory<EditorBase<string>>.Create(name);
+                editor = GenericFactory<EditorBase>.Create(name);
                 mEditorCache.Add(name, editor);
             }
             return editor;

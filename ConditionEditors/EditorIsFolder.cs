@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorIsFolder : EditorBase<string>
+    public partial class EditorIsFolder : EditorBase
     {
         public EditorIsFolder()
         {

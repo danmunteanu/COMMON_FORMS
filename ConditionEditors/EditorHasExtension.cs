@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorHasExtension : EditorBase<string>
+    public partial class EditorHasExtension : EditorBase
     {
         private const string KExtensionSeparator = ";";
 
@@ -80,9 +80,9 @@ namespace CommonForms
             txtExtensions.Clear();
         }
 
-        private void AddExtensions(string[] _arrayExt)
+        private void AddExtensions(string[] _extensions)
         {
-            int arrCount = _arrayExt.Count();
+            int arrCount = _extensions.Count();
 
             //  Tokenize extensions
             List<string> listExt = txtExtensions.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -90,9 +90,9 @@ namespace CommonForms
             //  Add each extensions if it's not already added
             for (int i = 0; i < arrCount; i++)
             {
-                string whatToAdd = _arrayExt[i] + KExtensionSeparator;
+                string whatToAdd = _extensions[i] + KExtensionSeparator;
 
-                if (!listExt.Contains(_arrayExt[i]))
+                if (!listExt.Contains(_extensions[i]))
                     txtExtensions.Text = txtExtensions.Text.Insert(txtExtensions.Text.Length, whatToAdd);
             }
         }
@@ -115,6 +115,11 @@ namespace CommonForms
         private void btnArchives_Click(object sender, EventArgs e)
         {
             AddExtensions(Utils.ArchiveFileExtensions);
+        }
+
+        private void btnAudio_Click(object sender, EventArgs e)
+        {
+            AddExtensions(Utils.AudioFileExtensions);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace CommonForms
 {
-    public partial class EditorRenameFile : EditorBase<string>
+    public partial class EditorRenameFile : EditorBase
     {
         public EditorRenameFile()
         {
