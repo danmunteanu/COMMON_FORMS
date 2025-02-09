@@ -5,7 +5,7 @@ namespace CommonForms
     /*
      * The base class for all Condition and Action editors
      */
-    public abstract class EditorBase<T> : UserControl
+    public class EditorBase<T> : UserControl
     {
         //  override this in derived classes to validate the state of the  UI
         public virtual bool ValidateState()

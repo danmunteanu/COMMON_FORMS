@@ -110,8 +110,11 @@ namespace CommonForms
 
         private void btnProcess_Click(object sender, EventArgs e)
         {
+            if (Processor == null)
+                return;
+
             //  process all files in the list
-            //Processor.Process();
+            Processor.Process();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
