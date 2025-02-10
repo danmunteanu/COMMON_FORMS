@@ -25,6 +25,8 @@ namespace CommonForms
 
         public int mPageCount = 0;
 
+        public bool AdvancedMode { get; set; } = false;
+
         public TAB_EXTRACT_PDF()
         {
             InitializeComponent();
@@ -36,9 +38,10 @@ namespace CommonForms
                 AutoSize = false, // Allows manual sizing
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Fill, // Ensures it stays centered
-                Font = new Font("Arial", 8, FontStyle.Italic | FontStyle.Bold),
+                Font = new Font("Arial", 12, FontStyle.Italic | FontStyle.Bold),
                 ForeColor = Color.Gray
             };
+            AdvancedMode = true;
 
             // Add label to panel
             pnlDrag.Controls.Add(lblDragHere);
@@ -166,6 +169,11 @@ namespace CommonForms
         {
             bool pdfSelected = !string.IsNullOrEmpty(txtDocument.Text);
             bool pagesEntered = !string.IsNullOrEmpty(txtPages.Text);
+
+            {
+                btnReload.Visible = AdvancedMode;
+                chkAllowDuplicates.Visible = AdvancedMode;
+            }
 
             txtPages.Enabled = pdfSelected;
             btnClearPages.Enabled = pdfSelected;

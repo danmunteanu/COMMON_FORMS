@@ -28,182 +28,158 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnExtract = new Button();
+            tableLayoutStuff = new TableLayoutPanel();
+            pnlDrag = new Panel();
+            tableLayoutRHS = new TableLayoutPanel();
+            tableLayoutDetails = new TableLayoutPanel();
             lblExtractFromDoc = new Label();
             txtDocument = new TextBox();
-            btnSelectDoc = new Button();
-            lblPages = new Label();
-            txtPages = new TextBox();
-            btnClearPages = new Button();
-            lblDocInfo = new Label();
-            lblPageCount = new Label();
-            btnExtract = new Button();
-            tableLayoutDetails = new TableLayoutPanel();
-            flowLayoutOptions = new FlowLayoutPanel();
+            tableLayoutOptions = new TableLayoutPanel();
             chkAllowDuplicates = new CheckBox();
             chkOnlyOdd = new CheckBox();
             chkOnlyEven = new CheckBox();
+            btnSelectDoc = new Button();
+            btnClearPages = new Button();
+            txtPages = new TextBox();
+            lblDocInfo = new Label();
+            lblPages = new Label();
             lblStatus = new Label();
+            lblPageCount = new Label();
             lblOptions = new Label();
             btnReload = new Button();
             tableLayoutMain = new TableLayoutPanel();
-            tableLayoutStuff = new TableLayoutPanel();
-            pnlDrag = new Panel();
-            tableLayoutDetails.SuspendLayout();
-            flowLayoutOptions.SuspendLayout();
-            tableLayoutMain.SuspendLayout();
             tableLayoutStuff.SuspendLayout();
+            tableLayoutRHS.SuspendLayout();
+            tableLayoutDetails.SuspendLayout();
+            tableLayoutOptions.SuspendLayout();
+            tableLayoutMain.SuspendLayout();
             SuspendLayout();
+            // 
+            // btnExtract
+            // 
+            btnExtract.Location = new Point(1, 353);
+            btnExtract.Margin = new Padding(1, 3, 1, 3);
+            btnExtract.Name = "btnExtract";
+            btnExtract.Size = new Size(690, 44);
+            btnExtract.TabIndex = 3;
+            btnExtract.Text = "EXTRACT PAGES";
+            btnExtract.UseVisualStyleBackColor = true;
+            btnExtract.Click += btnExtract_Click;
+            // 
+            // tableLayoutStuff
+            // 
+            tableLayoutStuff.ColumnCount = 2;
+            tableLayoutStuff.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 225F));
+            tableLayoutStuff.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutStuff.Controls.Add(pnlDrag, 0, 0);
+            tableLayoutStuff.Controls.Add(tableLayoutRHS, 1, 0);
+            tableLayoutStuff.Dock = DockStyle.Fill;
+            tableLayoutStuff.Location = new Point(2, 26);
+            tableLayoutStuff.Margin = new Padding(2);
+            tableLayoutStuff.Name = "tableLayoutStuff";
+            tableLayoutStuff.RowCount = 1;
+            tableLayoutStuff.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutStuff.Size = new Size(1036, 568);
+            tableLayoutStuff.TabIndex = 24;
+            // 
+            // pnlDrag
+            // 
+            pnlDrag.AllowDrop = true;
+            pnlDrag.BorderStyle = BorderStyle.FixedSingle;
+            pnlDrag.Location = new Point(0, 0);
+            pnlDrag.Margin = new Padding(0);
+            pnlDrag.Name = "pnlDrag";
+            pnlDrag.Size = new Size(195, 261);
+            pnlDrag.TabIndex = 25;
+            pnlDrag.DragDrop += btnSelectDoc_DragDrop;
+            pnlDrag.DragEnter += btnSelectDoc_DragEnter;
+            // 
+            // tableLayoutRHS
+            // 
+            tableLayoutRHS.ColumnCount = 1;
+            tableLayoutRHS.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutRHS.Controls.Add(btnExtract, 0, 1);
+            tableLayoutRHS.Controls.Add(tableLayoutDetails, 0, 0);
+            tableLayoutRHS.Location = new Point(228, 3);
+            tableLayoutRHS.Name = "tableLayoutRHS";
+            tableLayoutRHS.RowCount = 2;
+            tableLayoutRHS.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutRHS.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutRHS.Size = new Size(692, 400);
+            tableLayoutRHS.TabIndex = 25;
+            // 
+            // tableLayoutDetails
+            // 
+            tableLayoutDetails.ColumnCount = 5;
+            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 0F));
+            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 160F));
+            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 97F));
+            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 3F));
+            tableLayoutDetails.Controls.Add(lblExtractFromDoc, 1, 0);
+            tableLayoutDetails.Controls.Add(txtDocument, 2, 0);
+            tableLayoutDetails.Controls.Add(tableLayoutOptions, 2, 3);
+            tableLayoutDetails.Controls.Add(btnSelectDoc, 3, 0);
+            tableLayoutDetails.Controls.Add(btnClearPages, 3, 2);
+            tableLayoutDetails.Controls.Add(txtPages, 2, 2);
+            tableLayoutDetails.Controls.Add(lblDocInfo, 1, 1);
+            tableLayoutDetails.Controls.Add(lblPages, 1, 2);
+            tableLayoutDetails.Controls.Add(lblStatus, 2, 4);
+            tableLayoutDetails.Controls.Add(lblPageCount, 2, 1);
+            tableLayoutDetails.Controls.Add(lblOptions, 1, 3);
+            tableLayoutDetails.Controls.Add(btnReload, 3, 1);
+            tableLayoutDetails.Dock = DockStyle.Fill;
+            tableLayoutDetails.Location = new Point(2, 2);
+            tableLayoutDetails.Margin = new Padding(2);
+            tableLayoutDetails.Name = "tableLayoutDetails";
+            tableLayoutDetails.RowCount = 6;
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutDetails.Size = new Size(688, 346);
+            tableLayoutDetails.TabIndex = 22;
             // 
             // lblExtractFromDoc
             // 
             lblExtractFromDoc.Anchor = AnchorStyles.Right;
             lblExtractFromDoc.AutoSize = true;
-            lblExtractFromDoc.Location = new Point(21, 12);
-            lblExtractFromDoc.Margin = new Padding(4, 0, 4, 0);
+            lblExtractFromDoc.Location = new Point(12, 10);
             lblExtractFromDoc.Name = "lblExtractFromDoc";
-            lblExtractFromDoc.Size = new Size(175, 25);
+            lblExtractFromDoc.Size = new Size(145, 20);
             lblExtractFromDoc.TabIndex = 0;
             lblExtractFromDoc.Text = "PDF To Extract From:";
             // 
             // txtDocument
             // 
             txtDocument.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtDocument.Location = new Point(204, 9);
-            txtDocument.Margin = new Padding(4, 2, 4, 2);
+            txtDocument.Location = new Point(163, 6);
+            txtDocument.Margin = new Padding(3, 2, 3, 2);
             txtDocument.Name = "txtDocument";
             txtDocument.ReadOnly = true;
-            txtDocument.Size = new Size(762, 31);
+            txtDocument.Size = new Size(422, 27);
             txtDocument.TabIndex = 1;
             // 
-            // btnSelectDoc
+            // tableLayoutOptions
             // 
-            btnSelectDoc.AllowDrop = true;
-            btnSelectDoc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnSelectDoc.Location = new Point(974, 5);
-            btnSelectDoc.Margin = new Padding(4, 2, 4, 2);
-            btnSelectDoc.MinimumSize = new Size(0, 40);
-            btnSelectDoc.Name = "btnSelectDoc";
-            btnSelectDoc.Size = new Size(142, 40);
-            btnSelectDoc.TabIndex = 2;
-            btnSelectDoc.Text = "SELECT";
-            btnSelectDoc.UseVisualStyleBackColor = true;
-            btnSelectDoc.Click += btnSelect_Click;
-            // 
-            // lblPages
-            // 
-            lblPages.Anchor = AnchorStyles.Right;
-            lblPages.AutoSize = true;
-            lblPages.Location = new Point(54, 107);
-            lblPages.Margin = new Padding(4, 0, 4, 0);
-            lblPages.Name = "lblPages";
-            lblPages.Size = new Size(142, 25);
-            lblPages.TabIndex = 5;
-            lblPages.Text = "Pages To Extract:";
-            // 
-            // txtPages
-            // 
-            txtPages.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPages.Location = new Point(204, 104);
-            txtPages.Margin = new Padding(4, 2, 4, 2);
-            txtPages.Name = "txtPages";
-            txtPages.Size = new Size(762, 31);
-            txtPages.TabIndex = 6;
-            txtPages.KeyPress += txtPages_KeyPress;
-            // 
-            // btnClearPages
-            // 
-            btnClearPages.Anchor = AnchorStyles.Left;
-            btnClearPages.Font = new Font("Segoe UI", 7F);
-            btnClearPages.Location = new Point(974, 104);
-            btnClearPages.Margin = new Padding(4, 2, 4, 2);
-            btnClearPages.Name = "btnClearPages";
-            btnClearPages.Size = new Size(31, 31);
-            btnClearPages.TabIndex = 7;
-            btnClearPages.Text = "X";
-            btnClearPages.UseVisualStyleBackColor = true;
-            btnClearPages.Click += btnClearPages_Click;
-            // 
-            // lblDocInfo
-            // 
-            lblDocInfo.Anchor = AnchorStyles.Right;
-            lblDocInfo.AutoSize = true;
-            lblDocInfo.Location = new Point(60, 60);
-            lblDocInfo.Margin = new Padding(4, 0, 4, 0);
-            lblDocInfo.Name = "lblDocInfo";
-            lblDocInfo.Size = new Size(136, 25);
-            lblDocInfo.TabIndex = 19;
-            lblDocInfo.Text = "Document Info:";
-            // 
-            // lblPageCount
-            // 
-            lblPageCount.Anchor = AnchorStyles.Left;
-            lblPageCount.AutoSize = true;
-            lblPageCount.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblPageCount.Location = new Point(204, 60);
-            lblPageCount.Margin = new Padding(4, 0, 4, 0);
-            lblPageCount.Name = "lblPageCount";
-            lblPageCount.Size = new Size(73, 25);
-            lblPageCount.TabIndex = 18;
-            lblPageCount.Text = "0 pages";
-            // 
-            // btnExtract
-            // 
-            btnExtract.Dock = DockStyle.Fill;
-            btnExtract.Location = new Point(1, 523);
-            btnExtract.Margin = new Padding(1, 4, 1, 4);
-            btnExtract.Name = "btnExtract";
-            btnExtract.Size = new Size(1257, 52);
-            btnExtract.TabIndex = 3;
-            btnExtract.Text = "EXTRACT PAGES";
-            btnExtract.UseVisualStyleBackColor = true;
-            btnExtract.Click += btnExtract_Click;
-            // 
-            // tableLayoutDetails
-            // 
-            tableLayoutDetails.ColumnCount = 5;
-            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 0F));
-            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
-            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150F));
-            tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 4F));
-            tableLayoutDetails.Controls.Add(lblExtractFromDoc, 1, 0);
-            tableLayoutDetails.Controls.Add(txtDocument, 2, 0);
-            tableLayoutDetails.Controls.Add(flowLayoutOptions, 2, 4);
-            tableLayoutDetails.Controls.Add(btnSelectDoc, 3, 0);
-            tableLayoutDetails.Controls.Add(btnClearPages, 3, 2);
-            tableLayoutDetails.Controls.Add(txtPages, 2, 2);
-            tableLayoutDetails.Controls.Add(lblDocInfo, 1, 1);
-            tableLayoutDetails.Controls.Add(lblPages, 1, 2);
-            tableLayoutDetails.Controls.Add(lblStatus, 2, 6);
-            tableLayoutDetails.Controls.Add(lblPageCount, 2, 1);
-            tableLayoutDetails.Controls.Add(lblOptions, 1, 4);
-            tableLayoutDetails.Controls.Add(btnReload, 3, 1);
-            tableLayoutDetails.Dock = DockStyle.Fill;
-            tableLayoutDetails.Location = new Point(127, 2);
-            tableLayoutDetails.Margin = new Padding(2);
-            tableLayoutDetails.Name = "tableLayoutDetails";
-            tableLayoutDetails.RowCount = 7;
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutDetails.Size = new Size(1124, 310);
-            tableLayoutDetails.TabIndex = 22;
-            // 
-            // flowLayoutOptions
-            // 
-            flowLayoutOptions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            flowLayoutOptions.Controls.Add(chkOnlyEven);
-            flowLayoutOptions.Controls.Add(chkOnlyOdd);
-            flowLayoutOptions.Controls.Add(chkAllowDuplicates);
-            flowLayoutOptions.Location = new Point(204, 154);
-            flowLayoutOptions.Margin = new Padding(4);
-            flowLayoutOptions.Name = "flowLayoutOptions";
-            flowLayoutOptions.Size = new Size(218, 112);
-            flowLayoutOptions.TabIndex = 23;
+            tableLayoutOptions.ColumnCount = 4;
+            tableLayoutOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 145F));
+            tableLayoutOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 148F));
+            tableLayoutOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 190F));
+            tableLayoutOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutOptions.Controls.Add(chkAllowDuplicates, 2, 0);
+            tableLayoutOptions.Controls.Add(chkOnlyOdd, 1, 0);
+            tableLayoutOptions.Controls.Add(chkOnlyEven, 0, 0);
+            tableLayoutOptions.Dock = DockStyle.Fill;
+            tableLayoutOptions.Location = new Point(163, 133);
+            tableLayoutOptions.Name = "tableLayoutOptions";
+            tableLayoutOptions.RowCount = 1;
+            tableLayoutOptions.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutOptions.Size = new Size(422, 34);
+            tableLayoutOptions.TabIndex = 25;
             // 
             // chkAllowDuplicates
             // 
@@ -211,21 +187,21 @@
             chkAllowDuplicates.AutoSize = true;
             chkAllowDuplicates.Checked = true;
             chkAllowDuplicates.CheckState = CheckState.Checked;
-            chkAllowDuplicates.Location = new Point(2, 76);
+            chkAllowDuplicates.Location = new Point(295, 5);
             chkAllowDuplicates.Margin = new Padding(2);
             chkAllowDuplicates.Name = "chkAllowDuplicates";
-            chkAllowDuplicates.Size = new Size(212, 29);
+            chkAllowDuplicates.Size = new Size(179, 24);
             chkAllowDuplicates.TabIndex = 21;
             chkAllowDuplicates.Text = "Allow Page Duplicates";
             chkAllowDuplicates.UseVisualStyleBackColor = true;
             // 
             // chkOnlyOdd
             // 
+            chkOnlyOdd.Anchor = AnchorStyles.Left;
             chkOnlyOdd.AutoSize = true;
-            chkOnlyOdd.Location = new Point(4, 41);
-            chkOnlyOdd.Margin = new Padding(4);
+            chkOnlyOdd.Location = new Point(148, 5);
             chkOnlyOdd.Name = "chkOnlyOdd";
-            chkOnlyOdd.Size = new Size(167, 29);
+            chkOnlyOdd.Size = new Size(136, 24);
             chkOnlyOdd.TabIndex = 22;
             chkOnlyOdd.Text = "Odd Pages Only";
             chkOnlyOdd.UseVisualStyleBackColor = true;
@@ -233,47 +209,115 @@
             // 
             // chkOnlyEven
             // 
+            chkOnlyEven.Anchor = AnchorStyles.Left;
             chkOnlyEven.AutoSize = true;
-            chkOnlyEven.Location = new Point(4, 4);
-            chkOnlyEven.Margin = new Padding(4);
+            chkOnlyEven.Location = new Point(3, 5);
             chkOnlyEven.Name = "chkOnlyEven";
-            chkOnlyEven.Size = new Size(168, 29);
+            chkOnlyEven.Size = new Size(138, 24);
             chkOnlyEven.TabIndex = 23;
             chkOnlyEven.Text = "Even Pages Only";
             chkOnlyEven.UseVisualStyleBackColor = true;
             chkOnlyEven.CheckedChanged += chkOnlyEven_CheckedChanged;
             // 
+            // btnSelectDoc
+            // 
+            btnSelectDoc.AllowDrop = true;
+            btnSelectDoc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSelectDoc.Location = new Point(591, 4);
+            btnSelectDoc.Margin = new Padding(3, 2, 3, 2);
+            btnSelectDoc.MinimumSize = new Size(0, 32);
+            btnSelectDoc.Name = "btnSelectDoc";
+            btnSelectDoc.Size = new Size(91, 32);
+            btnSelectDoc.TabIndex = 2;
+            btnSelectDoc.Text = "SELECT";
+            btnSelectDoc.UseVisualStyleBackColor = true;
+            btnSelectDoc.Click += btnSelect_Click;
+            // 
+            // btnClearPages
+            // 
+            btnClearPages.Anchor = AnchorStyles.Left;
+            btnClearPages.Font = new Font("Segoe UI", 7F);
+            btnClearPages.Location = new Point(591, 95);
+            btnClearPages.Margin = new Padding(3, 2, 3, 2);
+            btnClearPages.Name = "btnClearPages";
+            btnClearPages.Size = new Size(25, 25);
+            btnClearPages.TabIndex = 7;
+            btnClearPages.Text = "X";
+            btnClearPages.UseVisualStyleBackColor = true;
+            btnClearPages.Click += btnClearPages_Click;
+            // 
+            // txtPages
+            // 
+            txtPages.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtPages.Location = new Point(163, 94);
+            txtPages.Margin = new Padding(3, 2, 3, 2);
+            txtPages.Name = "txtPages";
+            txtPages.Size = new Size(422, 27);
+            txtPages.TabIndex = 6;
+            txtPages.KeyPress += txtPages_KeyPress;
+            // 
+            // lblDocInfo
+            // 
+            lblDocInfo.Anchor = AnchorStyles.Right;
+            lblDocInfo.AutoSize = true;
+            lblDocInfo.Location = new Point(46, 52);
+            lblDocInfo.Name = "lblDocInfo";
+            lblDocInfo.Size = new Size(111, 20);
+            lblDocInfo.TabIndex = 19;
+            lblDocInfo.Text = "Document Info:";
+            // 
+            // lblPages
+            // 
+            lblPages.Anchor = AnchorStyles.Right;
+            lblPages.AutoSize = true;
+            lblPages.Location = new Point(38, 97);
+            lblPages.Name = "lblPages";
+            lblPages.Size = new Size(119, 20);
+            lblPages.TabIndex = 5;
+            lblPages.Text = "Pages To Extract:";
+            // 
             // lblStatus
             // 
-            lblStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblStatus.Anchor = AnchorStyles.Left;
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblStatus.ForeColor = Color.Red;
-            lblStatus.Location = new Point(204, 285);
-            lblStatus.Margin = new Padding(4, 0, 4, 0);
+            lblStatus.Location = new Point(163, 182);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(60, 25);
+            lblStatus.Size = new Size(48, 20);
             lblStatus.TabIndex = 20;
             lblStatus.Text = "Status";
+            // 
+            // lblPageCount
+            // 
+            lblPageCount.Anchor = AnchorStyles.Left;
+            lblPageCount.AutoSize = true;
+            lblPageCount.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblPageCount.Location = new Point(163, 52);
+            lblPageCount.Name = "lblPageCount";
+            lblPageCount.Size = new Size(58, 20);
+            lblPageCount.TabIndex = 18;
+            lblPageCount.Text = "0 pages";
             // 
             // lblOptions
             // 
             lblOptions.Anchor = AnchorStyles.Right;
             lblOptions.AutoSize = true;
-            lblOptions.Location = new Point(116, 197);
-            lblOptions.Margin = new Padding(4, 0, 4, 0);
+            lblOptions.Location = new Point(93, 140);
             lblOptions.Name = "lblOptions";
-            lblOptions.Size = new Size(80, 25);
+            lblOptions.Size = new Size(64, 20);
             lblOptions.TabIndex = 24;
             lblOptions.Text = "Options:";
             lblOptions.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnReload
             // 
-            btnReload.Dock = DockStyle.Fill;
-            btnReload.Location = new Point(973, 53);
+            btnReload.Anchor = AnchorStyles.Top;
+            btnReload.Font = new Font("Segoe UI", 7F);
+            btnReload.Location = new Point(602, 42);
+            btnReload.Margin = new Padding(2);
             btnReload.Name = "btnReload";
-            btnReload.Size = new Size(144, 39);
+            btnReload.Size = new Size(68, 26);
             btnReload.TabIndex = 25;
             btnReload.Text = "RELOAD";
             btnReload.UseVisualStyleBackColor = true;
@@ -284,84 +328,57 @@
             tableLayoutMain.ColumnCount = 1;
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutMain.Controls.Add(tableLayoutStuff, 0, 1);
-            tableLayoutMain.Controls.Add(btnExtract, 0, 3);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Margin = new Padding(2);
             tableLayoutMain.Name = "tableLayoutMain";
-            tableLayoutMain.RowCount = 4;
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 320F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
-            tableLayoutMain.Size = new Size(1259, 579);
+            tableLayoutMain.RowCount = 2;
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 24F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 460F));
+            tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutMain.Size = new Size(1040, 596);
             tableLayoutMain.TabIndex = 23;
-            // 
-            // tableLayoutStuff
-            // 
-            tableLayoutStuff.ColumnCount = 2;
-            tableLayoutStuff.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 125F));
-            tableLayoutStuff.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutStuff.Controls.Add(pnlDrag, 0, 0);
-            tableLayoutStuff.Controls.Add(tableLayoutDetails, 1, 0);
-            tableLayoutStuff.Dock = DockStyle.Fill;
-            tableLayoutStuff.Location = new Point(3, 33);
-            tableLayoutStuff.Name = "tableLayoutStuff";
-            tableLayoutStuff.RowCount = 1;
-            tableLayoutStuff.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutStuff.Size = new Size(1253, 314);
-            tableLayoutStuff.TabIndex = 24;
-            // 
-            // pnlDrag
-            // 
-            pnlDrag.AllowDrop = true;
-            pnlDrag.BorderStyle = BorderStyle.FixedSingle;
-            pnlDrag.Dock = DockStyle.Fill;
-            pnlDrag.Location = new Point(3, 3);
-            pnlDrag.Name = "pnlDrag";
-            pnlDrag.Size = new Size(119, 308);
-            pnlDrag.TabIndex = 25;
-            pnlDrag.DragDrop += btnSelectDoc_DragDrop;
-            pnlDrag.DragEnter += btnSelectDoc_DragEnter;
             // 
             // TAB_EXTRACT_PDF
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutMain);
-            Margin = new Padding(4, 2, 4, 2);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TAB_EXTRACT_PDF";
-            Size = new Size(1259, 579);
+            Size = new Size(1040, 596);
+            tableLayoutStuff.ResumeLayout(false);
+            tableLayoutRHS.ResumeLayout(false);
             tableLayoutDetails.ResumeLayout(false);
             tableLayoutDetails.PerformLayout();
-            flowLayoutOptions.ResumeLayout(false);
-            flowLayoutOptions.PerformLayout();
+            tableLayoutOptions.ResumeLayout(false);
+            tableLayoutOptions.PerformLayout();
             tableLayoutMain.ResumeLayout(false);
-            tableLayoutStuff.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Label lblExtractFromDoc;
-        private TextBox txtDocument;
-        private Button btnSelectDoc;
-        private Label lblPages;
-        private TextBox txtPages;
-        private Button btnClearPages;
-        private Label lblPageCount;
-        private Label lblDocInfo;
         private Button btnExtract;
-        private TableLayoutPanel tableLayoutDetails;
-        private Label lblStatus;
-        private CheckBox chkAllowDuplicates;
-        private TableLayoutPanel tableLayoutMain;
-        private FlowLayoutPanel flowLayoutOptions;
-        private CheckBox chkOnlyOdd;
-        private CheckBox chkOnlyEven;
-        private Label lblOptions;
         private TableLayoutPanel tableLayoutStuff;
         private Panel pnlDrag;
+        private TableLayoutPanel tableLayoutDetails;
+        private Label lblExtractFromDoc;
+        private TextBox txtDocument;
+        private CheckBox chkOnlyEven;
+        private CheckBox chkOnlyOdd;
+        private CheckBox chkAllowDuplicates;
+        private Button btnSelectDoc;
+        private Button btnClearPages;
+        private TextBox txtPages;
+        private Label lblDocInfo;
+        private Label lblPages;
+        private Label lblPageCount;
+        private Label lblOptions;
         private Button btnReload;
+        private TableLayoutPanel tableLayoutMain;
+        private Label lblStatus;
+        private TableLayoutPanel tableLayoutOptions;
+        private TableLayoutPanel tableLayoutRHS;
     }
 }
