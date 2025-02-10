@@ -29,6 +29,20 @@ namespace CommonForms
         {
             InitializeComponent();
 
+            Label lblDragHere = new Label
+            {
+                Name = "lblDragHere",
+                Text = "You can drag and drop PDF files here.",
+                AutoSize = false, // Allows manual sizing
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Fill, // Ensures it stays centered
+                Font = new Font("Arial", 8, FontStyle.Italic | FontStyle.Bold),
+                ForeColor = Color.Gray
+            };
+
+            // Add label to panel
+            pnlDrag.Controls.Add(lblDragHere);
+
             UpdateUI();
             UpdateStatus(string.Empty);
         }
@@ -150,7 +164,7 @@ namespace CommonForms
 
         public override void UpdateUI()
         {
-            bool pdfSelected = !string.IsNullOrEmpty(txtSource.Text);
+            bool pdfSelected = !string.IsNullOrEmpty(txtDocument.Text);
             bool pagesEntered = !string.IsNullOrEmpty(txtPages.Text);
 
             txtPages.Enabled = pdfSelected;
@@ -162,7 +176,7 @@ namespace CommonForms
             }
             else
             {
-                mPageCount = ActionExtractPDFPages.CountPages(txtSource.Text);
+                mPageCount = ActionExtractPDFPages.CountPages(txtDocument.Text);
                 lblPageCount.Text = string.Format("Has {0} page(s).", mPageCount);
                 txtPages.PlaceholderText = string.Format("Enter page numbers (or intervals) between 1 and {0}", mPageCount);
             }
@@ -170,6 +184,7 @@ namespace CommonForms
             chkAllowDuplicates.Enabled = pdfSelected;
             chkOnlyOdd.Enabled = pdfSelected;
             chkOnlyEven.Enabled = pdfSelected;
+            btnReload.Enabled = pdfSelected;
             btnExtract.Enabled = pdfSelected /* && pagesEntered */;
         }
 
@@ -196,7 +211,7 @@ namespace CommonForms
                 dlgSave.DefaultExt = "PDF";
                 dlgSave.AddExtension = true;
                 dlgSave.Title = "Select Destination PDF";
-                dlgSave.FileName = GenerateDestinationFileName(txtSource.Text);
+                dlgSave.FileName = GenerateDestinationFileName(txtDocument.Text);
                 dlgSave.InitialDirectory = DESKTOP_PATH;
 
                 if (dlgSave.ShowDialog() == DialogResult.OK)
@@ -238,7 +253,7 @@ namespace CommonForms
                     // Pass required fields to action
                     Action.Pages = numbers;
                     Action.Destination = dlgSave.FileName;
-                    Action.Execute(txtSource.Text);
+                    Action.Execute(txtDocument.Text);
 
                     UpdateStatus("Selected pages have been extracted.");
                     UpdateUI();
@@ -269,7 +284,7 @@ namespace CommonForms
             }
         }
 
-        private void btnSource_Click(object sender, EventArgs e)
+        private void btnSelect_Click(object sender, EventArgs e)
         {
             //  Select Source
             using (OpenFileDialog dlgOpen = new OpenFileDialog())
@@ -282,7 +297,7 @@ namespace CommonForms
 
                 if (dlgOpen.ShowDialog() == DialogResult.OK)
                 {
-                    txtSource.Text = dlgOpen.FileName;
+                    txtDocument.Text = dlgOpen.FileName;
 
                     //  clear the fields
                     txtPages.Clear();
@@ -363,7 +378,7 @@ namespace CommonForms
                     string pdfFilePath = files[0];
                     //MessageBox.Show($"PDF file dropped: {pdfFilePath}", "File Dropped", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    txtSource.Text = pdfFilePath;
+                    txtDocument.Text = pdfFilePath;
 
                     //  clear the fields
                     txtPages.Clear();
@@ -388,6 +403,21 @@ namespace CommonForms
         {
             if (chkOnlyEven.Checked)
                 chkOnlyOdd.Checked = false;
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtDocument.Text))
+                return;
+
+            //  clear the fields
+            txtPages.Clear();
+
+            UpdateStatus("Document reloaded.");
+
+            UpdateUI();
+
+            txtPages.Select();
         }
     }
 }
