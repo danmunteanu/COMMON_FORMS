@@ -19,7 +19,7 @@ namespace CommonForms
         public ActionExtractPDFPages? Action { get; set; } = null;
 
         private string DESKTOP_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\";
-        
+
         private const string K_OUPUT_FILENAME_MASK = "EXTRACT-PAGES-{0}";
         public const string K_DATE_MASK = "yyyy-MM-dd hh:mm tt";
 
@@ -168,6 +168,8 @@ namespace CommonForms
             }
 
             chkAllowDuplicates.Enabled = pdfSelected;
+            chkOnlyOdd.Enabled = pdfSelected;
+            chkOnlyEven.Enabled = pdfSelected;
             btnExtract.Enabled = pdfSelected /* && pagesEntered */;
         }
 
@@ -175,7 +177,7 @@ namespace CommonForms
         {
             if (Action == null)
             {
-                UpdateStatus("Action not set.");
+                UpdateStatus("Action is not set.");
                 return;
             }
 
@@ -201,7 +203,7 @@ namespace CommonForms
                 {
                     string[] parts = input.Split(',');
 
-                    List<int> numbers = new List<int>();
+                    List<int> numbers = new();
                     foreach (var part in parts)
                     {
                         string trimmedPart = part.Trim();
@@ -216,25 +218,25 @@ namespace CommonForms
                                 {
                                     // Ascending range, e.g., 1-5
                                     for (int i = start; i <= end; i++)
-                                        numbers.Add(i);
+                                        AddNumber(numbers, i);
                                 }
                                 else
                                 {
                                     // Descending range, e.g., 200-193
                                     for (int i = start; i >= end; i--)
-                                        numbers.Add(i);
+                                        AddNumber(numbers, i);
                                 }
                             }
                         }
                         else if (int.TryParse(trimmedPart, out int page))
                         {
                             // Single page entry
-                            numbers.Add(page);
+                            AddNumber(numbers, page);
                         }
                     }
 
                     // Pass required fields to action
-                    Action.Pages = numbers.ToArray();
+                    Action.Pages = numbers;
                     Action.Destination = dlgSave.FileName;
                     Action.Execute(txtSource.Text);
 
@@ -243,6 +245,27 @@ namespace CommonForms
 
                     btnExtract.Enabled = false;
                 }
+            }
+        }
+
+        private void AddNumber(List<int> numbers, int num)
+        {
+            if (chkOnlyOdd.Checked)
+            {
+                //  add only if odd
+                if (num % 2 == 0)
+                    numbers.Add(num);
+            }
+            else if (chkOnlyEven.Checked)
+            {
+                //  add only if even
+                if (num % 2 != 0)
+                    numbers.Add(num);
+            }
+            else
+            {
+                //  add all
+                numbers.Add(num);
             }
         }
 
@@ -264,7 +287,7 @@ namespace CommonForms
                     //  clear the fields
                     txtPages.Clear();
 
-                    UpdateStatus("Source document selected.");
+                    UpdateStatus("Document selected.");
 
                     UpdateUI();
 
@@ -328,11 +351,14 @@ namespace CommonForms
 
         private void btnSelectDoc_DragDrop(object sender, DragEventArgs e)
         {
+            if (e.Data == null)
+                return;
+
             // Get the dragged files
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-                if (files.Length > 0)
+                if (files != null && files.Length > 0)
                 {
                     string pdfFilePath = files[0];
                     //MessageBox.Show($"PDF file dropped: {pdfFilePath}", "File Dropped", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -342,7 +368,7 @@ namespace CommonForms
                     //  clear the fields
                     txtPages.Clear();
 
-                    UpdateStatus("Source document selected.");
+                    UpdateStatus("Document selected.");
 
                     UpdateUI();
 
@@ -350,6 +376,18 @@ namespace CommonForms
 
                 }
             }
+        }
+
+        private void chkOnlyOdd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOnlyOdd.Checked)
+                chkOnlyEven.Checked = false;
+        }
+
+        private void chkOnlyEven_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOnlyEven.Checked)
+                chkOnlyOdd.Checked = false;
         }
     }
 }

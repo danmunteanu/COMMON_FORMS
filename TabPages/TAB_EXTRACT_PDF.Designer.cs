@@ -38,10 +38,15 @@
             lblPageCount = new Label();
             btnExtract = new Button();
             tableLayoutDetails = new TableLayoutPanel();
+            flowLayoutOptions = new FlowLayoutPanel();
             chkAllowDuplicates = new CheckBox();
+            chkOnlyOdd = new CheckBox();
+            chkOnlyEven = new CheckBox();
             lblStatus = new Label();
             tableLayoutMain = new TableLayoutPanel();
+            lblOptions = new Label();
             tableLayoutDetails.SuspendLayout();
+            flowLayoutOptions.SuspendLayout();
             tableLayoutMain.SuspendLayout();
             SuspendLayout();
             // 
@@ -138,7 +143,7 @@
             // btnExtract
             // 
             btnExtract.Dock = DockStyle.Fill;
-            btnExtract.Location = new Point(1, 663);
+            btnExtract.Location = new Point(1, 418);
             btnExtract.Margin = new Padding(1, 3, 1, 3);
             btnExtract.Name = "btnExtract";
             btnExtract.Size = new Size(1005, 42);
@@ -155,9 +160,9 @@
             tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
             tableLayoutDetails.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 3F));
-            tableLayoutDetails.Controls.Add(chkAllowDuplicates, 2, 3);
             tableLayoutDetails.Controls.Add(lblExtractFromDoc, 1, 0);
             tableLayoutDetails.Controls.Add(txtSource, 2, 0);
+            tableLayoutDetails.Controls.Add(flowLayoutOptions, 2, 3);
             tableLayoutDetails.Controls.Add(btnSelectDoc, 3, 0);
             tableLayoutDetails.Controls.Add(btnClearPages, 3, 2);
             tableLayoutDetails.Controls.Add(txtPages, 2, 2);
@@ -165,6 +170,7 @@
             tableLayoutDetails.Controls.Add(lblPages, 1, 2);
             tableLayoutDetails.Controls.Add(lblStatus, 2, 4);
             tableLayoutDetails.Controls.Add(lblPageCount, 2, 1);
+            tableLayoutDetails.Controls.Add(lblOptions, 1, 3);
             tableLayoutDetails.Dock = DockStyle.Fill;
             tableLayoutDetails.Location = new Point(2, 26);
             tableLayoutDetails.Margin = new Padding(2);
@@ -179,19 +185,52 @@
             tableLayoutDetails.Size = new Size(1003, 236);
             tableLayoutDetails.TabIndex = 22;
             // 
+            // flowLayoutOptions
+            // 
+            flowLayoutOptions.Controls.Add(chkAllowDuplicates);
+            flowLayoutOptions.Controls.Add(chkOnlyOdd);
+            flowLayoutOptions.Controls.Add(chkOnlyEven);
+            flowLayoutOptions.Dock = DockStyle.Fill;
+            flowLayoutOptions.Location = new Point(166, 123);
+            flowLayoutOptions.Name = "flowLayoutOptions";
+            flowLayoutOptions.Size = new Size(711, 34);
+            flowLayoutOptions.TabIndex = 23;
+            // 
             // chkAllowDuplicates
             // 
             chkAllowDuplicates.Anchor = AnchorStyles.Left;
             chkAllowDuplicates.AutoSize = true;
             chkAllowDuplicates.Checked = true;
             chkAllowDuplicates.CheckState = CheckState.Checked;
-            chkAllowDuplicates.Location = new Point(165, 128);
+            chkAllowDuplicates.Location = new Point(2, 3);
             chkAllowDuplicates.Margin = new Padding(2);
             chkAllowDuplicates.Name = "chkAllowDuplicates";
-            chkAllowDuplicates.Size = new Size(179, 24);
+            chkAllowDuplicates.Size = new Size(143, 24);
             chkAllowDuplicates.TabIndex = 21;
-            chkAllowDuplicates.Text = "Allow Page Duplicates";
+            chkAllowDuplicates.Text = "Allow Duplicates";
             chkAllowDuplicates.UseVisualStyleBackColor = true;
+            // 
+            // chkOnlyOdd
+            // 
+            chkOnlyOdd.AutoSize = true;
+            chkOnlyOdd.Location = new Point(150, 3);
+            chkOnlyOdd.Name = "chkOnlyOdd";
+            chkOnlyOdd.Size = new Size(94, 24);
+            chkOnlyOdd.TabIndex = 22;
+            chkOnlyOdd.Text = "Odd Only";
+            chkOnlyOdd.UseVisualStyleBackColor = true;
+            chkOnlyOdd.CheckedChanged += chkOnlyOdd_CheckedChanged;
+            // 
+            // chkOnlyEven
+            // 
+            chkOnlyEven.AutoSize = true;
+            chkOnlyEven.Location = new Point(250, 3);
+            chkOnlyEven.Name = "chkOnlyEven";
+            chkOnlyEven.Size = new Size(96, 24);
+            chkOnlyEven.TabIndex = 23;
+            chkOnlyEven.Text = "Even Only";
+            chkOnlyEven.UseVisualStyleBackColor = true;
+            chkOnlyEven.CheckedChanged += chkOnlyEven_CheckedChanged;
             // 
             // lblStatus
             // 
@@ -220,8 +259,19 @@
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 240F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 48F));
-            tableLayoutMain.Size = new Size(1007, 708);
+            tableLayoutMain.Size = new Size(1007, 463);
             tableLayoutMain.TabIndex = 23;
+            // 
+            // lblOptions
+            // 
+            lblOptions.Anchor = AnchorStyles.Right;
+            lblOptions.AutoSize = true;
+            lblOptions.Location = new Point(96, 130);
+            lblOptions.Name = "lblOptions";
+            lblOptions.Size = new Size(64, 20);
+            lblOptions.TabIndex = 24;
+            lblOptions.Text = "Options:";
+            lblOptions.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // TAB_EXTRACT_PDF
             // 
@@ -230,9 +280,11 @@
             Controls.Add(tableLayoutMain);
             Margin = new Padding(3, 2, 3, 2);
             Name = "TAB_EXTRACT_PDF";
-            Size = new Size(1007, 708);
+            Size = new Size(1007, 463);
             tableLayoutDetails.ResumeLayout(false);
             tableLayoutDetails.PerformLayout();
+            flowLayoutOptions.ResumeLayout(false);
+            flowLayoutOptions.PerformLayout();
             tableLayoutMain.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -252,5 +304,9 @@
         private Label lblStatus;
         private CheckBox chkAllowDuplicates;
         private TableLayoutPanel tableLayoutMain;
+        private FlowLayoutPanel flowLayoutOptions;
+        private CheckBox chkOnlyOdd;
+        private CheckBox chkOnlyEven;
+        private Label lblOptions;
     }
 }

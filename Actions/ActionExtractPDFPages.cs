@@ -13,11 +13,10 @@ namespace CommonForms
         //  The Output PDF
         public string? Destination { get; set; } = null;
 
-        //  expects an array like 
-        //  int[] pagesToExtract = new int[] { 1, 2, 5 };  // Example: pages 1, 2, and 5
-        public int[]? Pages { get; set; } = null;
+        //  List of pages to extract
+        public List<int> Pages { get; set; } = new ();
 
-        public static void ExtractPages(string sourcePdfPath, string destinationPdfPath, int[] pagesToExtract)
+        public static void ExtractPages(string sourcePdfPath, string destinationPdfPath, List<int> pagesToExtract)
         {
             // Open the source PDF
             using (PdfDocument sourcePdf = new PdfDocument(new PdfReader(sourcePdfPath)))
@@ -89,7 +88,7 @@ namespace CommonForms
                 Destination != null && Destination != string.Empty &&
 
                 //  At least one page
-                Pages != null && Pages.Length > 0)
+                Pages != null && Pages.Count > 0)
             {
                 ExtractPages(sourcePDF, Destination, Pages);
             }
