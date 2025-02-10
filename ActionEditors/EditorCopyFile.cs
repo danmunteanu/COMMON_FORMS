@@ -7,6 +7,8 @@ namespace CommonForms
         public EditorCopyFile()
         {
             InitializeComponent();
+
+            cmbDuplicates.SelectedIndex = 0;
         }
 
         public override bool ValidateState()
@@ -29,17 +31,22 @@ namespace CommonForms
 
         public override void LoadState(RealityFrameworks.Actions.Action<string> action)
         {
-            if (action is ActionCopyFile actionCopyFile)
+            if (action is ActionCopyFile acp)
             {
-                txtFolder.Text = actionCopyFile.DestinationFolder;
+                txtFolder.Text = acp.DestinationFolder;
+                if (acp.DuplicateFilesPolicy == ActionCopyFile.EDuplicateFilesPolicy.AutoRename)
+                    cmbDuplicates.SelectedIndex = 1;
+                if (acp.DuplicateFilesPolicy == ActionCopyFile.EDuplicateFilesPolicy.Overwrite)
+                    cmbDuplicates.SelectedIndex = 0;
             }
         }
 
         public override void SaveState(RealityFrameworks.Actions.Action<string> action)
         {
-            if (action is ActionCopyFile actionCopyFile)
+            if (action is ActionCopyFile acp)
             {
-                actionCopyFile.DestinationFolder = txtFolder.Text;
+                acp.DestinationFolder = txtFolder.Text;
+                acp.DuplicateFilesPolicy = (cmbDuplicates.SelectedIndex == 0) ? ActionCopyFile.EDuplicateFilesPolicy.Overwrite : ActionCopyFile.EDuplicateFilesPolicy.AutoRename;
             }    
         }
 
