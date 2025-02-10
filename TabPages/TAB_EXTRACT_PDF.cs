@@ -25,15 +25,16 @@ namespace CommonForms
 
         private int mPageCount = 0;
 
-        private List<int> mPagesToExclude = new() {
-                4, 7, 9, 11, 13,
-                15, 19, 22, 24,
-                26, 29, 31, 33,
-                35, 38, 41, 43,
-                46, 48, 50, 52,
-                54, 56, 57, 58,
-                59, 60
-            };
+        private List<int> mPagesToExclude = new()
+        {
+            //4, 7, 9, 11, 13,
+            //15, 19, 22, 24,
+            //26, 29, 31, 33,
+            //35, 38, 41, 43,
+            //46, 48, 50, 52,
+            //54, 56, 57, 58,
+            //59, 60
+        };
 
         public bool AdvancedMode { get; set; } = false;
 
@@ -209,6 +210,10 @@ namespace CommonForms
                 btnAdvanced.Text = "SIMPLE";
             else
                 btnAdvanced.Text = "ADVANCED";
+
+            lblExclude.Visible = AdvancedMode;
+            txtExclude.Visible = AdvancedMode;
+            btnClearExclude.Visible = AdvancedMode;
         }
 
         private void btnExtract_Click(object sender, EventArgs e)
@@ -447,6 +452,11 @@ namespace CommonForms
         {
             AdvancedMode = !AdvancedMode;
             UpdateUI();
+        }
+
+        private void btnClearExclude_Click(object sender, EventArgs e)
+        {
+            txtExclude.Clear();
         }
     }
 }

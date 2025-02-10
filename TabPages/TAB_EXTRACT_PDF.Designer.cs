@@ -45,7 +45,10 @@
             lblPageCount = new Label();
             lblOptions = new Label();
             btnReload = new Button();
+            lblExclude = new Label();
+            txtExclude = new TextBox();
             btnAdvanced = new Button();
+            btnClearExclude = new Button();
             tableLayoutDrag = new TableLayoutPanel();
             panelDrag = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -83,21 +86,25 @@
             tableLayoutDetails.Controls.Add(txtPages, 2, 2);
             tableLayoutDetails.Controls.Add(lblDocInfo, 1, 1);
             tableLayoutDetails.Controls.Add(lblPages, 1, 2);
-            tableLayoutDetails.Controls.Add(lblStatus, 2, 4);
+            tableLayoutDetails.Controls.Add(lblStatus, 2, 5);
             tableLayoutDetails.Controls.Add(lblPageCount, 2, 1);
             tableLayoutDetails.Controls.Add(lblOptions, 1, 3);
             tableLayoutDetails.Controls.Add(btnReload, 3, 1);
-            tableLayoutDetails.Controls.Add(btnAdvanced, 3, 4);
+            tableLayoutDetails.Controls.Add(lblExclude, 1, 4);
+            tableLayoutDetails.Controls.Add(txtExclude, 2, 4);
+            tableLayoutDetails.Controls.Add(btnAdvanced, 3, 3);
+            tableLayoutDetails.Controls.Add(btnClearExclude, 3, 4);
             tableLayoutDetails.Dock = DockStyle.Fill;
             tableLayoutDetails.Location = new Point(267, 2);
             tableLayoutDetails.Margin = new Padding(2);
             tableLayoutDetails.Name = "tableLayoutDetails";
-            tableLayoutDetails.RowCount = 6;
+            tableLayoutDetails.RowCount = 7;
             tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 56F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 80F));
-            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 50F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 101F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 55F));
+            tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
             tableLayoutDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutDetails.Size = new Size(910, 467);
             tableLayoutDetails.TabIndex = 22;
@@ -129,28 +136,29 @@
             tableLayoutOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 181F));
             tableLayoutOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 228F));
             tableLayoutOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutOptions.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutOptions.Controls.Add(chkOnlyEven, 0, 0);
-            tableLayoutOptions.Controls.Add(chkOnlyOdd, 0, 1);
-            tableLayoutOptions.Controls.Add(chkAllowDuplicates, 1, 0);
+            tableLayoutOptions.Controls.Add(chkOnlyEven, 0, 1);
+            tableLayoutOptions.Controls.Add(chkOnlyOdd, 0, 2);
+            tableLayoutOptions.Controls.Add(chkAllowDuplicates, 1, 1);
             tableLayoutOptions.Dock = DockStyle.Fill;
-            tableLayoutOptions.Location = new Point(204, 166);
+            tableLayoutOptions.Location = new Point(204, 164);
             tableLayoutOptions.Margin = new Padding(4);
             tableLayoutOptions.Name = "tableLayoutOptions";
-            tableLayoutOptions.RowCount = 2;
-            tableLayoutOptions.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutOptions.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutOptions.Size = new Size(577, 72);
+            tableLayoutOptions.RowCount = 4;
+            tableLayoutOptions.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutOptions.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutOptions.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutOptions.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutOptions.Size = new Size(577, 93);
             tableLayoutOptions.TabIndex = 25;
             // 
             // chkOnlyEven
             // 
             chkOnlyEven.Anchor = AnchorStyles.Left;
             chkOnlyEven.AutoSize = true;
-            chkOnlyEven.Location = new Point(4, 4);
+            chkOnlyEven.Location = new Point(4, 11);
             chkOnlyEven.Margin = new Padding(4);
             chkOnlyEven.Name = "chkOnlyEven";
-            chkOnlyEven.Size = new Size(168, 27);
+            chkOnlyEven.Size = new Size(168, 29);
             chkOnlyEven.TabIndex = 23;
             chkOnlyEven.Text = "Even Pages Only";
             chkOnlyEven.UseVisualStyleBackColor = true;
@@ -160,7 +168,7 @@
             // 
             chkOnlyOdd.Anchor = AnchorStyles.Left;
             chkOnlyOdd.AutoSize = true;
-            chkOnlyOdd.Location = new Point(4, 39);
+            chkOnlyOdd.Location = new Point(4, 51);
             chkOnlyOdd.Margin = new Padding(4);
             chkOnlyOdd.Name = "chkOnlyOdd";
             chkOnlyOdd.Size = new Size(167, 29);
@@ -175,7 +183,7 @@
             chkAllowDuplicates.AutoSize = true;
             chkAllowDuplicates.Checked = true;
             chkAllowDuplicates.CheckState = CheckState.Checked;
-            chkAllowDuplicates.Location = new Point(183, 3);
+            chkAllowDuplicates.Location = new Point(183, 11);
             chkAllowDuplicates.Margin = new Padding(2);
             chkAllowDuplicates.Name = "chkAllowDuplicates";
             chkAllowDuplicates.Size = new Size(224, 29);
@@ -201,7 +209,7 @@
             // 
             btnClearPages.Anchor = AnchorStyles.Left;
             btnClearPages.Font = new Font("Segoe UI", 7F);
-            btnClearPages.Location = new Point(789, 118);
+            btnClearPages.Location = new Point(789, 117);
             btnClearPages.Margin = new Padding(4, 2, 4, 2);
             btnClearPages.Name = "btnClearPages";
             btnClearPages.Size = new Size(31, 31);
@@ -213,7 +221,7 @@
             // txtPages
             // 
             txtPages.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtPages.Location = new Point(204, 118);
+            txtPages.Location = new Point(204, 117);
             txtPages.Margin = new Padding(4, 2, 4, 2);
             txtPages.Name = "txtPages";
             txtPages.Size = new Size(577, 31);
@@ -235,7 +243,7 @@
             // 
             lblPages.Anchor = AnchorStyles.Right;
             lblPages.AutoSize = true;
-            lblPages.Location = new Point(54, 121);
+            lblPages.Location = new Point(54, 120);
             lblPages.Margin = new Padding(4, 0, 4, 0);
             lblPages.Name = "lblPages";
             lblPages.Size = new Size(142, 25);
@@ -248,7 +256,7 @@
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             lblStatus.ForeColor = Color.Red;
-            lblStatus.Location = new Point(204, 254);
+            lblStatus.Location = new Point(204, 326);
             lblStatus.Margin = new Padding(4, 0, 4, 0);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(60, 25);
@@ -271,7 +279,7 @@
             // 
             lblOptions.Anchor = AnchorStyles.Right;
             lblOptions.AutoSize = true;
-            lblOptions.Location = new Point(116, 189);
+            lblOptions.Location = new Point(116, 198);
             lblOptions.Margin = new Padding(4, 0, 4, 0);
             lblOptions.Name = "lblOptions";
             lblOptions.Size = new Size(80, 25);
@@ -283,7 +291,7 @@
             // 
             btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnReload.Font = new Font("Segoe UI", 8F);
-            btnReload.Location = new Point(787, 62);
+            btnReload.Location = new Point(787, 61);
             btnReload.Margin = new Padding(2);
             btnReload.Name = "btnReload";
             btnReload.Size = new Size(117, 32);
@@ -292,17 +300,47 @@
             btnReload.UseVisualStyleBackColor = true;
             btnReload.Click += btnReload_Click;
             // 
+            // lblExclude
+            // 
+            lblExclude.Anchor = AnchorStyles.Right;
+            lblExclude.AutoSize = true;
+            lblExclude.Location = new Point(48, 276);
+            lblExclude.Name = "lblExclude";
+            lblExclude.Size = new Size(149, 25);
+            lblExclude.TabIndex = 27;
+            lblExclude.Text = "Pages To Exclude:";
+            // 
+            // txtExclude
+            // 
+            txtExclude.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtExclude.Location = new Point(203, 273);
+            txtExclude.Name = "txtExclude";
+            txtExclude.Size = new Size(579, 31);
+            txtExclude.TabIndex = 28;
+            // 
             // btnAdvanced
             // 
             btnAdvanced.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnAdvanced.Font = new Font("Segoe UI", 8F);
-            btnAdvanced.Location = new Point(788, 250);
+            btnAdvanced.Location = new Point(788, 193);
             btnAdvanced.Name = "btnAdvanced";
             btnAdvanced.Size = new Size(115, 34);
             btnAdvanced.TabIndex = 26;
             btnAdvanced.Text = "ADVANCED";
             btnAdvanced.UseVisualStyleBackColor = true;
             btnAdvanced.Click += btnAdvanced_Click;
+            // 
+            // btnClearExclude
+            // 
+            btnClearExclude.Anchor = AnchorStyles.Left;
+            btnClearExclude.Font = new Font("Segoe UI", 7F);
+            btnClearExclude.Location = new Point(788, 273);
+            btnClearExclude.Name = "btnClearExclude";
+            btnClearExclude.Size = new Size(31, 31);
+            btnClearExclude.TabIndex = 29;
+            btnClearExclude.Text = "X";
+            btnClearExclude.UseVisualStyleBackColor = true;
+            btnClearExclude.Click += btnClearExclude_Click;
             // 
             // tableLayoutDrag
             // 
@@ -388,5 +426,8 @@
         private TableLayoutPanel tableLayoutDrag;
         private TableLayoutPanel tableLayoutPanel1;
         private Button btnAdvanced;
+        private Label lblExclude;
+        private TextBox txtExclude;
+        private Button btnClearExclude;
     }
 }
