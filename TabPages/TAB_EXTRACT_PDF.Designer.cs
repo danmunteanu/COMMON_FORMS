@@ -196,9 +196,9 @@
             // flowLayoutOptions
             // 
             flowLayoutOptions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            flowLayoutOptions.Controls.Add(chkAllowDuplicates);
-            flowLayoutOptions.Controls.Add(chkOnlyOdd);
             flowLayoutOptions.Controls.Add(chkOnlyEven);
+            flowLayoutOptions.Controls.Add(chkOnlyOdd);
+            flowLayoutOptions.Controls.Add(chkAllowDuplicates);
             flowLayoutOptions.Location = new Point(204, 154);
             flowLayoutOptions.Margin = new Padding(4);
             flowLayoutOptions.Name = "flowLayoutOptions";
@@ -211,7 +211,7 @@
             chkAllowDuplicates.AutoSize = true;
             chkAllowDuplicates.Checked = true;
             chkAllowDuplicates.CheckState = CheckState.Checked;
-            chkAllowDuplicates.Location = new Point(2, 2);
+            chkAllowDuplicates.Location = new Point(2, 76);
             chkAllowDuplicates.Margin = new Padding(2);
             chkAllowDuplicates.Name = "chkAllowDuplicates";
             chkAllowDuplicates.Size = new Size(212, 29);
@@ -222,24 +222,24 @@
             // chkOnlyOdd
             // 
             chkOnlyOdd.AutoSize = true;
-            chkOnlyOdd.Location = new Point(4, 37);
+            chkOnlyOdd.Location = new Point(4, 41);
             chkOnlyOdd.Margin = new Padding(4);
             chkOnlyOdd.Name = "chkOnlyOdd";
             chkOnlyOdd.Size = new Size(167, 29);
             chkOnlyOdd.TabIndex = 22;
-            chkOnlyOdd.Text = "Only Odd Pages";
+            chkOnlyOdd.Text = "Odd Pages Only";
             chkOnlyOdd.UseVisualStyleBackColor = true;
             chkOnlyOdd.CheckedChanged += chkOnlyOdd_CheckedChanged;
             // 
             // chkOnlyEven
             // 
             chkOnlyEven.AutoSize = true;
-            chkOnlyEven.Location = new Point(4, 74);
+            chkOnlyEven.Location = new Point(4, 4);
             chkOnlyEven.Margin = new Padding(4);
             chkOnlyEven.Name = "chkOnlyEven";
             chkOnlyEven.Size = new Size(168, 29);
             chkOnlyEven.TabIndex = 23;
-            chkOnlyEven.Text = "Only Even Pages";
+            chkOnlyEven.Text = "Even Pages Only";
             chkOnlyEven.UseVisualStyleBackColor = true;
             chkOnlyEven.CheckedChanged += chkOnlyEven_CheckedChanged;
             // 
