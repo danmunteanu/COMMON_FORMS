@@ -23,7 +23,17 @@ namespace CommonForms
         private const string K_OUPUT_FILENAME_MASK = "EXTRACT-PAGES-{0}";
         public const string K_DATE_MASK = "yyyy-MM-dd hh:mm tt";
 
-        public int mPageCount = 0;
+        private int mPageCount = 0;
+
+        private List<int> mPagesToExclude = new() {
+                4, 7, 9, 11, 13,
+                15, 19, 22, 24,
+                26, 29, 31, 33,
+                35, 38, 41, 43,
+                46, 48, 50, 52,
+                54, 56, 57, 58,
+                59, 60
+            };
 
         public bool AdvancedMode { get; set; } = false;
 
@@ -41,10 +51,10 @@ namespace CommonForms
                 Font = new Font("Arial", 12, FontStyle.Italic | FontStyle.Bold),
                 ForeColor = Color.Gray
             };
-            AdvancedMode = true;
+            AdvancedMode = false;
 
             // Add label to panel
-            pnlDrag.Controls.Add(lblDragHere);
+            panelDrag.Controls.Add(lblDragHere);
 
             UpdateUI();
             UpdateStatus(string.Empty);
@@ -194,6 +204,11 @@ namespace CommonForms
             chkOnlyEven.Enabled = pdfSelected;
             btnReload.Enabled = pdfSelected;
             btnExtract.Enabled = pdfSelected /* && pagesEntered */;
+
+            if (AdvancedMode)
+                btnAdvanced.Text = "SIMPLE";
+            else
+                btnAdvanced.Text = "ADVANCED";
         }
 
         private void btnExtract_Click(object sender, EventArgs e)
@@ -259,7 +274,7 @@ namespace CommonForms
                     }
 
                     // Pass required fields to action
-                    Action.Pages = numbers;
+                    Action.Pages = numbers.Except(mPagesToExclude).ToList();
                     Action.Destination = dlgSave.FileName;
                     Action.Execute(txtDocument.Text);
 
@@ -426,6 +441,12 @@ namespace CommonForms
             UpdateUI();
 
             txtPages.Select();
+        }
+
+        private void btnAdvanced_Click(object sender, EventArgs e)
+        {
+            AdvancedMode = !AdvancedMode;
+            UpdateUI();
         }
     }
 }
