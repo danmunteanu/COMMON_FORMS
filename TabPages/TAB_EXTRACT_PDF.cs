@@ -66,23 +66,23 @@ namespace CommonForms
             lblStatus.Text = message;
         }
 
-        private void txtPages_KeyPress(object sender, KeyPressEventArgs e)
+        private void OnKeyPressed(TextBox textControl, KeyPressEventArgs evt)
         {
-            char keyChar = e.KeyChar;
+            char keyChar = evt.KeyChar;
 
             // Replace selected text if there is a selection
-            if (txtPages.SelectionLength > 0 && !char.IsControl(keyChar))
+            if (textControl.SelectionLength > 0 && !char.IsControl(keyChar))
             {
-                int selectionStart = txtPages.SelectionStart;
-                int selectionLength = txtPages.SelectionLength;
+                int selectionStart = textControl.SelectionStart;
+                int selectionLength = textControl.SelectionLength;
 
                 // Remove the selected text and insert the new character
-                txtPages.Text = txtPages.Text.Remove(selectionStart, selectionLength)
+                textControl.Text = textControl.Text.Remove(selectionStart, selectionLength)
                                               .Insert(selectionStart, keyChar.ToString());
 
                 // Move cursor to the position after the inserted character
-                txtPages.SelectionStart = selectionStart + 1;
-                e.Handled = true; // Mark event as handled to prevent further processing
+                textControl.SelectionStart = selectionStart + 1;
+                evt.Handled = true; // Mark event as handled to prevent further processing
                 return;
             }
 
@@ -95,10 +95,10 @@ namespace CommonForms
             // Allow digits and validate range
             if (char.IsDigit(keyChar))
             {
-                string currentText = txtPages.Text + keyChar;
+                string currentText = textControl.Text + keyChar;
                 if (!IsValidPageRange(currentText))
                 {
-                    e.Handled = true;
+                    evt.Handled = true;
                 }
                 return;
             }
@@ -106,9 +106,9 @@ namespace CommonForms
             // Allow comma with specific rules
             if (keyChar == ',')
             {
-                if (txtPages.Text.Length == 0 || txtPages.Text.EndsWith(",") || txtPages.Text.EndsWith(", "))
+                if (textControl.Text.Length == 0 || textControl.Text.EndsWith(",") || textControl.Text.EndsWith(", "))
                 {
-                    e.Handled = true;
+                    evt.Handled = true;
                 }
                 return;
             }
@@ -116,22 +116,27 @@ namespace CommonForms
             // Allow hyphen for page ranges with specific rules
             if (keyChar == '-')
             {
-                if (txtPages.Text.Length == 0 || !char.IsDigit(txtPages.Text[^1]) || txtPages.Text.EndsWith("-") || txtPages.Text.EndsWith(","))
+                if (textControl.Text.Length == 0 || !char.IsDigit(textControl.Text[^1]) || textControl.Text.EndsWith("-") || textControl.Text.EndsWith(","))
                 {
-                    e.Handled = true;
+                    evt.Handled = true;
                 }
                 return;
             }
 
             // Allow space only if it's immediately after a comma
-            if (char.IsWhiteSpace(keyChar) && !txtPages.Text.EndsWith(","))
+            if (char.IsWhiteSpace(keyChar) && !textControl.Text.EndsWith(","))
             {
-                e.Handled = true;
+                evt.Handled = true;
             }
             else
             {
-                e.Handled = true;
+                evt.Handled = true;
             }
+        }
+
+        private void txtPages_KeyPress(object sender, KeyPressEventArgs evt)
+        {
+            OnKeyPressed(txtPages, evt);
         }
 
 
@@ -181,13 +186,9 @@ namespace CommonForms
             bool pdfSelected = !string.IsNullOrEmpty(txtDocument.Text);
             bool pagesEntered = !string.IsNullOrEmpty(txtPages.Text);
 
-            {
-                btnReload.Visible = AdvancedMode;
-                chkAllowDuplicates.Visible = AdvancedMode;
-            }
-
             txtPages.Enabled = pdfSelected;
             btnClearPages.Enabled = pdfSelected;
+            txtExclude.Enabled = pdfSelected;
 
             if (!pdfSelected)
             {
@@ -195,6 +196,7 @@ namespace CommonForms
             }
             else
             {
+                //  TODO: CountPages should not be called on each UpdateUI();
                 mPageCount = ActionExtractPDFPages.CountPages(txtDocument.Text);
                 lblPageCount.Text = string.Format("Has {0} page(s).", mPageCount);
                 txtPages.PlaceholderText = string.Format("Enter page numbers (or intervals) between 1 and {0}", mPageCount);
@@ -211,6 +213,8 @@ namespace CommonForms
             else
                 btnAdvanced.Text = "ADVANCED";
 
+            btnReload.Visible = AdvancedMode;
+            chkAllowDuplicates.Visible = AdvancedMode;
             lblExclude.Visible = AdvancedMode;
             txtExclude.Visible = AdvancedMode;
             btnClearExclude.Visible = AdvancedMode;
@@ -329,6 +333,7 @@ namespace CommonForms
 
                     //  clear the fields
                     txtPages.Clear();
+                    txtExclude.Clear();
 
                     UpdateStatus("Document selected.");
 
@@ -457,6 +462,11 @@ namespace CommonForms
         private void btnClearExclude_Click(object sender, EventArgs e)
         {
             txtExclude.Clear();
+        }
+
+        private void txtExclude_KeyPress(object sender, KeyPressEventArgs evt)
+        {
+            OnKeyPressed(txtExclude, evt);
         }
     }
 }

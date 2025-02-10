@@ -317,6 +317,7 @@
             txtExclude.Name = "txtExclude";
             txtExclude.Size = new Size(579, 31);
             txtExclude.TabIndex = 28;
+            txtExclude.KeyPress += txtExclude_KeyPress;
             // 
             // btnAdvanced
             // 
