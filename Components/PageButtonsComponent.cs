@@ -1,12 +1,8 @@
 ﻿using Guna.UI2.WinForms;
 
-/*
-	Creates buttons for tab pages
-*/
-
 namespace CommonForms
 {
-    public class PageButtonsFactory
+    public partial class PageButtonsComponent: UserControl
     {
         public class ButtonConfig
         {
@@ -16,15 +12,19 @@ namespace CommonForms
             public bool Checked { get; set; }
             public EventHandler? ClickHandler { get; set; }
         }
-
+        
+        public Font ButtonFont { get; set; } = new("Roboto Slab", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        
         public List<ButtonConfig> PageButtonsConfigs { get; set; } = new();
-
-        //  Button font
-        public Font Font { get; set; } = new("Roboto Slab", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-
-        //  padding
+        
         public int WidthPadding { get; set; } = 20;
+        
         public int HeightPadding { get; set; } = 20;
+
+        public PageButtonsComponent()
+        {
+            InitializeComponent();
+        }
 
         private Guna2Button CreatePageButton(string btnName, string? btnText, EventHandler? eventHandler, bool buttonChecked = false)
         {
@@ -74,9 +74,9 @@ namespace CommonForms
             {
                 panel.Controls.Add(
                     CreatePageButton(
-                        cfg.Name ?? string.Empty, 
-                        cfg.Text, 
-                        cfg.ClickHandler, 
+                        cfg.Name ?? string.Empty,
+                        cfg.Text,
+                        cfg.ClickHandler,
                         cfg.Checked
                     )
                 );
