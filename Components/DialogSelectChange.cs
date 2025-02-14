@@ -177,8 +177,6 @@ namespace CommonForms.Components
             {
                 MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 panelAction.Controls.Clear();
-
-                //  TODO: Deselect Action Editor or something.
             }
 
             chkDesc.Checked = trans.HasCustomDescription;
@@ -193,7 +191,7 @@ namespace CommonForms.Components
             chkEnabled.Checked = trans.Enabled;
         }
 
-        public void LoadState(EditorState state, Transform<string> transform = null)
+        public void LoadState(EditorState state, FileTransform transform = null)
         {
             State = state;
             Transform = transform;
@@ -219,7 +217,7 @@ namespace CommonForms.Components
                 return;
             }
 
-            string condName = cmbCondition.SelectedItem.ToString();
+            string? condName = cmbCondition.SelectedItem.ToString();
 
             try
             {
