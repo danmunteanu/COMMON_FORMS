@@ -124,7 +124,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Action is not valid.
+        ///   Looks up a localized string similar to Action not valid.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID {
             get {
@@ -133,7 +133,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Condition is not valid.
+        ///   Looks up a localized string similar to Condition not valid.
         /// </summary>
         internal static string DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID {
             get {

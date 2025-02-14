@@ -19,7 +19,7 @@ namespace CommonForms.Components
         //	Editor's state
         public EditorState State { get; set; }
 
-        private Transform<string>? Transform { get; set; } = null;
+        private FileTransform? Transform { get; set; } = null;
 
         //  Cache of Editors
         Dictionary<string, EditorBase> mEditorCache = new();
@@ -89,10 +89,8 @@ namespace CommonForms.Components
             btnResetDesc.Enabled = false;
 
             //  reset the editors
-            string condName = cmbCondition.Text;
-            mSelCondEditor = FindOrCreateEditor(condName);
-            if (mSelCondEditor != null)
-                mSelCondEditor.ClearState();
+            foreach (var kvPair in mEditorCache)
+                kvPair.Value.ClearState();
 
             chkEnabled.Checked = true;
         }
@@ -119,6 +117,10 @@ namespace CommonForms.Components
                 return;
             }
 
+            //  reset the editors
+            foreach (var kvPair in mEditorCache)
+                kvPair.Value.ClearState();
+
             //  CONDITION editor
             try
             {
@@ -126,17 +128,20 @@ namespace CommonForms.Components
                 //  If it's not found, Create it and Store it in a Dictionary
                 string condName = trans.Condition.GetType().Name;
                 mSelCondEditor = FindOrCreateEditor(condName);
-                mSelCondEditor.LoadState(trans.Condition);
-
-                int condIndex = cmbCondition.Items.IndexOf(condName);
-                if (condIndex != -1)
+                if (mSelCondEditor != null)
                 {
-                    cmbCondition.SelectedIndexChanged -= cmbCondition_SelectedIndexChanged;
-                    cmbCondition.SelectedIndex = condIndex;
-                    cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
-                }
+                    mSelCondEditor.LoadState(trans.Condition);
 
-                Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
+                    int condIndex = cmbCondition.Items.IndexOf(condName);
+                    if (condIndex != -1)
+                    {
+                        cmbCondition.SelectedIndexChanged -= cmbCondition_SelectedIndexChanged;
+                        cmbCondition.SelectedIndex = condIndex;
+                        cmbCondition.SelectedIndexChanged += cmbCondition_SelectedIndexChanged;
+                    }
+
+                    Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
+                }
             }
             catch (Exception ex)
             {
@@ -220,10 +225,7 @@ namespace CommonForms.Components
             {
                 mSelCondEditor = FindOrCreateEditor(condName);
                 if (mSelCondEditor != null)
-                {
-                    mSelCondEditor.ClearState();
                     Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
-                }
             }
             catch (Exception ex)
             {
@@ -242,15 +244,11 @@ namespace CommonForms.Components
             }
 
             string actionName = cmbAction.SelectedItem.ToString();
-
             try
             {
                 mSelActionEditor = FindOrCreateEditor(actionName);
                 if (mSelActionEditor != null)
-                {
-                    mSelActionEditor.ClearState();
                     Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
-                }
             }
             catch (Exception ex)
             {
@@ -265,7 +263,7 @@ namespace CommonForms.Components
             Condition<string>? cond = null;
 
             //  Action to be created
-            RealityFrameworks.Actions.Action<string>? action = null;
+            FileAction? action = null;
 
             string errTitle = string.Empty;
             string errMsg = string.Empty;
@@ -288,9 +286,17 @@ namespace CommonForms.Components
             if (conditionIsValid && cmbCondition.SelectedItem != null)
             {
                 //  Create New Condition by Name
-                cond = GenericFactory<Condition<string>>.Create(cmbCondition.SelectedItem.ToString());
-                mSelCondEditor.SaveState(cond);
-
+                try
+                {
+                    cond = FileConditionFactory.Create(cmbCondition.SelectedItem.ToString());
+                    mSelCondEditor.SaveState(cond);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        ex.Message, "Failed to create Condition",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -310,8 +316,18 @@ namespace CommonForms.Components
                 actionIsValid = mSelActionEditor.ValidateState();
                 if (actionIsValid && cmbAction.SelectedItem != null)
                 {
-                    action = GenericFactory<RealityFrameworks.Actions.Action<string>>.Create(cmbAction.SelectedItem.ToString());
-                    mSelActionEditor.SaveState(action);
+                    try
+                    {
+                        //  Try to create the Action
+                        action = FileActionFactory.Create(cmbAction.SelectedItem.ToString());
+                        mSelActionEditor.SaveState(action);
+                    } 
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(
+                            ex.Message, "Failed to create Action", 
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {

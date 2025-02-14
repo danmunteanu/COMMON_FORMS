@@ -155,10 +155,10 @@
     <value>Please Select A Condition First!</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_ACTION_NOT_VALID" xml:space="preserve">
-    <value>Action is not valid</value>
+    <value>Action not valid</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID" xml:space="preserve">
-    <value>Condition is not valid</value>
+    <value>Condition not valid</value>
   </data>
   <data name="DLG_CHANGE_ERR_TITLE_WARNING" xml:space="preserve">
     <value>Warning</value>
