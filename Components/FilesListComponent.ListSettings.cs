@@ -59,7 +59,7 @@
             set
             {
                 //  rebuild only if necessary
-                bool mustRebuild =
+                mRebuildLayout = 
                     Settings.UseStatus != value.UseStatus ||
                     Settings.UseProgressBar != value.UseProgressBar ||
                     Settings.ProgressBarLineHeight != value.ProgressBarLineHeight ||
@@ -67,10 +67,11 @@
 
                 mSettings = value;
 
-                if (mustRebuild)
-                    OnSettingsSet();
+                OnSettingsSet();
             }
         }
+
+        private bool mRebuildLayout = false;
 
         private void OnSettingsSet()
         {
@@ -83,7 +84,11 @@
 
             btnSettings.Visible = mSettings.SettingsButtonVisible;
 
-            RebuildLayout();
+            if (mRebuildLayout)
+            {
+                RebuildLayout();
+                mRebuildLayout = false;
+            }
         }
 
         //  The list must always have a settings instance

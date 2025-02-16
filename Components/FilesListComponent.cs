@@ -349,7 +349,7 @@ namespace CommonForms.Components
             return false;
         }
 
-        public void UpdateList(SelectionMode selMode, bool enableList)
+        public void UpdateList(SelectionMode selMode, bool enableList = true)
         {
             lstFiles.SelectionMode = selMode;
             lstFiles.Enabled = enableList;

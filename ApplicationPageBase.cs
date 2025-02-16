@@ -1,4 +1,5 @@
-﻿using RealityFrameworks;
+﻿using CommonForms.Components;
+using RealityFrameworks;
 
 namespace CommonForms
 {
@@ -10,11 +11,23 @@ namespace CommonForms
         protected string DefaultOutputFolder = 
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
 
-        //  FILESLIST link
-        public Components.FilesListComponent? FilesList { get; set; } = null;
+        //  Reference to a FilesListComponent instance
+        protected FilesListComponent? mFilesList = null;
 
-        //  PROCESSOR link
+        public Components.FilesListComponent? FilesList 
+        { 
+            get { return mFilesList; } 
+            set
+            {
+                mFilesList = value;
+
+                OnFilesListSet();
+            }
+        }
+
+        //  Reference to a FilesProcessor instance
         protected FilesProcessor? mFilesProcessor = null;
+
         public FilesProcessor? Processor
         {
             get { return mFilesProcessor; }
@@ -28,6 +41,11 @@ namespace CommonForms
 
         public ApplicationPageBase()
         {
+        }
+
+        protected virtual void OnFilesListSet()
+        {
+            //  override and implement in derived classes
         }
 
         protected virtual void OnProcessorSet()
