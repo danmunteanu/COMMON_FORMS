@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace CommonForms.Components
+﻿namespace CommonForms.Components
 {
     public partial class FilesListComponent : ApplicationPageBase
     {
@@ -564,11 +562,9 @@ namespace CommonForms.Components
             btnRem.Font = new Font(btnRem.Font.FontFamily, Settings.FontSize);
             btnRem.AutoSize = true;
             btnRem.Padding = new Padding(3);
-            //btnRem.TextAlign = ContentAlignment.MiddleCenter;
+            btnRem.TextAlign = ContentAlignment.MiddleCenter;
             btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnRem.Size = new Size(35, Settings.BottomLineHeight);
-            btnRem.Dock = DockStyle.Fill; // Ensure it fills the height
-
 
             //  button Settings
             btnSettings.Text = "⚙"; // Gear emoji
