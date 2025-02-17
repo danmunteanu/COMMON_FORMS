@@ -160,7 +160,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ADD Change.
+        ///   Looks up a localized string similar to ADD Transform.
         /// </summary>
         internal static string DLG_CHANGE_TITLE_ADD {
             get {
@@ -169,7 +169,7 @@ namespace CommonForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EDIT Change.
+        ///   Looks up a localized string similar to EDIT Transform.
         /// </summary>
         internal static string DLG_CHANGE_TITLE_EDIT {
             get {
