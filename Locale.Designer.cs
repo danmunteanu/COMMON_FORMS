@@ -268,6 +268,15 @@ namespace CommonForms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Files added..
+        /// </summary>
+        internal static string STATUS_FILES_ADDED {
+            get {
+                return ResourceManager.GetString("STATUS_FILES_ADDED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder added..
         /// </summary>
         internal static string STATUS_FOLDER_ADDED {

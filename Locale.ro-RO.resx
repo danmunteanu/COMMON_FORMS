@@ -198,4 +198,7 @@
   <data name="FILES_LIST_BUTTON_DESELECT_ALL" xml:space="preserve">
     <value>DESELECTEAZĂ TOATE</value>
   </data>
+  <data name="STATUS_FILES_ADDED" xml:space="preserve">
+    <value />
+  </data>
 </root>

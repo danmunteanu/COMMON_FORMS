@@ -4,40 +4,40 @@
     public partial class FilesListComponent
     {
         //  DELEGATE TYPES
-        public delegate void UpdateUIDelegate();
-        public delegate void UpdateProgressDelegate(int progress);
-        public delegate void SelectionChangedDelegate(string item);
+        public delegate void UpdateUI_Delegate();
+        public delegate void UpdateProgress_Delegate(int progress);
+        public delegate void SelectionChanged_Delegate(string item);
 
         //  this will be called when pages have to update their UI
-        public UpdateUIDelegate? UpdateUICallback { get; set; } = null;
+        public UpdateUI_Delegate? Callback_UpdateUI { get; set; }
 
         //  this is called when the progress bar needs to be updated
         //  the list component updates the local progress bar first 
         //  but if you need to update progress somewhere else, be my guest
-        public UpdateProgressDelegate? UpdateProgressCallback { get; set; } = null;
+        public UpdateProgress_Delegate? Callback_UpdateProgress { get; set; } = null;
 
         //  this is called everytime the list selection is changed
-        public SelectionChangedDelegate? SelectionChangedCallback { get; set; } = null;
+        public SelectionChanged_Delegate? Callback_SelectionChanged { get; set; } = null;
 
-        private void CallUpdateUI()
+        private void Call_UpdateUI()
         {
-            if (UpdateUICallback != null)
-                UpdateUICallback();
+            if (Callback_UpdateUI != null)
+                Callback_UpdateUI();
         }
 
         // A wrapper to the UpdateProgress call, checking for null before the call.
-        private void CallUpdateProgress(int percent)
+        private void CallDelegate_UpdateProgress(int percent)
         {
-            if (UpdateProgressCallback != null)
-                UpdateProgressCallback(percent);
+            if (Callback_UpdateProgress != null)
+                Callback_UpdateProgress(percent);
         }
 
         // This is called when the list's selection changes to pass the 
         // selected item's value as string to the assigned delegate.
-        private void CallOnSelectionChanged(string item)
+        private void CallDelegate_OnSelectionChanged(string item)
         {
-            if (SelectionChangedCallback != null)
-                SelectionChangedCallback(item);
+            if (Callback_SelectionChanged != null)
+                Callback_SelectionChanged(item);
         }
 
     }

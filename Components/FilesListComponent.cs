@@ -130,9 +130,10 @@ namespace CommonForms.Components
             //  reload mFilesToProcess into the list
             ReloadFiles();
 
-            //  Forces all listeners to update their UI
             UpdateUI();
-            CallUpdateUI();
+
+            //  Forces all listeners to update their UI
+            Call_UpdateUI();
         }
 
         /// <summary>
@@ -183,9 +184,10 @@ namespace CommonForms.Components
                 CallUpdateStatus(Locale.STATUS_FOLDER_NOT_ADDED);
 
             //  Reset progress bar
-            CallUpdateProgress(0);
+            CallDelegate_UpdateProgress(0);
 
             UpdateUI();
+            Call_UpdateUI();
         }
 
         /// <summary>
@@ -196,7 +198,7 @@ namespace CommonForms.Components
             AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
             CallUpdateStatus(Locale.STATUS_FOLDER_RELOADED);
 
-            CallUpdateUI();
+            Call_UpdateUI();
         }
 
         /// <summary>
@@ -210,8 +212,8 @@ namespace CommonForms.Components
             lstFiles.Items.Clear();
             CallUpdateStatus(Locale.STATUS_LIST_CLEARED);
             
-            CallOnSelectionChanged(string.Empty);   //  force a deselect
-            CallUpdateUI();
+            CallDelegate_OnSelectionChanged(string.Empty);   //  force a deselect
+            Call_UpdateUI();
         }
 
         /// <summary>
@@ -222,7 +224,7 @@ namespace CommonForms.Components
                 return;
 
             if (lstFiles.SelectedItem != null)
-                CallOnSelectionChanged(lstFiles.SelectedItem.ToString());
+                CallDelegate_OnSelectionChanged(lstFiles.SelectedItem.ToString());
         }
 
         private void listFiles_DragEnter(object? sender, DragEventArgs e)
@@ -281,12 +283,13 @@ namespace CommonForms.Components
             if (added)
             {
                 ReloadFiles();
-                CallUpdateUI();
+                UpdateUI();
+                Call_UpdateUI();
 
-                //  TOOD:
+                //  TODO:
                 //  Count how many files were added
-                //  Add to Locale STATUS_FILES_ADDED with {0} replaced by the count
-                CallUpdateStatus($"Files added.");
+                //  Modify Locale STATUS_FILES_ADDED with {0} replaced by the count
+                CallUpdateStatus(Locale.STATUS_FILES_ADDED);
             }
 
         }

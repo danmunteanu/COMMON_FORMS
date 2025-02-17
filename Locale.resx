@@ -199,4 +199,7 @@
   <data name="FILES_LIST_BUTTON_DESELECT_ALL" xml:space="preserve">
     <value>DESELECT ALL</value>
   </data>
+  <data name="STATUS_FILES_ADDED" xml:space="preserve">
+    <value>Files added.</value>
+  </data>
 </root>
