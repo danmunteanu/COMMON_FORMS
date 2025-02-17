@@ -71,7 +71,7 @@
             txtDesc.Dock = DockStyle.Fill;
             txtDesc.Enabled = false;
             txtDesc.Location = new Point(12, 42);
-            txtDesc.Margin = new Padding(2, 2, 2, 2);
+            txtDesc.Margin = new Padding(2);
             txtDesc.Multiline = true;
             txtDesc.Name = "txtDesc";
             txtDesc.Size = new Size(698, 78);
@@ -188,7 +188,7 @@
             chkEnabled.Anchor = AnchorStyles.Left;
             chkEnabled.AutoSize = true;
             chkEnabled.Location = new Point(12, 6);
-            chkEnabled.Margin = new Padding(2, 2, 2, 2);
+            chkEnabled.Margin = new Padding(2);
             chkEnabled.Name = "chkEnabled";
             chkEnabled.Size = new Size(85, 24);
             chkEnabled.TabIndex = 50;
@@ -226,7 +226,7 @@
             tableLayoutMain.Controls.Add(tableLayoutButtons, 0, 2);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
-            tableLayoutMain.Margin = new Padding(2, 2, 2, 2);
+            tableLayoutMain.Margin = new Padding(2);
             tableLayoutMain.Name = "tableLayoutMain";
             tableLayoutMain.RowCount = 4;
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -247,7 +247,7 @@
             tableLayoutChangeDesc.Controls.Add(txtDesc, 1, 1);
             tableLayoutChangeDesc.Dock = DockStyle.Fill;
             tableLayoutChangeDesc.Location = new Point(2, 385);
-            tableLayoutChangeDesc.Margin = new Padding(2, 2, 2, 2);
+            tableLayoutChangeDesc.Margin = new Padding(2);
             tableLayoutChangeDesc.Name = "tableLayoutChangeDesc";
             tableLayoutChangeDesc.RowCount = 3;
             tableLayoutChangeDesc.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -288,12 +288,12 @@
             // 
             // btnResetDesc
             // 
-            btnResetDesc.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnResetDesc.Dock = DockStyle.Fill;
             btnResetDesc.Font = new Font("Segoe UI", 7F);
-            btnResetDesc.Location = new Point(156, 7);
+            btnResetDesc.Location = new Point(156, 2);
             btnResetDesc.Margin = new Padding(3, 2, 3, 2);
             btnResetDesc.Name = "btnResetDesc";
-            btnResetDesc.Size = new Size(131, 22);
+            btnResetDesc.Size = new Size(131, 32);
             btnResetDesc.TabIndex = 52;
             btnResetDesc.Text = "RESET DESCRIPTION";
             btnResetDesc.UseVisualStyleBackColor = true;
@@ -308,7 +308,7 @@
             tableLayoutEditors.Controls.Add(grpAction, 1, 0);
             tableLayoutEditors.Dock = DockStyle.Fill;
             tableLayoutEditors.Location = new Point(2, 2);
-            tableLayoutEditors.Margin = new Padding(2, 2, 2, 2);
+            tableLayoutEditors.Margin = new Padding(2);
             tableLayoutEditors.Name = "tableLayoutEditors";
             tableLayoutEditors.RowCount = 1;
             tableLayoutEditors.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -321,9 +321,9 @@
             grpCondition.Controls.Add(tableLayoutPanelConditionGroup);
             grpCondition.Dock = DockStyle.Fill;
             grpCondition.Location = new Point(2, 2);
-            grpCondition.Margin = new Padding(2, 2, 2, 2);
+            grpCondition.Margin = new Padding(2);
             grpCondition.Name = "grpCondition";
-            grpCondition.Padding = new Padding(2, 2, 2, 2);
+            grpCondition.Padding = new Padding(2);
             grpCondition.Size = new Size(357, 375);
             grpCondition.TabIndex = 2;
             grpCondition.TabStop = false;
@@ -337,7 +337,7 @@
             tableLayoutPanelConditionGroup.Controls.Add(panelCondition, 0, 2);
             tableLayoutPanelConditionGroup.Dock = DockStyle.Fill;
             tableLayoutPanelConditionGroup.Location = new Point(2, 22);
-            tableLayoutPanelConditionGroup.Margin = new Padding(2, 2, 2, 2);
+            tableLayoutPanelConditionGroup.Margin = new Padding(2);
             tableLayoutPanelConditionGroup.Name = "tableLayoutPanelConditionGroup";
             tableLayoutPanelConditionGroup.RowCount = 3;
             tableLayoutPanelConditionGroup.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
@@ -356,7 +356,7 @@
             tableLayoutPanelCmbCondition.Controls.Add(cmbCondition, 1, 0);
             tableLayoutPanelCmbCondition.Dock = DockStyle.Fill;
             tableLayoutPanelCmbCondition.Location = new Point(2, 14);
-            tableLayoutPanelCmbCondition.Margin = new Padding(2, 2, 2, 2);
+            tableLayoutPanelCmbCondition.Margin = new Padding(2);
             tableLayoutPanelCmbCondition.Name = "tableLayoutPanelCmbCondition";
             tableLayoutPanelCmbCondition.RowCount = 1;
             tableLayoutPanelCmbCondition.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -368,9 +368,9 @@
             grpAction.Controls.Add(tableLayoutPanelAction);
             grpAction.Dock = DockStyle.Fill;
             grpAction.Location = new Point(363, 2);
-            grpAction.Margin = new Padding(2, 2, 2, 2);
+            grpAction.Margin = new Padding(2);
             grpAction.Name = "grpAction";
-            grpAction.Padding = new Padding(2, 2, 2, 2);
+            grpAction.Padding = new Padding(2);
             grpAction.Size = new Size(357, 375);
             grpAction.TabIndex = 43;
             grpAction.TabStop = false;
@@ -384,7 +384,7 @@
             tableLayoutPanelAction.Controls.Add(tableLayoutPanelCmbAction, 0, 1);
             tableLayoutPanelAction.Dock = DockStyle.Fill;
             tableLayoutPanelAction.Location = new Point(2, 22);
-            tableLayoutPanelAction.Margin = new Padding(2, 2, 2, 2);
+            tableLayoutPanelAction.Margin = new Padding(2);
             tableLayoutPanelAction.Name = "tableLayoutPanelAction";
             tableLayoutPanelAction.RowCount = 3;
             tableLayoutPanelAction.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
@@ -403,7 +403,7 @@
             tableLayoutPanelCmbAction.Controls.Add(cmbAction, 1, 0);
             tableLayoutPanelCmbAction.Dock = DockStyle.Fill;
             tableLayoutPanelCmbAction.Location = new Point(2, 14);
-            tableLayoutPanelCmbAction.Margin = new Padding(2, 2, 2, 2);
+            tableLayoutPanelCmbAction.Margin = new Padding(2);
             tableLayoutPanelCmbAction.Name = "tableLayoutPanelCmbAction";
             tableLayoutPanelCmbAction.RowCount = 1;
             tableLayoutPanelCmbAction.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
