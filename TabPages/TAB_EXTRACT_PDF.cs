@@ -1,6 +1,4 @@
-﻿using SharpCompress;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
     //public abstract class ActionSetter<TAction>
     //{
@@ -27,6 +25,7 @@ namespace CommonForms
 
         private List<int> mPagesToExclude = new()
         {
+            //  DeadMau5 pages
             //4, 7, 9, 11, 13,
             //15, 19, 22, 24,
             //26, 29, 31, 33,
