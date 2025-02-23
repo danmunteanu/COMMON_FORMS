@@ -3,7 +3,7 @@ using RealityFrameworks.Conditions;
 
 namespace CommonForms.Components
 {
-    public partial class DialogSelectChange : Form
+    public partial class DialogSelectTransform : Form
     {
         //	The active Condition editor
         private EditorBase? mSelCondEditor = null;
@@ -28,7 +28,7 @@ namespace CommonForms.Components
         public delegate void OnModifiedCallback();
         public OnModifiedCallback? OnModified { get; set; }
 
-        public DialogSelectChange()
+        public DialogSelectTransform()
         {
             InitializeComponent();            
         }
@@ -189,6 +189,7 @@ namespace CommonForms.Components
             lblActionDesc.Text = trans.Action.Description;
 
             chkEnabled.Checked = trans.Enabled;
+            chkUseLastOutput.Checked = trans.UseLastOutput;
         }
 
         public void LoadState(EditorState state, FileTransform transform = null)
@@ -447,9 +448,9 @@ namespace CommonForms.Components
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (State == DialogSelectChange.EditorState.Add)
+            if (State == DialogSelectTransform.EditorState.Add)
                 HandleAdd();
-            else if (State == DialogSelectChange.EditorState.Edit)
+            else if (State == DialogSelectTransform.EditorState.Edit)
                 HandleUpdate();
         }
 

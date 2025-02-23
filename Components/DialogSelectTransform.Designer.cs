@@ -1,6 +1,6 @@
 ﻿namespace CommonForms.Components
 {
-    partial class DialogSelectChange
+    partial class DialogSelectTransform
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,7 @@
             btnClose = new Button();
             btnSubmit = new Button();
             chkEnabled = new CheckBox();
+            chkUseLastOutput = new CheckBox();
             lblConditionDesc = new Label();
             lblActionDesc = new Label();
             tableLayoutMain = new TableLayoutPanel();
@@ -141,14 +142,16 @@
             // 
             // tableLayoutButtons
             // 
-            tableLayoutButtons.ColumnCount = 5;
+            tableLayoutButtons.ColumnCount = 6;
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 96F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 120F));
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
-            tableLayoutButtons.Controls.Add(btnClose, 3, 0);
-            tableLayoutButtons.Controls.Add(btnSubmit, 2, 0);
+            tableLayoutButtons.Controls.Add(btnClose, 4, 0);
+            tableLayoutButtons.Controls.Add(btnSubmit, 3, 0);
+            tableLayoutButtons.Controls.Add(chkUseLastOutput, 2, 0);
             tableLayoutButtons.Controls.Add(chkEnabled, 1, 0);
             tableLayoutButtons.Dock = DockStyle.Fill;
             tableLayoutButtons.Location = new Point(3, 555);
@@ -194,6 +197,17 @@
             chkEnabled.TabIndex = 50;
             chkEnabled.Text = "Enabled";
             chkEnabled.UseVisualStyleBackColor = true;
+            // 
+            // chkUseLastOutput
+            // 
+            chkUseLastOutput.Anchor = AnchorStyles.Left;
+            chkUseLastOutput.AutoSize = true;
+            chkUseLastOutput.Location = new Point(109, 6);
+            chkUseLastOutput.Name = "chkUseLastOutput";
+            chkUseLastOutput.Size = new Size(135, 24);
+            chkUseLastOutput.TabIndex = 51;
+            chkUseLastOutput.Text = "Use Last Output";
+            chkUseLastOutput.UseVisualStyleBackColor = true;
             // 
             // lblConditionDesc
             // 
@@ -410,7 +424,7 @@
             tableLayoutPanelCmbAction.Size = new Size(375, 36);
             tableLayoutPanelCmbAction.TabIndex = 45;
             // 
-            // DialogSelectChange
+            // DialogSelectTransform
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -418,7 +432,7 @@
             Controls.Add(tableLayoutMain);
             Margin = new Padding(1, 2, 1, 2);
             MaximizeBox = false;
-            Name = "DialogSelectChange";
+            Name = "DialogSelectTransform";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SELECT CHANGE";
             tableLayoutButtons.ResumeLayout(false);
@@ -466,5 +480,6 @@
         private TableLayoutPanel tableLayoutPanelConditionGroup;
         private TableLayoutPanel tableLayoutPanelAction;
         private TableLayoutPanel tableLayoutPanelCmbAction;
+        private CheckBox chkUseLastOutput;
     }
 }

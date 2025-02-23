@@ -36,16 +36,14 @@
             txtExtensions = new TextBox();
             btnDocExt = new Button();
             btnTextExt = new Button();
-            tableLayoutExtButtons = new TableLayoutPanel();
             btnArchives = new Button();
             tableLayoutMain = new TableLayoutPanel();
             tableLayoutPanelButtonsAndList = new TableLayoutPanel();
             tableLayoutPanelList = new TableLayoutPanel();
             tableLayoutPanelButtonList = new TableLayoutPanel();
+            btnAudio = new Button();
             tableLayoutPanelAdd = new TableLayoutPanel();
             lblExt = new Label();
-            btnAudio = new Button();
-            tableLayoutExtButtons.SuspendLayout();
             tableLayoutMain.SuspendLayout();
             tableLayoutPanelButtonsAndList.SuspendLayout();
             tableLayoutPanelList.SuspendLayout();
@@ -57,16 +55,16 @@
             // 
             txtAddExtension.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtAddExtension.Font = new Font("Segoe UI", 7F);
-            txtAddExtension.Location = new Point(329, 4);
+            txtAddExtension.Location = new Point(615, 5);
             txtAddExtension.Name = "txtAddExtension";
-            txtAddExtension.Size = new Size(64, 26);
+            txtAddExtension.Size = new Size(64, 23);
             txtAddExtension.TabIndex = 1;
             // 
             // btnAddExt
             // 
             btnAddExt.Dock = DockStyle.Fill;
             btnAddExt.Font = new Font("Segoe UI", 7F);
-            btnAddExt.Location = new Point(399, 3);
+            btnAddExt.Location = new Point(685, 3);
             btnAddExt.Name = "btnAddExt";
             btnAddExt.Size = new Size(54, 28);
             btnAddExt.TabIndex = 2;
@@ -78,10 +76,10 @@
             // 
             btnClearExt.Dock = DockStyle.Fill;
             btnClearExt.Font = new Font("Segoe UI", 7F);
-            btnClearExt.Location = new Point(270, 0);
+            btnClearExt.Location = new Point(0, 208);
             btnClearExt.Margin = new Padding(0);
             btnClearExt.Name = "btnClearExt";
-            btnClearExt.Size = new Size(80, 35);
+            btnClearExt.Size = new Size(84, 30);
             btnClearExt.TabIndex = 3;
             btnClearExt.Text = "CLEAR";
             btnClearExt.UseVisualStyleBackColor = true;
@@ -91,9 +89,9 @@
             // 
             lblExtensionList.Anchor = AnchorStyles.Left;
             lblExtensionList.AutoSize = true;
-            lblExtensionList.Location = new Point(3, 4);
+            lblExtensionList.Location = new Point(3, 7);
             lblExtensionList.Name = "lblExtensionList";
-            lblExtensionList.Size = new Size(99, 25);
+            lblExtensionList.Size = new Size(81, 20);
             lblExtensionList.TabIndex = 5;
             lblExtensionList.Text = "Extensions:";
             // 
@@ -101,9 +99,9 @@
             // 
             btnImages.Dock = DockStyle.Fill;
             btnImages.Font = new Font("Segoe UI", 7F);
-            btnImages.Location = new Point(3, 73);
+            btnImages.Location = new Point(3, 63);
             btnImages.Name = "btnImages";
-            btnImages.Size = new Size(88, 29);
+            btnImages.Size = new Size(78, 24);
             btnImages.TabIndex = 9;
             btnImages.Text = "IMAGES";
             btnImages.UseVisualStyleBackColor = true;
@@ -115,16 +113,17 @@
             txtExtensions.Location = new Point(3, 3);
             txtExtensions.Multiline = true;
             txtExtensions.Name = "txtExtensions";
-            txtExtensions.Size = new Size(344, 197);
+            txtExtensions.Size = new Size(640, 232);
             txtExtensions.TabIndex = 10;
+            txtExtensions.TextChanged += txtExtensions_TextChanged;
             // 
             // btnDocExt
             // 
             btnDocExt.Dock = DockStyle.Fill;
             btnDocExt.Font = new Font("Segoe UI", 7F);
-            btnDocExt.Location = new Point(3, 38);
+            btnDocExt.Location = new Point(3, 33);
             btnDocExt.Name = "btnDocExt";
-            btnDocExt.Size = new Size(88, 29);
+            btnDocExt.Size = new Size(78, 24);
             btnDocExt.TabIndex = 11;
             btnDocExt.Text = "DOCS";
             btnDocExt.UseVisualStyleBackColor = true;
@@ -136,38 +135,19 @@
             btnTextExt.Font = new Font("Segoe UI", 7F);
             btnTextExt.Location = new Point(3, 3);
             btnTextExt.Name = "btnTextExt";
-            btnTextExt.Size = new Size(88, 29);
+            btnTextExt.Size = new Size(78, 24);
             btnTextExt.TabIndex = 12;
             btnTextExt.Text = "YAML";
             btnTextExt.UseVisualStyleBackColor = true;
             btnTextExt.Click += btnTextExt_Click;
             // 
-            // tableLayoutExtButtons
-            // 
-            tableLayoutExtButtons.ColumnCount = 2;
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutExtButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutExtButtons.Controls.Add(btnClearExt, 1, 0);
-            tableLayoutExtButtons.Dock = DockStyle.Fill;
-            tableLayoutExtButtons.Location = new Point(0, 203);
-            tableLayoutExtButtons.Margin = new Padding(0);
-            tableLayoutExtButtons.Name = "tableLayoutExtButtons";
-            tableLayoutExtButtons.RowCount = 1;
-            tableLayoutExtButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutExtButtons.Size = new Size(350, 35);
-            tableLayoutExtButtons.TabIndex = 13;
-            // 
             // btnArchives
             // 
             btnArchives.Dock = DockStyle.Fill;
             btnArchives.Font = new Font("Segoe UI", 7F);
-            btnArchives.Location = new Point(3, 108);
+            btnArchives.Location = new Point(3, 93);
             btnArchives.Name = "btnArchives";
-            btnArchives.Size = new Size(88, 29);
+            btnArchives.Size = new Size(78, 24);
             btnArchives.TabIndex = 13;
             btnArchives.Text = "ARCHIVES";
             btnArchives.UseVisualStyleBackColor = true;
@@ -189,22 +169,22 @@
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 250F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
-            tableLayoutMain.Size = new Size(462, 342);
+            tableLayoutMain.Size = new Size(748, 442);
             tableLayoutMain.TabIndex = 14;
             // 
             // tableLayoutPanelButtonsAndList
             // 
             tableLayoutPanelButtonsAndList.ColumnCount = 2;
-            tableLayoutPanelButtonsAndList.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 100F));
+            tableLayoutPanelButtonsAndList.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90F));
             tableLayoutPanelButtonsAndList.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelButtonsAndList.Controls.Add(tableLayoutPanelList, 1, 0);
             tableLayoutPanelButtonsAndList.Controls.Add(tableLayoutPanelButtonList, 0, 0);
             tableLayoutPanelButtonsAndList.Dock = DockStyle.Fill;
-            tableLayoutPanelButtonsAndList.Location = new Point(3, 58);
+            tableLayoutPanelButtonsAndList.Location = new Point(3, 88);
             tableLayoutPanelButtonsAndList.Name = "tableLayoutPanelButtonsAndList";
             tableLayoutPanelButtonsAndList.RowCount = 1;
             tableLayoutPanelButtonsAndList.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelButtonsAndList.Size = new Size(456, 244);
+            tableLayoutPanelButtonsAndList.Size = new Size(742, 244);
             tableLayoutPanelButtonsAndList.TabIndex = 16;
             // 
             // tableLayoutPanelList
@@ -212,20 +192,20 @@
             tableLayoutPanelList.ColumnCount = 1;
             tableLayoutPanelList.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelList.Controls.Add(txtExtensions, 0, 0);
-            tableLayoutPanelList.Controls.Add(tableLayoutExtButtons, 0, 1);
             tableLayoutPanelList.Dock = DockStyle.Fill;
-            tableLayoutPanelList.Location = new Point(103, 3);
+            tableLayoutPanelList.Location = new Point(93, 3);
             tableLayoutPanelList.Name = "tableLayoutPanelList";
-            tableLayoutPanelList.RowCount = 2;
+            tableLayoutPanelList.RowCount = 1;
             tableLayoutPanelList.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelList.Size = new Size(350, 238);
+            tableLayoutPanelList.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelList.Size = new Size(646, 238);
             tableLayoutPanelList.TabIndex = 18;
             // 
             // tableLayoutPanelButtonList
             // 
             tableLayoutPanelButtonList.ColumnCount = 1;
             tableLayoutPanelButtonList.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelButtonList.Controls.Add(btnClearExt, 0, 6);
             tableLayoutPanelButtonList.Controls.Add(btnAudio, 0, 4);
             tableLayoutPanelButtonList.Controls.Add(btnTextExt, 0, 0);
             tableLayoutPanelButtonList.Controls.Add(btnDocExt, 0, 1);
@@ -234,34 +214,47 @@
             tableLayoutPanelButtonList.Dock = DockStyle.Fill;
             tableLayoutPanelButtonList.Location = new Point(3, 3);
             tableLayoutPanelButtonList.Name = "tableLayoutPanelButtonList";
-            tableLayoutPanelButtonList.RowCount = 6;
-            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
+            tableLayoutPanelButtonList.RowCount = 7;
+            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelButtonList.Size = new Size(94, 238);
+            tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanelButtonList.Size = new Size(84, 238);
             tableLayoutPanelButtonList.TabIndex = 17;
+            // 
+            // btnAudio
+            // 
+            btnAudio.Dock = DockStyle.Fill;
+            btnAudio.Font = new Font("Segoe UI", 7F);
+            btnAudio.Location = new Point(3, 123);
+            btnAudio.Name = "btnAudio";
+            btnAudio.Size = new Size(78, 24);
+            btnAudio.TabIndex = 14;
+            btnAudio.Text = "AUDIO";
+            btnAudio.UseVisualStyleBackColor = true;
+            btnAudio.Click += btnAudio_Click;
             // 
             // tableLayoutPanelAdd
             // 
             tableLayoutPanelAdd.ColumnCount = 5;
-            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 112F));
+            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 61F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
             tableLayoutPanelAdd.Controls.Add(btnAddExt, 4, 0);
-            tableLayoutPanelAdd.Controls.Add(lblExtensionList, 0, 0);
             tableLayoutPanelAdd.Controls.Add(txtAddExtension, 3, 0);
             tableLayoutPanelAdd.Controls.Add(lblExt, 2, 0);
+            tableLayoutPanelAdd.Controls.Add(lblExtensionList, 0, 0);
             tableLayoutPanelAdd.Dock = DockStyle.Fill;
-            tableLayoutPanelAdd.Location = new Point(3, 18);
+            tableLayoutPanelAdd.Location = new Point(3, 48);
             tableLayoutPanelAdd.Name = "tableLayoutPanelAdd";
             tableLayoutPanelAdd.RowCount = 1;
             tableLayoutPanelAdd.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelAdd.Size = new Size(456, 34);
+            tableLayoutPanelAdd.Size = new Size(742, 34);
             tableLayoutPanelAdd.TabIndex = 15;
             // 
             // lblExt
@@ -269,30 +262,17 @@
             lblExt.Anchor = AnchorStyles.Right;
             lblExt.AutoSize = true;
             lblExt.Font = new Font("Segoe UI", 9F);
-            lblExt.Location = new Point(273, 4);
+            lblExt.Location = new Point(569, 7);
             lblExt.Name = "lblExt";
-            lblExt.Size = new Size(50, 25);
+            lblExt.Size = new Size(40, 20);
             lblExt.TabIndex = 6;
             lblExt.Text = "Add:";
-            // 
-            // btnAudio
-            // 
-            btnAudio.Dock = DockStyle.Fill;
-            btnAudio.Font = new Font("Segoe UI", 7F);
-            btnAudio.Location = new Point(3, 143);
-            btnAudio.Name = "btnAudio";
-            btnAudio.Size = new Size(88, 29);
-            btnAudio.TabIndex = 14;
-            btnAudio.Text = "AUDIO";
-            btnAudio.UseVisualStyleBackColor = true;
-            btnAudio.Click += btnAudio_Click;
             // 
             // EditorHasExtension
             // 
             Controls.Add(tableLayoutMain);
             Name = "EditorHasExtension";
-            Size = new Size(462, 342);
-            tableLayoutExtButtons.ResumeLayout(false);
+            Size = new Size(748, 442);
             tableLayoutMain.ResumeLayout(false);
             tableLayoutPanelButtonsAndList.ResumeLayout(false);
             tableLayoutPanelList.ResumeLayout(false);
@@ -312,7 +292,6 @@
         private TextBox txtExtensions;
         private Button btnDocExt;
         private Button btnTextExt;
-        private TableLayoutPanel tableLayoutExtButtons;
         private TableLayoutPanel tableLayoutMain;
         private TableLayoutPanel tableLayoutPanelAdd;
         private Label lblExt;

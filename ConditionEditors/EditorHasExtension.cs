@@ -121,5 +121,10 @@ namespace CommonForms
         {
             AddExtensions(Utils.AudioFileExtensions);
         }
+
+        private void txtExtensions_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
