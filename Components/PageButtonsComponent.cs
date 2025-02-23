@@ -13,7 +13,8 @@ namespace CommonForms
             public EventHandler? ClickHandler { get; set; }
         }
         
-        public Font ButtonFont { get; set; } = new("Roboto Slab", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        public Font ButtonFont { get; set; } = 
+            new("Roboto Slab", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
         
         public List<ButtonConfig> PageButtonsConfigs { get; set; } = new();
         
@@ -40,7 +41,7 @@ namespace CommonForms
             button.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             button.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             button.FillColor = Color.White;
-            button.Font = Font;
+            button.Font = ButtonFont;
             button.ForeColor = Color.Black;
             button.HoverState.CustomBorderColor = Color.Red;
             button.Location = new Point(3, 2);
@@ -48,9 +49,9 @@ namespace CommonForms
             button.Name = btnName;
             button.ShadowDecoration.CustomizableEdges = new();
             button.Text = btnText;
-
+            
             // Measure text size
-            Size textSize = TextRenderer.MeasureText(btnText, Font);
+            Size textSize = TextRenderer.MeasureText(btnText, ButtonFont);
 
             // Set the button size
             button.Size = new Size(textSize.Width + WidthPadding, textSize.Height + HeightPadding);
