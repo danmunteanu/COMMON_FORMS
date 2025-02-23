@@ -30,19 +30,19 @@
         {
             tableLayoutPanelButtonsAndList = new TableLayoutPanel();
             tableLayoutPanelList = new TableLayoutPanel();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            btnClearExt = new Button();
             txtExtensions = new TextBox();
             tableLayoutPanelButtonList = new TableLayoutPanel();
-            btnClearExt = new Button();
             btnAudio = new Button();
             btnTextExt = new Button();
             btnDocExt = new Button();
             btnImages = new Button();
             btnArchives = new Button();
-            tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanelButtonsAndList.SuspendLayout();
             tableLayoutPanelList.SuspendLayout();
-            tableLayoutPanelButtonList.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanelButtonList.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanelButtonsAndList
@@ -71,9 +71,36 @@
             tableLayoutPanelList.Name = "tableLayoutPanelList";
             tableLayoutPanelList.RowCount = 2;
             tableLayoutPanelList.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelList.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
+            tableLayoutPanelList.RowStyles.Add(new RowStyle(SizeType.Absolute, 32F));
             tableLayoutPanelList.Size = new Size(319, 256);
             tableLayoutPanelList.TabIndex = 18;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 60F));
+            tableLayoutPanel1.Controls.Add(btnClearExt, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(3, 227);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(313, 26);
+            tableLayoutPanel1.TabIndex = 18;
+            // 
+            // btnClearExt
+            // 
+            btnClearExt.Dock = DockStyle.Fill;
+            btnClearExt.Font = new Font("Segoe UI", 7F);
+            btnClearExt.Location = new Point(253, 0);
+            btnClearExt.Margin = new Padding(0);
+            btnClearExt.Name = "btnClearExt";
+            btnClearExt.Size = new Size(60, 26);
+            btnClearExt.TabIndex = 3;
+            btnClearExt.Text = "CLEAR";
+            btnClearExt.UseVisualStyleBackColor = true;
+            btnClearExt.Click += btnClearExt_Click;
             // 
             // txtExtensions
             // 
@@ -81,7 +108,7 @@
             txtExtensions.Location = new Point(3, 3);
             txtExtensions.Multiline = true;
             txtExtensions.Name = "txtExtensions";
-            txtExtensions.Size = new Size(313, 215);
+            txtExtensions.Size = new Size(313, 218);
             txtExtensions.TabIndex = 10;
             // 
             // tableLayoutPanelButtonList
@@ -106,19 +133,6 @@
             tableLayoutPanelButtonList.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanelButtonList.Size = new Size(84, 256);
             tableLayoutPanelButtonList.TabIndex = 17;
-            // 
-            // btnClearExt
-            // 
-            btnClearExt.Dock = DockStyle.Fill;
-            btnClearExt.Font = new Font("Segoe UI", 7F);
-            btnClearExt.Location = new Point(233, 0);
-            btnClearExt.Margin = new Padding(0);
-            btnClearExt.Name = "btnClearExt";
-            btnClearExt.Size = new Size(80, 29);
-            btnClearExt.TabIndex = 3;
-            btnClearExt.Text = "CLEAR";
-            btnClearExt.UseVisualStyleBackColor = true;
-            btnClearExt.Click += btnClearExt_Click;
             // 
             // btnAudio
             // 
@@ -180,20 +194,6 @@
             btnArchives.UseVisualStyleBackColor = true;
             btnArchives.Click += btnArchives_Click;
             // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-            tableLayoutPanel1.Controls.Add(btnClearExt, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(3, 224);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(313, 29);
-            tableLayoutPanel1.TabIndex = 18;
-            // 
             // ExtensionsList
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -204,8 +204,8 @@
             tableLayoutPanelButtonsAndList.ResumeLayout(false);
             tableLayoutPanelList.ResumeLayout(false);
             tableLayoutPanelList.PerformLayout();
-            tableLayoutPanelButtonList.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanelButtonList.ResumeLayout(false);
             ResumeLayout(false);
         }
 

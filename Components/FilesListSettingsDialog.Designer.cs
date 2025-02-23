@@ -74,10 +74,10 @@
             // 
             btnCancel.Dock = DockStyle.Fill;
             btnCancel.Font = new Font("Segoe UI", 8F);
-            btnCancel.Location = new Point(720, 0);
+            btnCancel.Location = new Point(473, 0);
             btnCancel.Margin = new Padding(0);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 28);
+            btnCancel.Size = new Size(75, 30);
             btnCancel.TabIndex = 3;
             btnCancel.Text = "CANCEL";
             btnCancel.UseVisualStyleBackColor = true;
@@ -87,10 +87,10 @@
             // 
             btnSave.Dock = DockStyle.Fill;
             btnSave.Font = new Font("Segoe UI", 8F);
-            btnSave.Location = new Point(655, 0);
+            btnSave.Location = new Point(398, 0);
             btnSave.Margin = new Padding(0);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(65, 28);
+            btnSave.Size = new Size(75, 30);
             btnSave.TabIndex = 4;
             btnSave.Text = "SAVE";
             btnSave.UseVisualStyleBackColor = true;
@@ -120,17 +120,17 @@
             // 
             tableLayoutPanelButtons.ColumnCount = 3;
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 65F));
+            tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
             tableLayoutPanelButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 75F));
             tableLayoutPanelButtons.Controls.Add(btnCancel, 2, 0);
             tableLayoutPanelButtons.Controls.Add(btnSave, 1, 0);
             tableLayoutPanelButtons.Dock = DockStyle.Fill;
-            tableLayoutPanelButtons.Location = new Point(12, 374);
+            tableLayoutPanelButtons.Location = new Point(12, 229);
             tableLayoutPanelButtons.Margin = new Padding(0);
             tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
             tableLayoutPanelButtons.RowCount = 1;
             tableLayoutPanelButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelButtons.Size = new Size(795, 28);
+            tableLayoutPanelButtons.Size = new Size(548, 30);
             tableLayoutPanelButtons.TabIndex = 8;
             // 
             // tableLayoutPanelLeft
@@ -152,7 +152,7 @@
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelLeft.Size = new Size(175, 330);
+            tableLayoutPanelLeft.Size = new Size(175, 185);
             tableLayoutPanelLeft.TabIndex = 17;
             // 
             // tableLayoutColumns
@@ -160,7 +160,7 @@
             tableLayoutColumns.ColumnCount = 3;
             tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 179F));
             tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 279F));
+            tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 318F));
             tableLayoutColumns.Controls.Add(tableLayoutPanelLeft, 0, 0);
             tableLayoutColumns.Controls.Add(compListExt, 2, 0);
             tableLayoutColumns.Dock = DockStyle.Fill;
@@ -170,15 +170,15 @@
             tableLayoutColumns.RowCount = 1;
             tableLayoutColumns.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutColumns.RowStyles.Add(new RowStyle(SizeType.Absolute, 171F));
-            tableLayoutColumns.Size = new Size(791, 334);
+            tableLayoutColumns.Size = new Size(544, 189);
             tableLayoutColumns.TabIndex = 21;
             // 
             // compListExt
             // 
             compListExt.Dock = DockStyle.Fill;
-            compListExt.Location = new Point(515, 3);
+            compListExt.Location = new Point(229, 3);
             compListExt.Name = "compListExt";
-            compListExt.Size = new Size(273, 328);
+            compListExt.Size = new Size(312, 183);
             compListExt.TabIndex = 18;
             // 
             // tableLayoutMaster
@@ -197,16 +197,16 @@
             tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
-            tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutMaster.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
-            tableLayoutMaster.Size = new Size(819, 414);
+            tableLayoutMaster.Size = new Size(572, 271);
             tableLayoutMaster.TabIndex = 22;
             // 
             // FilesListSettingsDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(819, 414);
+            ClientSize = new Size(572, 271);
             Controls.Add(tableLayoutMaster);
             Margin = new Padding(2);
             Name = "FilesListSettingsDialog";
