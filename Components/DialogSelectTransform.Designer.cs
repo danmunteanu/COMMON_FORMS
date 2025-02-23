@@ -38,8 +38,8 @@
             tableLayoutButtons = new TableLayoutPanel();
             btnClose = new Button();
             btnSubmit = new Button();
+            chkPrevOutput = new CheckBox();
             chkEnabled = new CheckBox();
-            chkUseLastOutput = new CheckBox();
             lblConditionDesc = new Label();
             lblActionDesc = new Label();
             tableLayoutMain = new TableLayoutPanel();
@@ -151,7 +151,7 @@
             tableLayoutButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
             tableLayoutButtons.Controls.Add(btnClose, 4, 0);
             tableLayoutButtons.Controls.Add(btnSubmit, 3, 0);
-            tableLayoutButtons.Controls.Add(chkUseLastOutput, 2, 0);
+            tableLayoutButtons.Controls.Add(chkPrevOutput, 2, 0);
             tableLayoutButtons.Controls.Add(chkEnabled, 1, 0);
             tableLayoutButtons.Dock = DockStyle.Fill;
             tableLayoutButtons.Location = new Point(3, 555);
@@ -186,6 +186,17 @@
             btnSubmit.UseVisualStyleBackColor = true;
             btnSubmit.Click += btnSubmit_Click;
             // 
+            // chkPrevOutput
+            // 
+            chkPrevOutput.Anchor = AnchorStyles.Left;
+            chkPrevOutput.AutoSize = true;
+            chkPrevOutput.Location = new Point(109, 6);
+            chkPrevOutput.Name = "chkPrevOutput";
+            chkPrevOutput.Size = new Size(164, 24);
+            chkPrevOutput.TabIndex = 51;
+            chkPrevOutput.Text = "Use Previous Output";
+            chkPrevOutput.UseVisualStyleBackColor = true;
+            // 
             // chkEnabled
             // 
             chkEnabled.Anchor = AnchorStyles.Left;
@@ -197,17 +208,6 @@
             chkEnabled.TabIndex = 50;
             chkEnabled.Text = "Enabled";
             chkEnabled.UseVisualStyleBackColor = true;
-            // 
-            // chkUseLastOutput
-            // 
-            chkUseLastOutput.Anchor = AnchorStyles.Left;
-            chkUseLastOutput.AutoSize = true;
-            chkUseLastOutput.Location = new Point(109, 6);
-            chkUseLastOutput.Name = "chkUseLastOutput";
-            chkUseLastOutput.Size = new Size(135, 24);
-            chkUseLastOutput.TabIndex = 51;
-            chkUseLastOutput.Text = "Use Last Output";
-            chkUseLastOutput.UseVisualStyleBackColor = true;
             // 
             // lblConditionDesc
             // 
@@ -480,6 +480,6 @@
         private TableLayoutPanel tableLayoutPanelConditionGroup;
         private TableLayoutPanel tableLayoutPanelAction;
         private TableLayoutPanel tableLayoutPanelCmbAction;
-        private CheckBox chkUseLastOutput;
+        private CheckBox chkPrevOutput;
     }
 }

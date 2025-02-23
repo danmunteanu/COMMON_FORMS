@@ -189,7 +189,7 @@ namespace CommonForms.Components
             lblActionDesc.Text = trans.Action.Description;
 
             chkEnabled.Checked = trans.Enabled;
-            chkUseLastOutput.Checked = trans.UseLastOutput;
+            chkPrevOutput.Checked = trans.UseLastOutput;
         }
 
         public void LoadState(EditorState state, FileTransform transform = null)
@@ -437,9 +437,11 @@ namespace CommonForms.Components
                 }
 
                 Transform.Description = txtDesc.Text;
-            }
+            } else
+                Transform.ResetDescription();
 
             Transform.Enabled = chkEnabled.Checked;
+            Transform.UseLastOutput = chkPrevOutput.Checked;
 
             CallModifiedCallback();
 
