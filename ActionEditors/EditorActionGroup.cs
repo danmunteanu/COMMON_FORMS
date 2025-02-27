@@ -41,9 +41,10 @@ namespace CommonForms
         private void LoadAddMenuItems()
         {
             menuStripActions.Items.Clear();
-            menuStripActions.Items.Add("Option 1", null, MenuItem_Click);
-            menuStripActions.Items.Add("Option 2", null, MenuItem_Click);
-
+            foreach (string item in mActionNames)
+            {
+                menuStripActions.Items.Add(item, null, MenuItem_Click);
+            }
         }
 
         public override void LoadState(RealityFrameworks.Actions.Action<string> action)
