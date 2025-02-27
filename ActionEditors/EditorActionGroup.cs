@@ -1,5 +1,6 @@
 ﻿using RealityFrameworks;
 using RealityFrameworks.Actions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CommonForms
 {
@@ -17,9 +18,32 @@ namespace CommonForms
         //  List of editors we've already created
         private List<CommonForms.EditorBase> _listOfEditors = new();
 
+        private List<string> mActionNames = new();
+
+        public List<string> ActionNames
+        {
+            get { return mActionNames; }
+            set 
+            {
+                if (mActionNames != value)
+                {
+                    mActionNames = value;
+                    LoadAddMenuItems();
+                }
+            }
+        }
+
         public EditorActionGroup()
-        {            
+        {
             InitializeComponent();
+        }
+
+        private void LoadAddMenuItems()
+        {
+            menuStripActions.Items.Clear();
+            menuStripActions.Items.Add("Option 1", null, MenuItem_Click);
+            menuStripActions.Items.Add("Option 2", null, MenuItem_Click);
+
         }
 
         public override void LoadState(RealityFrameworks.Actions.Action<string> action)
@@ -28,7 +52,7 @@ namespace CommonForms
             {
                 _actionGroup = ag;
                 _actionIndex = 0;
-                
+
                 LoadActiveAction();
             }
         }
@@ -65,22 +89,22 @@ namespace CommonForms
                 lblActionName.Text = string.Format("({0})", actionTypeName);
 
                 CommonForms.EditorBase? editor = null;
-                if (_actionIndex >= 0 && _actionIndex < _listOfEditors.Count) 
+                if (_actionIndex >= 0 && _actionIndex < _listOfEditors.Count)
                 {
                     //  get the editor from the list, but do not load the action's state
                     editor = _listOfEditors[_actionIndex];
-                } 
+                }
                 else
                 {
                     //  Create the Editor
                     editor = GenericFactory<CommonForms.EditorBase>.Create(actionTypeName);
-                    
+
                     //  Insert editor in list
                     _listOfEditors.Insert(_actionIndex, editor);
 
                     //  Load the action state, but only when creating editor
                     editor.LoadState(currentAction);
-                }                
+                }
 
                 //  add editor
                 Utils.AddUserControlToPanel(panelActiveAction, editor);
@@ -89,7 +113,7 @@ namespace CommonForms
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            if (_actionGroup == null) 
+            if (_actionGroup == null)
                 return;
 
             if (_actionIndex > 0)
@@ -129,7 +153,7 @@ namespace CommonForms
                 }
 
                 _actionGroup.RemoveActionAt(_actionIndex);
-                
+
                 //  have next?
                 if (_actionIndex >= _actionGroup.CountActions())
                     _actionIndex--;
@@ -138,6 +162,17 @@ namespace CommonForms
 
                 //  Reload the processor list
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            menuStripActions.Show(btnAdd, new Point(0, btnAdd.Height));
+        }
+
+        private void MenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem? item = sender as ToolStripMenuItem;
+            MessageBox.Show($"You clicked: {item?.Text}");
         }
     }
 }

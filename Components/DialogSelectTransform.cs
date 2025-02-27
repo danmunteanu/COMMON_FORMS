@@ -259,7 +259,7 @@ namespace CommonForms.Components
         private void HandleAdd()
         {
             //  Condition to be created
-            Condition<string>? cond = null;
+            FileCondition? cond = null;
 
             //  Action to be created
             FileAction? action = null;
@@ -281,8 +281,8 @@ namespace CommonForms.Components
                 return;
             }
 
-            bool conditionIsValid = mSelCondEditor.ValidateState();
-            if (conditionIsValid && cmbCondition.SelectedItem != null)
+            bool isConditionValid = mSelCondEditor.ValidateState();
+            if (isConditionValid && cmbCondition.SelectedItem != null)
             {
                 //  Create New Condition by Name
                 try
@@ -309,11 +309,11 @@ namespace CommonForms.Components
                 MessageBox.Show(errMsg, Locale.DLG_CHANGE_ERR_TITLE_CONDITION_NOT_VALID, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            bool actionIsValid = false;
-            if (conditionIsValid)
+            bool isActionValid = false;
+            if (isConditionValid)
             {
-                actionIsValid = mSelActionEditor.ValidateState();
-                if (actionIsValid && cmbAction.SelectedItem != null)
+                isActionValid = mSelActionEditor.ValidateState();
+                if (isActionValid && cmbAction.SelectedItem != null)
                 {
                     try
                     {
@@ -342,7 +342,7 @@ namespace CommonForms.Components
                 }
             }
 
-            if (conditionIsValid && actionIsValid && cond != null && action != null)
+            if (isConditionValid && isActionValid && cond != null && action != null)
             {
                 Processor?.AddChange(cond, action);
 

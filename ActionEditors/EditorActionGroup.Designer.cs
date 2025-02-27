@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel = new TableLayoutPanel();
             btnNext = new Button();
@@ -35,7 +36,9 @@
             btnPrev = new Button();
             lblActionName = new Label();
             btnDel = new Button();
+            btnAdd = new Button();
             panelActiveAction = new Panel();
+            menuStripActions = new ContextMenuStrip(components);
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel.SuspendLayout();
             SuspendLayout();
@@ -60,20 +63,22 @@
             // 
             // tableLayoutPanel
             // 
-            tableLayoutPanel.ColumnCount = 7;
+            tableLayoutPanel.ColumnCount = 9;
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 140F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 165F));
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
+            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
             tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel.Controls.Add(btnNext, 5, 0);
             tableLayoutPanel.Controls.Add(lblCountActions, 4, 0);
             tableLayoutPanel.Controls.Add(btnPrev, 3, 0);
             tableLayoutPanel.Controls.Add(lblActionName, 2, 0);
             tableLayoutPanel.Controls.Add(btnDel, 1, 0);
+            tableLayoutPanel.Controls.Add(btnAdd, 7, 0);
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.Location = new Point(8, 3);
             tableLayoutPanel.Name = "tableLayoutPanel";
@@ -85,7 +90,7 @@
             // btnNext
             // 
             btnNext.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnNext.Location = new Point(426, 4);
+            btnNext.Location = new Point(411, 4);
             btnNext.MinimumSize = new Size(0, 30);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(39, 30);
@@ -98,7 +103,7 @@
             // 
             lblCountActions.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblCountActions.AutoSize = true;
-            lblCountActions.Location = new Point(381, 9);
+            lblCountActions.Location = new Point(366, 9);
             lblCountActions.Name = "lblCountActions";
             lblCountActions.Size = new Size(39, 20);
             lblCountActions.TabIndex = 2;
@@ -108,7 +113,7 @@
             // btnPrev
             // 
             btnPrev.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnPrev.Location = new Point(336, 4);
+            btnPrev.Location = new Point(321, 4);
             btnPrev.MinimumSize = new Size(0, 30);
             btnPrev.Name = "btnPrev";
             btnPrev.Size = new Size(39, 30);
@@ -121,22 +126,33 @@
             // 
             lblActionName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblActionName.AutoSize = true;
-            lblActionName.Location = new Point(196, 9);
+            lblActionName.Location = new Point(156, 9);
             lblActionName.Name = "lblActionName";
-            lblActionName.Size = new Size(134, 20);
+            lblActionName.Size = new Size(159, 20);
             lblActionName.TabIndex = 4;
             lblActionName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnDel
             // 
             btnDel.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnDel.Location = new Point(141, 5);
+            btnDel.Location = new Point(101, 5);
             btnDel.Name = "btnDel";
             btnDel.Size = new Size(49, 29);
             btnDel.TabIndex = 5;
             btnDel.Text = "DEL";
             btnDel.UseVisualStyleBackColor = true;
             btnDel.Click += btnDel_Click;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnAdd.Location = new Point(466, 5);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(39, 29);
+            btnAdd.TabIndex = 6;
+            btnAdd.Text = "➕";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // panelActiveAction
             // 
@@ -145,6 +161,12 @@
             panelActiveAction.Name = "panelActiveAction";
             panelActiveAction.Size = new Size(606, 314);
             panelActiveAction.TabIndex = 2;
+            // 
+            // menuStripActions
+            // 
+            menuStripActions.ImageScalingSize = new Size(20, 20);
+            menuStripActions.Name = "menuStripActions";
+            menuStripActions.Size = new Size(61, 4);
             // 
             // EditorActionGroup
             // 
@@ -169,5 +191,7 @@
         private Panel panelActiveAction;
         private Label lblActionName;
         private Button btnDel;
+        private Button btnAdd;
+        private ContextMenuStrip menuStripActions;
     }
 }

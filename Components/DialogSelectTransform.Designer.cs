@@ -75,7 +75,7 @@
             txtDesc.Margin = new Padding(2);
             txtDesc.Multiline = true;
             txtDesc.Name = "txtDesc";
-            txtDesc.Size = new Size(749, 78);
+            txtDesc.Size = new Size(832, 78);
             txtDesc.TabIndex = 51;
             // 
             // lblSelAct
@@ -128,7 +128,7 @@
             panelAction.Location = new Point(1, 54);
             panelAction.Margin = new Padding(1, 2, 1, 2);
             panelAction.Name = "panelAction";
-            panelAction.Size = new Size(377, 306);
+            panelAction.Size = new Size(418, 306);
             panelAction.TabIndex = 42;
             // 
             // panelCondition
@@ -137,7 +137,7 @@
             panelCondition.Location = new Point(1, 54);
             panelCondition.Margin = new Padding(1, 2, 1, 2);
             panelCondition.Name = "panelCondition";
-            panelCondition.Size = new Size(376, 306);
+            panelCondition.Size = new Size(418, 306);
             panelCondition.TabIndex = 43;
             // 
             // tableLayoutButtons
@@ -159,13 +159,13 @@
             tableLayoutButtons.Name = "tableLayoutButtons";
             tableLayoutButtons.RowCount = 1;
             tableLayoutButtons.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutButtons.Size = new Size(771, 36);
+            tableLayoutButtons.Size = new Size(854, 36);
             tableLayoutButtons.TabIndex = 48;
             // 
             // btnClose
             // 
             btnClose.Dock = DockStyle.Fill;
-            btnClose.Location = new Point(642, 2);
+            btnClose.Location = new Point(725, 2);
             btnClose.Margin = new Padding(1, 2, 1, 2);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(118, 32);
@@ -177,7 +177,7 @@
             // btnSubmit
             // 
             btnSubmit.Dock = DockStyle.Fill;
-            btnSubmit.Location = new Point(522, 2);
+            btnSubmit.Location = new Point(605, 2);
             btnSubmit.Margin = new Padding(1, 2, 1, 2);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(118, 32);
@@ -248,7 +248,7 @@
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 134F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
-            tableLayoutMain.Size = new Size(777, 603);
+            tableLayoutMain.Size = new Size(860, 603);
             tableLayoutMain.TabIndex = 1;
             // 
             // tableLayoutChangeDesc
@@ -267,7 +267,7 @@
             tableLayoutChangeDesc.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutChangeDesc.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutChangeDesc.RowStyles.Add(new RowStyle(SizeType.Absolute, 8F));
-            tableLayoutChangeDesc.Size = new Size(773, 130);
+            tableLayoutChangeDesc.Size = new Size(856, 130);
             tableLayoutChangeDesc.TabIndex = 52;
             // 
             // tableLayoutDesc
@@ -284,7 +284,7 @@
             tableLayoutDesc.Name = "tableLayoutDesc";
             tableLayoutDesc.RowCount = 1;
             tableLayoutDesc.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutDesc.Size = new Size(747, 36);
+            tableLayoutDesc.Size = new Size(830, 36);
             tableLayoutDesc.TabIndex = 0;
             // 
             // chkDesc
@@ -303,7 +303,7 @@
             // btnResetDesc
             // 
             btnResetDesc.Font = new Font("Segoe UI", 7F);
-            btnResetDesc.Location = new Point(615, 2);
+            btnResetDesc.Location = new Point(698, 2);
             btnResetDesc.Margin = new Padding(3, 2, 3, 2);
             btnResetDesc.Name = "btnResetDesc";
             btnResetDesc.Size = new Size(129, 32);
@@ -326,7 +326,7 @@
             tableLayoutEditors.RowCount = 1;
             tableLayoutEditors.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutEditors.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
-            tableLayoutEditors.Size = new Size(773, 390);
+            tableLayoutEditors.Size = new Size(856, 390);
             tableLayoutEditors.TabIndex = 0;
             // 
             // grpCondition
@@ -337,7 +337,7 @@
             grpCondition.Margin = new Padding(2);
             grpCondition.Name = "grpCondition";
             grpCondition.Padding = new Padding(2);
-            grpCondition.Size = new Size(382, 386);
+            grpCondition.Size = new Size(424, 386);
             grpCondition.TabIndex = 2;
             grpCondition.TabStop = false;
             grpCondition.Text = "CONDITION";
@@ -356,7 +356,7 @@
             tableLayoutPanelConditionGroup.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
             tableLayoutPanelConditionGroup.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanelConditionGroup.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelConditionGroup.Size = new Size(378, 362);
+            tableLayoutPanelConditionGroup.Size = new Size(420, 362);
             tableLayoutPanelConditionGroup.TabIndex = 45;
             // 
             // tableLayoutPanelCmbCondition
@@ -373,18 +373,18 @@
             tableLayoutPanelCmbCondition.Name = "tableLayoutPanelCmbCondition";
             tableLayoutPanelCmbCondition.RowCount = 1;
             tableLayoutPanelCmbCondition.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelCmbCondition.Size = new Size(374, 36);
+            tableLayoutPanelCmbCondition.Size = new Size(416, 36);
             tableLayoutPanelCmbCondition.TabIndex = 44;
             // 
             // grpAction
             // 
             grpAction.Controls.Add(tableLayoutPanelAction);
             grpAction.Dock = DockStyle.Fill;
-            grpAction.Location = new Point(388, 2);
+            grpAction.Location = new Point(430, 2);
             grpAction.Margin = new Padding(2);
             grpAction.Name = "grpAction";
             grpAction.Padding = new Padding(2);
-            grpAction.Size = new Size(383, 386);
+            grpAction.Size = new Size(424, 386);
             grpAction.TabIndex = 43;
             grpAction.TabStop = false;
             grpAction.Text = "ACTION";
@@ -403,7 +403,7 @@
             tableLayoutPanelAction.RowStyles.Add(new RowStyle(SizeType.Absolute, 12F));
             tableLayoutPanelAction.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanelAction.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelAction.Size = new Size(379, 362);
+            tableLayoutPanelAction.Size = new Size(420, 362);
             tableLayoutPanelAction.TabIndex = 44;
             // 
             // tableLayoutPanelCmbAction
@@ -421,14 +421,14 @@
             tableLayoutPanelCmbAction.RowCount = 1;
             tableLayoutPanelCmbAction.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelCmbAction.RowStyles.Add(new RowStyle(SizeType.Absolute, 35F));
-            tableLayoutPanelCmbAction.Size = new Size(375, 36);
+            tableLayoutPanelCmbAction.Size = new Size(416, 36);
             tableLayoutPanelCmbAction.TabIndex = 45;
             // 
             // DialogSelectTransform
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(777, 603);
+            ClientSize = new Size(860, 603);
             Controls.Add(tableLayoutMain);
             Margin = new Padding(1, 2, 1, 2);
             MaximizeBox = false;
