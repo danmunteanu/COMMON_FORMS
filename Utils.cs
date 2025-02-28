@@ -79,7 +79,7 @@
             ".raw"
         };
 
-        //	Helper to add user controls to a panel - should be common somewhere
+        //	helper - Adds user controls to a panel
         public static void AddUserControlToPanel(Panel panel, UserControl control)
         {
             if (panel.Controls.Contains(control))

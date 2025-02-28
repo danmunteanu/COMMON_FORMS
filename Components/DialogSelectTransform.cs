@@ -26,6 +26,7 @@ namespace CommonForms.Components
 
         //  The callback for when something has been modified
         public delegate void OnModifiedCallback();
+
         public OnModifiedCallback? OnModified { get; set; }
 
         public DialogSelectTransform()
