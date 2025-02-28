@@ -1,22 +1,31 @@
-﻿using RealityFrameworks;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
     public partial class TAB_Action : ApplicationPageBase
     {
         private EditorBase? mSelectedEditor = null;
 
-        public TAB_Action()
-        {
-            InitializeComponent();
-        }
+        //  Cache of Editors
+        Dictionary<string, EditorBase> mEditorCache = new();
+
+        public TAB_Action() 
+            => InitializeComponent();
 
         public void AddAction(string actionName)
+            => cmbActions.Items.Add(actionName);
+
+        //  Tries to find an editor in the cache, if not found, it creates the editor
+        private EditorBase? FindOrCreateEditor(string? name)
         {
-            //  NAME - Name for the Action
-            //  ACTION_CREATOR - Action Factory
-            //  EDITOR_CREATOR - Editor Factory
-            cmbActions.Items.Add(actionName);
+            EditorBase? editor = null;
+            if (name == null)
+                return editor;
+
+            if (!mEditorCache.TryGetValue(name, out editor))
+            {
+                editor = EditorFactory.Create(name);
+                mEditorCache.Add(name, editor);
+            }
+            return editor;
         }
 
         private void cmbActions_SelectedIndexChanged(object sender, EventArgs e)
@@ -26,24 +35,35 @@ namespace CommonForms
 
             //string actionName = (new ActionCopyFile as object).GetType().Name.ToString();
 
-            mSelectedEditor = GenericFactory<EditorBase>.Create(cmbActions.SelectedItem.ToString());
+            try
+            {
+                if (cmbActions.SelectedItem != null && 
+                    !string.IsNullOrEmpty(cmbActions.SelectedItem.ToString()))
+                {
+                    mSelectedEditor = FindOrCreateEditor(cmbActions.SelectedItem.ToString());
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }            
 
-            if (panelEditor.Controls.Contains(mSelectedEditor))
-                return;
+            if (mSelectedEditor != null)
+            {
+                if (panelEditor.Controls.Contains(mSelectedEditor))
+                    return;
 
-            Utils.AddUserControlToPanel(panelEditor, mSelectedEditor);
+                Utils.AddUserControlToPanel(panelEditor, mSelectedEditor);
+            }
         }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            if (cmbActions.SelectedItem == null) 
+            if (cmbActions.SelectedItem == null || mSelectedEditor == null)
                 return;
 
-            if (mSelectedEditor == null)
-                return;
-
-            RealityFrameworks.Actions.Action<string> action;
-            action = GenericFactory<RealityFrameworks.Actions.Action<string>>.Create(cmbActions.SelectedItem.ToString());
+            FileAction action = FileActionFactory.Create(cmbActions.SelectedItem.ToString());
 
             try
             {

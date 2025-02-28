@@ -52,13 +52,13 @@ namespace CommonForms.Components
             cmbAction.SelectedIndex = 0;
         }
 
-        //  Tries to find an editor in the cache, if not found, creates it
+        //  Tries to find an editor in the cache, if not found, it creates the editor
         private EditorBase? FindOrCreateEditor(string name)
         {
             EditorBase? editor = null;
             if (!mEditorCache.TryGetValue(name, out editor))
             {
-                editor = GenericFactory<EditorBase>.Create(name);
+                editor = EditorFactory.Create(name);
                 mEditorCache.Add(name, editor);
             }
             return editor;
@@ -69,6 +69,9 @@ namespace CommonForms.Components
             //  get these strings from localization
             btnSubmit.Text = Locale.DLG_CHANGE_BUTTON_ADD_LABEL;
             Text = Locale.DLG_CHANGE_TITLE_ADD;
+
+            foreach (var keyValuePair in mEditorCache)
+                keyValuePair.Value.ClearState();
 
             //  Clear Editor Condition
             panelCondition.Controls.Clear();
@@ -88,10 +91,6 @@ namespace CommonForms.Components
             txtDesc.Clear();
             chkDesc.Checked = false;
             btnResetDesc.Enabled = false;
-
-            //  reset the editors
-            foreach (var kvPair in mEditorCache)
-                kvPair.Value.ClearState();
 
             chkEnabled.Checked = true;
         }
@@ -114,13 +113,11 @@ namespace CommonForms.Components
             Text = Locale.DLG_CHANGE_TITLE_EDIT;
 
             if (trans == null)
-            {
                 return;
-            }
 
             //  reset the editors
-            foreach (var kvPair in mEditorCache)
-                kvPair.Value.ClearState();
+            foreach (var keyValuePair in mEditorCache)
+                keyValuePair.Value.ClearState();
 
             //  CONDITION editor
             try

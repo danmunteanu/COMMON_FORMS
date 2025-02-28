@@ -1,11 +1,12 @@
 ﻿using RealityFrameworks;
 using RealityFrameworks.Actions;
 
+/*
+ *  Editor for a group of actions
+ */
 namespace CommonForms
 {
-    /*
-     * Editor for a group of actions
-     */
+
     public partial class EditorActionGroup : EditorBase
     {
         //  The ActionGroup instance we're editing
@@ -17,21 +18,20 @@ namespace CommonForms
         //  List of editors we've already created
         private List<CommonForms.EditorBase> mEditors = new();
 
-        private List<string>? mActionNames;
-
         private UserControl? mStartPanel;
 
-        public List<string>? ActionNames
+        public void LoadActionNames(List<string> actionNames)
         {
-            get { return mActionNames; }
-            set 
-            {
-                if (mActionNames != value)
-                {
-                    mActionNames = value;
-                    LoadAddMenuItems();
-                }
-            }
+            menuStripActions.Items.Clear();
+
+            if (actionNames == null)
+                return;
+
+            //  Add action names to menu strip
+            foreach (string item in actionNames)
+                menuStripActions.Items.Add(item, null, MenuItem_Click);
+
+            UpdateUI();
         }
 
         public EditorActionGroup()
@@ -68,20 +68,6 @@ namespace CommonForms
             CommonForms.Utils.AddUserControlToPanel(panelActiveAction, mStartPanel);
         }
 
-        private void LoadAddMenuItems()
-        {
-            menuStripActions.Items.Clear();
-            
-            if (mActionNames == null)
-                return;
-            
-            //  Add action names to menu strip
-            foreach (string item in mActionNames)
-                menuStripActions.Items.Add(item, null, MenuItem_Click);
-
-            UpdateUI();
-        }
-
         public void UpdateUI()
         {
             btnPrev.Enabled = mEditors.Count > 1;
@@ -93,7 +79,7 @@ namespace CommonForms
                 //  make sure index is valid
                 && mActionIndex >= 0 && mActionIndex < mEditors.Count;
 
-            btnAdd.Enabled = mActionNames?.Count > 0;
+            btnAdd.Enabled = menuStripActions.Items.Count > 0;
         }
 
         public override void LoadState(FileAction action)
@@ -119,7 +105,6 @@ namespace CommonForms
         public override void ClearState()
         {
             mEditors.Clear();
-
         }
 
         private void LoadActiveAction()
