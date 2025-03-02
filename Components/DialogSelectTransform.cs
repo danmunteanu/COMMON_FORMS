@@ -1,5 +1,4 @@
 ﻿using RealityFrameworks;
-using RealityFrameworks.Conditions;
 
 namespace CommonForms.Components
 {
@@ -19,6 +18,7 @@ namespace CommonForms.Components
         //	Editor's state
         public EditorState State { get; set; }
 
+        //  The FileTransform we're editing
         private FileTransform? Transform { get; set; } = null;
 
         //  Cache of Editors
@@ -52,7 +52,9 @@ namespace CommonForms.Components
             cmbAction.SelectedIndex = 0;
         }
 
-        //  Tries to find an editor in the cache, if not found, it creates the editor
+        //  Tries to find an editor in the cache,
+        //  if not found, it creates the editor
+        //  if found, returns the instance
         private EditorBase? FindOrCreateEditor(string name)
         {
             EditorBase? editor = null;
@@ -293,6 +295,7 @@ namespace CommonForms.Components
                     MessageBox.Show(
                         ex.Message, "Failed to create Condition",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             else
