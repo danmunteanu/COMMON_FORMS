@@ -1,5 +1,5 @@
-﻿using RealityFrameworks;
-using RealityFrameworks.Actions;
+﻿using RealityFrameworks.Actions;
+using System.Text;
 
 /*
  *  Editor for a group of actions
@@ -18,6 +18,7 @@ namespace CommonForms
         //  List of editors we've already created
         private List<CommonForms.EditorBase> mEditors = new();
 
+        //  Panel to display when there's no editor selected
         private UserControl? mStartPanel;
 
         public void LoadActionNames(List<string> actionNames)
@@ -38,7 +39,7 @@ namespace CommonForms
         {
             InitializeComponent();
 
-            //  gets called for the first time in LoadAddMenuItems (when ActionNames is set)
+            //  gets called for the first time in when LoadActionNames is called
             //  leave here for reference
             //UpdateUI();
 
@@ -66,6 +67,40 @@ namespace CommonForms
 
             // Add the panel to the form
             CommonForms.Utils.AddUserControlToPanel(panelActiveAction, mStartPanel);
+        }
+
+        public override bool ValidateState()
+        {
+            //  have at least one action
+            if (mEditors.Count == 0)
+            {
+                PushError("Must add at least one Action");
+                return false;
+            }
+
+            bool isValid = true;
+
+            //  each editor must be valid
+            foreach (var editor in mEditors)
+            {
+                if (!editor.ValidateState())
+                {
+                    StringBuilder sb = new();
+                    sb.Append(editor.GetType().Name);
+                    sb.Append(": ");
+                    while (editor.HasErrors())
+                    {
+                        sb.Append(editor.PopError());
+                        PushError(sb.ToString());
+                    }
+
+                    //  bail out
+                    isValid = false;
+                    break;
+                }
+            }
+
+            return isValid;
         }
 
         public void UpdateUI()
@@ -98,13 +133,19 @@ namespace CommonForms
             if (action is ActionGroup<string> ag)
             {
                 //  for each editor, call editor's SaveState
-                MessageBox.Show("Please implement SaveState() in EditorActionGroup", "Method Not Implemented!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                foreach (var editor in mEditors)
+                {
+                    string name = editor.Name;
+                }
             }
         }
 
         public override void ClearState()
         {
+            mActionIndex = -1;
             mEditors.Clear();
+            UpdateUI();
+            CommonForms.Utils.AddUserControlToPanel(panelActiveAction, mStartPanel);
         }
 
         private void LoadActiveAction()
@@ -138,7 +179,7 @@ namespace CommonForms
                 else
                 {
                     //  Create the Editor
-                    editor = GenericFactory<CommonForms.EditorBase>.Create(actionTypeName);
+                    editor = EditorFactory.Create(actionTypeName);
 
                     //  Insert editor in list
                     mEditors.Insert(mActionIndex, editor);
@@ -210,7 +251,7 @@ namespace CommonForms
             menuStripActions.Show(btnAdd, new Point(0, btnAdd.Height));
         }
 
-        private void MenuItem_Click(object sender, EventArgs e)
+        private void MenuItem_Click(object? sender, EventArgs e)
         {
             ToolStripMenuItem? menuItem = sender as ToolStripMenuItem;
             if (menuItem == null || string.IsNullOrEmpty(menuItem.Text))

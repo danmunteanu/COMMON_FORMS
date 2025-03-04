@@ -48,6 +48,11 @@ namespace CommonForms
                 (chkExtension.Checked && (!string.IsNullOrEmpty(txtExtension.Text)) ||
                 (chkCustom.Checked && (!string.IsNullOrEmpty(txtCustom.Text))));
 
+            if (!hasRename)
+            {
+                PushError("Select one way to rename the file");
+            }
+
             return hasRename;
         }
 
