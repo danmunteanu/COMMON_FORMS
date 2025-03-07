@@ -16,7 +16,7 @@ namespace CommonForms
         private int mActionIndex = -1;
 
         //  List of editors we've already created
-        private List<CommonForms.EditorBase> mEditors = new();
+        private List<CommonForms.EditorBase> mActionEditors = new();
 
         //  Panel to display when there's no editor selected
         private UserControl? mStartPanel;
@@ -39,8 +39,9 @@ namespace CommonForms
         {
             InitializeComponent();
 
-            //  gets called for the first time in when LoadActionNames is called
-            //  leave here for reference
+            //  UpdateUI gets called for the first time 
+            //  when LoadActionNames is called
+            //  leave call here for reference
             //UpdateUI();
 
             CreateStartPanel();
@@ -72,7 +73,7 @@ namespace CommonForms
         public override bool ValidateState()
         {
             //  have at least one action
-            if (mEditors.Count == 0)
+            if (mActionEditors.Count == 0)
             {
                 PushError("Must add at least one Action");
                 return false;
@@ -81,7 +82,7 @@ namespace CommonForms
             bool isValid = true;
 
             //  each editor must be valid
-            foreach (var editor in mEditors)
+            foreach (var editor in mActionEditors)
             {
                 if (!editor.ValidateState())
                 {
@@ -105,14 +106,14 @@ namespace CommonForms
 
         public void UpdateUI()
         {
-            btnPrev.Enabled = mEditors.Count > 1;
-            btnNext.Enabled = mEditors.Count > 1;
+            btnPrev.Enabled = mActionEditors.Count > 1;
+            btnNext.Enabled = mActionEditors.Count > 1;
 
             btnDel.Enabled =
                 //  don't delete when there's only one action
-                mEditors.Count > 1
+                mActionEditors.Count > 1
                 //  make sure index is valid
-                && mActionIndex >= 0 && mActionIndex < mEditors.Count;
+                && mActionIndex >= 0 && mActionIndex < mActionEditors.Count;
 
             btnAdd.Enabled = menuStripActions.Items.Count > 0;
         }
@@ -122,7 +123,7 @@ namespace CommonForms
             if (action is ActionGroup<string> ag)
             {
                 mActionGroup = ag;
-                mActionIndex = 0;
+                mActionIndex = mActionGroup.CountActions() > 0 ? 0 : -1;
 
                 LoadActiveAction();
             }
@@ -133,7 +134,7 @@ namespace CommonForms
             if (action is ActionGroup<string> ag)
             {
                 //  for each editor, call editor's SaveState
-                foreach (var editor in mEditors)
+                foreach (var editor in mActionEditors)
                 {
                     string name = editor.Name;
                 }
@@ -142,28 +143,47 @@ namespace CommonForms
 
         public override void ClearState()
         {
+            //  reset the inner state
             mActionIndex = -1;
-            mEditors.Clear();
-            UpdateUI();
-            CommonForms.Utils.AddUserControlToPanel(panelActiveAction, mStartPanel);
+            mActionGroup = null;
+            mActionEditors.Clear();
+
+            //  reload the state
+            LoadActiveAction();
+
+            //  add start panel
+            if (mStartPanel != null)
+                CommonForms.Utils.AddUserControlToPanel(panelActiveAction, mStartPanel);
         }
 
         private void LoadActiveAction()
         {
-            if (mActionGroup == null)
-                return;
-
             //  count actions
-            int count = mActionGroup.CountActions();
+            int count = mActionGroup != null ? mActionGroup.CountActions() : 0;
 
+            //  can the buttons be enabled?
             btnPrev.Enabled = mActionIndex > 0;
             btnNext.Enabled = mActionIndex < count - 1;
-            btnDel.Enabled = mActionIndex >= 0 && mActionIndex < count && count > 1;
+            btnDel.Enabled = mActionIndex >= 0 && mActionIndex < count;
+
+            //  update label count
+            if (count > 0)
+                lblCountActions.Text = string.Format("{0}/{1}", mActionIndex + 1, count);
+            else
+                lblCountActions.Text = "-";
+
+            if (mActionGroup == null || mActionIndex == -1 || count == 0)
+            {
+                lblActionName.Text = string.Empty;
+
+                if (mStartPanel != null)
+                    CommonForms.Utils.AddUserControlToPanel(panelActiveAction, mStartPanel);
+
+                return;
+            }
 
             if (count > 0)
             {
-                lblCountActions.Text = string.Format("{0}/{1}", mActionIndex + 1, count);
-
                 //  get current action
                 FileAction currentAction = mActionGroup.GetActionAt(mActionIndex);
 
@@ -171,10 +191,10 @@ namespace CommonForms
                 lblActionName.Text = string.Format("({0})", actionTypeName);
 
                 CommonForms.EditorBase? editor = null;
-                if (mActionIndex >= 0 && mActionIndex < mEditors.Count)
+                if (mActionIndex >= 0 && mActionIndex < mActionEditors.Count)
                 {
                     //  get the editor from the list, but do not load the action's state
-                    editor = mEditors[mActionIndex];
+                    editor = mActionEditors[mActionIndex];
                 }
                 else
                 {
@@ -182,7 +202,7 @@ namespace CommonForms
                     editor = EditorFactory.Create(actionTypeName);
 
                     //  Insert editor in list
-                    mEditors.Insert(mActionIndex, editor);
+                    mActionEditors.Insert(mActionIndex, editor);
 
                     //  Load the action state, but only when creating editor
                     editor.LoadState(currentAction);
@@ -228,11 +248,11 @@ namespace CommonForms
             if (answer == DialogResult.Yes)
             {
                 int count = mActionGroup.CountActions();
-                if (count == 1)
-                {
-                    MessageBox.Show("Must leave at least one action in group.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+                //if (count == 1)
+                //{
+                //    MessageBox.Show("Must leave at least one action in group.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    return;
+                //}
 
                 mActionGroup.RemoveActionAt(mActionIndex);
 
@@ -272,6 +292,7 @@ namespace CommonForms
                 
                 //  set the index, load active action
                 mActionIndex = mActionGroup.CountActions() - 1;
+                
                 LoadActiveAction();
             }
             catch (Exception ex)
