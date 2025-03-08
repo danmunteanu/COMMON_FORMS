@@ -31,7 +31,7 @@
             txtPrefix = new TextBox();
             txtExtension = new TextBox();
             txtCustom = new TextBox();
-            chkAddPrefix = new CheckBox();
+            chkPrefix = new CheckBox();
             chkExtension = new CheckBox();
             chkCustom = new CheckBox();
             tableLayoutMain = new TableLayoutPanel();
@@ -73,17 +73,17 @@
             txtCustom.Size = new Size(586, 27);
             txtCustom.TabIndex = 4;
             // 
-            // chkAddPrefix
+            // chkPrefix
             // 
-            chkAddPrefix.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            chkAddPrefix.AutoSize = true;
-            chkAddPrefix.Location = new Point(3, 13);
-            chkAddPrefix.Name = "chkAddPrefix";
-            chkAddPrefix.Size = new Size(103, 24);
-            chkAddPrefix.TabIndex = 6;
-            chkAddPrefix.Text = "Add Prefix:";
-            chkAddPrefix.UseVisualStyleBackColor = true;
-            chkAddPrefix.CheckedChanged += chkAddPrefix_CheckedChanged;
+            chkPrefix.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            chkPrefix.AutoSize = true;
+            chkPrefix.Location = new Point(3, 13);
+            chkPrefix.Name = "chkPrefix";
+            chkPrefix.Size = new Size(103, 24);
+            chkPrefix.TabIndex = 6;
+            chkPrefix.Text = "Add Prefix:";
+            chkPrefix.UseVisualStyleBackColor = true;
+            chkPrefix.CheckedChanged += chkAddPrefix_CheckedChanged;
             // 
             // chkExtension
             // 
@@ -115,7 +115,7 @@
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutMain.Controls.Add(tableLayoutPrefix, 0, 1);
             tableLayoutMain.Controls.Add(tableLayoutPanelExt, 0, 4);
-            tableLayoutMain.Controls.Add(chkAddPrefix, 0, 0);
+            tableLayoutMain.Controls.Add(chkPrefix, 0, 0);
             tableLayoutMain.Controls.Add(chkExtension, 0, 4);
             tableLayoutMain.Controls.Add(chkCustom, 0, 7);
             tableLayoutMain.Controls.Add(txtCustom, 0, 8);
@@ -261,7 +261,7 @@
         private TextBox txtPrefix;
         private TextBox txtExtension;
         private TextBox txtCustom;
-        private CheckBox chkAddPrefix;
+        private CheckBox chkPrefix;
         private CheckBox chkExtension;
         private CheckBox chkCustom;
         private TableLayoutPanel tableLayoutMain;

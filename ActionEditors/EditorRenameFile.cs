@@ -1,5 +1,4 @@
 ﻿using RealityFrameworks.Actions;
-using System.ComponentModel;
 
 namespace CommonForms
 {
@@ -9,7 +8,7 @@ namespace CommonForms
         {
             InitializeComponent();
 
-            chkAddPrefix.Checked = false;
+            chkPrefix.Checked = false;
             txtPrefix.Enabled = false;
 
             chkExtension.Checked = false;
@@ -21,36 +20,66 @@ namespace CommonForms
             UpdateUI();
         }
 
-        public override void LoadState(RealityFrameworks.Actions.Action<string> action)
+        public override void LoadState(FileAction action)
         {
             if (action is ActionRenameFile arf)
             {
-                txtExtension.Text = arf.Extension;
+                chkPrefix.Checked = !string.IsNullOrEmpty(arf.Prefix);
                 txtPrefix.Text = arf.Prefix;
-                txtCustom.Text = arf.NewFileName;
+
+                chkExtension.Checked = !string.IsNullOrEmpty(arf.Extension);
+                txtExtension.Text = arf.Extension;
+
+                chkCustom.Checked = !string.IsNullOrEmpty(arf.CustomName);
+                txtCustom.Text = arf.CustomName;
             }
         }
 
-        public override void SaveState(RealityFrameworks.Actions.Action<string> action)
+        public override void SaveState(FileAction action)
         {
             if (action is ActionRenameFile arf)
             {
                 arf.Extension = txtExtension.Text;
                 arf.Prefix = txtPrefix.Text;
-                arf.NewFileName = txtCustom.Text;
+                arf.CustomName = txtCustom.Text;
             }
+        }
+
+        public override void ClearState()
+        {
+            chkPrefix.Checked = false;
+            txtPrefix.Text = string.Empty;
+
+            chkExtension.Checked = false;
+            txtExtension.Text = string.Empty;
+
+            chkCustom.Checked = false;
+            txtCustom.Text = string.Empty;
         }
 
         public override bool ValidateState()
         {
             bool hasRename =
-                (chkAddPrefix.Checked && (!string.IsNullOrEmpty(txtPrefix.Text))) ||
+                (chkPrefix.Checked && (!string.IsNullOrEmpty(txtPrefix.Text))) ||
                 (chkExtension.Checked && (!string.IsNullOrEmpty(txtExtension.Text)) ||
                 (chkCustom.Checked && (!string.IsNullOrEmpty(txtCustom.Text))));
+
+            if (chkPrefix.Checked && string.IsNullOrEmpty(txtPrefix.Text))
+            {
+                PushError("Prefix cannot be empty when adding a prefix");
+                return false;
+            }
+
+            if (chkExtension.Checked && string.IsNullOrEmpty(txtExtension.Text))
+            {
+                PushError("Select a valid extension when changing a file's extension");
+                return false;
+            }
 
             if (!hasRename)
             {
                 PushError("Select one way to rename the file");
+                return false;
             }
 
             return hasRename;
@@ -59,9 +88,9 @@ namespace CommonForms
         private void UpdateUI()
         {
             //  Add Prefix
-            txtPrefix.Enabled = chkAddPrefix.Checked;
-            dpDate.Enabled = chkAddPrefix.Checked;
-            btnUseDate.Enabled = chkAddPrefix.Checked;
+            txtPrefix.Enabled = chkPrefix.Checked;
+            dpDate.Enabled = chkPrefix.Checked;
+            btnUseDate.Enabled = chkPrefix.Checked;
 
             //  Extension
             txtExtension.Enabled = chkExtension.Checked;
@@ -69,7 +98,7 @@ namespace CommonForms
             btnMD.Enabled = chkExtension.Checked;
             btnClearExt.Enabled = chkExtension.Checked;
 
-            if (chkAddPrefix.Checked)
+            if (chkPrefix.Checked)
                 chkCustom.Checked = false;
         }
 
@@ -77,7 +106,7 @@ namespace CommonForms
         {
             UpdateUI();
 
-            if (chkAddPrefix.Checked)
+            if (chkPrefix.Checked)
             {
                 txtPrefix.Focus();
             }
@@ -102,7 +131,7 @@ namespace CommonForms
 
             if (chkCustom.Checked)
             {
-                chkAddPrefix.Checked = false;
+                chkPrefix.Checked = false;
                 chkExtension.Checked = false;
 
                 txtCustom.Focus();

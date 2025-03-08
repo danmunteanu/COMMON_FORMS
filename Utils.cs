@@ -108,7 +108,7 @@
                 {
                     DateTime dateCast = DateTime.Parse(titleDate);
                 }
-                catch (FormatException formatExcept)
+                catch (FormatException)
                 {
                     return false;
                 }

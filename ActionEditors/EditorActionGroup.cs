@@ -65,7 +65,7 @@ namespace CommonForms
             //  have at least one action
             if (mEditors.Count == 0)
             {
-                PushError("Must add at least one Action");
+                PushError("Must add at least one Action to the group");
                 return false;
             }
 
@@ -87,7 +87,8 @@ namespace CommonForms
 
                     //  bail out
                     isValid = false;
-                    //break;
+                    
+                    //break;    //  uncomment to break at first error
                 }
             }
 
@@ -105,11 +106,24 @@ namespace CommonForms
             {
                 //  get the action from the group
                 FileAction fileAction = ag.GetActionAt(idx);
+                
+                //  make sure there's an action
+                if (fileAction == null)
+                    continue;
+
                 string actionName = fileAction.GetType().Name;
 
                 //  create an editor
                 EditorBase editor = EditorFactory.Create(actionName);
+
+                //  make sure we have an editor
+                if (editor == null)
+                    continue;
+
+                //  Load state from action
                 editor.LoadState(fileAction);
+
+                //  Cache the actionName and editor
                 mEditors.Insert (
                     mEditors.Count(), 
                     new ActionNameAndEditorPair (actionName, editor)
@@ -117,8 +131,9 @@ namespace CommonForms
             }
             
             //  set the editor index
-            mEditorIndex = mEditors.Count() > 0 ? 0 : - 1;
+            mEditorIndex = mEditors.Count() > 0 ? 0 : -1;
 
+            //  Reload the stat of the UI
             RefreshUI();
         }
 
@@ -138,15 +153,17 @@ namespace CommonForms
                 EditorBase editor = editorPair.Item2;
 
                 //  create the action
-                FileAction groupAction = FileActionFactory.Create(actionName);
-                if (groupAction != null)
-                {
-                    //  save the state
-                    editor.SaveState(groupAction);
+                FileAction oneGroupAction = FileActionFactory.Create(actionName);
+                
+                //  make sure group action was created
+                if (oneGroupAction == null)
+                    continue;
 
-                    //  add action to group
-                    actionGroup.AddAction(groupAction);
-                }
+                //  save the state
+                editor.SaveState(oneGroupAction);
+
+                //  add action to group
+                actionGroup.AddAction(oneGroupAction);
             }
         }
 
@@ -205,6 +222,15 @@ namespace CommonForms
             menuStripActions.Show(btnAdd, new Point(0, btnAdd.Height));
         }
 
+        /*
+         * RefreshUI reloads the UI state
+         *  - sets the current action name,
+         *  - enables or disables the prev/next buttons
+         *  - sets the current editor index and editor count
+         *  - reloads the appropriate editor based on current editor index
+         *      - if it's -1, it loads the start panel
+         *      - else it loads the stored editor
+         */
         private void RefreshUI()
         {
             int count = mEditors.Count();
