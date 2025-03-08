@@ -24,7 +24,8 @@
             //  creates all the components - labels, buttons, listbox
             CreateMasterLayout();
 
-            mDialogSettings = new FilesListSettingsDialog(this);
+            mDialogSettings = new (this);
+            
 
             //  provide a default local status updater
             UpdateStatusCallback = this.UpdateLocalStatus;
@@ -64,10 +65,7 @@
             CreateMasterLayout();
         }
 
-        /// <summary>
-        /// A default status updater, updates the local status label with the message.
-        /// </summary>
-        /// <param name="message">The message will be set as the status</param>
+        // A default status updater, updates the local status label with the message.
         private void UpdateLocalStatus(string message)
         {
             if (lblStatus != null)
@@ -88,14 +86,6 @@
             btnClear.Enabled = haveFiles;
             btnReload.Enabled = haveFiles;
             btnRem.Enabled = haveFiles && lstFiles.SelectedIndex != -1;
-        }
-
-        private void UpdateLocalizations()
-        {
-            lblAddFiles.Text = Locale.FILES_LIST_LABEL_ADD;
-            btnAddFiles.Text = Locale.FILES_LIST_BUTTON_ADD;
-            btnRem.Text = Locale.FILES_LIST_BUTTON_REM;
-            btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
         }
 
         public override void SaveSettings(ref Dictionary<string, string> iniKeys)
@@ -134,9 +124,7 @@
             Call_UpdateUI();
         }
 
-        /// <summary>
-        /// Clears the list and reloads the list of file names from the Processor
-        /// </summary>
+        // Clears the list and reloads the list of file names from the Processor
         public void ReloadFiles()
         {
             lstFiles.Items.Clear();
@@ -147,9 +135,7 @@
             }
         }
 
-        /// <summary>
-        /// Reloads localizations
-        /// </summary>
+        // Reloads localizations
         public override void UpdateLocale()
         {
             //  top
@@ -163,9 +149,7 @@
             btnClear.Text = Locale.FILES_LIST_BUTTON_CLEAR;
         }
 
-        /// <summary>
-        /// Handles button ADD's click
-        /// </summary>
+        // Handles button ADD's click
         private void btnAdd_Click(object? sender, EventArgs e)
         {
             //  show dialog to select folder

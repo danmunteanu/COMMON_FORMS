@@ -8,11 +8,15 @@
             "doc", "docx", "pdf"
         ];
 
+        public bool FreeEditExtensions { 
+            get { return txtExtensions.ReadOnly; }
+            set { txtExtensions.ReadOnly = !value; }
+        }
+
         public string[] Extensions
         {
             get {
-                string[] tokens = txtExtensions.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries);
-                return tokens;
+                return txtExtensions.Text.Split(KExtensionSeparator, StringSplitOptions.RemoveEmptyEntries);
             }
         }
 

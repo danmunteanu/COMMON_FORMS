@@ -15,6 +15,7 @@
             InitializeComponent();
 
             this.MaximizeBox = false;
+            compListExt.FreeEditExtensions = false;
 
             //  use the setter to trigger LoadListSettings
             ListControl = listControl;
@@ -53,6 +54,8 @@
                 settings.ParseSubfolders = chkParseSubfolders.Checked;
                 settings.UseStatus = chkShowStatus.Checked;
                 settings.UseProgressBar = chkShowProgressBar.Checked;
+
+                mListControl.FileFilters = compListExt.Extensions.ToList();
                 mListControl.Settings = settings;
             }
             this.Close();
