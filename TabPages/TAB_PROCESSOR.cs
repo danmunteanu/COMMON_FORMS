@@ -130,8 +130,8 @@ namespace CommonForms
             if (lstProcessor.SelectedIndex < 0) return;
 
             //  get current change
-            Transform<string> transform = Processor.GetTransformAt(lstProcessor.SelectedIndex);
-            mDlgSelTrans.LoadState(DialogSelectTransform.EditorState.Edit, transform);
+            FileTransform trans = Processor.GetTransformAt(lstProcessor.SelectedIndex);
+            mDlgSelTrans.LoadState(DialogSelectTransform.EditorState.Edit, trans);
             mDlgSelTrans.ShowDialog(this);
         }
 

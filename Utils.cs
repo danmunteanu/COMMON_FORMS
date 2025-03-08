@@ -79,6 +79,8 @@
             ".raw"
         };
 
+        public static string K_PREFIX_DATE_MASK = "yyyy-MM-dd-";
+
         //	helper - Adds user controls to a panel
         public static void AddUserControlToPanel(Panel panel, UserControl control)
         {

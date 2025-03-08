@@ -121,7 +121,7 @@ namespace CommonForms
                 chkCustom.Checked = false;
                 txtExtension.Focus();
             }
-            
+
             UpdateUI();
         }
 
@@ -155,6 +155,11 @@ namespace CommonForms
         private void btnClearExt_Click(object sender, EventArgs e)
         {
             txtExtension.Clear();
+        }
+
+        private void btnUseDate_Click(object sender, EventArgs e)
+        {
+            txtPrefix.Text = dpDate.Value.ToString(Utils.K_PREFIX_DATE_MASK);
         }
     }
 }

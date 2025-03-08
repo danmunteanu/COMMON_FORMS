@@ -210,8 +210,9 @@
             // 
             // tableLayoutDatePrefix
             // 
-            tableLayoutDatePrefix.ColumnCount = 2;
-            tableLayoutDatePrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130F));
+            tableLayoutDatePrefix.ColumnCount = 3;
+            tableLayoutDatePrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90F));
+            tableLayoutDatePrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 285F));
             tableLayoutDatePrefix.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutDatePrefix.Controls.Add(dpDate, 1, 0);
             tableLayoutDatePrefix.Controls.Add(btnUseDate, 0, 0);
@@ -226,9 +227,9 @@
             // dpDate
             // 
             dpDate.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            dpDate.Location = new Point(133, 3);
+            dpDate.Location = new Point(93, 3);
             dpDate.Name = "dpDate";
-            dpDate.Size = new Size(450, 27);
+            dpDate.Size = new Size(279, 27);
             dpDate.TabIndex = 14;
             // 
             // btnUseDate
@@ -237,10 +238,11 @@
             btnUseDate.Font = new Font("Segoe UI", 8F);
             btnUseDate.Location = new Point(3, 3);
             btnUseDate.Name = "btnUseDate";
-            btnUseDate.Size = new Size(124, 28);
+            btnUseDate.Size = new Size(84, 28);
             btnUseDate.TabIndex = 10;
             btnUseDate.Text = "USE DATE";
             btnUseDate.UseVisualStyleBackColor = true;
+            btnUseDate.Click += btnUseDate_Click;
             // 
             // EditorRenameFile
             // 
