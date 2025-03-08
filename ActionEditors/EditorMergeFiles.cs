@@ -1,4 +1,5 @@
 ﻿using RealityFrameworks.Actions;
+using SharpCompress;
 
 namespace CommonForms
 {
@@ -25,7 +26,7 @@ namespace CommonForms
             }
         }
 
-        public override void LoadState(RealityFrameworks.Actions.Action<string> action)
+        public override void LoadState(FileAction action)
         {
             if (action is ActionMergeTextFiles amf)
             {
@@ -33,14 +34,17 @@ namespace CommonForms
             }
         }
 
-        private void LoadState(ActionMergeTextFiles amf)
-        {
-            //  Load Stuff from amf
-        }
-
         public override bool ValidateState()
         {
-            return true;
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(txtMergeName.Text))
+            {
+                PushError("Merge file name cannot be missing. Please select a file name.");
+                isValid = false;
+            }
+
+            return isValid;
         }
 
         private void btnSelectMergeName_Click(object sender, EventArgs e)

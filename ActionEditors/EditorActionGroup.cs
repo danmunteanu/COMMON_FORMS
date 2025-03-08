@@ -104,11 +104,12 @@ namespace CommonForms
             for (int idx = 0; idx < ag.CountActions(); ++idx)
             {
                 //  get the action from the group
-                FileAction fa = ag.GetActionAt(idx);
-                string actionName = fa.GetType().Name;
+                FileAction fileAction = ag.GetActionAt(idx);
+                string actionName = fileAction.GetType().Name;
 
                 //  create an editor
                 EditorBase editor = EditorFactory.Create(actionName);
+                editor.LoadState(fileAction);
                 mEditors.Insert (
                     mEditors.Count(), 
                     new ActionNameAndEditorPair (actionName, editor)
