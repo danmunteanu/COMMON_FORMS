@@ -13,11 +13,6 @@
         public void AddAction(string actionName)
             => cmbActions.Items.Add(actionName);
 
-        public void LoadIndex(int idx)
-        {
-            cmbActions.SelectedIndex = idx;
-        }
-
         //  Tries to find an editor in the cache, if not found, it creates the editor
         private EditorBase? FindOrCreateEditor(string? name)
         {
