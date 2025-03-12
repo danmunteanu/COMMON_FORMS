@@ -5,35 +5,31 @@
      */
     public class EditorBase : UserControl
     {
-        //  override this in derived classes to validate the state of the  UI
+        //  override this in derived classes to validate the state of the UI
         public virtual bool ValidateState()
         {
             return true;
         }
 
-        //  loads the editor state from a concrete condition
-        //  must override in derived classes
-        public virtual void LoadState(RealityFrameworks.Conditions.Condition<string> cond)
-            => throw new NotImplementedException();
-        
-       //  Saves the editor's state into the condition
-        public virtual void SaveState(RealityFrameworks.Conditions.Condition<string> cond)
+        //  loads the editor state from a concrete condition, if it's a Condition editor
+        public virtual void LoadState(FileCondition cond)
             => throw new NotImplementedException();
 
-        //  Loads the state of the editor from a concrete Action
-        //  Override in derived classes
-        public virtual void LoadState(RealityFrameworks.Actions.Action<string> action)
+        //  Saves the editor's state into the condition, if it's a Condition editor
+         public virtual void SaveState(FileCondition cond)
             => throw new NotImplementedException();
 
-        //  Saves the state of the editor to an Action instance
-        //  Override in derived classes
-        public virtual void SaveState(RealityFrameworks.Actions.Action<string> action)
+        //  Loads the state of the editor from a concrete Action, if it's an Action editor
+        public virtual void LoadState(FileAction action)
             => throw new NotImplementedException();
 
-        //  Resets the editor state - implement in derived classes
+        //  Saves the state of the editor to an Action instance, if it's an Action editor
+        public virtual void SaveState(FileAction action)
+            => throw new NotImplementedException();
+
+        //  Resets the editor state - override in derived classes
         public virtual void ClearState()
         {
-
         }
 
         //  ERROR STACK

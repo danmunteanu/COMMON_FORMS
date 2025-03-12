@@ -372,7 +372,15 @@ namespace CommonForms.Components
 
             //  CONDITION Validation
             if (mSelCondEditor != null && mSelCondEditor.ValidateState())
+            {
+                //  Must update Condition?
+                string condName = cmbCondition.SelectedItem?.ToString() ?? string.Empty;
+                if (!string.IsNullOrEmpty(condName) && condName!= Transform.Condition.GetType().Name)
+                    Transform.Condition = FileConditionFactory.Create(condName);
+                
+                //  Save State: Editor -> Condition
                 mSelCondEditor?.SaveState(Transform.Condition);
+            }
             else
             {
                 if (mSelCondEditor == null)
@@ -399,8 +407,17 @@ namespace CommonForms.Components
 
             //  ACTION Validation
             errMsg = string.Empty;
+
             if (mSelActionEditor != null && mSelActionEditor.ValidateState())
+            {
+                //  Must update Action?
+                string actionName = cmbAction.SelectedItem?.ToString() ?? string.Empty;
+                if (!string.IsNullOrEmpty(actionName) && actionName != Transform.Action.GetType().Name)
+                    Transform.Action = FileActionFactory.Create(actionName);
+
+                //  Save State: Editor -> Action
                 mSelActionEditor?.SaveState(Transform.Action);
+            }
             else
             {
                 if (mSelActionEditor == null)
