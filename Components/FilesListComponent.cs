@@ -306,7 +306,7 @@
             return added;
         }
 
-        private void SearchTextChanged(object sender, EventArgs e)
+        private void SearchTextChanged(object? sender, EventArgs e)
         {
             string search = txtSearch.Text;
 
@@ -526,8 +526,8 @@
             // btnAddFolder
             btnAddFiles.Text = Settings.ButtonAddLabel;
             btnAddFiles.Font = new Font(btnAddFiles.Font.FontFamily, Settings.FontSize);
-            btnAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            //btnAddFiles.Dock = DockStyle.Fill;
+            //btnAddFiles.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnAddFiles.Dock = DockStyle.Fill;
             btnAddFiles.Padding = new Padding(3);
             btnAddFiles.AutoSize = true;
             btnAddFiles.Height = Settings.BottomLineHeight;
@@ -538,6 +538,7 @@
             btnReload.Text = "↻";
             btnReload.Font = new Font(btnReload.Font.FontFamily, Settings.FontSize);
             btnReload.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnReload.Dock = DockStyle.Fill;
             btnReload.AutoSize = true;
             btnReload.Padding = new Padding(3);
             btnReload.Size = new(35, Settings.BottomLineHeight);
@@ -548,10 +549,13 @@
             btnRem.Text = "-";
             btnRem.Font = new Font(btnRem.Font.FontFamily, Settings.FontSize);
             btnRem.AutoSize = true;
+            //btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnRem.Dock = DockStyle.Fill;
             btnRem.Padding = new Padding(3);
             btnRem.TextAlign = ContentAlignment.MiddleCenter;
-            btnRem.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnRem.Size = new Size(35, Settings.BottomLineHeight);
+            //btnRem.Click -= btnRem_Click;
+            //btnRem.Click += btnRem_Click;
 
             //  button Settings
             btnSettings.Text = "⚙"; // Gear emoji
@@ -560,7 +564,8 @@
             btnSettings.AutoSize = true;
             btnSettings.Padding = new Padding(3);
             btnSettings.TextAlign = ContentAlignment.MiddleCenter;
-            btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            //btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnSettings.Dock = DockStyle.Fill;
             btnSettings.Size = new Size(35, Settings.BottomLineHeight);
             btnSettings.Click -= btnSettings_Click;
             btnSettings.Click += btnSettings_Click;
@@ -570,7 +575,8 @@
             btnClear.Font = new Font(btnClear.Font.FontFamily, Settings.FontSize);
             btnClear.AutoSize = true;
             btnClear.Height = Settings.BottomLineHeight;
-            btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            //btnClear.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            btnClear.Dock = DockStyle.Fill;
             btnClear.Height = Settings.BottomLineHeight;
             btnClear.Click -= btnClear_Click;
             btnClear.Click += btnClear_Click;
@@ -634,9 +640,13 @@
             }
 
             //  Search bar
-            TableLayoutPanel tableSearch = CreateSearchBar();
-            masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
-            tableSearch.Dock = DockStyle.Fill;
+            TableLayoutPanel? tableSearch = null;
+            if (Settings.UseSearchBar)
+			{
+				tableSearch = CreateSearchBar();
+				masterTableLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 50));
+				tableSearch.Dock = DockStyle.Fill;
+			}
 
             //  Bottom Buttons
             TableLayoutPanel bottomLayout = CreateBottomLayout();
@@ -651,7 +661,7 @@
             masterTableLayout.Controls.Add(topLineLayout, 0, rowIdx++);
             masterTableLayout.Controls.Add(lstFiles, 0, rowIdx++);
             
-            if (Settings.UseSearchBar && lblSearch != null)
+            if (Settings.UseSearchBar && tableSearch != null)
                 masterTableLayout.Controls.Add(tableSearch, 0, rowIdx++);
             
             if (Settings.UseStatus && lblStatus != null) 
@@ -662,6 +672,7 @@
             
             masterTableLayout.Controls.Add(bottomLayout, 0, rowIdx++);
 
+            masterTableLayout.Padding += new Padding(0, 0, 0, 5);
             this.Controls.Add(masterTableLayout);
         }
 
