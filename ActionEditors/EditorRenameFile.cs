@@ -8,29 +8,55 @@ namespace CommonForms
         {
             InitializeComponent();
 
-            chkPrefix.Checked = false;
+            chkAddPrefix.Checked = false;
             txtPrefix.Enabled = false;
 
-            chkExtension.Checked = false;
+            chkChangeExtension.Checked = false;
             txtExtension.Enabled = false;
 
-            chkCustom.Checked = false;
+            chkCustomName.Checked = false;
             txtCustom.Enabled = false;
 
+            LoadExtensions();
+
             UpdateUI();
+        }
+
+        private void LoadExtensions()
+        {
+            menuStripExtensions.Items.Clear();
+
+            var yamlItem = new ToolStripMenuItem("YAML");
+            var imageItem = new ToolStripMenuItem("IMAGE");
+            var audioItem = new ToolStripMenuItem("AUDIO");
+
+            //  yaml
+            foreach (var ext in Utils.YamlFileExtensions)
+                yamlItem.DropDownItems.Add(ext, null, MenuItem_Click);
+
+            foreach (var ext in Utils.ImageFileExtensions)
+                imageItem.DropDownItems.Add(ext, null, MenuItem_Click);
+
+            foreach (var ext in Utils.AudioFileExtensions)
+                audioItem.DropDownItems.Add(ext, null, MenuItem_Click);
+
+            menuStripExtensions.Items.Add(yamlItem);
+            menuStripExtensions.Items.Add(imageItem);
+            menuStripExtensions.Items.Add(audioItem);
         }
 
         public override void LoadState(FileAction action)
         {
             if (action is ActionRenameFile arf)
             {
-                chkPrefix.Checked = !string.IsNullOrEmpty(arf.Prefix);
+                chkAddPrefix.Checked = arf.RenameType.HasFlag(ActionRenameFile.ERenameType.AddPrefix);
+                chkRemovePrefix.Checked = arf.RenameType.HasFlag(ActionRenameFile.ERenameType.RemovePrefix);
                 txtPrefix.Text = arf.Prefix;
 
-                chkExtension.Checked = !string.IsNullOrEmpty(arf.Extension);
+                chkChangeExtension.Checked = arf.RenameType.HasFlag(ActionRenameFile.ERenameType.ChangeExtension);
                 txtExtension.Text = arf.Extension;
 
-                chkCustom.Checked = !string.IsNullOrEmpty(arf.CustomName);
+                chkCustomName.Checked = arf.RenameType.HasFlag(ActionRenameFile.ERenameType.CustomName);
                 txtCustom.Text = arf.CustomName;
             }
         }
@@ -40,37 +66,56 @@ namespace CommonForms
             if (action is ActionRenameFile arf)
             {
                 arf.Extension = txtExtension.Text;
+
+                arf.RenameType = ActionRenameFile.ERenameType.Undefined;
+
+                if (chkAddPrefix.Checked)
+                    arf.RenameType |= ActionRenameFile.ERenameType.AddPrefix;
+
+                if (chkRemovePrefix.Checked)
+                    arf.RenameType |= ActionRenameFile.ERenameType.RemovePrefix;
+
+                //  ADD SUFFIX: LATER
+
+                if (chkChangeExtension.Checked)
+                    arf.RenameType |= ActionRenameFile.ERenameType.ChangeExtension;
+
+                if (chkCustomName.Checked)
+                    arf.RenameType |= ActionRenameFile.ERenameType.CustomName;
+
+                //  set the fields
                 arf.Prefix = txtPrefix.Text;
+                arf.Extension = txtExtension.Text;
                 arf.CustomName = txtCustom.Text;
             }
         }
 
         public override void ClearState()
         {
-            chkPrefix.Checked = false;
+            chkAddPrefix.Checked = false;
             txtPrefix.Text = string.Empty;
 
-            chkExtension.Checked = false;
+            chkChangeExtension.Checked = false;
             txtExtension.Text = string.Empty;
 
-            chkCustom.Checked = false;
+            chkCustomName.Checked = false;
             txtCustom.Text = string.Empty;
         }
 
         public override bool ValidateState()
         {
             bool hasRename =
-                (chkPrefix.Checked && (!string.IsNullOrEmpty(txtPrefix.Text))) ||
-                (chkExtension.Checked && (!string.IsNullOrEmpty(txtExtension.Text)) ||
-                (chkCustom.Checked && (!string.IsNullOrEmpty(txtCustom.Text))));
+                ((chkAddPrefix.Checked || chkRemovePrefix.Checked) && (!string.IsNullOrEmpty(txtPrefix.Text))) ||
+                (chkChangeExtension.Checked && (!string.IsNullOrEmpty(txtExtension.Text)) ||
+                (chkCustomName.Checked && (!string.IsNullOrEmpty(txtCustom.Text))));
 
-            if (chkPrefix.Checked && string.IsNullOrEmpty(txtPrefix.Text))
+            if ((chkAddPrefix.Checked || chkRemovePrefix.Checked) && string.IsNullOrEmpty(txtPrefix.Text))
             {
-                PushError("Prefix cannot be empty when adding a prefix");
+                PushError("Prefix cannot be empty when adding or removing a prefix");
                 return false;
             }
 
-            if (chkExtension.Checked && string.IsNullOrEmpty(txtExtension.Text))
+            if (chkChangeExtension.Checked && string.IsNullOrEmpty(txtExtension.Text))
             {
                 PushError("Select a valid extension when changing a file's extension");
                 return false;
@@ -88,37 +133,37 @@ namespace CommonForms
         private void UpdateUI()
         {
             //  Add Prefix
-            txtPrefix.Enabled = chkPrefix.Checked;
-            dpDate.Enabled = chkPrefix.Checked;
-            btnUseDate.Enabled = chkPrefix.Checked;
+            txtPrefix.Enabled = chkAddPrefix.Checked || chkRemovePrefix.Checked;
+            dpDate.Enabled = chkAddPrefix.Checked || chkRemovePrefix.Checked;
+            btnUseDate.Enabled = chkAddPrefix.Checked || chkRemovePrefix.Checked;
 
             //  Extension
-            txtExtension.Enabled = chkExtension.Checked;
-            btnTxt.Enabled = chkExtension.Checked;
-            btnMD.Enabled = chkExtension.Checked;
-            btnClearExt.Enabled = chkExtension.Checked;
+            txtExtension.Enabled = chkChangeExtension.Checked;
+            btnClearExt.Enabled = chkChangeExtension.Checked;
+            btnExtensions.Enabled = chkChangeExtension.Checked;
 
-            if (chkPrefix.Checked)
-                chkCustom.Checked = false;
+            if (chkAddPrefix.Checked)
+                chkCustomName.Checked = false;
         }
 
         private void chkAddPrefix_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateUI();
-
-            if (chkPrefix.Checked)
+            if (chkAddPrefix.Checked)
             {
                 txtPrefix.Focus();
+                chkRemovePrefix.Checked = false;
             }
+
+            UpdateUI();
         }
 
         private void chkNewExt_CheckedChanged(object sender, EventArgs e)
         {
-            txtExtension.Enabled = chkExtension.Checked;
+            txtExtension.Enabled = chkChangeExtension.Checked;
 
-            if (chkExtension.Checked)
+            if (chkChangeExtension.Checked)
             {
-                chkCustom.Checked = false;
+                chkCustomName.Checked = false;
                 txtExtension.Focus();
             }
 
@@ -127,12 +172,12 @@ namespace CommonForms
 
         private void chkCustom_CheckedChanged(object sender, EventArgs e)
         {
-            txtCustom.Enabled = chkCustom.Checked;
+            txtCustom.Enabled = chkCustomName.Checked;
 
-            if (chkCustom.Checked)
+            if (chkCustomName.Checked)
             {
-                chkPrefix.Checked = false;
-                chkExtension.Checked = false;
+                chkAddPrefix.Checked = false;
+                chkChangeExtension.Checked = false;
 
                 txtCustom.Focus();
             }
@@ -160,6 +205,32 @@ namespace CommonForms
         private void btnUseDate_Click(object sender, EventArgs e)
         {
             txtPrefix.Text = dpDate.Value.ToString(Utils.K_PREFIX_DATE_MASK);
+        }
+
+        private void chkRemovePrefix_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateUI();
+
+            if (chkRemovePrefix.Checked)
+            {
+                txtPrefix.Focus();
+                chkAddPrefix.Checked = false;
+            }
+        }
+
+        private void btnExtensions_Click(object sender, EventArgs e)
+        {
+            menuStripExtensions.Show(btnExtensions, new Point(0, btnExtensions.Height));
+        }
+
+        private void MenuItem_Click(object? sender, EventArgs e)
+        {
+            ToolStripMenuItem? menuItem = sender as ToolStripMenuItem;
+            if (menuItem == null || string.IsNullOrEmpty(menuItem.Text))
+                return;
+
+            string ext = menuItem.Text;
+            txtExtension.Text = ext;
         }
     }
 }

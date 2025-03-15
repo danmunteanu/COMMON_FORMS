@@ -28,25 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             txtPrefix = new TextBox();
             txtExtension = new TextBox();
             txtCustom = new TextBox();
-            chkPrefix = new CheckBox();
-            chkExtension = new CheckBox();
-            chkCustom = new CheckBox();
+            chkAddPrefix = new CheckBox();
+            chkChangeExtension = new CheckBox();
+            chkCustomName = new CheckBox();
             tableLayoutMain = new TableLayoutPanel();
             tableLayoutPrefix = new TableLayoutPanel();
             tableLayoutPanelExt = new TableLayoutPanel();
+            btnExtensions = new Button();
             btnClearExt = new Button();
-            btnMD = new Button();
-            btnTxt = new Button();
             tableLayoutDatePrefix = new TableLayoutPanel();
             dpDate = new DateTimePicker();
             btnUseDate = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            chkRemovePrefix = new CheckBox();
+            menuStripExtensions = new ContextMenuStrip(components);
             tableLayoutMain.SuspendLayout();
             tableLayoutPrefix.SuspendLayout();
             tableLayoutPanelExt.SuspendLayout();
             tableLayoutDatePrefix.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // txtPrefix
@@ -73,41 +77,41 @@
             txtCustom.Size = new Size(586, 27);
             txtCustom.TabIndex = 4;
             // 
-            // chkPrefix
+            // chkAddPrefix
             // 
-            chkPrefix.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            chkPrefix.AutoSize = true;
-            chkPrefix.Location = new Point(3, 13);
-            chkPrefix.Name = "chkPrefix";
-            chkPrefix.Size = new Size(103, 24);
-            chkPrefix.TabIndex = 6;
-            chkPrefix.Text = "Add Prefix:";
-            chkPrefix.UseVisualStyleBackColor = true;
-            chkPrefix.CheckedChanged += chkAddPrefix_CheckedChanged;
+            chkAddPrefix.Anchor = AnchorStyles.Left;
+            chkAddPrefix.AutoSize = true;
+            chkAddPrefix.Location = new Point(3, 3);
+            chkAddPrefix.Name = "chkAddPrefix";
+            chkAddPrefix.Size = new Size(103, 24);
+            chkAddPrefix.TabIndex = 6;
+            chkAddPrefix.Text = "Add Prefix:";
+            chkAddPrefix.UseVisualStyleBackColor = true;
+            chkAddPrefix.CheckedChanged += chkAddPrefix_CheckedChanged;
             // 
-            // chkExtension
+            // chkChangeExtension
             // 
-            chkExtension.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            chkExtension.AutoSize = true;
-            chkExtension.Location = new Point(3, 148);
-            chkExtension.Name = "chkExtension";
-            chkExtension.Size = new Size(151, 24);
-            chkExtension.TabIndex = 7;
-            chkExtension.Text = "Change Extension:";
-            chkExtension.UseVisualStyleBackColor = true;
-            chkExtension.CheckedChanged += chkNewExt_CheckedChanged;
+            chkChangeExtension.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            chkChangeExtension.AutoSize = true;
+            chkChangeExtension.Location = new Point(3, 148);
+            chkChangeExtension.Name = "chkChangeExtension";
+            chkChangeExtension.Size = new Size(151, 24);
+            chkChangeExtension.TabIndex = 7;
+            chkChangeExtension.Text = "Change Extension:";
+            chkChangeExtension.UseVisualStyleBackColor = true;
+            chkChangeExtension.CheckedChanged += chkNewExt_CheckedChanged;
             // 
-            // chkCustom
+            // chkCustomName
             // 
-            chkCustom.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            chkCustom.AutoSize = true;
-            chkCustom.Location = new Point(3, 243);
-            chkCustom.Name = "chkCustom";
-            chkCustom.Size = new Size(128, 24);
-            chkCustom.TabIndex = 8;
-            chkCustom.Text = "Custom Name:";
-            chkCustom.UseVisualStyleBackColor = true;
-            chkCustom.CheckedChanged += chkCustom_CheckedChanged;
+            chkCustomName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            chkCustomName.AutoSize = true;
+            chkCustomName.Location = new Point(3, 243);
+            chkCustomName.Name = "chkCustomName";
+            chkCustomName.Size = new Size(128, 24);
+            chkCustomName.TabIndex = 8;
+            chkCustomName.Text = "Custom Name:";
+            chkCustomName.UseVisualStyleBackColor = true;
+            chkCustomName.CheckedChanged += chkCustom_CheckedChanged;
             // 
             // tableLayoutMain
             // 
@@ -115,11 +119,11 @@
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutMain.Controls.Add(tableLayoutPrefix, 0, 1);
             tableLayoutMain.Controls.Add(tableLayoutPanelExt, 0, 4);
-            tableLayoutMain.Controls.Add(chkPrefix, 0, 0);
-            tableLayoutMain.Controls.Add(chkExtension, 0, 4);
-            tableLayoutMain.Controls.Add(chkCustom, 0, 7);
+            tableLayoutMain.Controls.Add(chkChangeExtension, 0, 4);
+            tableLayoutMain.Controls.Add(chkCustomName, 0, 7);
             tableLayoutMain.Controls.Add(txtCustom, 0, 8);
             tableLayoutMain.Controls.Add(tableLayoutDatePrefix, 0, 2);
+            tableLayoutMain.Controls.Add(flowLayoutPanel1, 0, 0);
             tableLayoutMain.Dock = DockStyle.Fill;
             tableLayoutMain.Location = new Point(0, 0);
             tableLayoutMain.Name = "tableLayoutMain";
@@ -154,16 +158,14 @@
             // 
             // tableLayoutPanelExt
             // 
-            tableLayoutPanelExt.ColumnCount = 5;
+            tableLayoutPanelExt.ColumnCount = 4;
             tableLayoutPanelExt.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 170F));
             tableLayoutPanelExt.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 45F));
-            tableLayoutPanelExt.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
-            tableLayoutPanelExt.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 55F));
+            tableLayoutPanelExt.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 35F));
             tableLayoutPanelExt.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelExt.Controls.Add(txtExtension, 0, 0);
-            tableLayoutPanelExt.Controls.Add(btnClearExt, 3, 0);
-            tableLayoutPanelExt.Controls.Add(btnMD, 2, 0);
-            tableLayoutPanelExt.Controls.Add(btnTxt, 1, 0);
+            tableLayoutPanelExt.Controls.Add(btnExtensions, 1, 0);
+            tableLayoutPanelExt.Controls.Add(btnClearExt, 2, 0);
             tableLayoutPanelExt.Dock = DockStyle.Fill;
             tableLayoutPanelExt.Location = new Point(3, 178);
             tableLayoutPanelExt.Name = "tableLayoutPanelExt";
@@ -172,41 +174,28 @@
             tableLayoutPanelExt.Size = new Size(586, 34);
             tableLayoutPanelExt.TabIndex = 15;
             // 
+            // btnExtensions
+            // 
+            btnExtensions.Font = new Font("Segoe UI", 7F);
+            btnExtensions.Location = new Point(173, 3);
+            btnExtensions.Name = "btnExtensions";
+            btnExtensions.Size = new Size(39, 28);
+            btnExtensions.TabIndex = 14;
+            btnExtensions.Text = "EXT";
+            btnExtensions.UseVisualStyleBackColor = true;
+            btnExtensions.Click += btnExtensions_Click;
+            // 
             // btnClearExt
             // 
             btnClearExt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnClearExt.Font = new Font("Segoe UI", 8F);
-            btnClearExt.Location = new Point(273, 3);
+            btnClearExt.Font = new Font("Segoe UI", 7F);
+            btnClearExt.Location = new Point(218, 3);
             btnClearExt.Name = "btnClearExt";
-            btnClearExt.Size = new Size(49, 28);
+            btnClearExt.Size = new Size(29, 28);
             btnClearExt.TabIndex = 11;
             btnClearExt.Text = "X";
             btnClearExt.UseVisualStyleBackColor = true;
             btnClearExt.Click += btnClearExt_Click;
-            // 
-            // btnMD
-            // 
-            btnMD.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnMD.Font = new Font("Segoe UI", 8F);
-            btnMD.Location = new Point(218, 3);
-            btnMD.Name = "btnMD";
-            btnMD.Size = new Size(49, 28);
-            btnMD.TabIndex = 13;
-            btnMD.Text = ".md";
-            btnMD.UseVisualStyleBackColor = true;
-            btnMD.Click += btnMD_Click;
-            // 
-            // btnTxt
-            // 
-            btnTxt.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            btnTxt.Font = new Font("Segoe UI", 8F);
-            btnTxt.Location = new Point(173, 3);
-            btnTxt.Name = "btnTxt";
-            btnTxt.Size = new Size(39, 28);
-            btnTxt.TabIndex = 12;
-            btnTxt.Text = ".txt";
-            btnTxt.UseVisualStyleBackColor = true;
-            btnTxt.Click += btnTxt_Click;
             // 
             // tableLayoutDatePrefix
             // 
@@ -244,6 +233,33 @@
             btnUseDate.UseVisualStyleBackColor = true;
             btnUseDate.Click += btnUseDate_Click;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(chkAddPrefix);
+            flowLayoutPanel1.Controls.Add(chkRemovePrefix);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(3, 3);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(586, 34);
+            flowLayoutPanel1.TabIndex = 17;
+            // 
+            // chkRemovePrefix
+            // 
+            chkRemovePrefix.AutoSize = true;
+            chkRemovePrefix.Location = new Point(112, 3);
+            chkRemovePrefix.Name = "chkRemovePrefix";
+            chkRemovePrefix.Size = new Size(126, 24);
+            chkRemovePrefix.TabIndex = 15;
+            chkRemovePrefix.Text = "Remove Prefix";
+            chkRemovePrefix.UseVisualStyleBackColor = true;
+            chkRemovePrefix.CheckedChanged += chkRemovePrefix_CheckedChanged;
+            // 
+            // menuStripExtensions
+            // 
+            menuStripExtensions.ImageScalingSize = new Size(20, 20);
+            menuStripExtensions.Name = "menuStripExtensions";
+            menuStripExtensions.Size = new Size(61, 4);
+            // 
             // EditorRenameFile
             // 
             Controls.Add(tableLayoutMain);
@@ -256,6 +272,8 @@
             tableLayoutPanelExt.ResumeLayout(false);
             tableLayoutPanelExt.PerformLayout();
             tableLayoutDatePrefix.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -263,17 +281,19 @@
         private TextBox txtPrefix;
         private TextBox txtExtension;
         private TextBox txtCustom;
-        private CheckBox chkPrefix;
-        private CheckBox chkExtension;
-        private CheckBox chkCustom;
+        private CheckBox chkAddPrefix;
+        private CheckBox chkChangeExtension;
+        private CheckBox chkCustomName;
         private TableLayoutPanel tableLayoutMain;
         private Button btnUseDate;
         private Button btnClearExt;
-        private Button btnTxt;
-        private Button btnMD;
         private DateTimePicker dpDate;
         private TableLayoutPanel tableLayoutPanelExt;
         private TableLayoutPanel tableLayoutPrefix;
         private TableLayoutPanel tableLayoutDatePrefix;
+        private CheckBox chkRemovePrefix;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Button btnExtensions;
+        private ContextMenuStrip menuStripExtensions;
     }
 }

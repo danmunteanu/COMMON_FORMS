@@ -1,5 +1,6 @@
-﻿using RealityFrameworks;
-using CommonForms.Components;
+﻿using CommonForms.Components;
+using RealityFrameworks.Actions;
+using RealityFrameworks.Conditions;
 
 namespace CommonForms
 {
@@ -9,6 +10,8 @@ namespace CommonForms
 
         List<string> _conditionNames = new();
         List<string> _actionNames = new();
+
+        List<Func<FileTransform>> mTemplates = new();
 
         public List<string> ConditionNames
         {
@@ -36,16 +39,65 @@ namespace CommonForms
 
             lstProcessor.HorizontalScrollbar = true;
 
-            mDlgSelTrans.OnModified = () => 
-            { 
-                ReloadProcessor(); 
-                UpdateUI(); 
+            mDlgSelTrans.OnModified = () =>
+            {
+                ReloadProcessor();
+                UpdateUI();
             };
+
+            LoadTemplates();
 
             //mFilesProcessor.AddFolder(@"E:\EXILE_3.25", true);
             //mFilesProcessor.AddFolder(@"e:\Path of Building\Data\", true);
 
             UpdateLocalizations();
+        }
+
+        private void LoadTemplates()
+        {
+            //  load the menu items
+            menuStripTemplates.Items.Clear();
+            menuStripTemplates.Items.Add("YAML/PREFIX: ADD", null, MenuItem_Click);
+            menuStripTemplates.Items.Add("YAML/PREFIX: REMOVE", null, MenuItem_Click);
+
+            //  create the templates
+            mTemplates.Clear();
+            mTemplates.Add(
+                //  YAML, ADD PREFIX
+                () => {
+                    ConditionHasExtension isYaml = new();
+                    isYaml.AddExtensions(Utils.YamlFileExtensions.ToArray());
+
+                    ActionRenameFile addPrefix = new()
+                    { 
+                        RenameType = ActionRenameFile.ERenameType.AddPrefix,
+                        Prefix = "PREFIX-"
+                    };                    
+
+                    var trans = new FileTransform(isYaml, addPrefix);
+                    trans.Description = "ADD PREFIX TO YAML FILES";
+
+                    return trans;
+                }
+            );
+
+            mTemplates.Add(
+                //  YAML, REMOVE PREFIX
+                () => {
+                    ConditionHasExtension isYaml = new();
+
+                    ActionRenameFile remPrefix = new()
+                    {
+                        RenameType = ActionRenameFile.ERenameType.RemovePrefix,
+                        Prefix = "PREFIX-"
+                    };
+
+                    var tr = new FileTransform(isYaml, remPrefix);
+                    tr.Description = "REMOVE PREFIX FROM YAML FILES";
+
+                    return tr;
+                }
+            );
         }
 
         protected override void OnProcessorSet()
@@ -178,10 +230,50 @@ namespace CommonForms
             if (lstProcessor.SelectedIndex < 0) return;
 
             //  get current transform
-            Transform<string> tr = Processor.GetTransformAt(lstProcessor.SelectedIndex);
+            FileTransform tr = Processor.GetTransformAt(lstProcessor.SelectedIndex);
             tr.Enabled = !tr.Enabled;
 
             btnEnableDisable.Text = tr.Enabled ? "D" : "E";
+        }
+
+        private void btnTemplates_Click(object sender, EventArgs e)
+        {
+            //  show a menu
+            menuStripTemplates.Show(btnTemplates, new Point(0, btnAdd.Height));
+        }
+
+        private void MenuItem_Click(object? sender, EventArgs e)
+        {
+            ToolStripMenuItem? menuItem = sender as ToolStripMenuItem;
+            if (menuItem == null || string.IsNullOrEmpty(menuItem.Text))
+                return;
+            
+            //  get the index for the item
+            int idx = menuStripTemplates.Items.IndexOf(menuItem);
+
+            //  valid index?
+            if (idx == -1)
+            {
+                string title = "Template Error";
+                string message = string.Format("Menu item \"{0}\" has returned and invalid index: {1}", menuItem.Text, idx);
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //  within bounds
+            if (!(idx >= 0 && idx < mTemplates.Count()))
+            {
+                string title = "Template Error";
+                string message = string.Format("There is no template registered for \"{0}\" at position {1}", menuItem.Text, idx);
+                MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
+            //  create the FileTransform
+            FileTransform tr = mTemplates.ElementAt(idx)();
+            Processor?.AddChange(tr);
+            
+            ReloadProcessor();
         }
     }
 }
