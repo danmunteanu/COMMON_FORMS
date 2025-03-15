@@ -271,7 +271,7 @@ namespace CommonForms
             
             //  create the FileTransform
             FileTransform tr = mTemplates.ElementAt(idx)();
-            Processor?.AddChange(tr);
+            Processor?.AddTransform(tr);
             
             ReloadProcessor();
         }
