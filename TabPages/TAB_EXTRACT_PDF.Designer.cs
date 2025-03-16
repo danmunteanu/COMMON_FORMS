@@ -1,4 +1,6 @@
-﻿namespace CommonForms
+﻿using iText.Layout.Borders;
+
+namespace CommonForms
 {
     partial class TAB_EXTRACT_PDF
     {
@@ -351,7 +353,7 @@
             tableLayoutDrag.Margin = new Padding(2, 2, 2, 2);
             tableLayoutDrag.Name = "tableLayoutDrag";
             tableLayoutDrag.RowCount = 2;
-            tableLayoutDrag.RowStyles.Add(new RowStyle(SizeType.Absolute, 210F));
+            tableLayoutDrag.RowStyles.Add(new RowStyle(SizeType.Absolute, 185F));
             tableLayoutDrag.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutDrag.Size = new Size(182, 279);
             tableLayoutDrag.TabIndex = 26;
