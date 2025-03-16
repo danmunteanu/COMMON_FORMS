@@ -202,6 +202,7 @@
             chkAllowDuplicates.Enabled = pdfSelected;
             chkOnlyOdd.Enabled = pdfSelected;
             chkOnlyEven.Enabled = pdfSelected;
+            btnClearExclude.Enabled = pdfSelected;
             btnReload.Enabled = pdfSelected;
             btnExtract.Enabled = pdfSelected /* && pagesEntered */;
 
