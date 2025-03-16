@@ -51,7 +51,7 @@ namespace CommonForms
             Label label = new Label
             {
                 Text = "Start by adding an action to the group",
-                AutoSize = true, // Automatically adjust size based on text
+                AutoSize = false, // Automatically adjust size based on text
                 TextAlign = ContentAlignment.MiddleCenter, // Center the text
                 Dock = DockStyle.Fill // Fill the entire panel
             };
