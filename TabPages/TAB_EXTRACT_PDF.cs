@@ -462,14 +462,14 @@
                 return;
 
             //  clear the fields
-            txtPages.Clear();
-            txtExclude.Clear();
-
-            UpdateStatus("Document reloaded.");
+            //	txtPages.Clear();
+            //	txtExclude.Clear();
 
             UpdateUI();
-
+			
             txtPages.Select();
+			
+            UpdateStatus("Document reloaded.");
         }
 
         private void btnAdvanced_Click(object sender, EventArgs e)
