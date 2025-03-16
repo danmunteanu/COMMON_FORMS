@@ -38,7 +38,7 @@
             btnEnableDisable = new Button();
             btnTemplates = new Button();
             btnProcess = new Button();
-            lstProcessor = new ListBox();
+            lstTransforms = new ListBox();
             tableLayoutMain = new TableLayoutPanel();
             lblChangeList = new Label();
             menuStripTemplates = new ContextMenuStrip(components);
@@ -173,23 +173,25 @@
             btnProcess.UseVisualStyleBackColor = true;
             btnProcess.Click += btnProcess_Click;
             // 
-            // lstProcessor
+            // lstTransforms
             // 
-            lstProcessor.Dock = DockStyle.Fill;
-            lstProcessor.FormattingEnabled = true;
-            lstProcessor.Location = new Point(3, 39);
-            lstProcessor.Margin = new Padding(3, 4, 3, 4);
-            lstProcessor.Name = "lstProcessor";
-            lstProcessor.Size = new Size(622, 144);
-            lstProcessor.TabIndex = 35;
-            lstProcessor.SelectedIndexChanged += lstProcessor_SelectedIndexChanged;
-            lstProcessor.DoubleClick += lstProcessor_DoubleClick;
+            lstTransforms.Dock = DockStyle.Fill;
+            lstTransforms.DrawMode = DrawMode.OwnerDrawFixed;
+            lstTransforms.FormattingEnabled = true;
+            lstTransforms.Location = new Point(3, 39);
+            lstTransforms.Margin = new Padding(3, 4, 3, 4);
+            lstTransforms.Name = "lstTransforms";
+            lstTransforms.Size = new Size(622, 144);
+            lstTransforms.TabIndex = 35;
+            lstTransforms.DrawItem += lstProcessor_DrawItem;
+            lstTransforms.SelectedIndexChanged += lstProcessor_SelectedIndexChanged;
+            lstTransforms.DoubleClick += lstProcessor_DoubleClick;
             // 
             // tableLayoutMain
             // 
             tableLayoutMain.ColumnCount = 1;
             tableLayoutMain.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutMain.Controls.Add(lstProcessor, 0, 2);
+            tableLayoutMain.Controls.Add(lstTransforms, 0, 2);
             tableLayoutMain.Controls.Add(btnProcess, 0, 5);
             tableLayoutMain.Controls.Add(tableLayoutButtons, 0, 3);
             tableLayoutMain.Controls.Add(lblChangeList, 0, 1);
@@ -244,7 +246,7 @@
         private Button btnEdit;
         private Button btnClear;
         private Button btnProcess;
-        private ListBox lstProcessor;
+        private ListBox lstTransforms;
         private TableLayoutPanel tableLayoutMain;
         private Button btnReload;
         private Button btnDel;

@@ -345,7 +345,7 @@ namespace CommonForms.Components
 
             if (isConditionValid && isActionValid && cond != null && action != null)
             {
-                Processor?.AddChange(cond, action);
+                Processor?.AddTransform(cond, action);
 
                 //  Notify tab to reload and update ui
                 CallModifiedCallback();

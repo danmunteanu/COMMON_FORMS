@@ -1,6 +1,7 @@
 ﻿using CommonForms.Components;
 using RealityFrameworks.Actions;
 using RealityFrameworks.Conditions;
+using System.Windows.Forms;
 
 namespace CommonForms
 {
@@ -37,7 +38,7 @@ namespace CommonForms
         {
             InitializeComponent();
 
-            lstProcessor.HorizontalScrollbar = true;
+            lstTransforms.HorizontalScrollbar = true;
 
             mDlgSelTrans.OnModified = () =>
             {
@@ -64,15 +65,16 @@ namespace CommonForms
             mTemplates.Clear();
             mTemplates.Add(
                 //  YAML, ADD PREFIX
-                () => {
+                () =>
+                {
                     ConditionHasExtension isYaml = new();
                     isYaml.AddExtensions(Utils.YamlFileExtensions.ToArray());
 
                     ActionRenameFile addPrefix = new()
-                    { 
+                    {
                         RenameType = ActionRenameFile.ERenameType.AddPrefix,
                         Prefix = "PREFIX-"
-                    };                    
+                    };
 
                     var trans = new FileTransform(isYaml, addPrefix);
                     trans.Description = "ADD PREFIX TO YAML FILES";
@@ -83,7 +85,8 @@ namespace CommonForms
 
             mTemplates.Add(
                 //  YAML, REMOVE PREFIX
-                () => {
+                () =>
+                {
                     ConditionHasExtension isYaml = new();
 
                     ActionRenameFile remPrefix = new()
@@ -118,14 +121,14 @@ namespace CommonForms
         {
             if (Processor == null) return;
 
-            if (lstProcessor.SelectedIndex == -1)
+            if (lstTransforms.SelectedIndex == -1)
                 return;
 
-            bool haveSelection = lstProcessor.SelectedIndex != -1;
+            bool haveSelection = lstTransforms.SelectedIndex != -1;
 
             btnEdit.Enabled = haveSelection;
             btnEnableDisable.Enabled = haveSelection;
-            btnEnableDisable.Text = Processor.GetTransformAt(lstProcessor.SelectedIndex).Enabled ? "D" : "E";
+            btnEnableDisable.Text = Processor.GetTransformAt(lstTransforms.SelectedIndex).Enabled ? "D" : "E";
             btnDel.Enabled = haveSelection;
         }
 
@@ -133,11 +136,11 @@ namespace CommonForms
         private void ReloadProcessor()
         {
             if (Processor == null) return;
-            lstProcessor.Items.Clear();
-            for (int idx = 0; idx < Processor.CountChanges(); idx++)
+            lstTransforms.Items.Clear();
+            for (int idx = 0; idx < Processor.CountTransforms(); idx++)
             {
                 var item = Processor.GetTransformAt(idx);
-                lstProcessor.Items.Add(item.Description);
+                lstTransforms.Items.Add(item.Description);
             }
         }
 
@@ -148,8 +151,8 @@ namespace CommonForms
                 return;
 
             bool hasFiles = Processor.CountFileNames() > 0;
-            bool hasChanges = Processor.CountChanges() > 0;
-            bool hasSelection = lstProcessor.SelectedIndex != -1;
+            bool hasChanges = Processor.CountTransforms() > 0;
+            bool hasSelection = lstTransforms.SelectedIndex != -1;
 
             btnProcess.Enabled = hasFiles;
 
@@ -179,10 +182,10 @@ namespace CommonForms
         private void OnEditSelection()
         {
             if (Processor == null) return;
-            if (lstProcessor.SelectedIndex < 0) return;
+            if (lstTransforms.SelectedIndex < 0) return;
 
             //  get current change
-            FileTransform trans = Processor.GetTransformAt(lstProcessor.SelectedIndex);
+            FileTransform trans = Processor.GetTransformAt(lstTransforms.SelectedIndex);
             mDlgSelTrans.LoadState(DialogSelectTransform.EditorState.Edit, trans);
             mDlgSelTrans.ShowDialog(this);
         }
@@ -201,13 +204,13 @@ namespace CommonForms
         {
             //	TODO: Localize strings
             string title = "Heads up!";
-            string msg = string.Format("You are about to remove {0} change(s) from the processor.\n\nAre you sure you want to continue?", Processor.CountChanges());
+            string msg = string.Format("You are about to remove {0} change(s) from the processor.\n\nAre you sure you want to continue?", Processor.CountTransforms());
             DialogResult answer = MessageBox.Show(msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (answer == DialogResult.Yes)
             {
                 //	TODO: Link Clear changes to a delegate? 
                 //	Maybe call ReloadProcessor and UpdateUI automatically when ClearChanges is Called
-                Processor.ClearChanges();
+                Processor.ClearTransforms();
                 ReloadProcessor();
                 UpdateUI();
             }
@@ -227,13 +230,15 @@ namespace CommonForms
         private void btnEnableDisable_Click(object sender, EventArgs e)
         {
             if (Processor == null) return;
-            if (lstProcessor.SelectedIndex < 0) return;
+            if (lstTransforms.SelectedIndex < 0) return;
 
             //  get current transform
-            FileTransform tr = Processor.GetTransformAt(lstProcessor.SelectedIndex);
+            FileTransform tr = Processor.GetTransformAt(lstTransforms.SelectedIndex);
             tr.Enabled = !tr.Enabled;
 
             btnEnableDisable.Text = tr.Enabled ? "D" : "E";
+
+            lstTransforms.Invalidate();
         }
 
         private void btnTemplates_Click(object sender, EventArgs e)
@@ -247,7 +252,7 @@ namespace CommonForms
             ToolStripMenuItem? menuItem = sender as ToolStripMenuItem;
             if (menuItem == null || string.IsNullOrEmpty(menuItem.Text))
                 return;
-            
+
             //  get the index for the item
             int idx = menuStripTemplates.Items.IndexOf(menuItem);
 
@@ -268,12 +273,36 @@ namespace CommonForms
                 MessageBox.Show(message, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             //  create the FileTransform
             FileTransform tr = mTemplates.ElementAt(idx)();
             Processor?.AddTransform(tr);
-            
+
             ReloadProcessor();
+        }
+
+        private void lstProcessor_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return; // Avoid errors for empty list
+            if (Processor == null) return;
+
+            e.DrawBackground();
+            e.DrawFocusRectangle();
+            
+            string? text = lstTransforms.Items[e.Index].ToString();
+            Font font = lstTransforms.Font;
+
+            //  make sure index is valid in Processor
+            if (e.Index >= 0 && e.Index < Processor.CountTransforms()) 
+            {
+                if (!Processor.GetTransformAt(e.Index).Enabled)
+                    font = new Font(font, FontStyle.Strikeout);
+            }
+
+            using (Brush textBrush = new SolidBrush(e.ForeColor))
+            {
+                e.Graphics.DrawString(text, font, textBrush, e.Bounds);
+            }
         }
     }
 }
