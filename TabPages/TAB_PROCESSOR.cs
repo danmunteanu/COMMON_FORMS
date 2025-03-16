@@ -224,7 +224,27 @@ namespace CommonForms
 
         private void btnDel_Click(object sender, EventArgs e)
         {
-            //  OnDelSelection();
+            if (lstTransforms.SelectedIndex == -1 || Processor == null)
+                return;
+
+            int idx = lstTransforms.SelectedIndex;
+
+            var tr = Processor.GetTransformAt(idx);
+
+            string msg = string.Format("Delete {0}?", tr.Description);
+            var res = MessageBox.Show(msg, "Delete confirmation",
+                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            
+            if (res != DialogResult.OK)
+                return;
+
+            Processor.RemoveTransformAt(idx);
+            
+            ReloadProcessor();
+            UpdateUI();
+
+            //  repaint
+            lstTransforms.Invalidate();
         }
 
         private void btnEnableDisable_Click(object sender, EventArgs e)
