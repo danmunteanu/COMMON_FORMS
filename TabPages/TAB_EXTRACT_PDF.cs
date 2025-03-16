@@ -23,9 +23,9 @@
 
         private int mPageCount = 0;
 
-        private List<int> mPagesToExclude = new()
-        {
-            //  DeadMau5 pages
+        //private List<int> mPagesToExclude = new()
+        //{
+            ////  DeadMau5 pages
             //4, 7, 9, 11, 13,
             //15, 19, 22, 24,
             //26, 29, 31, 33,
@@ -33,7 +33,7 @@
             //46, 48, 50, 52,
             //54, 56, 57, 58,
             //59, 60
-        };
+        //};
 
         public bool AdvancedMode { get; set; } = false;
 
@@ -195,8 +195,6 @@
             }
             else
             {
-                //  TODO: CountPages should not be called on each UpdateUI();
-                mPageCount = ActionExtractPDFPages.CountPages(txtDocument.Text);
                 lblPageCount.Text = string.Format("Has {0} page(s).", mPageCount);
                 txtPages.PlaceholderText = string.Format("Enter page numbers (or intervals) between 1 and {0}", mPageCount);
             }
@@ -219,6 +217,45 @@
             btnClearExclude.Visible = AdvancedMode;
         }
 
+        private void CollectPages(string input, out List<int> pages)
+        {
+            string[] parts = input.Split(',');
+
+            List<int> numbers = new();
+            foreach (var part in parts)
+            {
+                string trimmedPart = part.Trim();
+
+                if (trimmedPart.Contains("-"))
+                {
+                    // Handle page range
+                    var range = trimmedPart.Split('-');
+                    if (int.TryParse(range[0], out int start) && int.TryParse(range[1], out int end))
+                    {
+                        if (start <= end)
+                        {
+                            // Ascending range, e.g., 1-5
+                            for (int i = start; i <= end; i++)
+                                AddNumber(numbers, i);
+                        }
+                        else
+                        {
+                            // Descending range, e.g., 200-193
+                            for (int i = start; i >= end; i--)
+                                AddNumber(numbers, i);
+                        }
+                    }
+                }
+                else if (int.TryParse(trimmedPart, out int page))
+                {
+                    // Single page entry
+                    AddNumber(numbers, page);
+                }
+            }
+
+            pages = numbers;
+        }
+
         private void btnExtract_Click(object sender, EventArgs e)
         {
             if (Action == null)
@@ -228,6 +265,7 @@
             }
 
             string input = txtPages.Text.TrimEnd(',', ' ');
+            string inputExculde = txtExclude.Text.TrimEnd(',', ' ');
 
             if (input.Length <= 0)
             {
@@ -247,42 +285,16 @@
 
                 if (dlgSave.ShowDialog() == DialogResult.OK)
                 {
-                    string[] parts = input.Split(',');
+                    //  collect actual page numbers
+                    List<int> pageNumbers = new();
+                    CollectPages(input, out pageNumbers);
 
-                    List<int> numbers = new();
-                    foreach (var part in parts)
-                    {
-                        string trimmedPart = part.Trim();
-
-                        if (trimmedPart.Contains("-"))
-                        {
-                            // Handle page range
-                            var range = trimmedPart.Split('-');
-                            if (int.TryParse(range[0], out int start) && int.TryParse(range[1], out int end))
-                            {
-                                if (start <= end)
-                                {
-                                    // Ascending range, e.g., 1-5
-                                    for (int i = start; i <= end; i++)
-                                        AddNumber(numbers, i);
-                                }
-                                else
-                                {
-                                    // Descending range, e.g., 200-193
-                                    for (int i = start; i >= end; i--)
-                                        AddNumber(numbers, i);
-                                }
-                            }
-                        }
-                        else if (int.TryParse(trimmedPart, out int page))
-                        {
-                            // Single page entry
-                            AddNumber(numbers, page);
-                        }
-                    }
+                    //  collect pages to exclude
+                    List<int> pageNumbersExcluded = new();
+                    CollectPages(inputExculde, out pageNumbersExcluded);
 
                     // Pass required fields to action
-                    Action.Pages = numbers.Except(mPagesToExclude).ToList();
+                    Action.Pages = pageNumbers.Except(pageNumbersExcluded).ToList();
                     Action.Destination = dlgSave.FileName;
                     Action.Execute(txtDocument.Text);
 
@@ -290,6 +302,8 @@
                     UpdateUI();
 
                     btnExtract.Enabled = false;
+                    
+                    GC.Collect();
                 }
             }
         }
@@ -299,13 +313,13 @@
             if (chkOnlyOdd.Checked)
             {
                 //  add only if odd
-                if (num % 2 == 0)
+                if (num % 2 != 0)
                     numbers.Add(num);
             }
             else if (chkOnlyEven.Checked)
             {
                 //  add only if even
-                if (num % 2 != 0)
+                if (num % 2 == 0)
                     numbers.Add(num);
             }
             else
@@ -333,6 +347,8 @@
                     //  clear the fields
                     txtPages.Clear();
                     txtExclude.Clear();
+
+                    mPageCount = ActionExtractPDFPages.CountPages(txtDocument.Text);
 
                     UpdateStatus("Document selected.");
 
@@ -415,11 +431,13 @@
                     //  clear the fields
                     txtPages.Clear();
 
+                    mPageCount = ActionExtractPDFPages.CountPages(txtDocument.Text);
+
                     UpdateStatus("Document selected.");
 
                     UpdateUI();
 
-                    txtPages.Select();
+                    txtPages.Focus();
 
                 }
             }
@@ -444,6 +462,7 @@
 
             //  clear the fields
             txtPages.Clear();
+            txtExclude.Clear();
 
             UpdateStatus("Document reloaded.");
 
