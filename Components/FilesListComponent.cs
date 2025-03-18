@@ -158,7 +158,8 @@
             {
                 if (!string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
                 {
-                    AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
+                    AddFolderToProcessor(mFolderBrowserDialog.SelectedPath);
+                    //AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
                     CallUpdateStatus(Locale.STATUS_FOLDER_ADDED);
                 }
             }
