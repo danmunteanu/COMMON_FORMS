@@ -1,7 +1,6 @@
 ﻿using CommonForms.Components;
 using RealityFrameworks.Actions;
 using RealityFrameworks.Conditions;
-using System.Windows.Forms;
 
 namespace CommonForms
 {
@@ -46,12 +45,25 @@ namespace CommonForms
                 UpdateUI();
             };
 
+            LoadTooltips();
             LoadTemplates();
 
             //mFilesProcessor.AddFolder(@"E:\EXILE_3.25", true);
             //mFilesProcessor.AddFolder(@"e:\Path of Building\Data\", true);
 
             UpdateLocalizations();
+        }
+
+        private void LoadTooltips()
+        {
+            toolTip.SetToolTip(btnAdd, "Add a new Transform");
+            toolTip.SetToolTip(btnEdit, "Edit selected Transform");
+            toolTip.SetToolTip(btnEnableDisable, "Disable selected Transform");
+            toolTip.SetToolTip(btnDel, "Delete selected transform");
+            toolTip.SetToolTip(btnReload, "Reloads list of transforms");
+            toolTip.SetToolTip(btnTemplates, "Show templates list");
+            toolTip.SetToolTip(btnClear, "Clear transforms list");
+
         }
 
         private void LoadTemplates()
@@ -128,7 +140,7 @@ namespace CommonForms
 
             btnEdit.Enabled = haveSelection;
             btnEnableDisable.Enabled = haveSelection;
-            btnEnableDisable.Text = Processor.GetTransformAt(lstTransforms.SelectedIndex).Enabled ? "D" : "E";
+            btnEnableDisable.Text = Processor.GetTransformAt(lstTransforms.SelectedIndex).Enabled ? "🚫" : "✅";
             btnDel.Enabled = haveSelection;
         }
 
@@ -256,7 +268,16 @@ namespace CommonForms
             FileTransform tr = Processor.GetTransformAt(lstTransforms.SelectedIndex);
             tr.Enabled = !tr.Enabled;
 
-            btnEnableDisable.Text = tr.Enabled ? "D" : "E";
+            if (tr.Enabled)
+            {
+                btnEnableDisable.Text = "🚫";
+                toolTip.SetToolTip(btnEnableDisable, "Disable selected Transform");
+            } 
+            else
+            {
+                btnEnableDisable.Text = "✅";
+                toolTip.SetToolTip(btnEnableDisable, "Enable selected Transform");
+            }
 
             lstTransforms.Invalidate();
         }
