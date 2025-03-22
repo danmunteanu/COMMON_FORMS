@@ -31,9 +31,14 @@
             UpdateStatusCallback = this.UpdateLocalStatus;
 
             //  empty the status
-            CallUpdateStatus(Locale.FILES_LIST_STATUS_READY);
+            UpdateStatusCallback?.Invoke(Locale.FILES_LIST_STATUS_READY);
 
             UpdateUI();
+        }
+
+        protected override void OnProcessorSet()
+        {
+            //lstFiles.DataSource = Processor;
         }
 
         public string Status
@@ -159,11 +164,11 @@
                 if (!string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
                 {
                     AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
-                    CallUpdateStatus(Locale.STATUS_FOLDER_ADDED);
+                    UpdateStatusCallback?.Invoke(Locale.STATUS_FOLDER_ADDED);
                 }
             }
             else
-                CallUpdateStatus(Locale.STATUS_FOLDER_NOT_ADDED);
+                UpdateStatusCallback?.Invoke(Locale.STATUS_FOLDER_NOT_ADDED);
 
             //  Reset progress bar
             CallDelegate_UpdateProgress(0);
@@ -178,7 +183,7 @@
         private void btnReloadFolder_Click(object? sender, EventArgs e)
         {
             AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
-            CallUpdateStatus(Locale.STATUS_FOLDER_RELOADED);
+            UpdateStatusCallback?.Invoke(Locale.STATUS_FOLDER_RELOADED);
 
             Call_UpdateUI();
         }
@@ -192,7 +197,7 @@
             Processor?.ClearFileNames();    //  this should trigger list reloading
 
             lstFiles.Items.Clear();
-            CallUpdateStatus(Locale.STATUS_LIST_CLEARED);
+            UpdateStatusCallback?.Invoke(Locale.STATUS_LIST_CLEARED);
             
             CallDelegate_OnSelectionChanged(string.Empty);   //  force a deselect
             Call_UpdateUI();
@@ -271,7 +276,7 @@
                 //  TODO:
                 //  Count how many files were added
                 //  Modify Locale STATUS_FILES_ADDED with {0} replaced by the count
-                CallUpdateStatus(Locale.STATUS_FILES_ADDED);
+                UpdateStatusCallback?.Invoke(Locale.STATUS_FILES_ADDED);
             }
 
         }
@@ -562,7 +567,7 @@
             btnSettings.Font = new Font(btnSettings.Font.FontFamily, Settings.FontSize);
             btnSettings.Visible = Settings.SettingsButtonVisible;
             btnSettings.AutoSize = true;
-            btnSettings.Padding = new Padding(3);
+            btnSettings.Padding = new Padding(0);
             btnSettings.TextAlign = ContentAlignment.MiddleCenter;
             //btnSettings.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSettings.Dock = DockStyle.Fill;

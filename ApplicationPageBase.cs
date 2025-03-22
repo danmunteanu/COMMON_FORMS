@@ -60,23 +60,14 @@ namespace CommonForms
 
         public virtual void UpdateLocale()
         {
-            //  implement this in derived classes
-        }
-
-        protected void CallUpdateStatus(string message)
-        {
-            if (UpdateStatusCallback != null)
-                UpdateStatusCallback(message);
         }
 
         public virtual void SaveSettings(ref Dictionary<string, string> iniKeys)
-        {
-            //  implement this in derived classes
+        {         
         }
 
         public virtual void LoadSettings(Dictionary<string, string> iniKeys)
-        {
-            //  implement this in derived classes
+        {            
         }
     }
 }
