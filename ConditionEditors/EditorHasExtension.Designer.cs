@@ -34,7 +34,7 @@
             tableLayoutMain = new TableLayoutPanel();
             tableLayoutPanelAdd = new TableLayoutPanel();
             lblExt = new Label();
-            compListExtensions = new Components.ExtensionsList();
+            compListExtensions = new CommonForms.Components.ExtensionsList();
             tableLayoutMain.SuspendLayout();
             tableLayoutPanelAdd.SuspendLayout();
             SuspendLayout();
@@ -43,9 +43,9 @@
             // 
             txtAddExtension.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtAddExtension.Font = new Font("Segoe UI", 7F);
-            txtAddExtension.Location = new Point(665, 5);
+            txtAddExtension.Location = new Point(665, 4);
             txtAddExtension.Name = "txtAddExtension";
-            txtAddExtension.Size = new Size(64, 23);
+            txtAddExtension.Size = new Size(64, 26);
             txtAddExtension.TabIndex = 1;
             // 
             // btnAddExt
@@ -64,9 +64,9 @@
             // 
             lblExtensionList.Anchor = AnchorStyles.Left;
             lblExtensionList.AutoSize = true;
-            lblExtensionList.Location = new Point(3, 7);
+            lblExtensionList.Location = new Point(3, 0);
             lblExtensionList.Name = "lblExtensionList";
-            lblExtensionList.Size = new Size(81, 20);
+            lblExtensionList.Size = new Size(95, 34);
             lblExtensionList.TabIndex = 5;
             lblExtensionList.Text = "Extensions:";
             // 
@@ -93,7 +93,7 @@
             // tableLayoutPanelAdd
             // 
             tableLayoutPanelAdd.ColumnCount = 5;
-            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90F));
+            tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 102F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 61F));
             tableLayoutPanelAdd.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70F));
@@ -115,18 +115,20 @@
             lblExt.Anchor = AnchorStyles.Right;
             lblExt.AutoSize = true;
             lblExt.Font = new Font("Segoe UI", 9F);
-            lblExt.Location = new Point(619, 7);
+            lblExt.Location = new Point(609, 4);
             lblExt.Name = "lblExt";
-            lblExt.Size = new Size(40, 20);
+            lblExt.Size = new Size(50, 25);
             lblExt.TabIndex = 6;
             lblExt.Text = "Add:";
             // 
-            // listExtensions
+            // compListExtensions
             // 
             compListExtensions.Dock = DockStyle.Fill;
-            compListExtensions.Location = new Point(3, 86);
-            compListExtensions.Name = "listExtensions";
-            compListExtensions.Size = new Size(792, 194);
+            compListExtensions.FreeEditExtensions = false;
+            compListExtensions.Location = new Point(4, 87);
+            compListExtensions.Margin = new Padding(4, 4, 4, 4);
+            compListExtensions.Name = "compListExtensions";
+            compListExtensions.Size = new Size(790, 192);
             compListExtensions.TabIndex = 17;
             // 
             // EditorHasExtension
