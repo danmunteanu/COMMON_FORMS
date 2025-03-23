@@ -3,7 +3,7 @@ using RealityFrameworks;
 
 namespace CommonForms
 {
-    public partial class ApplicationPageBase : UserControl, IApplicationComponent
+    public partial class ApplicationPageBase : UserControl//, IApplicationComponent
     {
         public delegate void UpdateStatusDelegate(string message);
         public UpdateStatusDelegate? UpdateStatusCallback { get; set; } = null;
@@ -59,19 +59,19 @@ namespace CommonForms
         //  the C# compiler won't make these accessible to this class,
         //  although they have default implementations in the interface
 
-        public void UpdateUI()
+        public virtual void UpdateUI()
         {
         }
 
-        public void UpdateLocale()
+        public virtual void UpdateLocale()
         {
         }
 
-        public void SaveSettings(ref Dictionary<string, string> iniKeys)
+        public virtual void SaveSettings(ref Dictionary<string, string> iniKeys)
         {
         }
 
-        public void LoadSettings(Dictionary<string, string> iniKeys)
+        public virtual void LoadSettings(Dictionary<string, string> iniKeys)
         {
         }
 
