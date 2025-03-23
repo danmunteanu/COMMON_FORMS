@@ -77,7 +77,7 @@
                 lblStatus.Text = message;
         }
 
-        public void UpdateUI()
+        public override void UpdateUI()
         {
             bool selectAllVisible = (
                 lstFiles.SelectionMode == SelectionMode.MultiSimple ||
@@ -93,7 +93,7 @@
             btnRem.Enabled = haveFiles && lstFiles.SelectedIndex != -1;
         }
 
-        public void SaveSettings(ref Dictionary<string, string> iniKeys)
+        public override void SaveSettings(ref Dictionary<string, string> iniKeys)
         {
             //  Dump settings to iniKeys
 
@@ -112,13 +112,7 @@
             lstFiles.Items.Clear();
             Processor?.ClearFileNames();
 
-            //  Add file names to mFilesToProcess
-            DirectoryInfo di = new(folder);
-            IEnumerable<FileInfo> files = di.GetFilesByExtensions(mFileFilters.ToArray());
-            foreach (FileInfo fi in files)
-            {
-                Processor?.AddFileName(fi.FullName);
-            }
+            AddFolderToProcessor(folder);
 
             //  reload mFilesToProcess into the list
             ReloadFiles();
@@ -157,24 +151,26 @@
         // Handles button ADD's click
         private void btnAdd_Click(object? sender, EventArgs e)
         {
+            bool added = false;
             //  show dialog to select folder
             DialogResult res = mFolderBrowserDialog.ShowDialog();
             if (res == DialogResult.OK)
             {
                 if (!string.IsNullOrWhiteSpace(mFolderBrowserDialog.SelectedPath))
                 {
-                    AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
+                    added = AddFolderToProcessor(mFolderBrowserDialog.SelectedPath);
                     UpdateStatusCallback?.Invoke(Locale.STATUS_FOLDER_ADDED);
                 }
             }
             else
                 UpdateStatusCallback?.Invoke(Locale.STATUS_FOLDER_NOT_ADDED);
 
-            //  Reset progress bar
-            UpdateProgress_Callback?.Invoke(0);
-
-            UpdateUI();
-            UpdateUI_Callback?.Invoke();
+            if (added)
+            {
+                ReloadFiles();
+                UpdateUI();
+                UpdateUI_Callback?.Invoke();
+            }
         }
 
         /// <summary>
@@ -184,7 +180,6 @@
         {
             AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
             UpdateStatusCallback?.Invoke(Locale.STATUS_FOLDER_RELOADED);
-
             UpdateUI_Callback?.Invoke();
         }
 
@@ -211,7 +206,7 @@
                 return;
 
             if (lstFiles.SelectedItem != null)
-                SelectionChanged_Callback?.Invoke(lstFiles.SelectedItem.ToString());
+                SelectionChanged_Callback?.Invoke(lstFiles.SelectedItem.ToString()??string.Empty);
         }
 
         private void listFiles_DragEnter(object? sender, DragEventArgs e)
