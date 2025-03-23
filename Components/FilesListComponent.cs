@@ -126,7 +126,7 @@
             UpdateUI();
 
             //  Forces all listeners to update their UI
-            Call_UpdateUI();
+            UpdateUI_Callback?.Invoke();
         }
 
         // Clears the list and reloads the list of file names from the Processor
@@ -171,10 +171,10 @@
                 UpdateStatusCallback?.Invoke(Locale.STATUS_FOLDER_NOT_ADDED);
 
             //  Reset progress bar
-            CallDelegate_UpdateProgress(0);
+            UpdateProgress_Callback?.Invoke(0);
 
             UpdateUI();
-            Call_UpdateUI();
+            UpdateUI_Callback?.Invoke();
         }
 
         /// <summary>
@@ -185,7 +185,7 @@
             AddFilesFromFolder(mFolderBrowserDialog.SelectedPath);
             UpdateStatusCallback?.Invoke(Locale.STATUS_FOLDER_RELOADED);
 
-            Call_UpdateUI();
+            UpdateUI_Callback?.Invoke();
         }
 
         /// <summary>
@@ -198,9 +198,9 @@
 
             lstFiles.Items.Clear();
             UpdateStatusCallback?.Invoke(Locale.STATUS_LIST_CLEARED);
-            
-            CallDelegate_OnSelectionChanged(string.Empty);   //  force a deselect
-            Call_UpdateUI();
+
+            SelectionChanged_Callback?.Invoke(string.Empty);
+            UpdateUI_Callback?.Invoke();
         }
 
         /// <summary>
@@ -211,7 +211,7 @@
                 return;
 
             if (lstFiles.SelectedItem != null)
-                CallDelegate_OnSelectionChanged(lstFiles.SelectedItem.ToString());
+                SelectionChanged_Callback?.Invoke(lstFiles.SelectedItem.ToString());
         }
 
         private void listFiles_DragEnter(object? sender, DragEventArgs e)
@@ -271,7 +271,7 @@
             {
                 ReloadFiles();
                 UpdateUI();
-                Call_UpdateUI();
+                UpdateUI_Callback?.Invoke();
 
                 //  TODO:
                 //  Count how many files were added
