@@ -1,6 +1,6 @@
 ﻿namespace CommonForms.Components
 {
-    public partial class FilesListComponent : ApplicationPageBase
+    public partial class FilesListComponent : IApplicationComponent
     {
         //  Settings dialog
         private FilesListSettingsDialog mDialogSettings;
@@ -77,7 +77,7 @@
                 lblStatus.Text = message;
         }
 
-        public override void UpdateUI()
+        public void UpdateUI()
         {
             bool selectAllVisible = (
                 lstFiles.SelectionMode == SelectionMode.MultiSimple ||
@@ -93,7 +93,7 @@
             btnRem.Enabled = haveFiles && lstFiles.SelectedIndex != -1;
         }
 
-        public override void SaveSettings(ref Dictionary<string, string> iniKeys)
+        public void SaveSettings(ref Dictionary<string, string> iniKeys)
         {
             //  Dump settings to iniKeys
 
@@ -141,7 +141,7 @@
         }
 
         // Reloads localizations
-        public override void UpdateLocale()
+        public void UpdateLocale()
         {
             //  top
             lblAddFiles.Text = Locale.FILES_LIST_LABEL_ADD;

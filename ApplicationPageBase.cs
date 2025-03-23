@@ -3,7 +3,7 @@ using RealityFrameworks;
 
 namespace CommonForms
 {
-    public partial class ApplicationPageBase : UserControl
+    public partial class ApplicationPageBase : UserControl, IApplicationComponent
     {
         public delegate void UpdateStatusDelegate(string message);
         public UpdateStatusDelegate? UpdateStatusCallback { get; set; } = null;
@@ -13,6 +13,10 @@ namespace CommonForms
 
         //  Reference to a FilesListComponent instance
         protected FilesListComponent? mFilesList = null;
+
+        //  Reference to a FilesProcessor instance
+        protected FilesProcessor? mFilesProcessor = null;
+
 
         public Components.FilesListComponent? FilesList 
         { 
@@ -25,8 +29,6 @@ namespace CommonForms
             }
         }
 
-        //  Reference to a FilesProcessor instance
-        protected FilesProcessor? mFilesProcessor = null;
 
         public FilesProcessor? Processor
         {
@@ -53,21 +55,25 @@ namespace CommonForms
             //  implement this in derived classes
         }
 
-        public virtual void UpdateUI()
+        //  Do PROVIDE empty implementations for the interface methods below, or else
+        //  the C# compiler won't make these accessible to this class,
+        //  although they have default implementations in the interface
+
+        public void UpdateUI()
         {
-            //  implement this in derived classes
         }
 
-        public virtual void UpdateLocale()
+        public void UpdateLocale()
         {
         }
 
-        public virtual void SaveSettings(ref Dictionary<string, string> iniKeys)
-        {         
+        public void SaveSettings(ref Dictionary<string, string> iniKeys)
+        {
         }
 
-        public virtual void LoadSettings(Dictionary<string, string> iniKeys)
-        {            
+        public void LoadSettings(Dictionary<string, string> iniKeys)
+        {
         }
+
     }
 }

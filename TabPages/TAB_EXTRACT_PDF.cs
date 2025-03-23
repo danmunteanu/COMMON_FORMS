@@ -180,7 +180,7 @@
             return true;
         }
 
-        public override void UpdateUI()
+        public void UpdateUI()
         {
             bool pdfSelected = !string.IsNullOrEmpty(txtDocument.Text);
             bool pagesEntered = !string.IsNullOrEmpty(txtPages.Text);
@@ -387,7 +387,7 @@
             txtPages.Select();
         }
 
-        public override void UpdateLocale()
+        public void UpdateLocale()
         {
             //  update string localizations
         }
