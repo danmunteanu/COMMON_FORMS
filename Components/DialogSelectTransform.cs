@@ -97,10 +97,12 @@ namespace CommonForms.Components
             chkEnabled.Checked = true;
         }
 
-        private void LoadStateEdit(Transform<string> trans)
+        private void LoadStateEdit(FileTransform trans)
         {
             //  Make sure Condition and Action are not null
-            if (trans.Condition == null || trans.Action == null)
+            if (trans == null ||
+                trans.Condition == null || 
+                trans.Action == null)
             {
                 MessageBox.Show(
                     Locale.DLG_CHANGE_ERR_MSG_CHANGE_WRONG,
@@ -192,7 +194,7 @@ namespace CommonForms.Components
             chkPrevOutput.Checked = trans.UseLastOutput;
         }
 
-        public void LoadState(EditorState state, FileTransform transform = null)
+        public void LoadState(EditorState state, FileTransform? transform = null)
         {
             State = state;
             Transform = transform;

@@ -182,7 +182,7 @@
     <value>Must add at least one extension.</value>
   </data>
   <data name="DLG_CHANGE_ERR_MSG_CHANGE_WRONG" xml:space="preserve">
-    <value>Something went wrong with the Change, it is not valid.</value>
+    <value>Something went wrong with the Transform, it is not valid. Set a valid Transform before entering state Edit</value>
   </data>
   <data name="FILES_LIST_BUTTON_SELECT_ALL" xml:space="preserve">
     <value>SELECT ALL</value>
