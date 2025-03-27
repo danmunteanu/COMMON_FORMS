@@ -6,7 +6,7 @@ namespace CommonForms
 {
     public partial class TAB_Processor : ApplicationPageBase
     {
-        private DialogSelectTransform mDlgSelTrans = new();
+        private DialogSelectTransform<string> mDlgSelTrans = new();
 
         List<string> _conditionNames = new();
         List<string> _actionNames = new();
@@ -186,7 +186,7 @@ namespace CommonForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            mDlgSelTrans.LoadState(DialogSelectTransform.EditorState.Add);
+            mDlgSelTrans.LoadState(DialogSelectTransform<string>.EditorState.Add);
             mDlgSelTrans.ShowDialog(this);
         }
 
@@ -198,7 +198,7 @@ namespace CommonForms
 
             //  get current change
             FileTransform trans = Processor.GetTransformAt(lstTransforms.SelectedIndex);
-            mDlgSelTrans.LoadState(DialogSelectTransform.EditorState.Edit, trans);
+            mDlgSelTrans.LoadState(DialogSelectTransform<string>.EditorState.Edit, trans);
             mDlgSelTrans.ShowDialog(this);
         }
 

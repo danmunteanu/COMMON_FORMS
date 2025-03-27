@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorHasExtension : EditorBase
+    public partial class EditorHasExtension : EditorBase<string>
     {
         private const string KExtensionSeparator = ";";
 

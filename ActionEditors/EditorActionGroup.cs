@@ -7,9 +7,9 @@ using static CommonForms.Utils;
  */
 namespace CommonForms
 {
-    using ActionNameAndEditorPair = Tuple<string, CommonForms.EditorBase>;
+    using ActionNameAndEditorPair = Tuple<string, CommonForms.EditorBase<string>>;
 
-    public partial class EditorActionGroup : EditorBase
+    public partial class EditorActionGroup : EditorBase<string>
     {
         //  Index of the current action in _actionGroup
         private int mEditorIndex = -1;
@@ -114,7 +114,8 @@ namespace CommonForms
                 string actionName = fileAction.GetType().Name;
 
                 //  create an editor
-                EditorBase editor = EditorFactory.Create(actionName);
+                
+                EditorBase<string> editor = RealityFrameworks.GenericFactory<EditorBase<string>>.Create(actionName);
 
                 //  make sure we have an editor
                 if (editor == null)
@@ -150,10 +151,11 @@ namespace CommonForms
                 string actionName = editorPair.Item1;
 
                 //  get the editor
-                EditorBase editor = editorPair.Item2;
+                EditorBase<string> editor = editorPair.Item2;
 
                 //  create the action
-                FileAction oneGroupAction = FileActionFactory.Create(actionName);
+                
+                FileAction oneGroupAction = RealityFrameworks.GenericFactory<RealityFrameworks.Actions.Action<string>>.Create(actionName);
                 
                 //  make sure group action was created
                 if (oneGroupAction == null)
@@ -280,7 +282,7 @@ namespace CommonForms
             lblActionName.Text = string.Format("({0})", actionName);
 
             //  Create the Editor
-            EditorBase? editor;
+            EditorBase<string>? editor;
             editor = EditorFactory.Create(actionName);
             if (editor != null)
             {

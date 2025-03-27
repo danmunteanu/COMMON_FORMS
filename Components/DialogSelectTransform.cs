@@ -2,13 +2,13 @@
 
 namespace CommonForms.Components
 {
-    public partial class DialogSelectTransform : Form
+    public partial class DialogSelectTransform<T> : Form
     {
         //	The active Condition editor
-        private EditorBase? mSelCondEditor = null;
+        private EditorBase<T>? mSelCondEditor = null;
 
         //	The active Action editor
-        private EditorBase? mSelActionEditor = null;
+        private EditorBase<T>? mSelActionEditor = null;
 
         public FilesProcessor? Processor { get; set; }
 
@@ -19,10 +19,10 @@ namespace CommonForms.Components
         public EditorState State { get; set; }
 
         //  The FileTransform we're editing
-        private FileTransform? Transform { get; set; } = null;
+        private Transform<T>? Transform { get; set; } = null;
 
         //  Cache of Editors
-        Dictionary<string, EditorBase> mEditorCache = new();
+        Dictionary<string, EditorBase<T>> mEditorCache = new();
 
         //  The callback for when something has been modified
         public delegate void OnModifiedCallback();
@@ -55,12 +55,12 @@ namespace CommonForms.Components
         //  Tries to find an editor in the cache,
         //  if not found, it creates the editor
         //  if found, returns the instance
-        private EditorBase? FindOrCreateEditor(string name)
+        private EditorBase<T>? FindOrCreateEditor(string name)
         {
-            EditorBase? editor = null;
+            EditorBase<T>? editor = null;
             if (!mEditorCache.TryGetValue(name, out editor))
-            {
-                editor = EditorFactory.Create(name);
+            {                 
+                editor = RealityFrameworks.GenericFactory<CommonForms.EditorBase<T>>.Create(name);
                 mEditorCache.Add(name, editor);
             }
             return editor;
@@ -97,7 +97,7 @@ namespace CommonForms.Components
             chkEnabled.Checked = true;
         }
 
-        private void LoadStateEdit(FileTransform trans)
+        private void LoadStateEdit(Transform<T> trans)
         {
             //  Make sure Condition and Action are not null
             if (trans == null ||
@@ -194,7 +194,7 @@ namespace CommonForms.Components
             chkPrevOutput.Checked = trans.UseLastOutput;
         }
 
-        public void LoadState(EditorState state, FileTransform? transform = null)
+        public void LoadState(EditorState state, Transform<T>? transform = null)
         {
             State = state;
             Transform = transform;
@@ -261,10 +261,10 @@ namespace CommonForms.Components
         private void HandleAdd()
         {
             //  Condition to be created
-            FileCondition? cond = null;
+            RealityFrameworks.Conditions.Condition<T>? cond = null;
 
             //  Action to be created
-            FileAction? action = null;
+            RealityFrameworks.Actions.Action<T>? action = null;
 
             string errTitle = string.Empty;
             string errMsg = string.Empty;
@@ -289,7 +289,7 @@ namespace CommonForms.Components
                 //  Create New Condition by Name
                 try
                 {
-                    cond = FileConditionFactory.Create(cmbCondition.SelectedItem.ToString());
+                    cond = RealityFrameworks.GenericFactory<RealityFrameworks.Conditions.Condition<T>>.Create(cmbCondition.SelectedItem.ToString());
                     mSelCondEditor.SaveState(cond);
                 }
                 catch (Exception ex)
@@ -321,7 +321,8 @@ namespace CommonForms.Components
                     try
                     {
                         //  Try to create the Action
-                        action = FileActionFactory.Create(cmbAction.SelectedItem.ToString());
+                        
+                        action = RealityFrameworks.GenericFactory<RealityFrameworks.Actions.Action<T>>.Create(cmbAction.SelectedItem.ToString());
                         mSelActionEditor.SaveState(action);
                     } 
                     catch (Exception ex)
@@ -347,7 +348,7 @@ namespace CommonForms.Components
 
             if (isConditionValid && isActionValid && cond != null && action != null)
             {
-                Processor?.AddTransform(cond, action);
+                //Processor?.AddTransform(cond, action);
 
                 //  Notify tab to reload and update ui
                 CallModifiedCallback();
@@ -378,7 +379,8 @@ namespace CommonForms.Components
                 //  Must update Condition?
                 string condName = cmbCondition.SelectedItem?.ToString() ?? string.Empty;
                 if (!string.IsNullOrEmpty(condName) && condName!= Transform.Condition.GetType().Name)
-                    Transform.Condition = FileConditionFactory.Create(condName);
+                    
+                    Transform.Condition = RealityFrameworks.GenericFactory<RealityFrameworks.Conditions.Condition<T>>.Create(condName);
                 
                 //  Save State: Editor -> Condition
                 mSelCondEditor?.SaveState(Transform.Condition);
@@ -415,7 +417,8 @@ namespace CommonForms.Components
                 //  Must update Action?
                 string actionName = cmbAction.SelectedItem?.ToString() ?? string.Empty;
                 if (!string.IsNullOrEmpty(actionName) && actionName != Transform.Action.GetType().Name)
-                    Transform.Action = FileActionFactory.Create(actionName);
+
+                    Transform.Action = RealityFrameworks.GenericFactory<RealityFrameworks.Actions.Action<T>>.Create(actionName);
 
                 //  Save State: Editor -> Action
                 mSelActionEditor?.SaveState(Transform.Action);
@@ -470,9 +473,9 @@ namespace CommonForms.Components
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (State == DialogSelectTransform.EditorState.Add)
+            if (State == EditorState.Add)
                 HandleAdd();
-            else if (State == DialogSelectTransform.EditorState.Edit)
+            else if (State == EditorState.Edit)
                 HandleUpdate();
         }
 

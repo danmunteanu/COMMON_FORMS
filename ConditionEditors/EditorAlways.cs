@@ -2,7 +2,7 @@
 
 namespace CommonForms.ConditionEditors
 {
-    public class EditorAlways : EditorBase
+    public class EditorAlways : EditorBase<string>
     {
         public EditorAlways()
         {

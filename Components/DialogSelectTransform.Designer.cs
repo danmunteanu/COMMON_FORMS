@@ -1,6 +1,6 @@
 ﻿namespace CommonForms.Components
 {
-    partial class DialogSelectTransform
+    partial class DialogSelectTransform<T> : Form
     {
         /// <summary>
         /// Required designer variable.

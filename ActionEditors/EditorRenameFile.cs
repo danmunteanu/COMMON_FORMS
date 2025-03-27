@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorRenameFile : EditorBase
+    public partial class EditorRenameFile : EditorBase<string>
     {
         public EditorRenameFile()
         {

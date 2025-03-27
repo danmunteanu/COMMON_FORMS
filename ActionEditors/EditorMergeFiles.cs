@@ -3,7 +3,7 @@ using SharpCompress;
 
 namespace CommonForms
 {
-    public partial class EditorMergeFiles : EditorBase
+    public partial class EditorMergeFiles : EditorBase<string>
     {
         private ActionMergeTextFiles _action = null;
 
