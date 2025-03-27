@@ -196,6 +196,8 @@
 
             SelectionChanged_Callback?.Invoke(string.Empty);
             UpdateUI_Callback?.Invoke();
+
+            UpdateUI();
         }
 
         /// <summary>
