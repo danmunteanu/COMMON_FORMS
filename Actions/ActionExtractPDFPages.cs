@@ -93,6 +93,11 @@ namespace CommonForms
                 ExtractPages(sourcePDF, Destination, Pages);
             }
         }
+
+        protected override void UpdateDescription()
+        {
+            mDescription = GetType().Name;
+        }
     }
 
 }
