@@ -10,7 +10,7 @@ namespace CommonForms.Components
         //	The active Action editor
         private EditorBase<T>? mSelActionEditor = null;
 
-        public FilesProcessor? Processor { get; set; }
+        public TransformsContainer<T>? Processor { get; set; }
 
         //  States the Editor can be in (Add or Edit)
         public enum EditorState { Add, Edit };
@@ -201,7 +201,7 @@ namespace CommonForms.Components
 
             if (State == EditorState.Add)
                 LoadStateAdd();
-            else if (State == EditorState.Edit)
+            else if (State == EditorState.Edit && Transform != null)
                 LoadStateEdit(Transform);
 
             mSelCondEditor?.Select();
@@ -348,7 +348,7 @@ namespace CommonForms.Components
 
             if (isConditionValid && isActionValid && cond != null && action != null)
             {
-                //Processor?.AddTransform(cond, action);
+                Processor?.AddTransform(cond, action);
 
                 //  Notify tab to reload and update ui
                 CallModifiedCallback();
