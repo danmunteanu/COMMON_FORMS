@@ -1,6 +1,6 @@
 # COMMON_FORMS
 
-This project contains all sorts of common utilities I use in two of my C# projects - MASS_YAML and MERGE_PDF.
+This project contains all sorts of common utilities and components I use in my C# projects (MASS_YAML, MERGE_PDF and MEMPHIS_SHARP).
 ## List of Components  
 Some components can be found in the **Components** folder, while others are located in the root of the project.
 
