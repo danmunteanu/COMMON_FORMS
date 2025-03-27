@@ -157,7 +157,7 @@ namespace CommonForms
         }
 
         //	Updates the UI state based on the Processor state
-        public void UpdateUI()
+        public override void UpdateUI()
         {
             if (Processor == null)
                 return;

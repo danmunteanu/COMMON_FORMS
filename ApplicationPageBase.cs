@@ -3,7 +3,7 @@ using RealityFrameworks;
 
 namespace CommonForms
 {
-    public partial class ApplicationPageBase : UserControl//, IApplicationComponent
+    public partial class ApplicationPageBase : UserControl
     {
         public delegate void UpdateStatusDelegate(string message);
         public UpdateStatusDelegate? UpdateStatusCallback { get; set; } = null;
