@@ -60,7 +60,7 @@ namespace CommonForms.Components
             EditorBase<T>? editor = null;
             if (!mEditorCache.TryGetValue(name, out editor))
             {                 
-                editor = RealityFrameworks.GenericFactory<CommonForms.EditorBase<T>>.Create(name);
+                editor = GenericFactory<EditorBase<T>>.Create(name);
                 mEditorCache.Add(name, editor);
             }
             return editor;
@@ -222,18 +222,22 @@ namespace CommonForms.Components
 
             string? condName = cmbCondition.SelectedItem.ToString();
 
-            try
+            if (condName != null)
             {
-                mSelCondEditor = FindOrCreateEditor(condName);
-                if (mSelCondEditor != null)
-                    Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
+                try
+                {
+                    mSelCondEditor = FindOrCreateEditor(condName);
+                    if (mSelCondEditor != null)
+                        Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
+                }
+                catch (Exception ex)
+                {
+                    panelCondition.Controls.Clear();
+                    MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            } else {
+                throw new Exception("condName is null");
             }
-            catch (Exception ex)
-            {
-                panelCondition.Controls.Clear();
-                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
         }
 
         private void cmbAction_SelectedIndexChanged(object? sender, EventArgs e)
@@ -351,7 +355,7 @@ namespace CommonForms.Components
                 Processor?.AddTransform(cond, action);
 
                 //  Notify tab to reload and update ui
-                CallModifiedCallback();
+                OnModified?.Invoke();
 
                 this.Close();
             }
@@ -466,7 +470,7 @@ namespace CommonForms.Components
             Transform.Enabled = chkEnabled.Checked;
             Transform.UseLastOutput = chkPrevOutput.Checked;
 
-            CallModifiedCallback();
+            OnModified?.Invoke();
 
             this.Close();
         }
@@ -477,12 +481,6 @@ namespace CommonForms.Components
                 HandleAdd();
             else if (State == EditorState.Edit)
                 HandleUpdate();
-        }
-
-        private void CallModifiedCallback()
-        {
-            if (OnModified != null)
-                OnModified();
         }
 
         private void chkDesc_CheckedChanged(object sender, EventArgs e)
@@ -501,7 +499,7 @@ namespace CommonForms.Components
                 txtDesc.Text = Transform.Description;
                 chkDesc.Checked = false;
 
-                CallModifiedCallback();
+                OnModified?.Invoke();
             }
         }
 
