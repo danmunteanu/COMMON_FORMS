@@ -6,7 +6,7 @@ namespace CommonForms
 {
     public partial class TAB_Processor : ApplicationPageBase
     {
-        private DialogSelectTransform<string> mDlgSelTrans = new();
+        private DialogSelectTransform<string> mDlgSelectTransform = new();
 
         List<string> _conditionNames = new();
         List<string> _actionNames = new();
@@ -19,7 +19,7 @@ namespace CommonForms
             set
             {
                 _conditionNames = value;
-                mDlgSelTrans.LoadConditionNames(value);
+                mDlgSelectTransform.LoadConditionNames(value);
             }
         }
 
@@ -29,7 +29,7 @@ namespace CommonForms
             set
             {
                 _actionNames = value;
-                mDlgSelTrans.LoadActionNames(value);
+                mDlgSelectTransform.LoadActionNames(value);
             }
         }
 
@@ -39,7 +39,7 @@ namespace CommonForms
 
             lstTransforms.HorizontalScrollbar = true;
 
-            mDlgSelTrans.OnModified = () =>
+            mDlgSelectTransform.OnModified = () =>
             {
                 ReloadProcessor();
                 UpdateUI();
@@ -117,7 +117,7 @@ namespace CommonForms
 
         protected override void OnProcessorSet()
         {
-            mDlgSelTrans.Processor = this.Processor;
+            mDlgSelectTransform.Processor = this.Processor;
 
             ReloadProcessor();
 
@@ -186,8 +186,8 @@ namespace CommonForms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            mDlgSelTrans.LoadState(DialogSelectTransform<string>.EditorState.Add);
-            mDlgSelTrans.ShowDialog(this);
+            mDlgSelectTransform.LoadState(DialogSelectTransform<string>.EditorState.Add);
+            mDlgSelectTransform.ShowDialog(this);
         }
 
         //	Displays the Edit Change dialog for the selected Change
@@ -198,8 +198,8 @@ namespace CommonForms
 
             //  get current change
             FileTransform trans = Processor.GetTransformAt(lstTransforms.SelectedIndex);
-            mDlgSelTrans.LoadState(DialogSelectTransform<string>.EditorState.Edit, trans);
-            mDlgSelTrans.ShowDialog(this);
+            mDlgSelectTransform.LoadState(DialogSelectTransform<string>.EditorState.Edit, trans);
+            mDlgSelectTransform.ShowDialog(this);
         }
 
         private void lstProcessor_DoubleClick(object sender, EventArgs e)

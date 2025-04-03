@@ -159,8 +159,6 @@ namespace CommonForms.Components
 
             chkEnabled.Checked = trans.Enabled;
             chkPrevOutput.Checked = trans.UseLastOutput;
-
-            
         }
 
         public void LoadState(EditorState state, Transform<T>? transform = null)
@@ -278,7 +276,9 @@ namespace CommonForms.Components
         private void HandleUpdate()
         {
             //  UPDATE            
-            if (Transform == null || Transform.Condition == null || Transform.Action == null)
+            if (Transform == null || 
+                Transform.Condition == null || 
+                Transform.Action == null)
             {
                 MessageBox.Show(
                     Locale.DLG_CHANGE_ERR_MSG_CHANGE_WRONG,
@@ -297,7 +297,6 @@ namespace CommonForms.Components
                 //  Must update Condition?
                 string condName = cmbCondition.SelectedItem?.ToString() ?? string.Empty;
                 if (!string.IsNullOrEmpty(condName) && condName != Transform.Condition.GetType().Name)
-
                     Transform.Condition = RealityFrameworks.GenericFactory<RealityFrameworks.Conditions.Condition<T>>.Create(condName);
 
                 //  Save State: Editor -> Condition
@@ -334,8 +333,8 @@ namespace CommonForms.Components
             {
                 //  Must update Action?
                 string actionName = cmbAction.SelectedItem?.ToString() ?? string.Empty;
-                if (!string.IsNullOrEmpty(actionName) && actionName != Transform.Action.GetType().Name)
 
+                if (!string.IsNullOrEmpty(actionName) && actionName != Transform.Action.GetType().Name)
                     Transform.Action = RealityFrameworks.GenericFactory<RealityFrameworks.Actions.Action<T>>.Create(actionName);
 
                 //  Save State: Editor -> Action
@@ -385,6 +384,7 @@ namespace CommonForms.Components
             Transform.Enabled = chkEnabled.Checked;
             Transform.UseLastOutput = chkPrevOutput.Checked;
 
+            //  notify tab of changes so it can reload
             OnModified?.Invoke();
 
             this.Close();
@@ -421,21 +421,22 @@ namespace CommonForms.Components
 
             string? condName = cmbCondition.SelectedItem.ToString();
 
-            if (condName != null)
+            if (condName == null)
             {
-                try
-                {
-                    mSelCondEditor = FindOrCreateEditor(condName);
-                    if (mSelCondEditor != null)
-                        Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
-                }
-                catch (Exception ex)
-                {
-                    panelCondition.Controls.Clear();
-                    MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            } else {
-                throw new Exception("condName is null");
+                MessageBox.Show("condName is null in OnConditionIndexChanged()");
+                return;
+            }
+
+            try
+            {
+                mSelCondEditor = FindOrCreateEditor(condName);
+                if (mSelCondEditor != null)
+                    Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
+            }
+            catch (Exception ex)
+            {
+                panelCondition.Controls.Clear();
+                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -448,22 +449,22 @@ namespace CommonForms.Components
             }
 
             string? actionName = cmbAction.SelectedItem.ToString();
-            if (actionName != null)
+            if (actionName == null)
             {
-                try
-                {
-                    mSelActionEditor = FindOrCreateEditor(actionName);
-                    if (mSelActionEditor != null)
-                        Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
-                }
-                catch (Exception ex)
-                {
-                    panelAction.Controls.Clear();
-                    MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            } else
+                MessageBox.Show("actionName null in OnActionIndexChanged()");
+                return;
+            }
+
+            try
             {
-                MessageBox.Show("actionName null");
+                mSelActionEditor = FindOrCreateEditor(actionName);
+                if (mSelActionEditor != null)
+                    Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
+            }
+            catch (Exception ex)
+            {
+                panelAction.Controls.Clear();
+                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
