@@ -1,6 +1,6 @@
 ﻿namespace CommonForms.Components
 {
-    partial class DialogSelectTransform<T> : Form
+    partial class DialogSelectTransformBase : Form
     {
         /// <summary>
         /// Required designer variable.
@@ -455,31 +455,31 @@
         }
 
         #endregion
-        private Panel panelAction;
-        private Panel panelCondition;
-        private Label lblSelAct;
-        private ComboBox cmbAction;
-        private Button btnSubmit;
-        private Button btnClose;
-        private TableLayoutPanel tableLayoutButtons;
-        private Label lblSelCond;
-        private ComboBox cmbCondition;
-        private Label lblConditionDesc;
-        private CheckBox chkEnabled;
-        private Label lblActionDesc;
-        private TextBox txtDesc;
-        private TableLayoutPanel tableLayoutMain;
-        private TableLayoutPanel tableLayoutEditors;
-        private TableLayoutPanel tableLayoutChangeDesc;
-        private CheckBox chkDesc;
-        private TableLayoutPanel tableLayoutDesc;
-        private Button btnResetDesc;
-        private GroupBox grpCondition;
-        private GroupBox grpAction;
-        private TableLayoutPanel tableLayoutPanelCmbCondition;
-        private TableLayoutPanel tableLayoutPanelConditionGroup;
-        private TableLayoutPanel tableLayoutPanelAction;
-        private TableLayoutPanel tableLayoutPanelCmbAction;
-        private CheckBox chkPrevOutput;
+        protected Panel panelAction;
+        protected Panel panelCondition;
+        protected Label lblSelAct;
+        protected ComboBox cmbAction;
+        protected Button btnSubmit;
+        protected Button btnClose;
+        protected TableLayoutPanel tableLayoutButtons;
+        protected Label lblSelCond;
+        protected ComboBox cmbCondition;
+        protected Label lblConditionDesc;
+        protected CheckBox chkEnabled;
+        protected Label lblActionDesc;
+        protected TextBox txtDesc;
+        protected TableLayoutPanel tableLayoutMain;
+        protected TableLayoutPanel tableLayoutEditors;
+        protected TableLayoutPanel tableLayoutChangeDesc;
+        protected CheckBox chkDesc;
+        protected TableLayoutPanel tableLayoutDesc;
+        protected Button btnResetDesc;
+        protected GroupBox grpCondition;
+        protected GroupBox grpAction;
+        protected TableLayoutPanel tableLayoutPanelCmbCondition;
+        protected TableLayoutPanel tableLayoutPanelConditionGroup;
+        protected TableLayoutPanel tableLayoutPanelAction;
+        protected TableLayoutPanel tableLayoutPanelCmbAction;
+        protected CheckBox chkPrevOutput;
     }
 }
