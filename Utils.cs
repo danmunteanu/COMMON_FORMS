@@ -82,15 +82,17 @@
         public static string K_PREFIX_DATE_MASK = "yyyy-MM-dd-";
 
         //	helper - Adds user controls to a panel
-        public static void AddUserControlToPanel(Panel panel, UserControl control)
+        public static bool AddUserControlToPanel(Panel panel, UserControl control)
         {
             if (panel.Controls.Contains(control))
-                return;
+                return false;
 
             control.Dock = DockStyle.Fill;
             panel.Controls.Clear();
             panel.Controls.Add(control);
             control.BringToFront();
+			
+			return true;
         }
 
         /*
