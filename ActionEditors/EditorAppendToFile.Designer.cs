@@ -1,6 +1,6 @@
 ﻿namespace CommonForms
 {
-    partial class EditorMergeFiles
+    partial class EditorAppendToFile
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lblMergeFileName = new Label();
-            txtMergeName = new TextBox();
+            txtFileNameAppend = new TextBox();
             btnSelectName = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             dlgSaveFile = new SaveFileDialog();
@@ -46,17 +46,17 @@
             lblMergeFileName.Name = "lblMergeFileName";
             lblMergeFileName.Size = new Size(161, 20);
             lblMergeFileName.TabIndex = 1;
-            lblMergeFileName.Text = "Select Merge File Name:";
+            lblMergeFileName.Text = "Select file name to append to:";
             // 
             // txtMergeName
             // 
-            txtMergeName.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtMergeName.Location = new Point(2, 110);
-            txtMergeName.Margin = new Padding(2);
-            txtMergeName.Name = "txtMergeName";
-            txtMergeName.ReadOnly = true;
-            txtMergeName.Size = new Size(476, 27);
-            txtMergeName.TabIndex = 2;
+            txtFileNameAppend.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            txtFileNameAppend.Location = new Point(2, 110);
+            txtFileNameAppend.Margin = new Padding(2);
+            txtFileNameAppend.Name = "txtMergeName";
+            txtFileNameAppend.ReadOnly = true;
+            txtFileNameAppend.Size = new Size(476, 27);
+            txtFileNameAppend.TabIndex = 2;
             // 
             // btnSelectName
             // 
@@ -77,7 +77,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 68F));
             tableLayoutPanel1.Controls.Add(btnSelectName, 1, 1);
-            tableLayoutPanel1.Controls.Add(txtMergeName, 0, 1);
+            tableLayoutPanel1.Controls.Add(txtFileNameAppend, 0, 1);
             tableLayoutPanel1.Controls.Add(lblMergeFileName, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
@@ -103,7 +103,7 @@
 
         #endregion
         private Label lblMergeFileName;
-        private TextBox txtMergeName;
+        private TextBox txtFileNameAppend;
         private Button btnSelectName;
         private TableLayoutPanel tableLayoutPanel1;
         private SaveFileDialog dlgSaveFile;

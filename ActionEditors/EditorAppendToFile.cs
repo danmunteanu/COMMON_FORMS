@@ -1,36 +1,35 @@
 ﻿using RealityFrameworks.Actions;
-using SharpCompress;
 
 namespace CommonForms
 {
-    public partial class EditorMergeFiles : EditorBase<string>
+    public partial class EditorAppendToFile : EditorBase<string>
     {
-        private ActionMergeTextFiles _action = null;
+        private ActionAppendToFile? _action = null;
 
-        public ActionMergeTextFiles Action
+        public ActionAppendToFile? Action
         {
             get { return _action; }
             set { _action = value; LoadState(_action); }
         }
 
-        public EditorMergeFiles()
+        public EditorAppendToFile()
         {
             InitializeComponent();
         }
 
         public override void SaveState(RealityFrameworks.Actions.Action<string> action)
         {
-            if (action is ActionMergeTextFiles amf)
+            if (action is ActionAppendToFile amf)
             {
-                amf.OutputFile = txtMergeName.Text;
+                amf.AppendFileName = txtFileNameAppend.Text;
             }
         }
 
         public override void LoadState(FileAction action)
         {
-            if (action is ActionMergeTextFiles amf)
+            if (action is ActionAppendToFile amf)
             {
-                txtMergeName.Text = amf.OutputFile;
+                txtFileNameAppend.Text = amf.AppendFileName;
             }
         }
 
@@ -38,7 +37,7 @@ namespace CommonForms
         {
             bool isValid = true;
 
-            if (string.IsNullOrWhiteSpace(txtMergeName.Text))
+            if (string.IsNullOrWhiteSpace(txtFileNameAppend.Text))
             {
                 PushError("Merge file name cannot be missing. Please select a file name.");
                 isValid = false;
@@ -55,7 +54,7 @@ namespace CommonForms
             DialogResult res = dlgSaveFile.ShowDialog();
             if (res == DialogResult.OK)
             {
-                txtMergeName.Text = dlgSaveFile.FileName;
+                txtFileNameAppend.Text = dlgSaveFile.FileName;
             }
         }
     }
