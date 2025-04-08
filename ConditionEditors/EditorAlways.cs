@@ -6,13 +6,15 @@ namespace CommonForms.ConditionEditors
     {
         public EditorAlways()
         {
-            const string text = "Always TRUE";
+            const string text = "Always evaluates to TRUE";
             // Create a Windows Forms label
             var label = new System.Windows.Forms.Label
             {
                 Text = text,
                 TextAlign = System.Drawing.ContentAlignment.MiddleCenter, // Center the text
-                Dock = System.Windows.Forms.DockStyle.Fill // Fill the UserControl with the label
+                Dock = System.Windows.Forms.DockStyle.Fill,
+                Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0)
+
             };
 
             // Add the label to the UserControl's controls collection
