@@ -5,9 +5,12 @@ namespace CommonForms
 {
     public partial class ApplicationPageBase : UserControl
     {
+        //  a delegate to update the status
         public delegate void UpdateStatusDelegate(string message);
+
         public UpdateStatusDelegate? UpdateStatusCallback { get; set; } = null;
 
+        //  default to Desktop\TEMP, for now
         protected string DefaultOutputFolder = 
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "TEMP");
 
@@ -17,8 +20,7 @@ namespace CommonForms
         //  Reference to a FilesProcessor instance
         protected FilesProcessor? mFilesProcessor = null;
 
-
-        public Components.FilesListComponent? FilesList 
+        public FilesListComponent? FilesList 
         { 
             get { return mFilesList; } 
             set
@@ -28,7 +30,6 @@ namespace CommonForms
                 OnFilesListSet();
             }
         }
-
 
         public FilesProcessor? Processor
         {
@@ -47,32 +48,35 @@ namespace CommonForms
 
         protected virtual void OnFilesListSet()
         {
-            //  override and implement in derived classes
+            //  override and implement in derived classes for custom logic
+            //  when setting the files list component
         }
 
         protected virtual void OnProcessorSet()
         {
-            //  implement this in derived classes
+            //  override and implement this in derived classes
+            //  if something specific has to happen when setting the processor
         }
-
-        //  Do PROVIDE empty implementations for the interface methods below, or else
-        //  the C# compiler won't make these accessible to this class,
-        //  although they have default implementations in the interface
 
         public virtual void UpdateUI()
         {
+            //  override and implement to force a custom UI update
+            //  and reload the page's inner state
         }
 
         public virtual void UpdateLocale()
         {
+            //  used to update localization strings in derived classes
         }
 
         public virtual void SaveSettings(ref Dictionary<string, string> iniKeys)
         {
+            //  used to save custom settings to a dictionary
         }
 
         public virtual void LoadSettings(Dictionary<string, string> iniKeys)
         {
+            //  used to load settings from a dictionary
         }
 
     }
