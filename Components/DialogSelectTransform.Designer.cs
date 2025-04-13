@@ -192,9 +192,9 @@
             chkPrevOutput.AutoSize = true;
             chkPrevOutput.Location = new Point(109, 6);
             chkPrevOutput.Name = "chkPrevOutput";
-            chkPrevOutput.Size = new Size(166, 24);
+            chkPrevOutput.Size = new Size(265, 24);
             chkPrevOutput.TabIndex = 51;
-            chkPrevOutput.Text = "Link Previous Output";
+            chkPrevOutput.Text = "Link To Previous Transform's Output";
             chkPrevOutput.UseVisualStyleBackColor = true;
             // 
             // chkEnabled
@@ -424,7 +424,7 @@
             tableLayoutPanelCmbAction.Size = new Size(416, 36);
             tableLayoutPanelCmbAction.TabIndex = 45;
             // 
-            // DialogSelectTransform
+            // DialogSelectTransformBase
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -432,7 +432,7 @@
             Controls.Add(tableLayoutMain);
             Margin = new Padding(1, 2, 1, 2);
             MaximizeBox = false;
-            Name = "DialogSelectTransform";
+            Name = "DialogSelectTransformBase";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SELECT CHANGE";
             tableLayoutButtons.ResumeLayout(false);

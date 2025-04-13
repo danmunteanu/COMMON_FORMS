@@ -138,10 +138,9 @@ namespace CommonForms
 
             bool haveSelection = lstTransforms.SelectedIndex != -1;
 
-            btnEdit.Enabled = haveSelection;
-            btnEnableDisable.Enabled = haveSelection;
             btnEnableDisable.Text = Processor.GetTransformAt(lstTransforms.SelectedIndex).Enabled ? "🚫" : "✅";
-            btnDel.Enabled = haveSelection;
+            btnLinkUnlinkOutput.Text = Processor.GetTransformAt(lstTransforms.SelectedIndex).UseLastOutput ? "🧷" : "⛓";
+            UpdateUI();
         }
 
         //	Reloads Changes from Processor
@@ -171,6 +170,7 @@ namespace CommonForms
             btnAdd.Enabled = true;
             btnEdit.Enabled = hasSelection;
             btnEnableDisable.Enabled = hasSelection;
+            btnLinkUnlinkOutput.Enabled = hasSelection;
             btnDel.Enabled = hasSelection;
             btnClear.Enabled = hasChanges;
         }
@@ -246,12 +246,12 @@ namespace CommonForms
             string msg = string.Format("Delete {0}?", tr.Description);
             var res = MessageBox.Show(msg, "Delete confirmation",
                 MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            
+
             if (res != DialogResult.OK)
                 return;
 
             Processor.RemoveTransformAt(idx);
-            
+
             ReloadProcessor();
             UpdateUI();
 
@@ -272,7 +272,7 @@ namespace CommonForms
             {
                 btnEnableDisable.Text = "🚫";
                 toolTip.SetToolTip(btnEnableDisable, "Disable selected Transform");
-            } 
+            }
             else
             {
                 btnEnableDisable.Text = "✅";
@@ -329,12 +329,12 @@ namespace CommonForms
 
             e.DrawBackground();
             e.DrawFocusRectangle();
-            
+
             string? text = lstTransforms.Items[e.Index].ToString();
             Font font = lstTransforms.Font;
 
             //  make sure index is valid in Processor
-            if (e.Index >= 0 && e.Index < Processor.CountTransforms()) 
+            if (e.Index >= 0 && e.Index < Processor.CountTransforms())
             {
                 if (!Processor.GetTransformAt(e.Index).Enabled)
                     font = new Font(font, FontStyle.Strikeout);
@@ -344,6 +344,30 @@ namespace CommonForms
             {
                 e.Graphics.DrawString(text, font, textBrush, e.Bounds);
             }
+        }
+
+        private void btnLink_Click(object sender, EventArgs e)
+        {
+            if (Processor == null) return;
+            if (lstTransforms.SelectedIndex < 0) return;
+
+            //  get current transform
+            FileTransform tr = Processor.GetTransformAt(lstTransforms.SelectedIndex);
+
+            tr.UseLastOutput = !tr.UseLastOutput;
+            
+            if (!tr.UseLastOutput)
+            {
+                btnLinkUnlinkOutput.Text = "⛓";
+                toolTip.SetToolTip(btnLinkUnlinkOutput, "Link to previous Transform's output");
+            }
+            else
+            {
+                btnLinkUnlinkOutput.Text = "🧷";
+                toolTip.SetToolTip(btnLinkUnlinkOutput, "Unlink from previous Transform's output");
+            }
+
+            lstTransforms.Invalidate();
         }
     }
 }
