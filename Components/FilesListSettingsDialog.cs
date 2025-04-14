@@ -28,8 +28,8 @@
             if (mListControl != null)
             {
                 chkAddFolders.Checked = mListControl.Settings.AllowAddFolders;
-                chkParseSubfolders.Enabled = chkAddFolders.Checked;
-                chkParseSubfolders.Checked = mListControl.Settings.ParseSubfolders;
+                chkIncludeSubfolders.Enabled = chkAddFolders.Checked;
+                chkIncludeSubfolders.Checked = mListControl.Settings.ParseSubfolders;
                 chkShowStatus.Checked = mListControl.Settings.UseStatus;
                 chkShowProgressBar.Checked = mListControl.Settings.UseProgressBar;
 
@@ -42,7 +42,7 @@
 
         private void chkAddFolders_CheckedChanged(object sender, EventArgs e)
         {
-            chkParseSubfolders.Enabled = chkAddFolders.Checked;
+            chkIncludeSubfolders.Enabled = chkAddFolders.Checked;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -51,7 +51,7 @@
             {
                 FilesListComponent.ListSettings settings = mListControl.Settings;
                 settings.AllowAddFolders = chkAddFolders.Checked;
-                settings.ParseSubfolders = chkParseSubfolders.Checked;
+                settings.ParseSubfolders = chkIncludeSubfolders.Checked;
                 settings.UseStatus = chkShowStatus.Checked;
                 settings.UseProgressBar = chkShowProgressBar.Checked;
 

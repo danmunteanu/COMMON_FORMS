@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             chkAddFolders = new CheckBox();
-            chkParseSubfolders = new CheckBox();
+            chkIncludeSubfolders = new CheckBox();
             btnCancel = new Button();
             btnSave = new Button();
             chkShowStatus = new CheckBox();
@@ -52,23 +52,23 @@
             chkAddFolders.Location = new Point(2, 2);
             chkAddFolders.Margin = new Padding(2);
             chkAddFolders.Name = "chkAddFolders";
-            chkAddFolders.Size = new Size(171, 24);
+            chkAddFolders.Size = new Size(174, 24);
             chkAddFolders.TabIndex = 1;
             chkAddFolders.Text = "Allow Adding Folders";
             chkAddFolders.UseVisualStyleBackColor = true;
             chkAddFolders.CheckedChanged += chkAddFolders_CheckedChanged;
             // 
-            // chkParseSubfolders
+            // chkIncludeSubfolders
             // 
-            chkParseSubfolders.Anchor = AnchorStyles.Left;
-            chkParseSubfolders.AutoSize = true;
-            chkParseSubfolders.Location = new Point(2, 30);
-            chkParseSubfolders.Margin = new Padding(2);
-            chkParseSubfolders.Name = "chkParseSubfolders";
-            chkParseSubfolders.Size = new Size(140, 24);
-            chkParseSubfolders.TabIndex = 2;
-            chkParseSubfolders.Text = "Parse Subfolders";
-            chkParseSubfolders.UseVisualStyleBackColor = true;
+            chkIncludeSubfolders.Anchor = AnchorStyles.Left;
+            chkIncludeSubfolders.AutoSize = true;
+            chkIncludeSubfolders.Location = new Point(2, 30);
+            chkIncludeSubfolders.Margin = new Padding(2);
+            chkIncludeSubfolders.Name = "chkIncludeSubfolders";
+            chkIncludeSubfolders.Size = new Size(154, 24);
+            chkIncludeSubfolders.TabIndex = 2;
+            chkIncludeSubfolders.Text = "Include Subfolders";
+            chkIncludeSubfolders.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
@@ -137,7 +137,7 @@
             // 
             tableLayoutPanelLeft.ColumnCount = 1;
             tableLayoutPanelLeft.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelLeft.Controls.Add(chkParseSubfolders, 0, 1);
+            tableLayoutPanelLeft.Controls.Add(chkIncludeSubfolders, 0, 1);
             tableLayoutPanelLeft.Controls.Add(chkAddFolders, 0, 0);
             tableLayoutPanelLeft.Controls.Add(chkShowProgressBar, 0, 4);
             tableLayoutPanelLeft.Controls.Add(chkShowStatus, 0, 3);
@@ -152,13 +152,13 @@
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
             tableLayoutPanelLeft.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelLeft.Size = new Size(175, 185);
+            tableLayoutPanelLeft.Size = new Size(203, 185);
             tableLayoutPanelLeft.TabIndex = 17;
             // 
             // tableLayoutColumns
             // 
             tableLayoutColumns.ColumnCount = 3;
-            tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 179F));
+            tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 207F));
             tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutColumns.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 318F));
             tableLayoutColumns.Controls.Add(tableLayoutPanelLeft, 0, 0);
@@ -176,6 +176,7 @@
             // compListExt
             // 
             compListExt.Dock = DockStyle.Fill;
+            compListExt.FreeEditExtensions = true;
             compListExt.Location = new Point(229, 3);
             compListExt.Name = "compListExt";
             compListExt.Size = new Size(312, 183);
@@ -222,7 +223,7 @@
         #endregion
 
         private CheckBox chkAddFolders;
-        private CheckBox chkParseSubfolders;
+        private CheckBox chkIncludeSubfolders;
         private Button btnCancel;
         private Button btnSave;
         private CheckBox chkShowStatus;
