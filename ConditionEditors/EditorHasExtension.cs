@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorHasExtension : EditorBase<string>
+    public partial class EditorHasExtension : EditorBase2
     {
         private const string KExtensionSeparator = ";";
 
@@ -31,7 +31,7 @@ namespace CommonForms
             return true;
         }
 
-        public override void LoadState(Condition<string> cond)
+        public override void LoadState(object cond)
         {
             if (cond is ConditionHasExtension hasExt)
             {
@@ -39,7 +39,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(Condition<string> cond)
+        public override void SaveState(object cond)
         {
             if (cond is ConditionHasExtension hasExt)
             {
@@ -48,7 +48,7 @@ namespace CommonForms
             }
         }
 
-        public override void ClearState()
+        public override void ResetState()
         {
             //  just clear the list and the add field
             compListExtensions.Clear();

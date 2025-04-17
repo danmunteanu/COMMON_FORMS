@@ -43,16 +43,16 @@
             // 
             txtAddExtension.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtAddExtension.Font = new Font("Segoe UI", 7F);
-            txtAddExtension.Location = new Point(665, 4);
+            txtAddExtension.Location = new Point(469, 5);
             txtAddExtension.Name = "txtAddExtension";
-            txtAddExtension.Size = new Size(64, 26);
+            txtAddExtension.Size = new Size(64, 23);
             txtAddExtension.TabIndex = 1;
             // 
             // btnAddExt
             // 
             btnAddExt.Dock = DockStyle.Fill;
             btnAddExt.Font = new Font("Segoe UI", 7F);
-            btnAddExt.Location = new Point(735, 3);
+            btnAddExt.Location = new Point(539, 3);
             btnAddExt.Name = "btnAddExt";
             btnAddExt.Size = new Size(54, 28);
             btnAddExt.TabIndex = 2;
@@ -64,9 +64,9 @@
             // 
             lblExtensionList.Anchor = AnchorStyles.Left;
             lblExtensionList.AutoSize = true;
-            lblExtensionList.Location = new Point(3, 0);
+            lblExtensionList.Location = new Point(3, 7);
             lblExtensionList.Name = "lblExtensionList";
-            lblExtensionList.Size = new Size(95, 34);
+            lblExtensionList.Size = new Size(81, 20);
             lblExtensionList.TabIndex = 5;
             lblExtensionList.Text = "Extensions:";
             // 
@@ -87,7 +87,7 @@
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 200F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Percent, 70F));
             tableLayoutMain.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutMain.Size = new Size(798, 384);
+            tableLayoutMain.Size = new Size(602, 362);
             tableLayoutMain.TabIndex = 14;
             // 
             // tableLayoutPanelAdd
@@ -103,11 +103,11 @@
             tableLayoutPanelAdd.Controls.Add(lblExt, 2, 0);
             tableLayoutPanelAdd.Controls.Add(lblExtensionList, 0, 0);
             tableLayoutPanelAdd.Dock = DockStyle.Fill;
-            tableLayoutPanelAdd.Location = new Point(3, 46);
+            tableLayoutPanelAdd.Location = new Point(3, 39);
             tableLayoutPanelAdd.Name = "tableLayoutPanelAdd";
             tableLayoutPanelAdd.RowCount = 1;
             tableLayoutPanelAdd.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelAdd.Size = new Size(792, 34);
+            tableLayoutPanelAdd.Size = new Size(596, 34);
             tableLayoutPanelAdd.TabIndex = 15;
             // 
             // lblExt
@@ -115,27 +115,28 @@
             lblExt.Anchor = AnchorStyles.Right;
             lblExt.AutoSize = true;
             lblExt.Font = new Font("Segoe UI", 9F);
-            lblExt.Location = new Point(609, 4);
+            lblExt.Location = new Point(423, 7);
             lblExt.Name = "lblExt";
-            lblExt.Size = new Size(50, 25);
+            lblExt.Size = new Size(40, 20);
             lblExt.TabIndex = 6;
             lblExt.Text = "Add:";
             // 
             // compListExtensions
             // 
             compListExtensions.Dock = DockStyle.Fill;
-            compListExtensions.FreeEditExtensions = false;
-            compListExtensions.Location = new Point(4, 87);
-            compListExtensions.Margin = new Padding(4, 4, 4, 4);
+            compListExtensions.FreeEditExtensions = true;
+            compListExtensions.Location = new Point(4, 80);
+            compListExtensions.Margin = new Padding(4);
             compListExtensions.Name = "compListExtensions";
-            compListExtensions.Size = new Size(790, 192);
+            compListExtensions.Size = new Size(594, 192);
             compListExtensions.TabIndex = 17;
             // 
             // EditorHasExtension
             // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             Controls.Add(tableLayoutMain);
             Name = "EditorHasExtension";
-            Size = new Size(798, 384);
+            Size = new Size(602, 362);
             tableLayoutMain.ResumeLayout(false);
             tableLayoutPanelAdd.ResumeLayout(false);
             tableLayoutPanelAdd.PerformLayout();

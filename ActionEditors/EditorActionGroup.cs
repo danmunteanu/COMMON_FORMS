@@ -7,9 +7,9 @@ using static CommonForms.Utils;
  */
 namespace CommonForms
 {
-    using ActionNameAndEditorPair = Tuple<string, CommonForms.EditorBase<string>>;
+    using ActionNameAndEditorPair = Tuple<string, CommonForms.EditorBase2>;
 
-    public partial class EditorActionGroup : EditorBase<string>
+    public partial class EditorActionGroup : EditorBase2
     {
         //  Index of the current action in _actionGroup
         private int mEditorIndex = -1;
@@ -95,12 +95,12 @@ namespace CommonForms
             return isValid;
         }
 
-        public override void LoadState(FileAction action)
+        public override void LoadState(object action)
         {
             if (!(action is ActionGroup<string> ag))
                 return;
 
-            ClearState();
+            ResetState();
 
             for (int idx = 0; idx < ag.CountActions(); ++idx)
             {
@@ -115,7 +115,7 @@ namespace CommonForms
 
                 //  create an editor
                 
-                EditorBase<string> editor = RealityFrameworks.GenericFactory<EditorBase<string>>.Create(actionName);
+                EditorBase2 editor = RealityFrameworks.GenericFactory<EditorBase2>.Create(actionName);
 
                 //  make sure we have an editor
                 if (editor == null)
@@ -138,7 +138,7 @@ namespace CommonForms
             RefreshUI();
         }
 
-        public override void SaveState(FileAction action)
+        public override void SaveState(object action)
         {
             if (!(action is ActionGroup<string> actionGroup))
                 return;
@@ -151,7 +151,7 @@ namespace CommonForms
                 string actionName = editorPair.Item1;
 
                 //  get the editor
-                EditorBase<string> editor = editorPair.Item2;
+                EditorBase2 editor = editorPair.Item2;
 
                 //  create the action
                 
@@ -169,7 +169,7 @@ namespace CommonForms
             }
         }
 
-        public override void ClearState()
+        public override void ResetState()
         {
             //  Clear the editors
             mEditors.Clear();
@@ -282,7 +282,7 @@ namespace CommonForms
             lblActionName.Text = string.Format("({0})", actionName);
 
             //  Create the Editor
-            EditorBase<string>? editor;
+            EditorBase2? editor;
             editor = EditorFactory.Create(actionName);
             if (editor != null)
             {

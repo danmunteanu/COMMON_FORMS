@@ -1,8 +1,6 @@
-﻿using RealityFrameworks.Conditions;
-
-namespace CommonForms.ConditionEditors
+﻿namespace CommonForms.ConditionEditors
 {
-    public class EditorAlways : EditorBase<string>
+    public class EditorAlways : EditorBase2
     {
         public EditorAlways()
         {
@@ -21,17 +19,23 @@ namespace CommonForms.ConditionEditors
             this.Controls.Add(label);
         }
 
-        public override void SaveState(Condition<string> cond)
+        public override void SaveState(object cond)
         {
             //  nothing to do, but keep this method
             //  else, the base method will throw
         }
 
-        public override void LoadState(Condition<string> cond)
+        private void InitializeComponent()
         {
-            //  again, nothing to do, but keep this method
-            //  else, the base method will throw
 
         }
+
+        public override void LoadState(object cond)
+        {
+            //  nothing to do here, but keep this method
+            //  else the base method will throw
+        }
+        private TableLayoutPanel tableLayoutMain;
+        private Label lblMessage;
     }
 }

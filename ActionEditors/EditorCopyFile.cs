@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorCopyFile : EditorBase<string>
+    public partial class EditorCopyFile : EditorBase2
     {
         public EditorCopyFile()
         {
@@ -29,7 +29,7 @@ namespace CommonForms
             return true;
         }
 
-        public override void LoadState(RealityFrameworks.Actions.Action<string> action)
+        public override void LoadState(object action)
         {
             if (action is ActionCopyFile acp)
             {
@@ -41,7 +41,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(RealityFrameworks.Actions.Action<string> action)
+        public override void SaveState(object action)
         {
             if (action is ActionCopyFile acp)
             {

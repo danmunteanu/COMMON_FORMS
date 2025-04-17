@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorRenameFile : EditorBase<string>
+    public partial class EditorRenameFile : EditorBase2
     {
         public EditorRenameFile()
         {
@@ -45,7 +45,7 @@ namespace CommonForms
             menuStripExtensions.Items.Add(audioItem);
         }
 
-        public override void LoadState(FileAction action)
+        public override void LoadState(object action)
         {
             if (action is ActionRenameFile arf)
             {
@@ -61,7 +61,7 @@ namespace CommonForms
             }
         }
 
-        public override void SaveState(FileAction action)
+        public override void SaveState(object action)
         {
             if (action is ActionRenameFile arf)
             {
@@ -90,7 +90,7 @@ namespace CommonForms
             }
         }
 
-        public override void ClearState()
+        public override void ResetState()
         {
             chkAddPrefix.Checked = false;
             txtPrefix.Text = string.Empty;

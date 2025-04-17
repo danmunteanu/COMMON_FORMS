@@ -5,10 +5,10 @@ namespace CommonForms.Components
     public class DialogSelectTransform<T> : DialogSelectTransformBase
     {
         //	The active Condition editor
-        private EditorBase<T>? mSelCondEditor = null;
+        private EditorBase2? mSelCondEditor = null;
 
         //	The active Action editor
-        private EditorBase<T>? mSelActionEditor = null;
+        private EditorBase2? mSelActionEditor = null;
 
         public TransformsContainer<T>? Processor { get; set; }
 
@@ -16,17 +16,17 @@ namespace CommonForms.Components
         private Transform<T>? Transform { get; set; } = null;
 
         //  Cache of Editors
-        Dictionary<string, EditorBase<T>> mEditorCache = new();
+        Dictionary<string, EditorBase2> mEditorCache = new();
 
         //  Tries to find an editor in the cache,
         //  if not found, it creates the editor
         //  if found, returns the instance
-        private EditorBase<T>? FindOrCreateEditor(string name)
+        private EditorBase2? FindOrCreateEditor(string name)
         {
-            EditorBase<T>? editor = null;
+            EditorBase2? editor = null;
             if (!mEditorCache.TryGetValue(name, out editor))
             {
-                editor = GenericFactory<EditorBase<T>>.Create(name);
+                editor = GenericFactory<EditorBase2>.Create(name);
                 mEditorCache.Add(name, editor);
             }
             return editor;
@@ -39,7 +39,7 @@ namespace CommonForms.Components
             Text = Locale.DLG_CHANGE_TITLE_ADD;
 
             foreach (var keyValuePair in mEditorCache)
-                keyValuePair.Value.ClearState();
+                keyValuePair.Value.ResetState();
 
             //  Clear Editor Condition
             panelCondition.Controls.Clear();
@@ -88,7 +88,7 @@ namespace CommonForms.Components
 
             //  reset the editors
             foreach (var keyValuePair in mEditorCache)
-                keyValuePair.Value.ClearState();
+                keyValuePair.Value.ResetState();
 
             //  CONDITION editor
             try
@@ -205,7 +205,7 @@ namespace CommonForms.Components
                 //  Create New Condition by Name
                 try
                 {
-                    cond = RealityFrameworks.GenericFactory<RealityFrameworks.Conditions.Condition<T>>.Create(cmbCondition.SelectedItem.ToString());
+                    cond = GenericFactory<RealityFrameworks.Conditions.Condition<T>>.Create(cmbCondition.SelectedItem.ToString());
                     mSelCondEditor.SaveState(cond);
                 }
                 catch (Exception ex)
@@ -392,7 +392,6 @@ namespace CommonForms.Components
 
         protected override void OnHandleSubmit()
         {
-            //  MAKE OVERRIDE 
             if (State == EditorState.Add)
                 HandleAdd();
             else if (State == EditorState.Edit)

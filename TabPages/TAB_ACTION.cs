@@ -2,10 +2,10 @@
 {
     public partial class TAB_Action : ApplicationPageBase
     {
-        private EditorBase<string>? mSelectedEditor = null;
+        private EditorBase2? mSelectedEditor = null;
 
         //  Cache of Editors
-        Dictionary<string, EditorBase<string>> mEditorCache = new();
+        Dictionary<string, EditorBase2> mEditorCache = new();
 
         public TAB_Action() 
             => InitializeComponent();
@@ -14,9 +14,9 @@
             => cmbActions.Items.Add(actionName);
 
         //  Tries to find an editor in the cache, if not found, it creates the editor
-        private EditorBase<string>? FindOrCreateEditor(string? name)
+        private EditorBase2? FindOrCreateEditor(string? name)
         {
-            EditorBase<string>? editor = null;
+            EditorBase2? editor = null;
             if (name == null)
                 return editor;
 

@@ -1,17 +1,18 @@
-﻿using RealityFrameworks.Conditions;
-
-namespace CommonForms
+﻿namespace CommonForms
 {
-    public partial class EditorIsFolder : EditorBase<string>
+    public partial class EditorIsFolder : EditorBase2
     {
         public EditorIsFolder()
         {
             InitializeComponent();
         }
 
-        public override void SaveState(Condition<string> cond)
+        public override void SaveState(object cond)
+        {            
+        }
+
+        public override void LoadState(object item)
         {
-            
         }
     }
 }

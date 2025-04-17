@@ -58,7 +58,7 @@
             txtPrefix.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             txtPrefix.Location = new Point(3, 3);
             txtPrefix.Name = "txtPrefix";
-            txtPrefix.Size = new Size(580, 31);
+            txtPrefix.Size = new Size(580, 27);
             txtPrefix.TabIndex = 1;
             // 
             // txtExtension
@@ -66,15 +66,15 @@
             txtExtension.Dock = DockStyle.Fill;
             txtExtension.Location = new Point(3, 3);
             txtExtension.Name = "txtExtension";
-            txtExtension.Size = new Size(164, 31);
+            txtExtension.Size = new Size(164, 27);
             txtExtension.TabIndex = 3;
             // 
             // txtCustom
             // 
             txtCustom.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            txtCustom.Location = new Point(3, 277);
+            txtCustom.Location = new Point(3, 279);
             txtCustom.Name = "txtCustom";
-            txtCustom.Size = new Size(586, 31);
+            txtCustom.Size = new Size(586, 27);
             txtCustom.TabIndex = 4;
             // 
             // chkAddPrefix
@@ -83,7 +83,7 @@
             chkAddPrefix.AutoSize = true;
             chkAddPrefix.Location = new Point(3, 3);
             chkAddPrefix.Name = "chkAddPrefix";
-            chkAddPrefix.Size = new Size(124, 29);
+            chkAddPrefix.Size = new Size(103, 24);
             chkAddPrefix.TabIndex = 6;
             chkAddPrefix.Text = "Add Prefix:";
             chkAddPrefix.UseVisualStyleBackColor = true;
@@ -93,9 +93,9 @@
             // 
             chkChangeExtension.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkChangeExtension.AutoSize = true;
-            chkChangeExtension.Location = new Point(3, 143);
+            chkChangeExtension.Location = new Point(3, 148);
             chkChangeExtension.Name = "chkChangeExtension";
-            chkChangeExtension.Size = new Size(182, 29);
+            chkChangeExtension.Size = new Size(151, 24);
             chkChangeExtension.TabIndex = 7;
             chkChangeExtension.Text = "Change Extension:";
             chkChangeExtension.UseVisualStyleBackColor = true;
@@ -105,9 +105,9 @@
             // 
             chkCustomName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             chkCustomName.AutoSize = true;
-            chkCustomName.Location = new Point(3, 238);
+            chkCustomName.Location = new Point(3, 243);
             chkCustomName.Name = "chkCustomName";
-            chkCustomName.Size = new Size(156, 29);
+            chkCustomName.Size = new Size(128, 24);
             chkCustomName.TabIndex = 8;
             chkCustomName.Text = "Custom Name:";
             chkCustomName.UseVisualStyleBackColor = true;
@@ -219,7 +219,7 @@
             dpDate.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             dpDate.Location = new Point(128, 3);
             dpDate.Name = "dpDate";
-            dpDate.Size = new Size(326, 31);
+            dpDate.Size = new Size(326, 27);
             dpDate.TabIndex = 14;
             // 
             // btnUseDate
@@ -247,9 +247,9 @@
             // chkRemovePrefix
             // 
             chkRemovePrefix.AutoSize = true;
-            chkRemovePrefix.Location = new Point(133, 3);
+            chkRemovePrefix.Location = new Point(112, 3);
             chkRemovePrefix.Name = "chkRemovePrefix";
-            chkRemovePrefix.Size = new Size(150, 29);
+            chkRemovePrefix.Size = new Size(126, 24);
             chkRemovePrefix.TabIndex = 15;
             chkRemovePrefix.Text = "Remove Prefix";
             chkRemovePrefix.UseVisualStyleBackColor = true;
@@ -263,6 +263,7 @@
             // 
             // EditorRenameFile
             // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             Controls.Add(tableLayoutMain);
             Name = "EditorRenameFile";
             Size = new Size(592, 408);

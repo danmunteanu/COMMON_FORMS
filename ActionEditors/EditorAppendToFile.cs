@@ -2,7 +2,7 @@
 
 namespace CommonForms
 {
-    public partial class EditorAppendToFile : EditorBase<string>
+    public partial class EditorAppendToFile : EditorBase2
     {
         private ActionAppendToFile? _action = null;
 
@@ -17,7 +17,7 @@ namespace CommonForms
             InitializeComponent();
         }
 
-        public override void SaveState(RealityFrameworks.Actions.Action<string> action)
+        public override void SaveState(object action)
         {
             if (action is ActionAppendToFile amf)
             {
@@ -25,7 +25,7 @@ namespace CommonForms
             }
         }
 
-        public override void LoadState(FileAction action)
+        public override void LoadState(object action)
         {
             if (action is ActionAppendToFile amf)
             {
