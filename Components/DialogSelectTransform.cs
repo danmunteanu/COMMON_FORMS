@@ -65,7 +65,6 @@ namespace CommonForms.Components
 
         private void LoadStateEdit(Transform<T> trans)
         {
-            
             //  Make sure Condition and Action are not null
             if (trans == null ||
                 trans.Condition == null ||
@@ -112,14 +111,15 @@ namespace CommonForms.Components
                     Utils.AddUserControlToPanel(panelCondition, mSelCondEditor);
                 }
             }
-            catch (Exception ex)
+            catch (NotImplementedException ex)
             {
                 MessageBox.Show(
-                    ex.Message,
+                    string.Format("{0}: {1}", mSelCondEditor?.GetType().Name, ex.Message),
                     Locale.DLG_CHANGE_ERR_TITLE_WARNING,
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning
                 );
+                panelCondition.Controls.Clear();
             }
 
             //  ACTION Editor
@@ -142,9 +142,14 @@ namespace CommonForms.Components
                     Utils.AddUserControlToPanel(panelAction, mSelActionEditor);
                 }
             }
-            catch (Exception ex)
+            catch (NotImplementedException ex)
             {
-                MessageBox.Show(ex.Message, Locale.DLG_CHANGE_ERR_TITLE_WARNING, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    string.Format("{0}: {1}", mSelActionEditor?.GetType().Name, ex.Message), 
+                    Locale.DLG_CHANGE_ERR_TITLE_WARNING, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning
+                );
                 panelAction.Controls.Clear();
             }
 

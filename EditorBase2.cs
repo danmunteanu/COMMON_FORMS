@@ -11,16 +11,15 @@
         }
 
         public virtual void LoadState(object item)
-            => throw new NotImplementedException();
+            => throw new NotImplementedException("LoadState is not implemented");
 
         public virtual void SaveState(object item)
-            => throw new NotImplementedException();
+            => throw new NotImplementedException("SaveState is not implemented");
 
         //  Resets the editor state - override in derived classes
         public virtual void ResetState() {}
 
-        public virtual bool ValidateState()
-            => true;
+        public virtual bool ValidateState() => true;
 
         public void PushError(string error)
             => mErrorStack.Push(error);
