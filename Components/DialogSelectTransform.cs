@@ -507,8 +507,8 @@ namespace CommonForms.Components
             cmbCondition.Items.Clear();
             foreach (var condition in conditionNames)
                 cmbCondition.Items.Add(condition);
-            
-            cmbCondition.SelectedIndex = 0;
+            if (cmbCondition.Items.Count > 0)
+                cmbCondition.SelectedIndex = 0;
         }
 
         //	Load Action Names
@@ -517,8 +517,8 @@ namespace CommonForms.Components
             cmbAction.Items.Clear();
             foreach (var action in actionNames)
                 cmbAction.Items.Add(action);
-            
-            cmbAction.SelectedIndex = 0;
+            if (cmbAction.Items.Count > 0)
+                cmbAction.SelectedIndex = 0;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
