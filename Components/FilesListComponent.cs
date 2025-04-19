@@ -1,6 +1,6 @@
 ﻿namespace CommonForms.Components
 {
-    public partial class FilesListComponent : IApplicationComponent
+    public partial class FilesListComponent : ApplicationPageBase
     {
         //  Settings dialog
         private FilesListSettingsDialog mDialogSettings;

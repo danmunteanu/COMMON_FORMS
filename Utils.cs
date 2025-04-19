@@ -2,6 +2,11 @@
 {
     public class Utils
     {
+		/// <summary>
+        /// File prefix date mask
+        /// </summary>
+		public static string K_PREFIX_DATE_MASK = "yyyy-MM-dd-";
+
         /// <summary>
         /// An array of video file extensions
         /// </summary>
@@ -41,6 +46,9 @@
             ".opus"  // Opus Audio
         };
 
+        /// <summary>
+        /// An array of common archive file extensions.
+        /// </summary>
         public static string[] ArchiveFileExtensions { get; } =
         {
             ".zip",
@@ -64,6 +72,9 @@
             ".apk"
         };
 
+        /// <summary>
+        /// An array of common image file extensions.
+        /// </summary>
         public static string[] ImageFileExtensions { get; } =
         {
             ".jpg",
@@ -79,9 +90,10 @@
             ".raw"
         };
 
-        public static string K_PREFIX_DATE_MASK = "yyyy-MM-dd-";
-
-        //	helper - Adds user controls to a panel
+        
+		/// <summary>
+        ///	Helper function - Adds a user control to a panel, dock fill, does not add twice
+        /// </summary>
         public static bool AddUserControlToPanel(Panel panel, UserControl control)
         {
             if (panel.Controls.Contains(control))
@@ -124,6 +136,9 @@
             return false;
         }
 
+		/// <summary>
+        ///	Helper function - converts a bool value to string true -> "yes", false -> "no"
+        /// </summary>
         public static string Bool2String(bool b)
         {
             return b ? "yes" : "no";
