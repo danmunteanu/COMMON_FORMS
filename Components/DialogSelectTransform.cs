@@ -507,6 +507,7 @@ namespace CommonForms.Components
             cmbCondition.Items.Clear();
             foreach (var condition in conditionNames)
                 cmbCondition.Items.Add(condition);
+            
             cmbCondition.SelectedIndex = 0;
         }
 
@@ -516,6 +517,7 @@ namespace CommonForms.Components
             cmbAction.Items.Clear();
             foreach (var action in actionNames)
                 cmbAction.Items.Add(action);
+            
             cmbAction.SelectedIndex = 0;
         }
 
